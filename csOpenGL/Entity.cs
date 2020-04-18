@@ -102,9 +102,9 @@ namespace LD46
 
         public int[] CheckCollision()
         {
-            for(int i = (int)(x/Globals.TileSize); i < (int)(x / Globals.TileSize) + 2 + w/Globals.TileSize && i < Globals.l.Current.width; i++)
+            for(int i = (int)(x/Globals.TileSize); i < (int)(x / Globals.TileSize) + 2 + w/Globals.TileSize && i < Globals.l.Current.width && i > -1; i++)
             {
-                for(int j = (int)(y / Globals.TileSize); j < (int)(y / Globals.TileSize) + 2 + h / Globals.TileSize && j < Globals.l.Current.height; j++)
+                for(int j = (int)(y / Globals.TileSize); j < (int)(y / Globals.TileSize) + 2 + h / Globals.TileSize && j < Globals.l.Current.height && j > -1; j++)
                 {
                     Tile t = Globals.l.Current.getTile(i, j);
                     if (t.GetWalkable() == Walkable.SOLID)
