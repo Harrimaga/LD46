@@ -95,6 +95,7 @@ namespace LD46
             Stack<MMData> drawOrder = new Stack<MMData>();
             int x = 1920 - 100 - Current.width / 2;
             int y = 1080 - 100 - Current.height / 2;
+            drawOrder.Push(new MMData(null, Current, 1, x, y));
             foreach (Connection c in Current.Connections)
             {
                 Room r = c.Room;
@@ -113,7 +114,6 @@ namespace LD46
                         conns.Enqueue(new MMData(Current, r, 0.8f, x - r.width - 5, y + c.location - r.getLocation(r)));
                         break;
                 }
-                drawOrder.Push(new MMData(null, Current, 1, x, y));
             }
             while (conns.Count > 0)
             {
