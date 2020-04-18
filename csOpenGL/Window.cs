@@ -202,14 +202,21 @@ namespace LD46
                 Exit();
             }
             Hotkey.Update(input);
-            MouseState mst = Mouse.GetState();
-            mouseX = mst.X;
-            mouseY = mst.Y;
+            //MouseState mst = Mouse.GetState();
+            //mouseX = mst.X;
+            //mouseY = mst.Y;
             //other shit
             textDrawing.DrawingPrimitives.Clear();
             game.Update(delta);
             game.Draw();
             SoundManager.Update();
+        }
+
+        protected override void OnMouseMove(MouseMoveEventArgs e)
+        {
+            mouseX = e.X;
+            mouseY = e.Y;
+            base.OnMouseMove(e);
         }
 
         public void DrawText(string text, int x, int y, QFont f = null)
