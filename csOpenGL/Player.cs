@@ -12,15 +12,29 @@ namespace LD46
         public double attackTimer = 0, attackSpeed = 0, attackPoint = 1, damage;
         public bool attacked = false, attacking = false, a = false;
         public string name;
+        public Sprite UIBack;
+        public List<Item> items = new List<Item>();
 
-        public Player(float x, float y, double attackPoint, double attackSpeed, double damage, string name)
+        public Player(double Health, float x, float y, int texNum, int attackTexNum, int spriteNum, int w, int h, double speed, double attackPoint, double attackSpeed, string name, double damage)
         {
-            Init(100, x, y, 0, 3, 1, (int)(Globals.TileSize*0.9), (int)(Globals.TileSize * 0.9), 10);
+            Init(Health, x, y, texNum, attackTexNum, spriteNum, w, h, speed);
             ani = new Animation(0, 3, 10);
             this.attackSpeed = attackSpeed;
             this.attackPoint = attackPoint;
             this.damage = damage;
             this.name = name;
+            UIBack = new Sprite(200, 880, 0, Window.texs[2]);
+            items.Add(new Sword());
+            items.Add(new Sword());
+            items.Add(new Sword());
+            items.Add(new Sword());
+            items.Add(new Sword());
+            items.Add(new Sword());
+            items.Add(new Sword());
+            items.Add(new Sword());
+            items.Add(new Sword());
+            items.Add(new Sword());
+            items.Add(new Sword());
         }
 
         public override void Update(double delta)
@@ -54,11 +68,11 @@ namespace LD46
                                 switch(d)
                                 {
                                     case Direction.NORTH:
-                                        y = (Globals.l.Current.height - 2) * Globals.TileSize;
+                                        y = (Globals.l.Current.height - 2.1f) * Globals.TileSize;
                                         x = (Globals.l.Current.Connections.Find((Connection) => { return Connection.Direction == Direction.SOUTH; }).location) * Globals.TileSize;
                                         break;
                                     case Direction.WEST:
-                                        x = (Globals.l.Current.width - 2) * Globals.TileSize;
+                                        x = (Globals.l.Current.width - 2.1f) * Globals.TileSize;
                                         y = (Globals.l.Current.Connections.Find((Connection) => { return Connection.Direction == Direction.EAST; }).location) * Globals.TileSize;
                                         break;
                                     case Direction.SOUTH:
@@ -157,6 +171,22 @@ namespace LD46
         {
             Globals.rootActionLog.TakeDamage(name, damage, with);
             base.DealMagicDamage(damage, name, with);
+        }
+
+        public void DrawUI()
+        {
+            UIBack.w = 200;
+            UIBack.h = 880;
+            UIBack.Draw(1720, 0, 0, 0.5f, 0.5f, 0.5f, 0.85f);
+            int y = 5;
+            UIBack.w = 190;
+            UIBack.h = 45;
+            foreach (Item it in items)
+            {
+                UIBack.Draw(1725, y, 0, 0, 0, 0, 0.5f);
+                it.Draw(1727, y + 2);
+                y += 55;
+            }
         }
 
     }

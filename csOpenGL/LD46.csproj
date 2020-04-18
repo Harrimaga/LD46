@@ -134,6 +134,7 @@
     <Compile Include="Enemy.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="enums.cs" />
+    <Compile Include="Fighter.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="Hotkey.cs" />

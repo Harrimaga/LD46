@@ -17,6 +17,8 @@ namespace LD46
         public const double FIGHTER_BASE_ATTACK_POINT = 1;
         public const double FIGHTER_BASE_ATTACK_SPEED = 50;
         public const double FIGHTER_BASE_DAMAGE = 20;
+        public const double FIGHTER_BASE_HEALTH = 100;
+        public const double FIGHTER_BASE_SPEED = 5;
         public const string FIGHTER_NAME = "Fighter";
 
         /// <summary>
