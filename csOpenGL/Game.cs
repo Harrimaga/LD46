@@ -19,7 +19,7 @@ namespace LD46
 
         private Player p = new Fighter(Globals.TileSize, Globals.TileSize);
         private Theme theme = new Theme("Basic");
-        private List<DrawnButton> buttons = new List<DrawnButton>();
+        public List<DrawnButton> buttons = new List<DrawnButton>();
 
         public Game(Window window)
         {
@@ -29,7 +29,7 @@ namespace LD46
 
         public void OnLoad()
         {
-            buttons.Add(new DrawnButton("Red Velvet", 500, 500, 200, 50, () => { Console.WriteLine("Button 1"); }));
+            //buttons.Add(new DrawnButton("Red Velvet", 500, 500, 200, 50, () => { Console.WriteLine("Button 1"); }));
             Globals.l = new Level(theme, p, 0);
         }
 

@@ -14,6 +14,7 @@ namespace LD46
         public string name;
         public Sprite UIBack;
         public List<Item> items = new List<Item>();
+        public List<DrawnButton> buttons = new List<DrawnButton>();
 
         public Player(double Health, float x, float y, int texNum, int attackTexNum, int spriteNum, int w, int h, double speed, double attackPoint, double attackSpeed, string name, double damage, double PhysicalAmp, double MagicalAmp)
         {
@@ -35,6 +36,23 @@ namespace LD46
             items.Add(new Sword());
             items.Add(new Sword());
             items.Add(new Sword());
+        }
+
+        public void AddItem(Item it)
+        {
+            items.Add(it);
+            DrawnButton b = new DrawnButton("", 1725, 5 + 55 * items.Count, 190, 45, () => { });
+            Window.window.game.buttons.Add(b);
+            buttons.Add(b);
+        }
+
+        public void RemoveItem(Item it)
+        {
+            for(int i = 0; i < items.Count; i++)
+            {
+
+            }
+            items.Remove(it);
         }
 
         public override void Update(double delta)
