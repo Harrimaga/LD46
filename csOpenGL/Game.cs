@@ -17,6 +17,7 @@ namespace LD46
         private Hotkey down = new Hotkey(true).AddKey(Key.S).AddKey(Key.Down);
 
         private Sprite s = new Sprite(64, 64, 1, Window.texs[0]);
+        private Room room = new Room(16, 16);
 
         public Game(Window window)
         {
@@ -43,6 +44,8 @@ namespace LD46
         {
             //Do all you draw calls here
             s.Draw(0, 0);
+            room.Draw(0, 0);
+
             window.DrawText("test", 0, 0);
         }
 

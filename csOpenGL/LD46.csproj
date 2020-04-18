@@ -125,6 +125,7 @@
     <Compile Include="Hotkey.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Room.cs" />
     <Compile Include="Shader.cs" />
     <Compile Include="SoundManager.cs" />
     <Compile Include="Sprite.cs" />
@@ -176,6 +177,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Textures\BasicStairs.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\BasicTile.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\BasicWall.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Textures\Test.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
