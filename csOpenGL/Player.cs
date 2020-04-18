@@ -24,17 +24,18 @@ namespace LD46
             this.damage = damage;
             this.name = name;
             UIBack = new Sprite(200, 880, 0, Window.texs[2]);
-            items.Add(new Sword());
-            items.Add(new Sword());
-            items.Add(new Sword());
-            items.Add(new Sword());
-            items.Add(new Sword());
-            items.Add(new Sword());
-            items.Add(new Sword());
-            items.Add(new Sword());
-            items.Add(new Sword());
-            items.Add(new Sword());
-            items.Add(new Sword());
+            EquipItem(new Sword());
+            EquipItem(new Sword());
+            EquipItem(new Sword());
+            EquipItem(new Sword());
+            EquipItem(new Sword());
+            EquipItem(new Sword());
+            EquipItem(new Sword());
+            EquipItem(new Sword());
+            EquipItem(new Sword());
+            EquipItem(new Sword());
+            EquipItem(new Sword());
+            EquipItem(new Sword());
         }
 
         public override void Update(double delta)
@@ -139,7 +140,7 @@ namespace LD46
 
                         if (dis <= (enemy.w / 2 + w / 2) * 1.2f)
                         {
-                            enemy.DealPhysicalDamage(damage, name, "their blade");
+                            enemy.DealPhysicalDamage(damage * PhysicalAmp, name, "their blade");
                         }
 
                         attacked = true;
