@@ -12,18 +12,23 @@ namespace LD46
         public double attackTimer = 0, attackSpeed = 0, attackPoint = 1, damage;
         public bool attacked = false, attacking = false, a = false;
         public string name;
-        public Sprite UIBack;
+        public Sprite UIBack, HBarUI, HBarBackUI, MBarUI, MBarBackUI;
         public List<Item> items = new List<Item>();
+        public List<DrawnButton> buttons = new List<DrawnButton>();
 
-        public Player(double Health, float x, float y, int texNum, int attackTexNum, int spriteNum, int w, int h, double speed, double attackPoint, double attackSpeed, string name, double damage, double PhysicalAmp, double MagicalAmp)
+        public Player(double Health, double Mana, float x, float y, int texNum, int attackTexNum, int spriteNum, int w, int h, double speed, double attackPoint, double attackSpeed, string name, double damage, double PhysicalAmp, double MagicalAmp)
         {
-            Init(Health, x, y, texNum, attackTexNum, spriteNum, w, h, speed);
+            Init(Health, Mana, x, y, texNum, attackTexNum, spriteNum, w, h, speed);
             ani = new Animation(0, 3, 10);
             this.attackSpeed = attackSpeed;
             this.attackPoint = attackPoint;
             this.damage = damage;
             this.name = name;
             UIBack = new Sprite(200, 880, 0, Window.texs[2]);
+            HBarUI = new Sprite(w, h / 8, 0, Window.texs[2]);
+            HBarBackUI = new Sprite(w, h / 8, 0, Window.texs[2]);
+            MBarUI = new Sprite(w, h / 8, 0, Window.texs[2]);
+            MBarBackUI = new Sprite(w, h / 8, 0, Window.texs[2]);
             EquipItem(new Sword());
             EquipItem(new Sword());
             EquipItem(new Sword());
@@ -36,6 +41,8 @@ namespace LD46
             EquipItem(new Sword());
             EquipItem(new Sword());
             EquipItem(new Sword());
+            
+            
         }
 
         public override void Update(double delta)
@@ -47,6 +54,8 @@ namespace LD46
                 yDir /= dis;
             }
             Move((float)(delta * xDir * speed), (float)(delta * yDir * speed));
+            Window.camX = x - 960 + w / 2;
+            Window.camY = y - 540 + h / 2;
 
             for (int i = (int)(x / Globals.TileSize); i < (int)(x / Globals.TileSize) + 2 + w / Globals.TileSize && i < Globals.l.Current.width && i > -1; i++)
             {
@@ -93,6 +102,8 @@ namespace LD46
                                         y = (Globals.l.Current.Connections.Find((Connection) => { return Connection.Direction == Direction.WEST; }).location) * Globals.TileSize;
                                         break;
                                 }
+                                Window.camX = x - 960 + w / 2;
+                                Window.camY = y - 540 + h / 2;
                             }
                         }
                     }
@@ -128,8 +139,6 @@ namespace LD46
         public void BasicAttack(double delta)
         {
             List<Enemy> enemies = Globals.l.Current.enemies;
-
-
 
             if (attacking)
             {
@@ -188,13 +197,34 @@ namespace LD46
         {
             UIBack.w = 200;
             UIBack.h = 880;
-            UIBack.Draw(1720, 0, 0, 0.5f, 0.5f, 0.5f, 0.85f);
+            UIBack.Draw(1720, 0, false, 0, 0.5f, 0.5f, 0.5f, 0.85f);
             int y = 5;
             UIBack.w = 190;
             UIBack.h = 45;
+
+            HBarUI.w = (int)(200 * Health / MaxHealth);
+            HBarUI.h = 30;
+            HBarBackUI.w = 200;
+            HBarBackUI.h = 30;
+            HBarBackUI.Draw(1720, 750, false, 0, 0, 0, 0);
+            HBarUI.Draw(1720, 750, false, 0, (float)(1 - Health / MaxHealth) / 2, (float)(Health / MaxHealth) / 2, 0); 
+
+            MBarUI.w = (int)(200 * Mana / MaxMana);
+            MBarUI.h = 30;
+            MBarBackUI.w = 200;
+            MBarBackUI.h = 30;
+            MBarBackUI.Draw(1720, 800, false, 0, 0, 0, 0);
+            MBarUI.Draw(1720, 800, false, 0, 0, 1 - (float)(Mana / MaxMana), 1);
+
+            string TextHP = "HP: " + Health + "/" + MaxHealth;
+            string TextMP = "MP: " + Mana + "/" + MaxMana;
+
+            Window.window.DrawTextCentered(TextHP, (int)(1720 + (200 / 2)), (int)(750 + (30 / 2) - 12), Globals.buttonFont);
+            Window.window.DrawTextCentered(TextMP, (int)(1720 + (200 / 2)), (int)(800 + (30 / 2) - 12), Globals.buttonFont);
+
             foreach (Item it in items)
             {
-                UIBack.Draw(1725, y, 0, 0, 0, 0, 0.5f);
+                UIBack.Draw(1725, y, false, 0, 0, 0, 0, 0.5f);
                 it.Draw(1727, y + 2);
                 y += 55;
             }
@@ -202,6 +232,11 @@ namespace LD46
 
         public void EquipItem(Item item)
         {
+            DrawnButton b = new DrawnButton("", 1725, 5 + 55 * items.Count, 190, 45, () => { });
+            b.a = 0;
+            Game.game.buttons.Add(b);
+            buttons.Add(b);
+
             items.Add(item);
             foreach (Effect e in item.GrantedEffects)
             {
@@ -228,6 +263,16 @@ namespace LD46
 
         public void DequipItem(Item item)
         {
+            int i = 0;
+            for (i = 0; i < items.Count; i++)
+            {
+                if(items[i] == item)
+                {
+                    break;
+                }
+            }
+            DrawnButton b = buttons[i];
+            Game.game.buttons.Remove(b);
             items.Remove(item);
             foreach (Effect e in item.GrantedEffects)
             {

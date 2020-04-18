@@ -10,6 +10,8 @@ namespace LD46
     public class Game
     {
 
+        public static Game game;
+
         public Window window;
         private Hotkey left = new Hotkey(true).AddKey(Key.A).AddKey(Key.Left);
         private Hotkey right = new Hotkey(true).AddKey(Key.D).AddKey(Key.Right);
@@ -17,20 +19,22 @@ namespace LD46
         private Hotkey down = new Hotkey(true).AddKey(Key.S).AddKey(Key.Down);
         private Hotkey attack = new Hotkey(false).AddKey(Key.Space);
 
-        private Player p = new Fighter(Globals.TileSize, Globals.TileSize);
+        public List<DrawnButton> buttons = new List<DrawnButton>();
+        private Player p;
         private Theme theme = new Theme("Basic");
-        private List<DrawnButton> buttons = new List<DrawnButton>();
 
         public Game(Window window)
         {
+            Game.game = this;
             this.window = window;
             OnLoad();
         }
 
         public void OnLoad()
         {
-            buttons.Add(new DrawnButton("Red Velvet", 500, 500, 200, 50, () => { Console.WriteLine("Button 1"); }));
-            Globals.l = new Level(theme, p, 0);
+            //buttons.Add(new DrawnButton("Red Velvet", 500, 500, 200, 50, () => { Console.WriteLine("Button 1"); }));
+            p = new Fighter(Globals.TileSize, Globals.TileSize);
+            Globals.l = new Level(theme, p, 12);
         }
 
         public void Update(double delta)

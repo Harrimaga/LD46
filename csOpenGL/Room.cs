@@ -73,7 +73,7 @@ namespace LD46
 
         public void DrawOnMinimap(int x, int y, float cc)
         {
-            s.Draw(x, y, 0, cc, cc, cc, 1);
+            s.Draw(x, y, false, 0, cc, cc, cc, 1);
         }
 
         public int getLocation(Room r)

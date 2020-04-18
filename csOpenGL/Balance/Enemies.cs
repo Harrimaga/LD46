@@ -10,6 +10,7 @@ namespace LD46
     {
 
         public const int TEST_ENEMY_HEALTH = 100;
+        public const int TEST_ENEMY_MANA = 0;
         public const double TEST_ENEMY_SPEED = 3;
         public const double TEST_ENEMY_ATTACKSPEED = 50;
         public const double TEST_ENEMY_ATTACKPOINT = 1;

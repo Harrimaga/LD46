@@ -12,9 +12,9 @@ namespace LD46
         public double attackTimer = 0, attackSpeed = 0, attackPoint = 0, damage;
         public bool attacked = false, attacking = false;
 
-        public Enemy(double Health, float x, float y, int texNum, int attackTexNum, int spriteNum, int w, int h, double speed, double attackPoint, double attackSpeed, double damage, string name, double PhysicalAmp = 1, double MagicalAmp = 1)
+        public Enemy(double Health, double Mana, float x, float y, int texNum, int attackTexNum, int spriteNum, int w, int h, double speed, double attackPoint, double attackSpeed, double damage, string name, double PhysicalAmp = 1, double MagicalAmp = 1)
         {
-            Init(Health, x, y, texNum, attackTexNum, spriteNum, w, h, speed, PhysicalAmp, MagicalAmp);
+            Init(Health, Mana, x, y, texNum, attackTexNum, spriteNum, w, h, speed, PhysicalAmp, MagicalAmp);
             this.attackSpeed = attackSpeed;
             this.attackPoint = attackPoint;
             this.damage = damage;

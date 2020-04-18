@@ -45,7 +45,7 @@ namespace LD46
             Handle = GL.Arb.GetImageHandle(h, 0, false, 0, (PixelFormat)0x8058);
         }
 
-        public void AddToList(float x, float y, float r, float g, float b, float a, float rot, int num, int w, int h)
+        public void AddToList(float x, float y, float r, float g, float b, float a, float rot, int num, int w, int h, bool cam)
         {
             int sX = num*sW % totW;
             int sY = (hNum - 1) - num*sW / totW;
@@ -53,7 +53,15 @@ namespace LD46
             float scaleX = (float)(w) / sW;
             float scaleY = (float)(h) / sH;
 
-            Window.sd.Add(new SData(Handle, (int)(w * Window.screenScaleX), (int)(h * Window.screenScaleY), (x - Window.camX)*Window.screenScaleX, (y - Window.camY) * Window.screenScaleY, scaleX * Window.screenScaleX, scaleY * Window.screenScaleY, sX, sY, r, g, b, a, rot));
+            if(cam)
+            {
+                Window.sd.Add(new SData(Handle, (int)(w * Window.screenScaleX), (int)(h * Window.screenScaleY), (x - Window.camX) * Window.screenScaleX, (y - Window.camY) * Window.screenScaleY, scaleX * Window.screenScaleX, scaleY * Window.screenScaleY, sX, sY, r, g, b, a, rot));
+            }
+            else
+            {
+                Window.sd.Add(new SData(Handle, (int)(w * Window.screenScaleX), (int)(h * Window.screenScaleY), x * Window.screenScaleX, y * Window.screenScaleY, scaleX * Window.screenScaleX, scaleY * Window.screenScaleY, sX, sY, r, g, b, a, rot));
+            }
+            
         } 
 
     }
