@@ -13,6 +13,8 @@ namespace LD46
         public static Level l = null;
         public const int TileSize = 64;
         public static QFont buttonFont = new QFont("Fonts/arial.ttf", 8 * Window.window.Height / 1080.0f, new QuickFont.Configuration.QFontBuilderConfiguration(true));
+        public static QFont logFont = new QFont("Fonts/arial.ttf", 5 * Window.window.Height / 1080.0f, new QuickFont.Configuration.QFontBuilderConfiguration(true));
+        public static ActionLog rootActionLog = new ActionLog(15);
 
         public static bool checkCol(int x1, int y1, int w1, int h1, int x2, int y2, int w2, int h2)
         {

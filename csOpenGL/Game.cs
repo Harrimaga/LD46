@@ -41,13 +41,14 @@ namespace LD46
             if (down.IsDown()) p.SetDir(0, 1);
 
             Globals.l.Update(delta);
-
+            Globals.rootActionLog.Add("There is an update");
         }
 
         public void Draw()
         {
             //Do all you draw calls here
             Globals.l.Draw();
+            Globals.rootActionLog.Draw();
             foreach (DrawnButton button in buttons)
             {
                 button.Draw();

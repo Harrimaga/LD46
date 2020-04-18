@@ -121,6 +121,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionLog.cs" />
     <Compile Include="Balance\Balance.cs" />
     <Compile Include="Balance\Items\OrbOfHealth.cs" />
     <Compile Include="Balance\Items\Sword.cs" />
