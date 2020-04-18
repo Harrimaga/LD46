@@ -44,7 +44,7 @@ namespace LD46
             {
                 for (int j = 0; j < height; j++)
                 {
-                    tileGrid[i, j].Draw(x + i * (tileSize+2), y + j * (tileSize + 2));
+                    tileGrid[i, j].Draw(x + i * tileSize, y + j * tileSize);
                 }
             }
         }
