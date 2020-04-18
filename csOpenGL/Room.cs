@@ -11,12 +11,14 @@ namespace LD46
         public Tile[,] tileGrid;
         public int width, height, tileSize;
         public string tileStyle;
+        public Sprite s;
         public List<Enemy> enemies;
         public List<Room> Connections { get; set; }
 
         public Room(int x, int y, Theme theme, int tileSize = Globals.TileSize)
         {
             Connections = new List<Room>();
+            s = new Sprite(x, y, 0, Window.texs[2]);
             width = x;
             height = y;
             tileGrid = new Tile[x, y];
@@ -53,6 +55,20 @@ namespace LD46
             foreach (var enemy in enemies)
             {
                 enemy.Update(delta);
+            }
+        }
+
+        public void DrawOnMinimap(int x, int y, float c, int bx, int by, Room from)
+        {
+            s.Draw(bx+x, by+y, 0, c, c, c, 1);
+            int i = 0;
+            foreach(Room r in Connections)
+            {
+                if(r != from)
+                {
+                    r.DrawOnMinimap(x + width, y+i, c * 0.8f, bx, by, this);
+                    i += r.height;
+                }
             }
         }
 

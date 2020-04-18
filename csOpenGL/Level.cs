@@ -14,6 +14,7 @@ namespace LD46
         public Theme theme;
         public Player p;
         private Random Rng { get; set; }
+        private Sprite back;
 
         public Level(Theme theme, Player p, int seed)
         {
@@ -23,6 +24,7 @@ namespace LD46
             this.p = p;
             Rng = new Random(seed);
             CreateRoom();
+            back = new Sprite(200, 200, 0, Window.texs[2]);
         }
 
         private bool CreateRoom(int deepness = 0, Room lastRoom = null)
@@ -57,6 +59,13 @@ namespace LD46
         {
             Current.Draw(0, 0);
             p.Draw();
+            DrawMinimap();
+        }
+
+        public void DrawMinimap()
+        {
+            back.Draw(1920 - 200, 1080 - 200, 0, 0, 0, 0, 0.85f);
+            Current.DrawOnMinimap(0, 0, 1, 1920 - 200, 1080 - 200, null);
         }
 
         public void Update(double delta)
