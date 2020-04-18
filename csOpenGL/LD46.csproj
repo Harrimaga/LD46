@@ -124,9 +124,11 @@
     <Compile Include="Balance\Balance.cs" />
     <Compile Include="Balance\Items\OrbOfHealth.cs" />
     <Compile Include="Balance\Items\Sword.cs" />
+    <Compile Include="DrawnButton.cs" />
     <Compile Include="Effect.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="Entity.cs" />
+    <Compile Include="enums.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="Hotkey.cs" />

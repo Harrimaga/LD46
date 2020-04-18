@@ -28,13 +28,4 @@ namespace LD46
 
         }
     }
-
-    enum Rarity
-    {
-        BASIC, //Starting items
-        COMMON,
-        UNCOMMON,
-        RARE,
-        SUPER_RARE
-    }
 }

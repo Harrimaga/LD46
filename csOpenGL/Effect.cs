@@ -32,12 +32,4 @@ namespace LD46
             return TimeLeft < 0;
         }
     }
-
-    public enum EffectType
-    {
-        HP,
-        PHYSICAL_DAMAGE,
-        MAGICAL_DAMAGE,
-        BLOCK,
-    }
 }
