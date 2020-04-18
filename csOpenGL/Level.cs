@@ -30,27 +30,47 @@ namespace LD46
         private bool CreateRoom(int deepness = 0, Room lastRoom = null)
         {
             List<Direction> directions = new List<Direction> { Direction.SOUTH, Direction.NORTH, Direction.EAST, Direction.WEST };
+            if(lastRoom != null)
+            {
+                foreach (Connection conn in lastRoom.Connections)
+                {
+                    Direction dir = conn.Direction;
+                    directions.Remove(dir);
+                }
+            }
             if(deepness > 7)
             {
                 return true;
             }else if(deepness == 0)
             {
-                Current = new Room(Rng.Next(3, 20), Rng.Next(3, 20), theme);
+                Current = new Room(Rng.Next(4, 20), Rng.Next(4, 20), theme);
                 FileHandler.WriteText("Created a room with size (" + Current.width + "," + Current.height + ")", "../../logs/log.txt", WriteModes.CREATE_OR_APPEND);
                 List<bool> results = new List<bool>();
                 
                 results.Add(CreateRoom(++deepness, Current));
                 return results.All((singleResult) => { return singleResult; });
             }
-            Room newRoom = new Room(Rng.Next(3, 20), Rng.Next(3, 20), theme);
-            for (int i = 0; i < Rng.Next(1, 5); i++)
+            Room newRoom = new Room(Rng.Next(4, 20), Rng.Next(4, 20), theme);
+            FileHandler.WriteText("Created a room with size (" + newRoom.width + "," + newRoom.height + ")", "../../logs/log.txt", WriteModes.CREATE_OR_APPEND);
+            for (int i = 0; i < Rng.Next(0, 4) && directions.Count > 0; i++)
             {
                 int index = Rng.Next(0, directions.Count);
-                newRoom.AddConnection(new Connection(lastRoom, directions[index], 2));
-                lastRoom.AddConnection(new Connection(newRoom,(Direction)(((int)directions[index] + 2) % 4), 2));
+                int locationInGrid  = 2;
+                int locationInGrid2 = 2;
+                if (directions[index] == Direction.NORTH || directions[index] == Direction.SOUTH)
+                {
+                    locationInGrid = Rng.Next(1, newRoom.width - 2);
+                    locationInGrid2 = Rng.Next(1, lastRoom.width - 2);
+                }
+                else
+                {
+                    locationInGrid = Rng.Next(1, newRoom.height - 2);
+                    locationInGrid2 = Rng.Next(1, lastRoom.height - 2);
+                }
+                newRoom.AddConnection(new Connection(lastRoom, directions[index], locationInGrid));
+                lastRoom.AddConnection(new Connection(newRoom,(Direction)(((int)directions[index] + 2) % 4), locationInGrid2));
                 directions.RemoveAt(index);
             }
-            FileHandler.WriteText("Created a room with size (" + newRoom.width + "," + newRoom.height + ")", "../../logs/log.txt", WriteModes.CREATE_OR_APPEND);
 
             List<bool> result = new List<bool>();
             for (int i = 0; i < Rng.Next(1, 5); i++)
