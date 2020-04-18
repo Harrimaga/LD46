@@ -49,6 +49,10 @@ namespace LD46
 
         public Tile getTile(int x, int y)
         {
+            if(x<0 || x>=width ||y<0||y>=height)
+            {
+                return new Tile(new Sprite(tileSize, tileSize, 0, Theme.GetTextureByType(TileType.WALL)), Walkable.SOLID, TileType.WALL);
+            }
             return tileGrid[x, y];
         }
 
