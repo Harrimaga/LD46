@@ -12,9 +12,11 @@ namespace LD46
         public int width, height, tileSize;
         public string tileStyle;
         public List<Enemy> enemies;
+        public List<Room> Connections { get; set; }
 
         public Room(int x, int y, Theme theme, int tileSize = Globals.TileSize)
         {
+            Connections = new List<Room>();
             width = x;
             height = y;
             tileGrid = new Tile[x, y];
