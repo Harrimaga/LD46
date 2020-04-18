@@ -22,5 +22,11 @@ namespace LD46
         {
             sprite.Draw(x, y);
         }
+
+        public Walkable GetWalkable()
+        {
+            return walkable;
+        }
+
     }
 }

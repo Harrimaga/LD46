@@ -47,16 +47,23 @@ namespace LD46
             return Health < 0;
         }
 
-        public bool CheckCollision()
+        public int[] CheckCollision()
         {
             for(int i = (int)(x/Globals.TileSize); i < (int)(x / Globals.TileSize) + 2 + w/Globals.TileSize && i < Globals.l.Current.width; i++)
             {
                 for(int j = (int)(y / Globals.TileSize); j < (int)(y / Globals.TileSize) + 2 + h / Globals.TileSize && j < Globals.l.Current.height; j++)
                 {
-                    //check bool
+                    Tile t = Globals.l.Current.getTile(i, j);
+                    if (t.GetWalkable() == Walkable.SOLID)
+                    {
+                        if (Globals.checkCol((int)x, (int)y, w, h, i * Globals.TileSize, j * Globals.TileSize, Globals.TileSize, Globals.TileSize))
+                        {
+                            return new int[]{ i, j };
+                        }
+                    }
                 }
             }
-            return false;
+            return null;
         }
 
     }
