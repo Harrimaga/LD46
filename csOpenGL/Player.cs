@@ -65,6 +65,25 @@ namespace LD46
                             if(c.Direction == d)
                             {
                                 Globals.l.Current = c.Room;
+                                switch(d)
+                                {
+                                    case Direction.NORTH:
+                                        y = (Globals.l.Current.height - 2) * Globals.TileSize;
+                                        x = (Globals.l.Current.Connections.Find((Connection) => { return Connection.Direction == Direction.SOUTH; }).location) * Globals.TileSize;
+                                        break;
+                                    case Direction.WEST:
+                                        x = (Globals.l.Current.width - 2) * Globals.TileSize;
+                                        y = (Globals.l.Current.Connections.Find((Connection) => { return Connection.Direction == Direction.EAST; }).location) * Globals.TileSize;
+                                        break;
+                                    case Direction.SOUTH:
+                                        y = Globals.TileSize;
+                                        x = (Globals.l.Current.Connections.Find((Connection) => { return Connection.Direction == Direction.NORTH; }).location) * Globals.TileSize;
+                                        break;
+                                    case Direction.EAST:
+                                        x = Globals.TileSize;
+                                        y = (Globals.l.Current.Connections.Find((Connection) => { return Connection.Direction == Direction.WEST; }).location) * Globals.TileSize;
+                                        break;
+                                }
                             }
                         }
                     }
