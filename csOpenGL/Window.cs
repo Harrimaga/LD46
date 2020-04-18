@@ -200,9 +200,6 @@ namespace LD46
                 Exit();
             }
             Hotkey.Update(input);
-            //MouseState mst = Mouse.GetState();
-            //mouseX = mst.X;
-            //mouseY = mst.Y;
             //other shit
             textDrawing.DrawingPrimitives.Clear();
             game.Update(delta);
