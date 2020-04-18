@@ -25,7 +25,7 @@ namespace LD46
             {
                 for (int j = 0; j < y; j++)
                 {
-                    tileGrid[i, j] = new Sprite(64, 64, 0, Window.texs[1]);
+                    tileGrid[i, j] = new Sprite(tileSize, tileSize, 0, Window.texs[1]);
                 }
             }
         }
