@@ -18,6 +18,10 @@ namespace LD46
         private float Width { get; set; }
         private float Height { get; set; }
         private EventAction OnClickAction { get; set; }
+        public float r { get; set; }
+        public float g { get; set; }
+        public float b { get; set; }
+        public float a { get; set; }
 
         public DrawnButton(string text, float x, float y, float width, float height, EventAction onClickAction)
         {
@@ -46,7 +50,7 @@ namespace LD46
 
         public void Draw()
         {
-            Sprite.Draw(X, Y);
+            Sprite.Draw(X, Y, 0, r, g, b, a);
             Window.window.DrawTextCentered(Text, (int)(X + (Width / 2)), (int)(Y + (Height / 2) - 12), Globals.buttonFont);
             
         }

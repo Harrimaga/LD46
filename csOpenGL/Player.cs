@@ -14,7 +14,7 @@ namespace LD46
         public string name;
         public Sprite UIBack, HBarUI, HBarBackUI, MBarUI, MBarBackUI;
         public List<Item> items = new List<Item>();
-        
+        public List<DrawnButton> buttons = new List<DrawnButton>();
 
         public Player(double Health, double Mana, float x, float y, int texNum, int attackTexNum, int spriteNum, int w, int h, double speed, double attackPoint, double attackSpeed, string name, double damage, double PhysicalAmp, double MagicalAmp)
         {
@@ -228,6 +228,11 @@ namespace LD46
 
         public void EquipItem(Item item)
         {
+            DrawnButton b = new DrawnButton("", 1725, 5 + 55 * items.Count, 190, 45, () => { });
+            b.a = 0;
+            Game.game.buttons.Add(b);
+            buttons.Add(b);
+
             items.Add(item);
             foreach (Effect e in item.GrantedEffects)
             {
@@ -254,6 +259,16 @@ namespace LD46
 
         public void DequipItem(Item item)
         {
+            int i = 0;
+            for (i = 0; i < items.Count; i++)
+            {
+                if(items[i] == item)
+                {
+                    break;
+                }
+            }
+            DrawnButton b = buttons[i];
+            Game.game.buttons.Remove(b);
             items.Remove(item);
             foreach (Effect e in item.GrantedEffects)
             {

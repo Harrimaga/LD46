@@ -76,7 +76,7 @@ namespace LD46
                 1.0f, 0.0f, 0
             };
         private double delta;
-        private Game game;
+        public Game game;
         public int mouseX, mouseY;
 
         public Window(int w, int h, string title) : base(w, h, GraphicsMode.Default, title)
