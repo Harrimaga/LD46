@@ -30,5 +30,18 @@ namespace LD46
             Icon = icon;
             SpellAnimation = spellAnimation;
         }
+
+        public void Cast(float x, float y)
+        {
+            foreach(Enemy enemy in Globals.l.Current.enemies)
+            {
+                if(Math.Abs(enemy.x-x) < AOE && Math.Abs(enemy.y-y) < AOE)
+                {
+                    //Deal damage and add the spell effects to the enemies withing AOE
+                    enemy.DealMagicDamage(Damage, Globals.l.p.name, Name);
+
+                }
+            }
+        }
     }
 }
