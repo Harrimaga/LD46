@@ -46,7 +46,7 @@ namespace LD46
         public void Draw()
         {
             //Do all you draw calls here
-            room.Draw(16, 16);
+            room.Draw(0, 0);
             p.Draw();
             e.Draw();
         }

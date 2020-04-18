@@ -28,10 +28,22 @@ namespace LD46
                 }
                 else if(xDir < 0)
                 {
-
+                    x = (1+coll[0]) * Globals.TileSize;
                 }
             }
             y += (float)(delta * speed * yDir);
+            coll = CheckCollision();
+            if (coll != null)
+            {
+                if (yDir > 0)
+                {
+                    y = coll[1] * Globals.TileSize - h;
+                }
+                else if (yDir < 0)
+                {
+                    y = (1 + coll[1]) * Globals.TileSize;
+                }
+            }
             xDir = 0;
             yDir = 0;
         }
