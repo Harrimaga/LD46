@@ -128,6 +128,7 @@
     <Compile Include="Enemy.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="Globals.cs" />
     <Compile Include="Hotkey.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Player.cs" />
