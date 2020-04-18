@@ -10,9 +10,10 @@ namespace LD46
     {
         private Sprite sprite;
         private Walkable walkable;
+        private TileType tileType;
 
 
-        public Tile(Sprite sprite, Walkable walkable)
+        public Tile(Sprite sprite, Walkable walkable, TileType tileType)
         {
             this.sprite = sprite;
             this.walkable = walkable;
