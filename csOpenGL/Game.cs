@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LD46
 {
-    class Game
+    public class Game
     {
 
         public Window window;
@@ -16,7 +16,7 @@ namespace LD46
         private Hotkey up = new Hotkey(true).AddKey(Key.W).AddKey(Key.Up);
         private Hotkey down = new Hotkey(true).AddKey(Key.S).AddKey(Key.Down);
 
-        private Player p = new Player(0, 0);
+        private Player p = new Player(128, 128);
         private Enemy e = new Enemy(1, 1000, 50, 0, 2, 128, 128, 5);
         private Room room = new Room(16, 16);
 
@@ -28,7 +28,7 @@ namespace LD46
 
         public void OnLoad()
         {
-            
+            Globals.l = new Level(room);
         }
 
         public void Update(double delta)
@@ -46,9 +46,9 @@ namespace LD46
         public void Draw()
         {
             //Do all you draw calls here
+            room.Draw(16, 16);
             p.Draw();
             e.Draw();
-            room.Draw(16, 16);
         }
 
         public void MouseDown(MouseButtonEventArgs e, int mx, int my)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LD46
 {
-    class OrbOfHealth : Item
+    public class OrbOfHealth : Item
     {
         public OrbOfHealth() : base(
             "Sword",

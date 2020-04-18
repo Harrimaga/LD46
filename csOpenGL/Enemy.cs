@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LD46
 {
-    class Enemy : Entity
+    public class Enemy : Entity
     {
 
         public Enemy(double Health, float x, float y, int texNum, int spriteNum, int w, int h, double speed, double PhysicalAmp = 1, double MagicalAmp = 1)

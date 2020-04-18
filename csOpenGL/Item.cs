@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LD46
 {
-    abstract class Item
+    public abstract class Item
     {
         public string Name { get; set; }
         public Rarity Rarity { get; set; }

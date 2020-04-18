@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LD46
 {
-    class Player : Entity
+    public class Player : Entity
     {
 
         protected int xDir, yDir;
@@ -19,6 +19,18 @@ namespace LD46
         public override void Update(double delta)
         {
             x += (float)(delta * speed * xDir);
+            //int[] 
+            if (false)
+            {
+                if(xDir > 0)
+                {
+                    x = (int)(x / Globals.TileSize) * Globals.TileSize + Globals.TileSize - x%Globals.TileSize;
+                }
+                else if(xDir < 0)
+                {
+
+                }
+            }
             y += (float)(delta * speed * yDir);
             xDir = 0;
             yDir = 0;

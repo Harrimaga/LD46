@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LD46
 {
-    enum Rarity
+    public enum Rarity
     {
         BASIC, //Starting items
         COMMON,
@@ -21,5 +21,11 @@ namespace LD46
         PHYSICAL_DAMAGE,
         MAGICAL_DAMAGE,
         BLOCK,
+    }
+
+    public enum Walkable
+    {
+        SOLID,
+        WALKABLE
     }
 }
