@@ -32,5 +32,17 @@ namespace LD46
 
         public abstract void Update(double delta);
 
+        public virtual bool DealPhysicalDamage(double damage)
+        {
+            Health -= damage;
+            return Health < 0;
+        }
+
+        public virtual bool DealMagicDamage(double damage)
+        {
+            Health -= damage;
+            return Health < 0;
+        }
+
     }
 }

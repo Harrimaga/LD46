@@ -17,6 +17,7 @@ namespace LD46
         private Hotkey down = new Hotkey(true).AddKey(Key.S).AddKey(Key.Down);
 
         private Player p = new Player(0, 0);
+        private Enemy e = new Enemy(1, 1000, 50, 0, 2, 128, 128, 5);
 
         public Game(Window window)
         {
@@ -45,6 +46,7 @@ namespace LD46
         {
             //Do all you draw calls here
             p.Draw();
+            e.Draw();
         }
 
         public void MouseDown(MouseButtonEventArgs e, int mx, int my)
