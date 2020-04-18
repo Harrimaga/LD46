@@ -17,6 +17,7 @@ namespace LD46
         public override void Update(double delta)
         {
             AIMove(delta);
+            base.Update(delta);
         }
 
         public virtual void AIMove(double delta)

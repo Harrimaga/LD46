@@ -14,6 +14,7 @@ namespace LD46
         protected float rotation = 0, r = 1, g = 1, b = 1, a = 1;
         public float x, y;
         protected Sprite s;
+        protected Animation ani = null;
 
         public void Init(double Health, float x, float y, int texNum, int spriteNum, int w, int h, double speed, double PhysicalAmp = 1, double MagicalAmp = 1)
         {
@@ -34,7 +35,13 @@ namespace LD46
             s.Draw(x, y, rotation, r, g, b, a);
         }
 
-        public abstract void Update(double delta);
+        public virtual void Update(double delta)
+        {
+            if(ani != null)
+            {
+                ani.Update(s, delta);
+            }
+        }
 
         public virtual bool DealPhysicalDamage(double damage)
         {

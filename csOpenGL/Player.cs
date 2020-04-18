@@ -21,6 +21,7 @@ namespace LD46
             Move((float)(delta * xDir * speed), (float)(delta * yDir * speed));
             xDir = 0;
             yDir = 0;
+            base.Update(delta);
         }
 
         public void SetDir(int x, int y)
