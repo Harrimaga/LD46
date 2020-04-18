@@ -9,7 +9,7 @@ namespace LD46
     public abstract class Entity
     {
 
-        protected double MaxHealth, Health, PhysicalAmp, MagicalAmp, speed;
+        protected double MaxHealth, Health, MaxMana, Mana, PhysicalAmp, MagicalAmp, speed;
         public int w, h;
         protected float rotation = 0, r = 1, g = 1, b = 1, a = 1;
         public float x, y;
@@ -19,10 +19,12 @@ namespace LD46
         protected int attackAnimation = 0;
         public string name;
 
-        public void Init(double Health, float x, float y, int texNum, int attackTexNum, int spriteNum, int w, int h, double speed, double PhysicalAmp = 1, double MagicalAmp = 1)
+        public void Init(double Health, double Mana, float x, float y, int texNum, int attackTexNum, int spriteNum, int w, int h, double speed, double PhysicalAmp = 1, double MagicalAmp = 1)
         {
             this.MaxHealth = Health;
             this.Health = Health;
+            this.MaxMana = Mana;
+            this.Mana = Mana;
             this.PhysicalAmp = PhysicalAmp;
             this.MagicalAmp = MagicalAmp;
             this.x = x;
@@ -61,12 +63,14 @@ namespace LD46
         public virtual void DealPhysicalDamage(double damage, string name, string with)
         {
             Health -= damage;
+            if (Health < 0) Health = 0;
             Globals.rootActionLog.TakeDamage(name, damage, with);
         }
 
         public virtual void DealMagicDamage(double damage, string name, string with)
         {
             Health -= damage;
+            if (Health < 0) Health = 0;
         }
 
         public void Move(float xa, float ya)
