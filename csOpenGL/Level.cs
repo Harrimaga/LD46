@@ -22,6 +22,7 @@ namespace LD46
             this.p = p;
             Rng = new Random(seed);
             CreateRoom();
+            Current.visited = true;
         }
 
         private bool CreateRoom(int deepness = 0, Room lastRoom = null)
