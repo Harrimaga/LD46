@@ -18,7 +18,7 @@ namespace LD46
 
         private Player p = new Player(128, 128);
         private Theme theme = new Theme("Basic");
-        private Room room = new Room(16, 16);
+        private List<DrawnButton> buttons = new List<DrawnButton>();
 
         public Game(Window window)
         {
@@ -28,7 +28,8 @@ namespace LD46
 
         public void OnLoad()
         {
-            Globals.l = new Level(room, theme, p);
+            //buttons.Add(new DrawnButton("Red Velvet", 500, 500, 200, 50, () => { Console.WriteLine("Button 1"); }));
+            Globals.l = new Level(theme, p);
         }
 
         public void Update(double delta)
@@ -47,14 +48,24 @@ namespace LD46
         {
             //Do all you draw calls here
             Globals.l.Draw();
+            foreach (DrawnButton button in buttons)
+            {
+                button.Draw();
+            }
+            
         }
 
         public void MouseDown(MouseButtonEventArgs e, int mx, int my)
         {
-            DrawnButton drawnButton = new DrawnButton(0,0,800,800, () => { Console.WriteLine(mx + "-" + my); });
-            if(drawnButton.IsInButton(mx, my))
+            if(e.Button == MouseButton.Left)
             {
-                drawnButton.OnClick();
+                foreach (DrawnButton button in buttons)
+                {
+                    if (button.IsInButton(mx, my))
+                    {
+                        button.OnClick();
+                    }
+                }
             }
         }
 

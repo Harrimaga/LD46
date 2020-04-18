@@ -126,7 +126,7 @@ namespace LD46
 
             //Textures
             Window.texs.Add(new Texture("Textures/Test.png", 16, 16, 8, 8));
-            
+            Window.texs.Add(new Texture("Textures/ButtonDown.png", 48, 16, 48, 16));
 
             game = new Game(this);
             base.OnLoad(e);
