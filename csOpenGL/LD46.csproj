@@ -88,7 +88,7 @@
       <HintPath>..\packages\QuickFont.ES20.4.5.7053.25690\lib\net45\QuickFont.ES20.dll</HintPath>
     </Reference>
     <Reference Include="Secretary">
-      <HintPath>..\..\..\..\Documents\Secretary_v0.1.1\Secretary.dll</HintPath>
+      <HintPath>..\packages\Secretary_v0.1.1\Secretary.dll</HintPath>
     </Reference>
     <Reference Include="SharpFont, Version=4.0.1.200, Culture=neutral, PublicKeyToken=48add4c483071cdf, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpFont.4.0.1\lib\net45\SharpFont.dll</HintPath>
