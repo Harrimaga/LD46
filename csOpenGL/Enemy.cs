@@ -68,7 +68,7 @@ namespace LD46
                         Sprite temp = s;
                         s = attack;
                         attack = temp;
-                        ani = null;
+                        ani = new Animation(0, 3, 10);
                     }
                     else if(attackTimer > attackSpeed)
                     {
