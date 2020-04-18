@@ -47,6 +47,9 @@ namespace LD46
             {
                 ani.Update(s, delta);
             }
+
+            rotation = (float)Math.Atan2(xDir, -yDir);
+
         }
 
         public virtual bool DealPhysicalDamage(double damage, string name, string with)
