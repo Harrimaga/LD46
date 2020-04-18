@@ -9,8 +9,6 @@ namespace LD46
     public class Player : Entity
     {
 
-        protected int xDir, yDir;
-
         public Player(int x, int y)
         {
             Init(100, x, y, 0, 1, 128, 128, 10);
