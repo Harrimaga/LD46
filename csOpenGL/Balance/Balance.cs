@@ -14,6 +14,10 @@ namespace LD46
         //Fighter
         public const double FIGHTER_PHYSICAL_DAMAGE_AMP = 1.3;
         public const double FIGHTER_MAGICAL_DAMAGE_AMP = 0.7;
+        public const double FIGHTER_BASE_ATTACK_POINT = 1;
+        public const double FIGHTER_BASE_ATTACK_SPEED = 50;
+        public const double FIGHTER_BASE_DAMAGE = 20;
+        public const string FIGHTER_NAME = "Fighter";
 
         /// <summary>
         /// Items

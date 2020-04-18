@@ -60,6 +60,7 @@ namespace LD46
         public virtual bool DealPhysicalDamage(double damage, string name, string with)
         {
             Health -= damage;
+            Globals.rootActionLog.TakeDamage(name, damage, with);
             return Health < 0;
         }
 
