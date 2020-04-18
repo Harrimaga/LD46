@@ -125,8 +125,9 @@ namespace LD46
             textDrawing.ProjectionMatrix = m;
 
             //Textures
-            Window.texs.Add(new Texture("Textures/Test.png", 16, 16, 8, 8));
-            Window.texs.Add(new Texture("Textures/ButtonDown.png", 48, 16, 48, 16));
+            Window.texs.Add(new Texture("Textures/Test.png", 16, 16, 8, 8));            //0
+            Window.texs.Add(new Texture("Textures/ButtonDown.png", 48, 16, 48, 16));    //1
+            Window.texs.Add(new Texture("Textures/WhitePixel.png", 1, 1, 1, 1));        //2
 
             game = new Game(this);
             base.OnLoad(e);

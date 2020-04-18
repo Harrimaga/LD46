@@ -13,7 +13,7 @@ namespace LD46
         public int w, h;
         protected float rotation = 0, r = 1, g = 1, b = 1, a = 1;
         public float x, y;
-        protected Sprite s;
+        protected Sprite s, HBarBack, HBar;
         protected Animation ani = null;
 
         public void Init(double Health, float x, float y, int texNum, int spriteNum, int w, int h, double speed, double PhysicalAmp = 1, double MagicalAmp = 1)
@@ -28,11 +28,16 @@ namespace LD46
             this.w = w;
             this.h = h;
             s = new Sprite(w, h, spriteNum, Window.texs[texNum]);
+            HBar = new Sprite(w, h / 8, 0, Window.texs[2]);
+            HBarBack = new Sprite(w, h / 8, 0, Window.texs[2]);
         }
 
         public virtual void Draw()
         {
             s.Draw(x, y, rotation, r, g, b, a);
+            HBar.w = (int)(w * Health / MaxHealth);
+            HBarBack.Draw(x, y, 0, 0, 0, 0);
+            HBar.Draw(x, y, 0, (float)(1 - Health / MaxHealth), (float)(Health / MaxHealth), 0);
         }
 
         public virtual void Update(double delta)
