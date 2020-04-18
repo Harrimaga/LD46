@@ -27,6 +27,7 @@ namespace LD46
 
         private bool CreateRoom(int deepness = 0, Room lastRoom = null)
         {
+            List<Direction> directions = new List<Direction> { Direction.SOUTH, Direction.NORTH, Direction.EAST, Direction.WEST };
             if(deepness > 7)
             {
                 return true;
@@ -35,15 +36,18 @@ namespace LD46
                 Current = new Room(Rng.Next(3, 20), Rng.Next(3, 20), theme);
                 FileHandler.WriteText("Created a room with size (" + Current.width + "," + Current.height + ")", "../../logs/log.txt", WriteModes.CREATE_OR_APPEND);
                 List<bool> results = new List<bool>();
-                for (int i = 0; i<Rng.Next(1,5); i++)
-                {
-                    results.Add(CreateRoom(++deepness, Current));
-                }
+                
+                results.Add(CreateRoom(++deepness, Current));
                 return results.All((singleResult) => { return singleResult; });
             }
             Room newRoom = new Room(Rng.Next(3, 20), Rng.Next(3, 20), theme);
-            lastRoom.AddConnection(new Connection(newRoom, Direction.SOUTH, 2));
-            newRoom.AddConnection(new Connection(lastRoom, Direction.NORTH, 2));
+            for (int i = 0; i < Rng.Next(1, 5); i++)
+            {
+                int index = Rng.Next(0, directions.Count);
+                newRoom.AddConnection(new Connection(lastRoom, directions[index], 2));
+                lastRoom.AddConnection(new Connection(newRoom,(Direction)(((int)directions[index] + 2) % 4), 2));
+                directions.RemoveAt(index);
+            }
             FileHandler.WriteText("Created a room with size (" + newRoom.width + "," + newRoom.height + ")", "../../logs/log.txt", WriteModes.CREATE_OR_APPEND);
 
             List<bool> result = new List<bool>();
