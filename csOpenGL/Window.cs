@@ -233,5 +233,24 @@ namespace LD46
             textDrawing.Print(f, text, new Vector3(x - 960, 540 - y, 0), QFontAlignment.Left, opt);
         }
 
+        public void DrawTextCentered(string text, int x, int y, QFont f = null)
+        {
+            if (f == null)
+            {
+                f = font;
+            }
+            textDrawing.Print(f, text, new Vector3(x - 960, 540 - y, 0), QFontAlignment.Centre);
+        }
+
+        public void DrawTextCentered(string text, int x, int y, float r, float g, float b, float a, QFont f = null)
+        {
+            if (f == null)
+            {
+                f = font;
+            }
+            QFontRenderOptions opt = new QFontRenderOptions() { Colour = Color.FromArgb(new Color4(r, g, b, a).ToArgb()) };
+            textDrawing.Print(f, text, new Vector3(x - 960, 540 - y, 0), QFontAlignment.Centre, opt);
+        }
+
     }
 }
