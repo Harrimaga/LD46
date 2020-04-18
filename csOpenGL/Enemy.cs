@@ -11,7 +11,6 @@ namespace LD46
 
         public double attackTimer = 0, attackSpeed = 0, attackPoint = 0, damage;
         public bool attacked = false, attacking = false;
-        public string name;
 
         public Enemy(double Health, float x, float y, int texNum, int attackTexNum, int spriteNum, int w, int h, double speed, double attackPoint, double attackSpeed, double damage, string name, double PhysicalAmp = 1, double MagicalAmp = 1)
         {
@@ -92,6 +91,26 @@ namespace LD46
             }
         }
 
+        public override void DealPhysicalDamage(double damage, string name, string with)
+        {
+            base.DealPhysicalDamage(damage, name, with);
 
+            if (Health < 0)
+            {
+                Globals.rootActionLog.Death(this.name);
+                Globals.l.Current.removables.Add(this);
+            }
+        }
+
+        public override void DealMagicDamage(double damage, string name, string with)
+        {
+            base.DealMagicDamage(damage, name, with);
+
+            if (Health < 0)
+            {
+                Globals.rootActionLog.Death(this.name);
+                Globals.l.Current.removables.Add(this);
+            }
+        }
     }
 }

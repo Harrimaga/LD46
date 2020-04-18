@@ -13,6 +13,7 @@ namespace LD46
         public string tileStyle;
         public Sprite s;
         public List<Enemy> enemies;
+        public List<Enemy> removables;
         public List<Connection> Connections { get; set; }
         private Theme Theme { get; set; }
 
@@ -27,6 +28,7 @@ namespace LD46
             this.tileSize = tileSize;
             enemies = new List<Enemy>();
             enemies.Add(new TestEnemy(4 * Globals.TileSize, 4 * Globals.TileSize));
+            removables = new List<Enemy>();
             for (int i = 0; i < x; i++)
             {
                 for (int j = 0; j < y; j++)
@@ -62,6 +64,11 @@ namespace LD46
             {
                 enemy.Update(delta);
             }
+            foreach (var enemy in removables)
+            {
+                enemies.Remove(enemy);
+            }
+            removables = new List<Enemy>();
         }
 
         public void DrawOnMinimap(int x, int y, float cc)
