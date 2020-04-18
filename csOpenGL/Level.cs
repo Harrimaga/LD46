@@ -84,6 +84,7 @@ namespace LD46
             Current.Draw(0, 0);
             p.Draw();
             DrawMinimap();
+            p.DrawUI();
         }
 
         public void DrawMinimap()

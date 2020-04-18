@@ -12,6 +12,8 @@ namespace LD46
         public double attackTimer = 0, attackSpeed = 0, attackPoint = 1, damage;
         public bool attacked = false, attacking = false, a = false;
         public string name;
+        public Sprite UIBack;
+        public List<Item> items = new List<Item>();
 
         public Player(float x, float y, double attackPoint, double attackSpeed, double damage, string name)
         {
@@ -21,6 +23,18 @@ namespace LD46
             this.attackPoint = attackPoint;
             this.damage = damage;
             this.name = name;
+            UIBack = new Sprite(200, 880, 0, Window.texs[2]);
+            items.Add(new Sword());
+            items.Add(new Sword());
+            items.Add(new Sword());
+            items.Add(new Sword());
+            items.Add(new Sword());
+            items.Add(new Sword());
+            items.Add(new Sword());
+            items.Add(new Sword());
+            items.Add(new Sword());
+            items.Add(new Sword());
+            items.Add(new Sword());
         }
 
         public override void Update(double delta)
@@ -138,6 +152,22 @@ namespace LD46
         {
             Globals.rootActionLog.TakeDamage(name, damage, with);
             return base.DealMagicDamage(damage, name, with);
+        }
+
+        public void DrawUI()
+        {
+            UIBack.w = 200;
+            UIBack.h = 880;
+            UIBack.Draw(1720, 0, 0, 0.5f, 0.5f, 0.5f, 0.85f);
+            int y = 5;
+            UIBack.w = 190;
+            UIBack.h = 45;
+            foreach (Item it in items)
+            {
+                UIBack.Draw(1725, y, 0, 0, 0, 0, 0.5f);
+                it.Draw(1727, y + 2);
+                y += 55;
+            }
         }
 
     }
