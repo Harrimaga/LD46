@@ -18,7 +18,6 @@ namespace LD46
 
         private Player p = new Player(128, 128);
         private Theme theme = new Theme("Basic");
-        private Room room = new Room(16, 16);
         private List<DrawnButton> buttons = new List<DrawnButton>();
 
         public Game(Window window)
@@ -32,7 +31,7 @@ namespace LD46
             buttons.Add(new DrawnButton(500, 500, 200, 25, () => { Console.WriteLine("Button 1"); }));
             buttons.Add(new DrawnButton(500, 525, 200, 25, () => { Console.WriteLine("Button 2"); }));
             buttons.Add(new DrawnButton(700, 900, 20, 250, () => { Console.WriteLine("Button 3"); }));
-            Globals.l = new Level(room, theme, p);
+            Globals.l = new Level(theme, p);
         }
 
         public void Update(double delta)

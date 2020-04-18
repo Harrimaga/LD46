@@ -28,4 +28,11 @@ namespace LD46
         SOLID,
         WALKABLE
     }
+
+    public enum TileType
+    {
+        TILE,
+        WALL,
+        STAIRS
+    }
 }

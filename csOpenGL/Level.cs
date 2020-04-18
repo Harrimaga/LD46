@@ -13,10 +13,11 @@ namespace LD46
         public Theme theme;
         public Player p;
 
-        public Level(Room c, Theme theme, Player p)
+        public Level(Theme theme, Player p)
         {
             this.theme = theme;
-            Current = c;
+            Room room = new Room(16, 16, theme);
+            Current = room;
             this.p = p;
         }
 
