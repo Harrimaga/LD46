@@ -133,15 +133,15 @@ namespace LD46
 
                         if (dis <= (enemy.w / 2 + w / 2) * 1.2f)
                         {
-                            enemy.DealPhysicalDamage(damage, name, "their blade");
+                            enemy.DealPhysicalDamage(damage * PhysicalAmp, name, "their blade");
                         }
-
-                        attacked = true;
-                        attacking = false;
-                        s = baseAnimation;
-                        a = false;
-                        ani = new Animation(0, 3, 10);
                     }
+
+                    attacked = true;
+                    attacking = false;
+                    s = baseAnimation;
+                    a = false;
+                    ani = new Animation(0, 3, 10);
                 }
                 else if (attackTimer > attackSpeed)
                 {
