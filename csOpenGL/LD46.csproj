@@ -127,6 +127,7 @@
     <Compile Include="Balance\Enemies.cs" />
     <Compile Include="Balance\Items\OrbOfHealth.cs" />
     <Compile Include="Balance\Items\Sword.cs" />
+    <Compile Include="Connection.cs" />
     <Compile Include="DrawnButton.cs" />
     <Compile Include="Effect.cs" />
     <Compile Include="Enemies\TestEnemy.cs" />
@@ -208,6 +209,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\ButtonUp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\Player\PlayerAttack.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\Player\PlayerIdle.png">

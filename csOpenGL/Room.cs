@@ -13,11 +13,13 @@ namespace LD46
         public string tileStyle;
         public Sprite s;
         public List<Enemy> enemies;
-        public List<Room> Connections { get; set; }
+        public List<Connection> Connections { get; set; }
+        private Theme Theme { get; set; }
 
         public Room(int x, int y, Theme theme, int tileSize = Globals.TileSize)
         {
-            Connections = new List<Room>();
+            Connections = new List<Connection>();
+            Theme = theme;
             s = new Sprite(x, y, 0, Window.texs[2]);
             width = x;
             height = y;
@@ -84,6 +86,26 @@ namespace LD46
             foreach (var enemy in enemies)
             {
                 enemy.Draw();
+            }
+        }
+
+        public void AddConnection(Connection connection)
+        {
+            Connections.Add(connection);
+            switch(connection.Direction)
+            {
+                case Direction.NORTH:
+                    tileGrid[connection.location, 0] = new Tile(new Sprite(tileSize, tileSize, 0, Theme.GetTextureByType(TileType.TILE)), Walkable.WALKABLE);
+                    break;
+                case Direction.EAST:
+                    tileGrid[width - 1, connection.location] = new Tile(new Sprite(tileSize, tileSize, 0, Theme.GetTextureByType(TileType.TILE)), Walkable.WALKABLE);
+                    break;
+                case Direction.SOUTH:
+                    tileGrid[connection.location, height-1] = new Tile(new Sprite(tileSize, tileSize, 0, Theme.GetTextureByType(TileType.TILE)), Walkable.WALKABLE);
+                    break;
+                case Direction.WEST:
+                    tileGrid[0, connection.location] = new Tile(new Sprite(tileSize, tileSize, 0, Theme.GetTextureByType(TileType.TILE)), Walkable.WALKABLE);
+                    break;
             }
         }
     }

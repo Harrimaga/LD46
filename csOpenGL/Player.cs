@@ -11,7 +11,7 @@ namespace LD46
 
         public Player(int x, int y)
         {
-            Init(100, x, y, 0, 1, 128, 128, 10);
+            Init(100, x, y, 0, 3, 1, 128, 128, 10);
             ani = new Animation(0, 3, 10);
         }
 
@@ -23,6 +23,7 @@ namespace LD46
 
             xDir = 0;
             yDir = 0;
+
         }
 
         public void SetDir(int x, int y)

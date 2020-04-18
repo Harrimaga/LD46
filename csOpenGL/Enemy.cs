@@ -13,9 +13,9 @@ namespace LD46
         public bool attacked = false, attacking = false;
         public string name;
 
-        public Enemy(double Health, float x, float y, int texNum, int spriteNum, int w, int h, double speed, double attackPoint, double attackSpeed, double damage, string name, double PhysicalAmp = 1, double MagicalAmp = 1)
+        public Enemy(double Health, float x, float y, int texNum, int attackTexNum, int spriteNum, int w, int h, double speed, double attackPoint, double attackSpeed, double damage, string name, double PhysicalAmp = 1, double MagicalAmp = 1)
         {
-            Init(Health, x, y, texNum, spriteNum, w, h, speed, PhysicalAmp, MagicalAmp);
+            Init(Health, x, y, texNum, attackTexNum, spriteNum, w, h, speed, PhysicalAmp, MagicalAmp);
             this.attackSpeed = attackSpeed;
             this.attackPoint = attackPoint;
             this.damage = damage;
@@ -52,6 +52,7 @@ namespace LD46
         public void BasicMeleeAttack(double delta)
         {
             Player p = Globals.l.p;
+
             float xd = p.x + p.w / 2 - x - w / 2;
             float yd = p.y + p.h / 2 - y - h / 2;
             float dis = (float)Math.Sqrt(xd * xd + yd * yd);
@@ -64,6 +65,10 @@ namespace LD46
                     {
                         p.DealPhysicalDamage(damage, name, "their Fist");
                         attacked = true;
+                        Sprite temp = s;
+                        s = attack;
+                        attack = temp;
+                        ani = new Animation(0, 3, 10);
                     }
                     else if(attackTimer > attackSpeed)
                     {
@@ -72,6 +77,10 @@ namespace LD46
                 }
                 else
                 {
+                    Sprite temp = s;
+                    s = attack;
+                    attack = temp;
+                    ani = new Animation(0, 9, attackSpeed / 10);
                     attackTimer = 0;
                     attacking = true;
                     attacked = false;

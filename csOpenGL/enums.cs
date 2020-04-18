@@ -33,6 +33,15 @@ namespace LD46
     {
         TILE,
         WALL,
-        STAIRS
+        STAIRS,
+        DOOR,
+    }
+
+    public enum Direction
+    {
+        NORTH,
+        WEST,
+        SOUTH,
+        EAST,
     }
 }
