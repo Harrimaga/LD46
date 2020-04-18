@@ -26,7 +26,7 @@ layout(std430, binding=0 ) readonly buffer sprites{
 void main() 
 {
     Sprite s = Sprites[id];
-    vec2 poss = vec2((pos.x+1)*screenSize.x/2, (1+pos.y)*screenSize.y/2) + vec2(0.49, 0.49);
+    vec2 poss = vec2((pos.x+1)*screenSize.x/2, (1+pos.y)*screenSize.y/2);
     ivec2 posi = ivec2(int((poss.x-s.x)/s.scalex+s.startx), int((s.h-(poss.y-s.y))/s.scaley+s.starty));
     vec4 sd = imageLoad(s.img, posi) * vec4(s.r, s.g, s.b, s.a);
     gl_FragColor = sd;
