@@ -49,13 +49,13 @@ namespace LD46
             }
         }
 
-        public virtual bool DealPhysicalDamage(double damage)
+        public virtual bool DealPhysicalDamage(double damage, string name, string with)
         {
             Health -= damage;
             return Health < 0;
         }
 
-        public virtual bool DealMagicDamage(double damage)
+        public virtual bool DealMagicDamage(double damage, string name, string with)
         {
             Health -= damage;
             return Health < 0;
