@@ -103,6 +103,8 @@ namespace LD46
                                         y = (Globals.l.Current.Connections.Find((Connection) => { return Connection.Direction == Direction.WEST; }).location) * Globals.TileSize;
                                         break;
                                 }
+                                Window.camX = x - 960 + w / 2;
+                                Window.camY = y - 540 + h / 2;
                             }
                         }
                     }
