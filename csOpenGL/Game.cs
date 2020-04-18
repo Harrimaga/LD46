@@ -17,7 +17,6 @@ namespace LD46
         private Hotkey down = new Hotkey(true).AddKey(Key.S).AddKey(Key.Down);
 
         private Player p = new Player(128, 128);
-        private Enemy e = new Enemy(1, 1000, 50, 0, 2, 128, 128, 5);
         private Theme theme = new Theme("Basic");
         private Room room = new Room(16, 16);
 
@@ -29,7 +28,7 @@ namespace LD46
 
         public void OnLoad()
         {
-            Globals.l = new Level(room, theme);
+            Globals.l = new Level(room, theme, p);
         }
 
         public void Update(double delta)
@@ -40,16 +39,14 @@ namespace LD46
             if (up.IsDown()) p.SetDir(0, -1);
             if (down.IsDown()) p.SetDir(0, 1);
 
-            p.Update(delta);
+            Globals.l.Update(delta);
 
         }
 
         public void Draw()
         {
             //Do all you draw calls here
-            room.Draw(0, 0);
-            p.Draw();
-            e.Draw();
+            Globals.l.Draw();
         }
 
         public void MouseDown(MouseButtonEventArgs e, int mx, int my)

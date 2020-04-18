@@ -20,6 +20,7 @@ namespace LD46
             tileGrid = new Tile[x, y];
             this.tileStyle = tileStyle;
             this.tileSize = tileSize;
+            enemies = new List<Enemy>();
 
             for (int i = 0; i < x; i++)
             {
