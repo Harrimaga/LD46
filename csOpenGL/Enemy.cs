@@ -95,8 +95,9 @@ namespace LD46
         {
             base.DealPhysicalDamage(damage, name, with);
 
-            if (Health < 0)
+            if (Health < 1)
             {
+                Health = 0;
                 Globals.rootActionLog.Death(this.name);
                 Globals.l.Current.removables.Add(this);
             }
@@ -106,8 +107,9 @@ namespace LD46
         {
             base.DealMagicDamage(damage, name, with);
 
-            if (Health < 0)
+            if (Health < 1)
             {
+                Health = 0;
                 Globals.rootActionLog.Death(this.name);
                 Globals.l.Current.removables.Add(this);
             }
