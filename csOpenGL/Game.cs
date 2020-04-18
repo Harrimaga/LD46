@@ -16,6 +16,8 @@ namespace LD46
         private Hotkey up = new Hotkey(true).AddKey(Key.W).AddKey(Key.Up);
         private Hotkey down = new Hotkey(true).AddKey(Key.S).AddKey(Key.Down);
 
+        private Player p = new Player(0, 0);
+        private Enemy e = new Enemy(1, 1000, 50, 0, 2, 128, 128, 5);
         private Sprite s = new Sprite(64, 64, 1, Window.texs[0]);
         private Room room = new Room(16, 16);
 
@@ -33,20 +35,21 @@ namespace LD46
         public void Update(double delta)
         {
             //Updating logic
-            if (left.IsDown()) Window.camX -= (float)(10 * delta);
-            if (right.IsDown()) Window.camX += (float)(10 * delta);
-            if (up.IsDown()) Window.camY -= (float)(10 * delta);
-            if (down.IsDown()) Window.camY += (float)(10 * delta);
+            if (left.IsDown()) p.SetDir(-1, 0);
+            if (right.IsDown()) p.SetDir(1, 0);
+            if (up.IsDown()) p.SetDir(0, -1);
+            if (down.IsDown()) p.SetDir(0, 1);
+
+            p.Update(delta);
 
         }
 
         public void Draw()
         {
             //Do all you draw calls here
-            s.Draw(0, 0);
             room.Draw(0, 0);
-
-            window.DrawText("test", 0, 0);
+            p.Draw();
+            e.Draw();
         }
 
         public void MouseDown(MouseButtonEventArgs e, int mx, int my)
