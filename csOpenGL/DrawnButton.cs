@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace LD46
 {
-    public static class Globals
+    class DrawnButton
     {
-
-        public static Level l = null;
-        public const int TileSize = 64;
-
+        //private 
     }
 }

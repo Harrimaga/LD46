@@ -8,16 +8,16 @@ namespace LD46
 {
     public class Room
     {
-        public Sprite[,] tileGrid;
+        public Tile[,] tileGrid;
         public int width, height, tileSize;
         public string tileStyle;
         public List<Enemy> enemies;
 
-        public Room(int x, int y, int tileSize = 64, string tileStyle="Basic")
+        public Room(int x, int y, int tileSize = Globals.TileSize, string tileStyle="Basic")
         {
             width = x;
             height = y;
-            tileGrid = new Sprite[x, y];
+            tileGrid = new Tile[x, y];
             this.tileStyle = tileStyle;
             this.tileSize = tileSize;
 
@@ -25,9 +25,25 @@ namespace LD46
             {
                 for (int j = 0; j < y; j++)
                 {
-                    tileGrid[i, j] = new Sprite(64, 64, 0, Window.texs[1]);
+                    if (i == 0 || i == x - 1 || j == 0 || j == y - 1)
+                    {
+                        tileGrid[i, j] = new Tile(new Sprite(tileSize, tileSize, 0, Window.texs[2]), Walkable.SOLID);
+                    }
+                    else if (i == 6 && j == 7)
+                    {
+                        tileGrid[i, j] = new Tile(new Sprite(tileSize, tileSize, 0, Window.texs[3]), Walkable.WALKABLE);
+                    }
+                    else
+                    {
+                        tileGrid[i, j] = new Tile(new Sprite(tileSize, tileSize, 0, Window.texs[1]), Walkable.WALKABLE);
+                    }                 
                 }
             }
+        }
+
+        public Tile getTile(int x, int y)
+        {
+            return tileGrid[x, y];
         }
 
         public void Update(double delta)
