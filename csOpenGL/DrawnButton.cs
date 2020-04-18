@@ -24,7 +24,7 @@ namespace LD46
             Width = width;
             Height = height;
             OnClickAction = onClickAction;
-            Sprite = new Sprite((int)width, (int)height, 0, Window.texs[4]);
+            Sprite = new Sprite((int)width, (int)height, 0, Window.texs[1]);
         }
 
         public bool IsInButton(float x, float y)
@@ -40,6 +40,7 @@ namespace LD46
         public void Draw()
         {
             Sprite.Draw(X, Y);
+            Window.window.DrawTextCentered("Red velvet", (int)(X + (Width / 2)), (int)(Y + (Height / 2)));
         }
     }
 }
