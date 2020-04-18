@@ -48,18 +48,20 @@ namespace LD46
             {
                 ani.Update(s, delta);
             }
-
-            rotation = (float)Math.Atan2(xDir, -yDir);
+            if (xDir != 0 || yDir != 0)
+            {
+                rotation = (float)Math.Atan2(xDir, -yDir);
+            }
 
         }
 
-        public virtual bool DealPhysicalDamage(double damage)
+        public virtual bool DealPhysicalDamage(double damage, string name, string with)
         {
             Health -= damage;
             return Health < 0;
         }
 
-        public virtual bool DealMagicDamage(double damage)
+        public virtual bool DealMagicDamage(double damage, string name, string with)
         {
             Health -= damage;
             return Health < 0;

@@ -28,8 +28,8 @@ namespace LD46
 
         public void OnLoad()
         {
-            //buttons.Add(new DrawnButton("Red Velvet", 500, 500, 200, 50, () => { Console.WriteLine("Button 1"); }));
-            Globals.l = new Level(theme, p);
+            buttons.Add(new DrawnButton("Red Velvet", 500, 500, 200, 50, () => { Console.WriteLine("Button 1"); }));
+            Globals.l = new Level(theme, p, 0);
         }
 
         public void Update(double delta)
