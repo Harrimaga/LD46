@@ -8,6 +8,6 @@ namespace LD46
 {
     class DrawnButton
     {
-        private 
+        //private 
     }
 }

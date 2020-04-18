@@ -22,4 +22,10 @@ namespace LD46
         MAGICAL_DAMAGE,
         BLOCK,
     }
+
+    public enum Walkable
+    {
+        SOLID,
+        WALKABLE
+    }
 }

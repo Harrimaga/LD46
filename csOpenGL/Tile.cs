@@ -9,11 +9,13 @@ namespace LD46
     class Tile
     {
         private Sprite sprite;
+        private Walkable walkable;
 
 
-        public Tile(Sprite sprite)
+        public Tile(Sprite sprite, Walkable walkable)
         {
             this.sprite = sprite;
+            this.walkable = walkable;
         }
 
         public void Draw(float x, float y)
