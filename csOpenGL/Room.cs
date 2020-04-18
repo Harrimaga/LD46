@@ -11,6 +11,7 @@ namespace LD46
         public Tile[,] tileGrid;
         public int width, height, tileSize;
         public string tileStyle;
+        public Sprite s;
         public List<Enemy> enemies;
         public List<Connection> Connections { get; set; }
         private Theme Theme { get; set; }
@@ -19,6 +20,7 @@ namespace LD46
         {
             Connections = new List<Connection>();
             Theme = theme;
+            s = new Sprite(x, y, 0, Window.texs[2]);
             width = x;
             height = y;
             tileGrid = new Tile[x, y];
@@ -56,6 +58,44 @@ namespace LD46
             {
                 enemy.Update(delta);
             }
+        }
+
+        public void DrawOnMinimap(int x, int y, float cc, int bx, int by, Room from)
+        {
+            s.Draw(bx+x, by+y, 0, cc, cc, cc, 1);
+            foreach(Connection c in Connections)
+            {
+                Room r = c.Room;
+                if(r != from)
+                {
+                    switch (c.Direction) {
+                        case Direction.EAST:
+                            r.DrawOnMinimap(x + width, y + c.location - r.getLocation(this), cc * 0.8f, bx, by, this);
+                            break;
+                        case Direction.SOUTH:
+                            r.DrawOnMinimap(x + c.location - r.getLocation(this), y + height, cc * 0.8f, bx, by, this);
+                            break;
+                        case Direction.NORTH:
+                            r.DrawOnMinimap(x + c.location - r.getLocation(this), y - r.height, cc * 0.8f, bx, by, this);
+                            break;
+                        case Direction.WEST:
+                            r.DrawOnMinimap(x - r.width, y + c.location - r.getLocation(this), cc * 0.8f, bx, by, this);
+                            break;
+                    }
+                }
+            }
+        }
+
+        public int getLocation(Room r)
+        {
+            foreach(Connection c in Connections)
+            {
+                if(c.Room == r)
+                {
+                    return c.location;
+                }
+            }
+            return 0;
         }
 
         public void Draw(float x, float y)

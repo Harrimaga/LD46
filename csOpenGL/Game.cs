@@ -16,7 +16,7 @@ namespace LD46
         private Hotkey up = new Hotkey(true).AddKey(Key.W).AddKey(Key.Up);
         private Hotkey down = new Hotkey(true).AddKey(Key.S).AddKey(Key.Down);
 
-        private Player p = new Player(128, 128);
+        private Player p = new Player(Globals.TileSize, Globals.TileSize);
         private Theme theme = new Theme("Basic");
         private List<DrawnButton> buttons = new List<DrawnButton>();
 
