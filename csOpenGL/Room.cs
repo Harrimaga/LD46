@@ -27,7 +27,6 @@ namespace LD46
             tileGrid = new Tile[x, y];
             this.tileSize = tileSize;
             enemies = new List<Enemy>();
-            enemies.Add(new TestEnemy(4 * Globals.TileSize, 4 * Globals.TileSize));
             removables = new List<Enemy>();
             for (int i = 0; i < x; i++)
             {
@@ -37,13 +36,13 @@ namespace LD46
                     {
                         tileGrid[i, j] = new Tile(new Sprite(tileSize, tileSize, 0, theme.GetTextureByType(TileType.WALL)), Walkable.SOLID, TileType.WALL);
                     }
-                    else if (i == 6 && j == 7)
-                    {
-                        tileGrid[i, j] = new Tile(new Sprite(tileSize, tileSize, 0, theme.GetTextureByType(TileType.STAIRS)), Walkable.WALKABLE, TileType.STAIRS);
-                    }
                     else
                     {
                         tileGrid[i, j] = new Tile(new Sprite(tileSize, tileSize, 0, theme.GetTextureByType(TileType.TILE)), Walkable.WALKABLE, TileType.TILE);
+                        if(Globals.l.Rng.Next(1000) < 12)
+                        {
+                            enemies.Add(new TestEnemy(i * Globals.TileSize, j * Globals.TileSize));
+                        }
                     }                 
                 }
             }

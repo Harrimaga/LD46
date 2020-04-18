@@ -34,7 +34,7 @@ namespace LD46
         {
             //buttons.Add(new DrawnButton("Red Velvet", 500, 500, 200, 50, () => { Console.WriteLine("Button 1"); }));
             p = new Fighter(Globals.TileSize, Globals.TileSize);
-            Globals.l = new Level(theme, p, 15);
+            new Level(theme, p, 5);
         }
 
         public void Update(double delta)

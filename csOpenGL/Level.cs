@@ -13,18 +13,15 @@ namespace LD46
         public Room Current;
         public Theme theme;
         public Player p;
-        private Random Rng { get; set; }
-        private Sprite back;
+        public Random Rng { get; set; }
 
         public Level(Theme theme, Player p, int seed)
         {
+            Globals.l = this;
             this.theme = theme;
-            Room room = new Room(16, 16, theme);
-            Current = room;
             this.p = p;
             Rng = new Random(seed);
             CreateRoom();
-            back = new Sprite(200, 200, 0, Window.texs[2]);
         }
 
         private bool CreateRoom(int deepness = 0, Room lastRoom = null)
@@ -44,14 +41,14 @@ namespace LD46
             }
             else if (deepness == 0)
             {
-                Current = new Room(Rng.Next(4, 20), Rng.Next(4, 20), theme);
+                Current = new Room(Rng.Next(4, 25), Rng.Next(4, 25), theme);
                 FileHandler.WriteText("Created a room with size (" + Current.width + "," + Current.height + ")", "../../logs/log.txt", WriteModes.CREATE_OR_APPEND);
                 List<bool> results = new List<bool>();
 
                 results.Add(CreateRoom(++deepness, Current));
                 return results.All((singleResult) => { return singleResult; });
             }
-            Room newRoom = new Room(Rng.Next(4, 20), Rng.Next(4, 20), theme);
+            Room newRoom = new Room(Rng.Next(4, 25), Rng.Next(4, 25), theme);
             FileHandler.WriteText("Created a room with size (" + newRoom.width + "," + newRoom.height + ")", "../../logs/log.txt", WriteModes.CREATE_OR_APPEND);
 
             int index = Rng.Next(0, directions.Count);
@@ -89,11 +86,10 @@ namespace LD46
 
         public void DrawMinimap()
         {
-            back.Draw(1920 - 200, 1080 - 200, false, 0, 0, 0, 0, 0.85f);
             Queue<MMData> conns = new Queue<MMData>();
             Stack<MMData> drawOrder = new Stack<MMData>();
-            int x = 1920 - 100 - Current.width / 2;
-            int y = 1080 - 100 - Current.height / 2;
+            int x = 150 - Current.width / 2;
+            int y = 150 - Current.height / 2;
             drawOrder.Push(new MMData(null, Current, 1, x, y));
             foreach (Connection c in Current.Connections)
             {
