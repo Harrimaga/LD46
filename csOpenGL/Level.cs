@@ -100,24 +100,24 @@ namespace LD46
                 switch (c.Direction)
                 {
                     case Direction.EAST:
-                        conns.Enqueue(new MMData(Current, r, 0.8f, x + Current.width + 5, y + c.location - r.getLocation(r)));
+                        conns.Enqueue(new MMData(Current, r, 0.8f, x + Current.width + 2, y + c.location - r.getLocation(r)));
                         break;
                     case Direction.SOUTH:
-                        conns.Enqueue(new MMData(Current, r, 0.8f, x + c.location - r.getLocation(r), y + Current.height + 5));
+                        conns.Enqueue(new MMData(Current, r, 0.8f, x + c.location - r.getLocation(r), y + Current.height + 2));
                         break;
                     case Direction.NORTH:
-                        conns.Enqueue(new MMData(Current, r, 0.8f, x + c.location - r.getLocation(r), y - r.height - 5));
+                        conns.Enqueue(new MMData(Current, r, 0.8f, x + c.location - r.getLocation(r), y - r.height - 2));
                         break;
                     case Direction.WEST:
-                        conns.Enqueue(new MMData(Current, r, 0.8f, x - r.width - 5, y + c.location - r.getLocation(r)));
+                        conns.Enqueue(new MMData(Current, r, 0.8f, x - r.width - 2, y + c.location - r.getLocation(r)));
                         break;
                 }
             }
             while (conns.Count > 0)
             {
                 MMData md = conns.Dequeue();
-                x = md.x + md.itself.width / 2;
-                y = md.y + md.itself.height / 2;
+                x = md.x;
+                y = md.y;
                 foreach (Connection c in md.itself.Connections)
                 {
                     if (c.Room != md.from)
@@ -126,16 +126,16 @@ namespace LD46
                         switch (c.Direction)
                         {
                             case Direction.EAST:
-                                conns.Enqueue(new MMData(Current, r, md.cc * 0.8f, x + Current.width + 5, y + c.location - r.getLocation(r)));
+                                conns.Enqueue(new MMData(md.itself, r, md.cc * 0.8f, x + md.itself.width + 2, y + c.location - r.getLocation(r)));
                                 break;
                             case Direction.SOUTH:
-                                conns.Enqueue(new MMData(Current, r, md.cc * 0.8f, x + c.location - r.getLocation(r), y + Current.height + 5));
+                                conns.Enqueue(new MMData(md.itself, r, md.cc * 0.8f, x + c.location - r.getLocation(r), y + md.itself.height + 2));
                                 break;
                             case Direction.NORTH:
-                                conns.Enqueue(new MMData(Current, r, md.cc * 0.8f, x + c.location - r.getLocation(r), y - r.height - 5));
+                                conns.Enqueue(new MMData(md.itself, r, md.cc * 0.8f, x + c.location - r.getLocation(r), y - r.height - 2));
                                 break;
                             case Direction.WEST:
-                                conns.Enqueue(new MMData(Current, r, md.cc * 0.8f, x - r.width - 5, y + c.location - r.getLocation(r)));
+                                conns.Enqueue(new MMData(md.itself, r, md.cc * 0.8f, x - r.width - 2, y + c.location - r.getLocation(r)));
                                 break;
                         }
                     }
