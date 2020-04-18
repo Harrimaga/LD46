@@ -29,5 +29,10 @@ namespace LD46
             return walkable;
         }
 
+        public TileType GetTileType()
+        {
+            return tileType;
+        }
+
     }
 }
