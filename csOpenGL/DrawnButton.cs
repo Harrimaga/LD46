@@ -10,6 +10,7 @@ namespace LD46
     {
         public delegate void EventAction();
 
+        private Sprite Sprite { get; set; }
         private float X { get; set; }
         private float Y { get; set; }
         private float Width { get; set; }
@@ -23,6 +24,7 @@ namespace LD46
             Width = width;
             Height = height;
             OnClickAction = onClickAction;
+            Sprite = new Sprite((int)width, (int)height, 0, Window.texs[4]);
         }
 
         public bool IsInButton(float x, float y)
@@ -33,6 +35,11 @@ namespace LD46
         public void OnClick()
         {
             OnClickAction();
+        }
+
+        public void Draw()
+        {
+            Sprite.Draw(X, Y);
         }
     }
 }
