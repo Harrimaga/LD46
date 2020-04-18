@@ -39,23 +39,6 @@ namespace LD46
             EquipItem(new Sword());
         }
 
-        public void AddItem(Item it)
-        {
-            items.Add(it);
-            DrawnButton b = new DrawnButton("", 1725, 5 + 55 * items.Count, 190, 45, () => { });
-            Window.window.game.buttons.Add(b);
-            buttons.Add(b);
-        }
-
-        public void RemoveItem(Item it)
-        {
-            for(int i = 0; i < items.Count; i++)
-            {
-
-            }
-            items.Remove(it);
-        }
-
         public override void Update(double delta)
         {
             float dis = (float)Math.Sqrt(xDir * xDir + yDir * yDir);
@@ -220,6 +203,11 @@ namespace LD46
 
         public void EquipItem(Item item)
         {
+            DrawnButton b = new DrawnButton("", 1725, 5 + 55 * items.Count, 190, 45, () => { });
+            b.a = 0;
+            Game.game.buttons.Add(b);
+            buttons.Add(b);
+
             items.Add(item);
             foreach (Effect e in item.GrantedEffects)
             {
@@ -246,6 +234,16 @@ namespace LD46
 
         public void DequipItem(Item item)
         {
+            int i = 0;
+            for (i = 0; i < items.Count; i++)
+            {
+                if(items[i] == item)
+                {
+                    break;
+                }
+            }
+            DrawnButton b = buttons[i];
+            Game.game.buttons.Remove(b);
             items.Remove(item);
             foreach (Effect e in item.GrantedEffects)
             {
