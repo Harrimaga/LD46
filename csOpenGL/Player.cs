@@ -54,6 +54,8 @@ namespace LD46
                 yDir /= dis;
             }
             Move((float)(delta * xDir * speed), (float)(delta * yDir * speed));
+            Window.camX = x - 960 + w / 2;
+            Window.camY = y - 540 + h / 2;
 
             for (int i = (int)(x / Globals.TileSize); i < (int)(x / Globals.TileSize) + 2 + w / Globals.TileSize && i < Globals.l.Current.width && i > -1; i++)
             {
@@ -193,7 +195,7 @@ namespace LD46
         {
             UIBack.w = 200;
             UIBack.h = 880;
-            UIBack.Draw(1720, 0, 0, 0.5f, 0.5f, 0.5f, 0.85f);
+            UIBack.Draw(1720, 0, false, 0, 0.5f, 0.5f, 0.5f, 0.85f);
             int y = 5;
             UIBack.w = 190;
             UIBack.h = 45;
@@ -202,15 +204,15 @@ namespace LD46
             HBarUI.h = 30;
             HBarBackUI.w = 200;
             HBarBackUI.h = 30;
-            HBarBackUI.Draw(1720, 750, 0, 0, 0, 0);
+            HBarBackUI.Draw(1720, 750, false, 0, 0, 0, 0);
             HBarUI.Draw(1720, 750, 0, (float)(1 - Health / MaxHealth) / 2, (float)(Health / MaxHealth) / 2, 0); 
 
             MBarUI.w = (int)(200 * Mana / MaxMana);
             MBarUI.h = 30;
             MBarBackUI.w = 200;
             MBarBackUI.h = 30;
-            MBarBackUI.Draw(1720, 800, 0, 0, 0, 0);
-            MBarUI.Draw(1720, 800, 0, 0, 1 - (float)(Mana / MaxMana), 1);
+            MBarBackUI.Draw(1720, 800, false, 0, 0, 0, 0);
+            MBarUI.Draw(1720, 800, false, 0, 0, 1 - (float)(Mana / MaxMana), 1);
 
             string TextHP = "HP: " + Health + "/" + MaxHealth;
             string TextMP = "MP: " + Mana + "/" + MaxMana;
@@ -220,7 +222,7 @@ namespace LD46
 
             foreach (Item it in items)
             {
-                UIBack.Draw(1725, y, 0, 0, 0, 0, 0.5f);
+                UIBack.Draw(1725, y, false, 0, 0, 0, 0, 0.5f);
                 it.Draw(1727, y + 2);
                 y += 55;
             }

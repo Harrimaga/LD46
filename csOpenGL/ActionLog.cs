@@ -52,7 +52,7 @@ namespace LD46
         public void Draw()
         {
             
-            Sprite.Draw(0, 1080 - 255, 0, 0, 0, 0, 0.85f);
+            Sprite.Draw(0, 1080 - 255, false, 0, 0, 0, 0, 0.85f);
             int y = 1080 - 255;
             foreach (string logItem in ActionList)
             {

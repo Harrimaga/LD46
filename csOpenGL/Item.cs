@@ -30,7 +30,7 @@ namespace LD46
 
         public virtual void Draw(float x, float y)
         {
-            Sprite.Draw(x, y);
+            Sprite.Draw(x, y, false);
             Window.window.DrawText(Name, (int)x + 45, (int)y+7, Globals.buttonFont);
         }
 

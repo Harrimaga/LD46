@@ -41,10 +41,10 @@ namespace LD46
 
         public virtual void Draw()
         {
-            s.Draw(x, y, rotation, r, g, b, a);
+            s.Draw(x, y, true, rotation, r, g, b, a);
             HBar.w = (int)(w * Health / MaxHealth);
-            HBarBack.Draw(x, y, 0, 0, 0, 0);
-            HBar.Draw(x, y, 0, (float)(1 - Health / MaxHealth), (float)(Health / MaxHealth), 0);
+            HBarBack.Draw(x, y, true, 0, 0, 0, 0);
+            HBar.Draw(x, y, true, 0, (float)(1 - Health / MaxHealth), (float)(Health / MaxHealth), 0);
         }
 
         public virtual void Update(double delta)
