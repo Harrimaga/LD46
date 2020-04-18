@@ -19,12 +19,12 @@ namespace LD46
         public override void Update(double delta)
         {
             x += (float)(delta * speed * xDir);
-            //int[] 
-            if (false)
+            int[] coll = CheckCollision();
+            if (coll != null)
             {
                 if(xDir > 0)
                 {
-                    x = (int)(x / Globals.TileSize) * Globals.TileSize + Globals.TileSize - x%Globals.TileSize;
+                    x = coll[0]*Globals.TileSize-w;
                 }
                 else if(xDir < 0)
                 {
