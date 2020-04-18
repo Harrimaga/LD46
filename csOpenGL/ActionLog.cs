@@ -10,12 +10,14 @@ namespace LD46
     {
         private int limit;
         public Queue<string> ActionList { get; set; }
+        public Sprite Sprite { get; set; }
         public int Limit { get { return limit; } set { limit = value; CheckLimit(); } }
 
         public ActionLog(int limit)
         {
             ActionList = new Queue<string>();
             Limit = limit;
+            Sprite = new Sprite(200, 255, 0, Window.texs[2]);
         }
 
         public void Add(string item)
@@ -44,7 +46,9 @@ namespace LD46
 
         public void Draw()
         {
-            int y = 800;
+            
+            Sprite.Draw(0, 1080 - 255, 0, 0, 0, 0, 1);
+            int y = 1080 - 255;
             foreach (string logItem in ActionList)
             {
                 Window.window.DrawText(logItem, 0, y, Globals.logFont);

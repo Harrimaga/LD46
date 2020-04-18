@@ -41,7 +41,6 @@ namespace LD46
             if (down.IsDown()) p.SetDir(0, 1);
 
             Globals.l.Update(delta);
-            Globals.rootActionLog.Add("There is an update");
         }
 
         public void Draw()
