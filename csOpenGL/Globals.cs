@@ -9,7 +9,7 @@ namespace LD46
     public static class Globals
     {
 
-        public static int TileSize = 64;
+        public const int TileSize = 64;
 
     }
 }

@@ -139,6 +139,7 @@
     <Compile Include="SoundManager.cs" />
     <Compile Include="Sprite.cs" />
     <Compile Include="Texture.cs" />
+    <Compile Include="Tile.cs" />
     <Compile Include="Window.cs" />
   </ItemGroup>
   <ItemGroup>
