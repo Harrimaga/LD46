@@ -24,6 +24,7 @@ namespace LD46
             this.p = p;
             Rng = new Random(seed);
             CreateRoom();
+            Current.visited = true;
             back = new Sprite(200, 200, 0, Window.texs[2]);
         }
 

@@ -14,6 +14,7 @@ namespace LD46
         public Sprite s;
         public List<Enemy> enemies;
         public List<Enemy> removables;
+        public bool visited;
         public List<Connection> Connections { get; set; }
         private Theme Theme { get; set; }
 
@@ -22,6 +23,7 @@ namespace LD46
             Connections = new List<Connection>();
             Theme = theme;
             s = new Sprite(x, y, 0, Window.texs[2]);
+            visited = false;
             width = x;
             height = y;
             tileGrid = new Tile[x, y];
@@ -73,7 +75,15 @@ namespace LD46
 
         public void DrawOnMinimap(int x, int y, float cc)
         {
-            s.Draw(x, y, false, 0, cc, cc, cc, 1);
+            if (visited)
+            {
+                s.Draw(x, y, false, 0, 0.1f, 0.8f, 0.1f, 1);
+            }
+            else
+            {
+                s.Draw(x, y, false, 0, cc, cc, cc, 1);
+            }
+           
         }
 
         public int getLocation(Room r)

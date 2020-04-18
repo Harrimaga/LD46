@@ -83,6 +83,7 @@ namespace LD46
                             if (c.Direction == d)
                             {
                                 Globals.l.Current = c.Room;
+                                Globals.l.Current.visited = true;
                                 switch (d)
                                 {
                                     case Direction.NORTH:
