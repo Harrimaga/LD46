@@ -15,9 +15,9 @@ namespace LD46
         public Sprite UIBack;
         public List<Item> items = new List<Item>();
 
-        public Player(float x, float y, double attackPoint, double attackSpeed, double damage, string name)
+        public Player(double Health, float x, float y, int texNum, int attackTexNum, int spriteNum, int w, int h, double speed, double attackPoint, double attackSpeed, string name, double damage)
         {
-            Init(100, x, y, 0, 3, 1, (int)(Globals.TileSize*0.9), (int)(Globals.TileSize * 0.9), 10);
+            Init(Health, x, y, texNum, attackTexNum, spriteNum, w, h, speed);
             ani = new Animation(0, 3, 10);
             this.attackSpeed = attackSpeed;
             this.attackPoint = attackPoint;
