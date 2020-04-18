@@ -15,7 +15,7 @@ namespace LD46
         public Sprite UIBack;
         public List<Item> items = new List<Item>();
 
-        public Player(double Health, float x, float y, int texNum, int attackTexNum, int spriteNum, int w, int h, double speed, double attackPoint, double attackSpeed, string name, double damage)
+        public Player(double Health, float x, float y, int texNum, int attackTexNum, int spriteNum, int w, int h, double speed, double attackPoint, double attackSpeed, string name, double damage, double PhysicalAmp, double MagicalAmp)
         {
             Init(Health, x, y, texNum, attackTexNum, spriteNum, w, h, speed);
             ani = new Animation(0, 3, 10);
@@ -39,6 +39,12 @@ namespace LD46
 
         public override void Update(double delta)
         {
+            float dis = (float)Math.Sqrt(xDir * xDir + yDir * yDir);
+            if(dis != 0)
+            {
+                xDir /= dis;
+                yDir /= dis;
+            }
             Move((float)(delta * xDir * speed), (float)(delta * yDir * speed));
 
             for (int i = (int)(x / Globals.TileSize); i < (int)(x / Globals.TileSize) + 2 + w / Globals.TileSize && i < Globals.l.Current.width && i > -1; i++)
