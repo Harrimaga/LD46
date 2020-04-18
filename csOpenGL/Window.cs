@@ -214,8 +214,8 @@ namespace LD46
 
         protected override void OnMouseMove(MouseMoveEventArgs e)
         {
-            mouseX = e.X;
-            mouseY = e.Y;
+            mouseX = (int)(e.X/screenScaleX);
+            mouseY = (int)(e.Y / screenScaleX);
             base.OnMouseMove(e);
         }
 
