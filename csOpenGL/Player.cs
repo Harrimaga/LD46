@@ -54,11 +54,11 @@ namespace LD46
                                 switch(d)
                                 {
                                     case Direction.NORTH:
-                                        y = (Globals.l.Current.height - 2) * Globals.TileSize;
+                                        y = (Globals.l.Current.height - 2.1f) * Globals.TileSize;
                                         x = (Globals.l.Current.Connections.Find((Connection) => { return Connection.Direction == Direction.SOUTH; }).location) * Globals.TileSize;
                                         break;
                                     case Direction.WEST:
-                                        x = (Globals.l.Current.width - 2) * Globals.TileSize;
+                                        x = (Globals.l.Current.width - 2.1f) * Globals.TileSize;
                                         y = (Globals.l.Current.Connections.Find((Connection) => { return Connection.Direction == Direction.EAST; }).location) * Globals.TileSize;
                                         break;
                                     case Direction.SOUTH:
