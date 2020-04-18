@@ -11,7 +11,6 @@ namespace LD46
 
         public double attackTimer = 0, attackSpeed = 0, attackPoint = 1, damage;
         public bool attacked = false, attacking = false, a = false;
-        public int w, h;
         public string name;
         public Sprite UIBack, HBarUI, HBarBackUI, MBarUI, MBarBackUI;
         public List<Item> items = new List<Item>();
@@ -25,30 +24,31 @@ namespace LD46
             this.attackPoint = attackPoint;
             this.damage = damage;
             this.name = name;
-            this.w = w;
-            this.h = h;
             UIBack = new Sprite(200, 880, 0, Window.texs[2]);
             HBarUI = new Sprite(w, h / 8, 0, Window.texs[2]);
             HBarBackUI = new Sprite(w, h / 8, 0, Window.texs[2]);
             MBarUI = new Sprite(w, h / 8, 0, Window.texs[2]);
             MBarBackUI = new Sprite(w, h / 8, 0, Window.texs[2]);
-            items.Add(new Sword());
-            items.Add(new Sword());
-            items.Add(new Sword());
-            items.Add(new Sword());
-            items.Add(new Sword());
-            items.Add(new Sword());
-            items.Add(new Sword());
-            items.Add(new Sword());
-            items.Add(new Sword());
-            items.Add(new Sword());
-            items.Add(new Sword());
+            EquipItem(new Sword());
+            EquipItem(new Sword());
+            EquipItem(new Sword());
+            EquipItem(new Sword());
+            EquipItem(new Sword());
+            EquipItem(new Sword());
+            EquipItem(new Sword());
+            EquipItem(new Sword());
+            EquipItem(new Sword());
+            EquipItem(new Sword());
+            EquipItem(new Sword());
+            EquipItem(new Sword());
+            
+            
         }
 
         public override void Update(double delta)
         {
             float dis = (float)Math.Sqrt(xDir * xDir + yDir * yDir);
-            if(dis != 0)
+            if (dis != 0)
             {
                 xDir /= dis;
                 yDir /= dis;
@@ -63,23 +63,25 @@ namespace LD46
                     if (t.GetTileType() == TileType.DOOR)
                     {
                         Direction d = Direction.SOUTH;
-                        if(i == 0)
+                        if (i == 0)
                         {
                             d = Direction.WEST;
-                        } else if(j == 0)
+                        }
+                        else if (j == 0)
                         {
                             d = Direction.NORTH;
-                        } else if(i == Globals.l.Current.width-1)
+                        }
+                        else if (i == Globals.l.Current.width - 1)
                         {
                             d = Direction.EAST;
                         }
 
-                        foreach(Connection c in Globals.l.Current.Connections)
+                        foreach (Connection c in Globals.l.Current.Connections)
                         {
-                            if(c.Direction == d)
+                            if (c.Direction == d)
                             {
                                 Globals.l.Current = c.Room;
-                                switch(d)
+                                switch (d)
                                 {
                                     case Direction.NORTH:
                                         y = (Globals.l.Current.height - 2.1f) * Globals.TileSize;
@@ -102,6 +104,8 @@ namespace LD46
                         }
                     }
                 }
+
+                HaveItemsExpired(delta);
             }
 
             base.Update(delta);
@@ -118,11 +122,11 @@ namespace LD46
 
         public void SetDir(int x, int y)
         {
-            if(x != 0)
+            if (x != 0)
             {
                 xDir = x;
             }
-            if(y != 0)
+            if (y != 0)
             {
                 yDir = y;
             }
@@ -135,7 +139,7 @@ namespace LD46
             if (attacking)
             {
                 attackTimer += delta;
-                if(!attacked && attackTimer > attackSpeed * attackPoint)
+                if (!attacked && attackTimer > attackSpeed * attackPoint)
                 {
                     foreach (Enemy enemy in enemies)
                     {
@@ -222,5 +226,84 @@ namespace LD46
             }
         }
 
+        public void EquipItem(Item item)
+        {
+            items.Add(item);
+            foreach (Effect e in item.GrantedEffects)
+            {
+                if (!e.HasExpired(0))
+                {
+                    switch (e.Affects)
+                    {
+                        case EffectType.HP:
+                            MaxHealth += e.Modifier;
+                            break;
+                        case EffectType.BLOCK:
+                            throw new NotImplementedException("Block is not implemented");
+                            break;
+                        case EffectType.MAGICAL_DAMAGE:
+                            MagicalAmp += e.Modifier;
+                            break;
+                        case EffectType.PHYSICAL_DAMAGE:
+                            PhysicalAmp += e.Modifier;
+                            break;
+                    }
+                }
+            }
+        }
+
+        public void DequipItem(Item item)
+        {
+            items.Remove(item);
+            foreach (Effect e in item.GrantedEffects)
+            {
+                if (!e.HasExpired(0))
+                {
+                    switch (e.Affects)
+                    {
+                        case EffectType.HP:
+                            MaxHealth -= e.Modifier;
+                            break;
+                        case EffectType.BLOCK:
+                            throw new NotImplementedException("Block is not implemented");
+                            break;
+                        case EffectType.MAGICAL_DAMAGE:
+                            MagicalAmp -= e.Modifier;
+                            break;
+                        case EffectType.PHYSICAL_DAMAGE:
+                            PhysicalAmp -= e.Modifier;
+                            break;
+                    }
+                }
+            }
+        }
+
+        public void HaveItemsExpired(double delta)
+        {
+            foreach(Item i in items)
+            {
+                foreach(Effect e in i.GrantedEffects)
+                {
+                    if(e.HasExpired(delta))
+                    {
+                        switch (e.Affects)
+                        {
+                            case EffectType.HP:
+                                MaxHealth -= e.Modifier;
+                                break;
+                            case EffectType.BLOCK:
+                                throw new NotImplementedException("Block is not implemented");
+                                break;
+                            case EffectType.MAGICAL_DAMAGE:
+                                MagicalAmp -= e.Modifier;
+                                break;
+                            case EffectType.PHYSICAL_DAMAGE:
+                                PhysicalAmp -= e.Modifier;
+                                break;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
