@@ -9,7 +9,7 @@ namespace LD46
     public class TestEnemy : Enemy
     {
 
-        public TestEnemy(int x, int y) : base(100, x, y, 0, 3, Globals.TileSize, Globals.TileSize, 5)
+        public TestEnemy(int x, int y) : base(Enemies.TEST_ENEMY_HEALTH, x, y, 0, 3, Globals.TileSize, Globals.TileSize, Enemies.TEST_ENEMY_SPEED)
         {
 
         }
