@@ -39,6 +39,12 @@ namespace LD46
 
         public override void Update(double delta)
         {
+            float dis = (float)Math.Sqrt(xDir * xDir + yDir * yDir);
+            if(dis != 0)
+            {
+                xDir /= dis;
+                yDir /= dis;
+            }
             Move((float)(delta * xDir * speed), (float)(delta * yDir * speed));
 
             for (int i = (int)(x / Globals.TileSize); i < (int)(x / Globals.TileSize) + 2 + w / Globals.TileSize && i < Globals.l.Current.width && i > -1; i++)
