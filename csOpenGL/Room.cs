@@ -76,7 +76,7 @@ namespace LD46
         {
             if (visited)
             {
-                s.Draw(x, y, false, 0, 0.1f, 0.8f, 0.1f, 1);
+                s.Draw(x, y, false, 0, cc * 0.1f, cc * 0.8f, cc * 0.1f, 1);
             }
             else
             {
