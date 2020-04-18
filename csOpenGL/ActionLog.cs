@@ -36,6 +36,11 @@ namespace LD46
             Add(enemyName + " deals " + damage + " damage to you using " + source);
         }
 
+        public void Death(string entityName)
+        {
+            Add(entityName + " has died.");
+        }
+
         private void CheckLimit()
         {
             while (ActionList.Count > Limit)

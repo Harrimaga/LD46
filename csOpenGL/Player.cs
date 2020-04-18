@@ -147,16 +147,16 @@ namespace LD46
             }
         }
 
-        public override bool DealPhysicalDamage(double damage, string name, string with)
+        public override void DealPhysicalDamage(double damage, string name, string with)
         {
             //Globals.rootActionLog.TakeDamage(name, damage, with);
-            return base.DealPhysicalDamage(damage, name, with);
+            base.DealPhysicalDamage(damage, name, with);
         }
 
-        public override bool DealMagicDamage(double damage, string name, string with)
+        public override void DealMagicDamage(double damage, string name, string with)
         {
             Globals.rootActionLog.TakeDamage(name, damage, with);
-            return base.DealMagicDamage(damage, name, with);
+            base.DealMagicDamage(damage, name, with);
         }
 
     }
