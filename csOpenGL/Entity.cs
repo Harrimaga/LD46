@@ -18,7 +18,7 @@ namespace LD46
         protected float xDir, yDir;
         protected int attackAnimation = 0;
 
-        public void Init(double Health, float x, float y, int texNum, int spriteNum, int w, int h, double speed, double PhysicalAmp = 1, double MagicalAmp = 1)
+        public void Init(double Health, float x, float y, int texNum, int attackTexNum, int spriteNum, int w, int h, double speed, double PhysicalAmp = 1, double MagicalAmp = 1)
         {
             this.MaxHealth = Health;
             this.Health = Health;
@@ -32,6 +32,7 @@ namespace LD46
             s = new Sprite(w, h, spriteNum, Window.texs[texNum]);
             HBar = new Sprite(w, h / 8, 0, Window.texs[2]);
             HBarBack = new Sprite(w, h / 8, 0, Window.texs[2]);
+            attack = new Sprite(w, h, 0, Window.texs[attackTexNum]);
         }
 
         public virtual void Draw()
