@@ -126,6 +126,7 @@
     <Compile Include="Balance\Items\Sword.cs" />
     <Compile Include="DrawnButton.cs" />
     <Compile Include="Effect.cs" />
+    <Compile Include="Enemies\TestEnemy.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="enums.cs" />
@@ -142,6 +143,7 @@
     <Compile Include="SoundManager.cs" />
     <Compile Include="Sprite.cs" />
     <Compile Include="Texture.cs" />
+    <Compile Include="Theme.cs" />
     <Compile Include="Tile.cs" />
     <Compile Include="Window.cs" />
   </ItemGroup>

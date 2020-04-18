@@ -10,10 +10,26 @@ namespace LD46
     {
 
         public Room Current;
+        public Theme theme;
+        public Player p;
 
-        public Level(Room c)
+        public Level(Room c, Theme theme, Player p)
         {
+            this.theme = theme;
             Current = c;
+            this.p = p;
+        }
+
+        public void Draw()
+        {
+            Current.Draw(0, 0);
+            p.Draw();
+        }
+
+        public void Update(double delta)
+        {
+            Current.Update(delta);
+            p.Update(delta);
         }
 
     }
