@@ -13,7 +13,7 @@ namespace LD46
         public int w, h;
         protected float rotation = 0, r = 1, g = 1, b = 1, a = 1;
         public float x, y;
-        protected Sprite s, HBarBack, HBar, attack;
+        protected Sprite s, HBarBack, HBar, attack, baseAnimation;
         protected Animation ani = null;
         protected float xDir, yDir;
         protected int attackAnimation = 0;
@@ -30,6 +30,7 @@ namespace LD46
             this.w = w;
             this.h = h;
             s = new Sprite(w, h, spriteNum, Window.texs[texNum]);
+            baseAnimation = s;
             HBar = new Sprite(w, h / 8, 0, Window.texs[2]);
             HBarBack = new Sprite(w, h / 8, 0, Window.texs[2]);
             attack = new Sprite(w, h, 0, Window.texs[attackTexNum]);

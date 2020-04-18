@@ -65,21 +65,19 @@ namespace LD46
                     {
                         p.DealPhysicalDamage(damage, name, "their Fist");
                         attacked = true;
-                        Sprite temp = s;
-                        s = attack;
-                        attack = temp;
+                        s = baseAnimation;
                         ani = new Animation(0, 3, 10);
                     }
                     else if(attackTimer > attackSpeed)
                     {
                         attacking = false;
+                        s = baseAnimation;
+                        ani = new Animation(0, 3, 10);
                     }
                 }
                 else
                 {
-                    Sprite temp = s;
                     s = attack;
-                    attack = temp;
                     ani = new Animation(0, 9, attackSpeed / 10);
                     attackTimer = 0;
                     attacking = true;
@@ -89,6 +87,8 @@ namespace LD46
             else
             {
                 attacking = false;
+                s = baseAnimation;
+                ani = new Animation(0, 3, 10);
             }
         }
 
