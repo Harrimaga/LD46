@@ -27,6 +27,36 @@ namespace LD46
         {
             Move((float)(delta * xDir * speed), (float)(delta * yDir * speed));
 
+            for (int i = (int)(x / Globals.TileSize); i < (int)(x / Globals.TileSize) + 2 + w / Globals.TileSize && i < Globals.l.Current.width; i++)
+            {
+                for (int j = (int)(y / Globals.TileSize); j < (int)(y / Globals.TileSize) + 2 + h / Globals.TileSize && j < Globals.l.Current.height; j++)
+                {
+                    Tile t = Globals.l.Current.getTile(i, j);
+                    if (t.GetTileType() == TileType.DOOR)
+                    {
+                        Direction d = Direction.SOUTH;
+                        if(i == 0)
+                        {
+                            d = Direction.WEST;
+                        } else if(j == 0)
+                        {
+                            d = Direction.NORTH;
+                        } else if(i == Globals.l.Current.width-1)
+                        {
+                            d = Direction.EAST;
+                        }
+
+                        foreach(Connection c in Globals.l.Current.Connections)
+                        {
+                            if(c.Direction == d)
+                            {
+                                Globals.l.Current = c.Room;
+                            }
+                        }
+                    }
+                }
+            }
+
             base.Update(delta);
 
             if (a)

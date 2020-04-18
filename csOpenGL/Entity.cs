@@ -100,7 +100,7 @@ namespace LD46
             }
         }
 
-        public int[] CheckCollision()
+        public virtual int[] CheckCollision()
         {
             for(int i = (int)(x/Globals.TileSize); i < (int)(x / Globals.TileSize) + 2 + w/Globals.TileSize && i < Globals.l.Current.width && i > -1; i++)
             {

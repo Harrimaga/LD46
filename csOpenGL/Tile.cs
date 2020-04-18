@@ -17,6 +17,7 @@ namespace LD46
         {
             this.sprite = sprite;
             this.walkable = walkable;
+            this.tileType = tileType;
         }
 
         public void Draw(float x, float y)
