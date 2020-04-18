@@ -49,7 +49,7 @@ namespace LD46
                         }
                         else if (Globals.l.Rng.Next(1000) < 5)
                         {
-                            items.Add(new ItemPos(i*Globals.TileSize, j*Globals.TileSize, new Sword()));
+                            items.Add(new ItemPos(i*Globals.TileSize, j*Globals.TileSize, (float)(Globals.l.Rng.NextDouble()*2*Math.PI), new Sword()));
                         }
                     }                 
                 }
@@ -112,13 +112,13 @@ namespace LD46
                     tileGrid[i, j].Draw(x + i * tileSize, y + j * tileSize);
                 }
             }
+            foreach (ItemPos it in items)
+            {
+                it.it.DrawOnGround(it.x, it.y, it.rot);
+            }
             foreach (var enemy in enemies)
             {
                 enemy.Draw();
-            }
-            foreach (ItemPos it in items)
-            {
-                it.it.DrawOnGround(it.x, it.y);
             }
         }
 
@@ -146,13 +146,15 @@ namespace LD46
     public struct ItemPos
     {
         public int x, y;
+        public float rot;
         public Item it;
 
-        public ItemPos(int x, int y, Item it)
+        public ItemPos(int x, int y, float rot, Item it)
         {
             this.x = x;
             this.y = y;
             this.it = it;
+            this.rot = rot;
         }
     }
 

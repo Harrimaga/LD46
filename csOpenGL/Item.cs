@@ -34,9 +34,9 @@ namespace LD46
             Window.window.DrawText(Name, (int)x + 45, (int)y+7, Globals.buttonFont);
         }
 
-        public virtual void DrawOnGround(int x, int y)
+        public virtual void DrawOnGround(int x, int y, float rot)
         {
-            Sprite.Draw(x, y);
+            Sprite.Draw(x, y, true, rot);
         }
 
     }
