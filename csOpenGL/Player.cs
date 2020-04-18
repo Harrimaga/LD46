@@ -23,6 +23,7 @@ namespace LD46
 
             xDir = 0;
             yDir = 0;
+
         }
 
         public void SetDir(int x, int y)
