@@ -15,6 +15,7 @@ namespace LD46
         public float x, y;
         protected Sprite s, HBarBack, HBar;
         protected Animation ani = null;
+        protected float xDir, yDir;
 
         public void Init(double Health, float x, float y, int texNum, int spriteNum, int w, int h, double speed, double PhysicalAmp = 1, double MagicalAmp = 1)
         {
@@ -46,15 +47,20 @@ namespace LD46
             {
                 ani.Update(s, delta);
             }
+            if (xDir != 0 || yDir != 0)
+            {
+                rotation = (float)Math.Atan2(xDir, -yDir);
+            }
+
         }
 
-        public virtual bool DealPhysicalDamage(double damage)
+        public virtual bool DealPhysicalDamage(double damage, string name, string with)
         {
             Health -= damage;
             return Health < 0;
         }
 
-        public virtual bool DealMagicDamage(double damage)
+        public virtual bool DealMagicDamage(double damage, string name, string with)
         {
             Health -= damage;
             return Health < 0;
