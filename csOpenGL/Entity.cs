@@ -15,6 +15,7 @@ namespace LD46
         public float x, y;
         protected Sprite s, HBarBack, HBar;
         protected Animation ani = null;
+        protected float xDir, yDir;
 
         public void Init(double Health, float x, float y, int texNum, int spriteNum, int w, int h, double speed, double PhysicalAmp = 1, double MagicalAmp = 1)
         {

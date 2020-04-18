@@ -35,6 +35,8 @@ namespace LD46
             {
                 xd /= dis;
                 yd /= dis;
+                xDir = xd;
+                yDir = yd;
                 Move((float)(xd * delta * speed), (float)(yd * delta * speed));
             }
         }

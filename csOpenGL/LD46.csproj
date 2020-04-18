@@ -122,6 +122,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Animation.cs" />
+    <Compile Include="ActionLog.cs" />
     <Compile Include="Balance\Balance.cs" />
     <Compile Include="Balance\Enemies.cs" />
     <Compile Include="Balance\Items\OrbOfHealth.cs" />
