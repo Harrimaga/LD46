@@ -19,7 +19,7 @@ namespace LD46
 	int starty;
 	float r, g, b, a, rot;
 };*/
-    struct SData
+    public struct SData
     {
         long img;
         int w, h;

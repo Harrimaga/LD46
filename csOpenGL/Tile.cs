@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LD46
 {
-    class Tile
+    public class Tile
     {
         private Sprite sprite;
         private Walkable walkable;

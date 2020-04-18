@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LD46
 {
-    enum Rarity
+    public enum Rarity
     {
         BASIC, //Starting items
         COMMON,

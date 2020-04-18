@@ -28,7 +28,7 @@ namespace LD46
 
         public void OnLoad()
         {
-            Globals.r = room;
+            Globals.l = new Level(room);
         }
 
         public void Update(double delta)
