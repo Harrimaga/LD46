@@ -38,7 +38,7 @@ namespace LD46
                     directions.Remove(dir);
                 }
             }
-            if (deepness > 7)
+            if (deepness > 12)
             {
                 return true;
             }
