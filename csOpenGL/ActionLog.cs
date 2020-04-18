@@ -17,7 +17,7 @@ namespace LD46
         {
             ActionList = new Queue<string>();
             Limit = limit;
-            Sprite = new Sprite(200, 255, 0, Window.texs[2]);
+            Sprite = new Sprite(350, 255, 0, Window.texs[2]);
         }
 
         public void Add(string item)
@@ -47,7 +47,7 @@ namespace LD46
         public void Draw()
         {
             
-            Sprite.Draw(0, 1080 - 255, 0, 0, 0, 0, 1);
+            Sprite.Draw(0, 1080 - 255, 0, 0, 0, 0, 0.85f);
             int y = 1080 - 255;
             foreach (string logItem in ActionList)
             {
