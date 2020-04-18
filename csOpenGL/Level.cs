@@ -30,15 +30,16 @@ namespace LD46
         private bool CreateRoom(int deepness = 0, Room lastRoom = null)
         {
             List<Direction> directions = new List<Direction> { Direction.SOUTH, Direction.NORTH, Direction.EAST, Direction.WEST };
-            if(deepness > 7)
+            if (deepness > 7)
             {
                 return true;
-            }else if(deepness == 0)
+            }
+            else if (deepness == 0)
             {
                 Current = new Room(Rng.Next(3, 20), Rng.Next(3, 20), theme);
                 FileHandler.WriteText("Created a room with size (" + Current.width + "," + Current.height + ")", "../../logs/log.txt", WriteModes.CREATE_OR_APPEND);
                 List<bool> results = new List<bool>();
-                
+
                 results.Add(CreateRoom(++deepness, Current));
                 return results.All((singleResult) => { return singleResult; });
             }
@@ -47,7 +48,7 @@ namespace LD46
             {
                 int index = Rng.Next(0, directions.Count);
                 newRoom.AddConnection(new Connection(lastRoom, directions[index], 2));
-                lastRoom.AddConnection(new Connection(newRoom,(Direction)(((int)directions[index] + 2) % 4), 2));
+                lastRoom.AddConnection(new Connection(newRoom, (Direction)(((int)directions[index] + 2) % 4), 2));
                 directions.RemoveAt(index);
             }
             FileHandler.WriteText("Created a room with size (" + newRoom.width + "," + newRoom.height + ")", "../../logs/log.txt", WriteModes.CREATE_OR_APPEND);
@@ -70,7 +71,64 @@ namespace LD46
         public void DrawMinimap()
         {
             back.Draw(1920 - 200, 1080 - 200, 0, 0, 0, 0, 0.85f);
-            Current.DrawOnMinimap(100 - Current.width/2, 100 - Current.height/2, 1, 1920 - 200, 1080 - 200, null);
+            Queue<MMData> conns = new Queue<MMData>();
+            Stack<MMData> drawOrder = new Stack<MMData>();
+            int x = 1920 - 100 - Current.width / 2;
+            int y = 1080 - 100 - Current.height / 2;
+            foreach (Connection c in Current.Connections)
+            {
+                Room r = c.Room;
+                switch (c.Direction)
+                {
+                    case Direction.EAST:
+                        conns.Enqueue(new MMData(Current, r, 0.8f, x + Current.width + 5, y + c.location - r.getLocation(r)));
+                        break;
+                    case Direction.SOUTH:
+                        conns.Enqueue(new MMData(Current, r, 0.8f, x + c.location - r.getLocation(r), y + Current.height + 5));
+                        break;
+                    case Direction.NORTH:
+                        conns.Enqueue(new MMData(Current, r, 0.8f, x + c.location - r.getLocation(r), y - r.height - 5));
+                        break;
+                    case Direction.WEST:
+                        conns.Enqueue(new MMData(Current, r, 0.8f, x - r.width - 5, y + c.location - r.getLocation(r)));
+                        break;
+                }
+                drawOrder.Push(new MMData(null, Current, 1, x, y));
+            }
+            while (conns.Count > 0)
+            {
+                MMData md = conns.Dequeue();
+                x = md.x + md.itself.width / 2;
+                y = md.y + md.itself.height / 2;
+                foreach (Connection c in md.itself.Connections)
+                {
+                    if (c.Room != md.from)
+                    {
+                        Room r = c.Room;
+                        switch (c.Direction)
+                        {
+                            case Direction.EAST:
+                                conns.Enqueue(new MMData(Current, r, md.cc * 0.8f, x + Current.width + 5, y + c.location - r.getLocation(r)));
+                                break;
+                            case Direction.SOUTH:
+                                conns.Enqueue(new MMData(Current, r, md.cc * 0.8f, x + c.location - r.getLocation(r), y + Current.height + 5));
+                                break;
+                            case Direction.NORTH:
+                                conns.Enqueue(new MMData(Current, r, md.cc * 0.8f, x + c.location - r.getLocation(r), y - r.height - 5));
+                                break;
+                            case Direction.WEST:
+                                conns.Enqueue(new MMData(Current, r, md.cc * 0.8f, x - r.width - 5, y + c.location - r.getLocation(r)));
+                                break;
+                        }
+                    }
+                }
+                drawOrder.Push(md);
+            }
+            while (drawOrder.Count > 0)
+            {
+                MMData md = drawOrder.Pop();
+                md.itself.DrawOnMinimap(md.x, md.y, md.cc);
+            }
         }
 
         public void Update(double delta)
@@ -80,4 +138,21 @@ namespace LD46
         }
 
     }
+
+    public struct MMData
+    {
+        public int x, y;
+        public Room from, itself;
+        public float cc;
+
+        public MMData(Room from, Room itself, float cc, int x, int y)
+        {
+            this.from = from;
+            this.cc = cc;
+            this.x = x;
+            this.y = y;
+            this.itself = itself;
+        }
+    }
+
 }

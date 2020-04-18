@@ -60,30 +60,9 @@ namespace LD46
             }
         }
 
-        public void DrawOnMinimap(int x, int y, float cc, int bx, int by, Room from)
+        public void DrawOnMinimap(int x, int y, float cc)
         {
-            s.Draw(bx+x, by+y, 0, cc, cc, cc, 1);
-            foreach(Connection c in Connections)
-            {
-                Room r = c.Room;
-                if(r != from)
-                {
-                    switch (c.Direction) {
-                        case Direction.EAST:
-                            r.DrawOnMinimap(x + width, y + c.location - r.getLocation(this), cc * 0.8f, bx, by, this);
-                            break;
-                        case Direction.SOUTH:
-                            r.DrawOnMinimap(x + c.location - r.getLocation(this), y + height, cc * 0.8f, bx, by, this);
-                            break;
-                        case Direction.NORTH:
-                            r.DrawOnMinimap(x + c.location - r.getLocation(this), y - r.height, cc * 0.8f, bx, by, this);
-                            break;
-                        case Direction.WEST:
-                            r.DrawOnMinimap(x - r.width, y + c.location - r.getLocation(this), cc * 0.8f, bx, by, this);
-                            break;
-                    }
-                }
-            }
+            s.Draw(x, y, 0, cc, cc, cc, 1);
         }
 
         public int getLocation(Room r)
