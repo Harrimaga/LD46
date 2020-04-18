@@ -60,9 +60,9 @@ namespace LD46
             this.texture = texture;
         }
 
-        public void Draw(float x, float y, float rot = 0, float r = 1, float g = 1, float b = 1, float a = 1)
+        public void Draw(float x, float y, bool cam = true, float rot = 0, float r = 1, float g = 1, float b = 1, float a = 1)
         {
-            texture.AddToList(x, y, r, g, b, a, rot, num, w, h);
+            texture.AddToList(x, y, r, g, b, a, rot, num, w, h, cam);
         }
 
     }

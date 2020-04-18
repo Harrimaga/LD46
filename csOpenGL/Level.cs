@@ -89,7 +89,7 @@ namespace LD46
 
         public void DrawMinimap()
         {
-            back.Draw(1920 - 200, 1080 - 200, 0, 0, 0, 0, 0.85f);
+            back.Draw(1920 - 200, 1080 - 200, false, 0, 0, 0, 0, 0.85f);
             Queue<MMData> conns = new Queue<MMData>();
             Stack<MMData> drawOrder = new Stack<MMData>();
             int x = 1920 - 100 - Current.width / 2;

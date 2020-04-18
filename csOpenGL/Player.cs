@@ -48,6 +48,8 @@ namespace LD46
                 yDir /= dis;
             }
             Move((float)(delta * xDir * speed), (float)(delta * yDir * speed));
+            Window.camX = x - 960 + w / 2;
+            Window.camY = y - 540 + h / 2;
 
             for (int i = (int)(x / Globals.TileSize); i < (int)(x / Globals.TileSize) + 2 + w / Globals.TileSize && i < Globals.l.Current.width && i > -1; i++)
             {
@@ -189,13 +191,13 @@ namespace LD46
         {
             UIBack.w = 200;
             UIBack.h = 880;
-            UIBack.Draw(1720, 0, 0, 0.5f, 0.5f, 0.5f, 0.85f);
+            UIBack.Draw(1720, 0, false, 0, 0.5f, 0.5f, 0.5f, 0.85f);
             int y = 5;
             UIBack.w = 190;
             UIBack.h = 45;
             foreach (Item it in items)
             {
-                UIBack.Draw(1725, y, 0, 0, 0, 0, 0.5f);
+                UIBack.Draw(1725, y, false, 0, 0, 0, 0, 0.5f);
                 it.Draw(1727, y + 2);
                 y += 55;
             }
