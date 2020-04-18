@@ -32,7 +32,7 @@ namespace LD46
                 return true;
             }else if(deepness == 0)
             {
-                Current = new Room(Rng.Next(1, 20), Rng.Next(1, 20), theme);
+                Current = new Room(Rng.Next(3, 20), Rng.Next(3, 20), theme);
                 FileHandler.WriteText("Created a room with size (" + Current.width + "," + Current.height + ")", "../../logs/log.txt", WriteModes.CREATE_OR_APPEND);
                 List<bool> results = new List<bool>();
                 for (int i = 0; i<Rng.Next(1,5); i++)
@@ -41,8 +41,9 @@ namespace LD46
                 }
                 return results.All((singleResult) => { return singleResult; });
             }
-            Room newRoom = new Room(Rng.Next(1, 20), Rng.Next(1, 20), theme);
-            newRoom.Connections.Add(lastRoom);
+            Room newRoom = new Room(Rng.Next(3, 20), Rng.Next(3, 20), theme);
+            lastRoom.AddConnection(new Connection(newRoom, Direction.SOUTH, 2));
+            newRoom.AddConnection(new Connection(lastRoom, Direction.NORTH, 2));
             FileHandler.WriteText("Created a room with size (" + newRoom.width + "," + newRoom.height + ")", "../../logs/log.txt", WriteModes.CREATE_OR_APPEND);
 
             List<bool> result = new List<bool>();
