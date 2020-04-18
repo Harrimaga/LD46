@@ -39,9 +39,9 @@ namespace LD46
 
     public enum Direction
     {
-        NORTH,
-        WEST,
-        SOUTH,
-        EAST,
+        NORTH = 0,
+        WEST = 1,
+        SOUTH = 2,
+        EAST = 3,
     }
 }

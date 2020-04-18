@@ -17,7 +17,7 @@ namespace LD46
         private Hotkey down = new Hotkey(true).AddKey(Key.S).AddKey(Key.Down);
         private Hotkey attack = new Hotkey(false).AddKey(Key.Space);
 
-        private Player p = new Player(128, 128, Balance.FIGHTER_BASE_ATTACK_POINT, Balance.FIGHTER_BASE_ATTACK_SPEED, Balance.FIGHTER_BASE_DAMAGE, Balance.FIGHTER_NAME);
+        private Player p = new Player(Globals.TileSize, Globals.TileSize, Balance.FIGHTER_BASE_ATTACK_POINT, Balance.FIGHTER_BASE_ATTACK_SPEED, Balance.FIGHTER_BASE_DAMAGE, Balance.FIGHTER_NAME);
         private Theme theme = new Theme("Basic");
         private List<DrawnButton> buttons = new List<DrawnButton>();
 
