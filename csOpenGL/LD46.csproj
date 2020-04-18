@@ -122,8 +122,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Balance\Balance.cs" />
+    <Compile Include="Balance\Items\OrbOfHealth.cs" />
+    <Compile Include="Balance\Items\Sword.cs" />
+    <Compile Include="Effect.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Hotkey.cs" />
+    <Compile Include="Item.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shader.cs" />
