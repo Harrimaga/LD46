@@ -159,7 +159,7 @@ namespace LD46
             shader.Use();
             SData[] sdd = Window.sd.getData();
             GL.BindBufferBase(BufferRangeTarget.ShaderStorageBuffer, 0, ssbo);
-            GL.BufferData<SData>(BufferTarget.ShaderStorageBuffer, (sizeof(int)*4+sizeof(long)+9*sizeof(float))*Window.sd.Count(), sdd, BufferUsageHint.DynamicDraw);
+            GL.BufferData<SData>(BufferTarget.ShaderStorageBuffer, (sizeof(int)*4+2*sizeof(long)+9*sizeof(float))*Window.sd.Count(), sdd, BufferUsageHint.DynamicDraw);
             GL.Uniform2(GL.GetUniformLocation(shader.Handle, "screenSize"), Width, Height);
             GL.BindVertexArray(vao);
             GL.MemoryBarrier(MemoryBarrierFlags.AllBarrierBits);
