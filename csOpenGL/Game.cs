@@ -53,7 +53,11 @@ namespace LD46
 
         public void MouseDown(MouseButtonEventArgs e, int mx, int my)
         {
-
+            DrawnButton drawnButton = new DrawnButton(0,0,800,800, () => { Console.WriteLine(mx + "-" + my); });
+            if(drawnButton.IsInButton(mx, my))
+            {
+                drawnButton.OnClick();
+            }
         }
 
         public void MouseUp(MouseButtonEventArgs e, int mx, int my)

@@ -6,8 +6,33 @@ using System.Threading.Tasks;
 
 namespace LD46
 {
-    class DrawnButton
+    public class DrawnButton
     {
-        //private 
+        public delegate void EventAction();
+
+        private float X { get; set; }
+        private float Y { get; set; }
+        private float Width { get; set; }
+        private float Height { get; set; }
+        private EventAction OnClickAction { get; set; }
+
+        public DrawnButton(float x, float y, float width, float height, EventAction onClickAction)
+        {
+            X = x;
+            Y = y;
+            Width = width;
+            Height = height;
+            OnClickAction = onClickAction;
+        }
+
+        public bool IsInButton(float x, float y)
+        {
+            return x >= X && x <= X + Width && y >= Y && y <= Y + Height;
+        }
+
+        public void OnClick()
+        {
+            OnClickAction();
+        }
     }
 }
