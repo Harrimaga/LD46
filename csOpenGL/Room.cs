@@ -14,12 +14,14 @@ namespace LD46
         public Sprite s;
         public List<Enemy> enemies;
         public List<Enemy> removables;
+        public List<ItemPos> items;
         public List<Connection> Connections { get; set; }
         private Theme Theme { get; set; }
 
         public Room(int x, int y, Theme theme, int tileSize = Globals.TileSize)
         {
             Connections = new List<Connection>();
+            items = new List<ItemPos>();
             Theme = theme;
             s = new Sprite(x, y, 0, Window.texs[2]);
             width = x;
@@ -42,6 +44,10 @@ namespace LD46
                         if(Globals.l.Rng.Next(1000) < 12)
                         {
                             enemies.Add(new TestEnemy(i * Globals.TileSize, j * Globals.TileSize));
+                        }
+                        else if (Globals.l.Rng.Next(1000) < 5)
+                        {
+                            items.Add(new ItemPos(i*Globals.TileSize, j*Globals.TileSize, new Sword()));
                         }
                     }                 
                 }
@@ -100,6 +106,10 @@ namespace LD46
             {
                 enemy.Draw();
             }
+            foreach (ItemPos it in items)
+            {
+                it.it.DrawOnGround(it.x, it.y);
+            }
         }
 
         public void AddConnection(Connection connection)
@@ -122,4 +132,18 @@ namespace LD46
             }
         }
     }
+
+    public struct ItemPos
+    {
+        public int x, y;
+        public Item it;
+
+        public ItemPos(int x, int y, Item it)
+        {
+            this.x = x;
+            this.y = y;
+            this.it = it;
+        }
+    }
+
 }
