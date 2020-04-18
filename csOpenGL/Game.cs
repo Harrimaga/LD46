@@ -19,6 +19,7 @@ namespace LD46
         private Player p = new Player(128, 128);
         private Enemy e = new Enemy(1, 1000, 50, 0, 2, 128, 128, 5);
         private Room room = new Room(16, 16);
+        private List<DrawnButton> buttons = new List<DrawnButton>();
 
         public Game(Window window)
         {
@@ -28,6 +29,9 @@ namespace LD46
 
         public void OnLoad()
         {
+            buttons.Add(new DrawnButton(500, 500, 200, 25, () => { Console.WriteLine("Button 1"); }));
+            buttons.Add(new DrawnButton(500, 525, 200, 25, () => { Console.WriteLine("Button 2"); }));
+            buttons.Add(new DrawnButton(700, 900, 20, 250, () => { Console.WriteLine("Button 3"); }));
             Globals.l = new Level(room);
         }
 
@@ -49,14 +53,20 @@ namespace LD46
             room.Draw(16, 16);
             p.Draw();
             e.Draw();
+            foreach(DrawnButton button in buttons)
+            {
+                button.Draw();
+            }
         }
 
         public void MouseDown(MouseButtonEventArgs e, int mx, int my)
         {
-            DrawnButton drawnButton = new DrawnButton(0,0,800,800, () => { Console.WriteLine(mx + "-" + my); });
-            if(drawnButton.IsInButton(mx, my))
+            foreach(DrawnButton button in buttons)
             {
-                drawnButton.OnClick();
+                if(button.IsInButton(mx,my))
+                {
+                    button.OnClick();
+                }
             }
         }
 
