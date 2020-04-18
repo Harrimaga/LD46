@@ -21,7 +21,7 @@ namespace LD46
             this.tileStyle = tileStyle;
             this.tileSize = tileSize;
             enemies = new List<Enemy>();
-
+            enemies.Add(new TestEnemy(4 * Globals.TileSize, 4 * Globals.TileSize));
             for (int i = 0; i < x; i++)
             {
                 for (int j = 0; j < y; j++)
@@ -63,6 +63,10 @@ namespace LD46
                 {
                     tileGrid[i, j].Draw(x + i * tileSize, y + j * tileSize);
                 }
+            }
+            foreach (var enemy in enemies)
+            {
+                enemy.Draw();
             }
         }
     }

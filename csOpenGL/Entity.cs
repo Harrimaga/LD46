@@ -10,8 +10,9 @@ namespace LD46
     {
 
         protected double MaxHealth, Health, PhysicalAmp, MagicalAmp, speed;
-        protected int w, h;
-        protected float x, y, rotation = 0, r = 1, g = 1, b = 1, a = 1;
+        public int w, h;
+        protected float rotation = 0, r = 1, g = 1, b = 1, a = 1;
+        public float x, y;
         protected Sprite s;
 
         public void Init(double Health, float x, float y, int texNum, int spriteNum, int w, int h, double speed, double PhysicalAmp = 1, double MagicalAmp = 1)
@@ -45,6 +46,36 @@ namespace LD46
         {
             Health -= damage;
             return Health < 0;
+        }
+
+        public void Move(float xa, float ya)
+        {
+            x += xa;
+            int[] coll = CheckCollision();
+            if (coll != null)
+            {
+                if (xa > 0)
+                {
+                    x = coll[0] * Globals.TileSize - w;
+                }
+                else if (xa < 0)
+                {
+                    x = (1 + coll[0]) * Globals.TileSize;
+                }
+            }
+            y += ya;
+            coll = CheckCollision();
+            if (coll != null)
+            {
+                if (ya > 0)
+                {
+                    y = coll[1] * Globals.TileSize - h;
+                }
+                else if (ya < 0)
+                {
+                    y = (1 + coll[1]) * Globals.TileSize;
+                }
+            }
         }
 
         public int[] CheckCollision()

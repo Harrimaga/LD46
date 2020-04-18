@@ -16,12 +16,26 @@ namespace LD46
 
         public override void Update(double delta)
         {
-            AIMove();
+            AIMove(delta);
         }
 
-        public virtual void AIMove()
+        public virtual void AIMove(double delta)
         {
 
+        }
+
+        public void StupidMovement(double delta)
+        {
+            Player p = Globals.l.p;
+            float xd = p.x + p.w / 2 - x - w / 2;
+            float yd = p.y + p.h / 2 - y - h / 2;
+            float dis = (float)Math.Sqrt(xd * xd + yd * yd);
+            if (dis < 1000 && dis > Globals.TileSize)
+            {
+                xd /= dis;
+                yd /= dis;
+                Move((float)(xd * delta * speed), (float)(yd * delta * speed));
+            }
         }
 
     }

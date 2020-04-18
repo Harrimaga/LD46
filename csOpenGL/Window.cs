@@ -143,6 +143,10 @@ namespace LD46
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
             delta = e.Time * 60;
+            if(delta > 4)
+            {
+                delta = 4;
+            }
             Update();
             foreach (Texture t in Window.texs)
             {
