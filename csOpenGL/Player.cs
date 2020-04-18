@@ -189,5 +189,31 @@ namespace LD46
             }
         }
 
+        public void EquipItem(Item item)
+        {
+            items.Add(item);
+            foreach(Effect e in item.GrantedEffects)
+            {
+                if(!e.HasExpired(0))
+                {
+                    switch(e.Affects)
+                    {
+                        case EffectType.HP:
+                            MaxHealth += e.Modifier;
+                            break;
+                        case EffectType.BLOCK:
+                            throw new NotImplementedException("Block is not implemented");
+                            break;
+                        case EffectType.MAGICAL_DAMAGE:
+                            MagicalAmp += e.Modifier;
+                            break;
+                        case EffectType.PHYSICAL_DAMAGE:
+                            PhysicalAmp += e.Modifier;
+                            break;
+                    }
+                }
+            }
+        }
+
     }
 }
