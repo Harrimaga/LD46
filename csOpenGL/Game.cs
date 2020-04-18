@@ -28,9 +28,7 @@ namespace LD46
 
         public void OnLoad()
         {
-            buttons.Add(new DrawnButton(500, 500, 200, 25, () => { Console.WriteLine("Button 1"); }));
-            buttons.Add(new DrawnButton(500, 525, 200, 25, () => { Console.WriteLine("Button 2"); }));
-            buttons.Add(new DrawnButton(700, 900, 20, 250, () => { Console.WriteLine("Button 3"); }));
+            //buttons.Add(new DrawnButton("Red Velvet", 500, 500, 200, 50, () => { Console.WriteLine("Button 1"); }));
             Globals.l = new Level(theme, p);
         }
 
@@ -59,11 +57,14 @@ namespace LD46
 
         public void MouseDown(MouseButtonEventArgs e, int mx, int my)
         {
-            foreach(DrawnButton button in buttons)
+            if(e.Button == MouseButton.Left)
             {
-                if(button.IsInButton(mx,my))
+                foreach (DrawnButton button in buttons)
                 {
-                    button.OnClick();
+                    if (button.IsInButton(mx, my))
+                    {
+                        button.OnClick();
+                    }
                 }
             }
         }
