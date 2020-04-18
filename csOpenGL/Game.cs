@@ -19,7 +19,6 @@ namespace LD46
         private Player p = new Player(128, 128);
         private Enemy e = new Enemy(1, 1000, 50, 0, 2, 128, 128, 5);
         private Theme theme = new Theme("Basic");
-        private Room room = new Room(16, 16);
 
         public Game(Window window)
         {
@@ -29,7 +28,7 @@ namespace LD46
 
         public void OnLoad()
         {
-            Globals.l = new Level(room, theme);
+            Globals.l = new Level(theme);
         }
 
         public void Update(double delta)
@@ -47,7 +46,7 @@ namespace LD46
         public void Draw()
         {
             //Do all you draw calls here
-            room.Draw(0, 0);
+            Globals.l.Current.Draw(0, 0);
             p.Draw();
             e.Draw();
         }

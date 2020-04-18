@@ -13,12 +13,11 @@ namespace LD46
         public string tileStyle;
         public List<Enemy> enemies;
 
-        public Room(int x, int y, int tileSize = Globals.TileSize, string tileStyle="Basic")
+        public Room(int x, int y, Theme theme, int tileSize = Globals.TileSize)
         {
             width = x;
             height = y;
             tileGrid = new Tile[x, y];
-            this.tileStyle = tileStyle;
             this.tileSize = tileSize;
 
             for (int i = 0; i < x; i++)
@@ -27,15 +26,15 @@ namespace LD46
                 {
                     if (i == 0 || i == x - 1 || j == 0 || j == y - 1)
                     {
-                        tileGrid[i, j] = new Tile(new Sprite(tileSize, tileSize, 0, Window.texs[2]), Walkable.SOLID);
+                        tileGrid[i, j] = new Tile(new Sprite(tileSize, tileSize, 0, theme.GetTextureByType(TileType.WALL)), Walkable.SOLID);
                     }
                     else if (i == 6 && j == 7)
                     {
-                        tileGrid[i, j] = new Tile(new Sprite(tileSize, tileSize, 0, Window.texs[3]), Walkable.WALKABLE);
+                        tileGrid[i, j] = new Tile(new Sprite(tileSize, tileSize, 0, theme.GetTextureByType(TileType.STAIRS)), Walkable.WALKABLE);
                     }
                     else
                     {
-                        tileGrid[i, j] = new Tile(new Sprite(tileSize, tileSize, 0, Window.texs[1]), Walkable.WALKABLE);
+                        tileGrid[i, j] = new Tile(new Sprite(tileSize, tileSize, 0, theme.GetTextureByType(TileType.TILE)), Walkable.WALKABLE);
                     }                 
                 }
             }
