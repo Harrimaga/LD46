@@ -14,6 +14,7 @@ namespace LD46
         public Sprite s;
         public List<Enemy> enemies;
         public List<Enemy> removables;
+        public bool visited;
         public List<Connection> Connections { get; set; }
         private Theme Theme { get; set; }
 
@@ -22,12 +23,12 @@ namespace LD46
             Connections = new List<Connection>();
             Theme = theme;
             s = new Sprite(x, y, 0, Window.texs[2]);
+            visited = false;
             width = x;
             height = y;
             tileGrid = new Tile[x, y];
             this.tileSize = tileSize;
             enemies = new List<Enemy>();
-            enemies.Add(new TestEnemy(4 * Globals.TileSize, 4 * Globals.TileSize));
             removables = new List<Enemy>();
             for (int i = 0; i < x; i++)
             {
@@ -37,13 +38,13 @@ namespace LD46
                     {
                         tileGrid[i, j] = new Tile(new Sprite(tileSize, tileSize, 0, theme.GetTextureByType(TileType.WALL)), Walkable.SOLID, TileType.WALL);
                     }
-                    else if (i == 6 && j == 7)
-                    {
-                        tileGrid[i, j] = new Tile(new Sprite(tileSize, tileSize, 0, theme.GetTextureByType(TileType.STAIRS)), Walkable.WALKABLE, TileType.STAIRS);
-                    }
                     else
                     {
                         tileGrid[i, j] = new Tile(new Sprite(tileSize, tileSize, 0, theme.GetTextureByType(TileType.TILE)), Walkable.WALKABLE, TileType.TILE);
+                        if(Globals.l.Rng.Next(1000) < 12)
+                        {
+                            enemies.Add(new TestEnemy(i * Globals.TileSize, j * Globals.TileSize));
+                        }
                     }                 
                 }
             }
@@ -73,7 +74,15 @@ namespace LD46
 
         public void DrawOnMinimap(int x, int y, float cc)
         {
-            s.Draw(x, y, false, 0, cc, cc, cc, 1);
+            if (visited)
+            {
+                s.Draw(x, y, false, 0, 0.1f, 0.8f, 0.1f, 1);
+            }
+            else
+            {
+                s.Draw(x, y, false, 0, cc, cc, cc, 1);
+            }
+           
         }
 
         public int getLocation(Room r)
