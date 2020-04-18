@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LD46
 {
-    class Sword : Item
+    public class Sword : Item
     {
         public Sword() : base(
             "Sword", 

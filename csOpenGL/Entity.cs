@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace LD46
 {
-    abstract class Entity
+    public abstract class Entity
     {
 
         protected double MaxHealth, Health, PhysicalAmp, MagicalAmp, speed;
+        protected int w, h;
         protected float x, y, rotation = 0, r = 1, g = 1, b = 1, a = 1;
         protected Sprite s;
 
@@ -22,6 +23,8 @@ namespace LD46
             this.x = x;
             this.y = y;
             this.speed = speed;
+            this.w = w;
+            this.h = h;
             s = new Sprite(w, h, spriteNum, Window.texs[texNum]);
         }
 
@@ -42,6 +45,18 @@ namespace LD46
         {
             Health -= damage;
             return Health < 0;
+        }
+
+        public bool CheckCollision()
+        {
+            for(int i = (int)(x/Globals.TileSize); i < (int)(x / Globals.TileSize) + 2 + w/Globals.TileSize && i < Globals.r.width; i++)
+            {
+                for(int j = (int)(y / Globals.TileSize); j < (int)(y / Globals.TileSize) + 2 + h / Globals.TileSize && j < Globals.r.height; j++)
+                {
+                    //check bool
+                }
+            }
+            return false;
         }
 
     }

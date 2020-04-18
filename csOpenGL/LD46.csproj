@@ -131,6 +131,7 @@
     <Compile Include="Globals.cs" />
     <Compile Include="Hotkey.cs" />
     <Compile Include="Item.cs" />
+    <Compile Include="Level.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

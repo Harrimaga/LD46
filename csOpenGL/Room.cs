@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LD46
 {
-    class Room
+    public class Room
     {
         public Sprite[,] tileGrid;
         public int width, height, tileSize;

@@ -12,7 +12,7 @@ using SharpFont;
 namespace LD46
 {
 
-    class DrawList
+    public class DrawList
     {
 
         private SData[] data;
@@ -56,7 +56,7 @@ namespace LD46
 
     }
 
-    class Window : GameWindow
+    public class Window : GameWindow
     {
         public static DrawList sd;
         public static List<Texture> texs = new List<Texture>();

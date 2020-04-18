@@ -8,7 +8,7 @@ using OpenTK.Graphics.OpenGL4;
 
 namespace LD46
 {
-    class Shader
+    public class Shader
     {
 
         public int Handle;

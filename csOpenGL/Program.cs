@@ -8,7 +8,7 @@ namespace LD46
 {
 
 
-    class Program
+    public class Program
     {
         [System.Runtime.InteropServices.DllImport("nvapi64.dll", EntryPoint = "fake")]
         static extern int LoadNvApi64();

@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 
 namespace LD46
 {
-    public static class Globals
+    public class Level
     {
 
-        public static int TileSize = 64;
-        public static Level l = null;
+        public Room Current;
+
+        public Level(Room c)
+        {
+            Current = c;
+        }
 
     }
 }

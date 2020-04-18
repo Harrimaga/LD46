@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LD46
 {
-    class Game
+    public class Game
     {
 
         public Window window;
@@ -28,7 +28,7 @@ namespace LD46
 
         public void OnLoad()
         {
-            
+            Globals.r = room;
         }
 
         public void Update(double delta)
