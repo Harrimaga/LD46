@@ -207,7 +207,7 @@ namespace LD46
             HBarBackUI.w = 200;
             HBarBackUI.h = 30;
             HBarBackUI.Draw(1720, 750, false, 0, 0, 0, 0);
-            HBarUI.Draw(1720, 750, false, 0, (float)(1 - Health / MaxHealth), (float)(Health / MaxHealth), 0);
+            HBarUI.Draw(1720, 750, false, 0, (float)(1 - Health / MaxHealth) / 2, (float)(Health / MaxHealth) / 2, 0); 
 
             MBarUI.w = (int)(200 * Mana / MaxMana);
             MBarUI.h = 30;
