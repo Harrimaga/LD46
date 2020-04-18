@@ -204,15 +204,15 @@ namespace LD46
             HBarUI.h = 30;
             HBarBackUI.w = 200;
             HBarBackUI.h = 30;
-            HBarBackUI.Draw(1720, 750, 0, 0, 0, 0);
-            HBarUI.Draw(1720, 750, 0, (float)(1 - Health / MaxHealth), (float)(Health / MaxHealth), 0);
+            HBarBackUI.Draw(1720, 750, false, 0, 0, 0, 0);
+            HBarUI.Draw(1720, 750, false, 0, (float)(1 - Health / MaxHealth), (float)(Health / MaxHealth), 0);
 
             MBarUI.w = (int)(200 * Mana / MaxMana);
             MBarUI.h = 30;
             MBarBackUI.w = 200;
             MBarBackUI.h = 30;
-            MBarBackUI.Draw(1720, 800, 0, 0, 0, 0);
-            MBarUI.Draw(1720, 800, 0, 0, 1 - (float)(Mana / MaxMana), 1);
+            MBarBackUI.Draw(1720, 800, false, 0, 0, 0, 0);
+            MBarUI.Draw(1720, 800, false, 0, 0, 1 - (float)(Mana / MaxMana), 1);
 
             string TextHP = "HP: " + Health + "/" + MaxHealth;
             string TextMP = "MP: " + Mana + "/" + MaxMana;
