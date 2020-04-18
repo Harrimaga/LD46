@@ -46,9 +46,9 @@ namespace LD46
         public void Draw()
         {
             //Do all you draw calls here
-            room.Draw(0, 0);
             p.Draw();
             e.Draw();
+            room.Draw(16, 16);
         }
 
         public void MouseDown(MouseButtonEventArgs e, int mx, int my)

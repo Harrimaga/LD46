@@ -11,6 +11,7 @@ namespace LD46
         public Sprite[,] tileGrid;
         public int width, height, tileSize;
         public string tileStyle;
+        public List<Enemy> enemies;
 
         public Room(int x, int y, int tileSize = 64, string tileStyle="Basic")
         {
@@ -26,6 +27,14 @@ namespace LD46
                 {
                     tileGrid[i, j] = new Sprite(64, 64, 0, Window.texs[1]);
                 }
+            }
+        }
+
+        public void Update(double delta)
+        {
+            foreach (var enemy in enemies)
+            {
+                enemy.Update(delta);
             }
         }
 
