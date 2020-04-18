@@ -10,9 +10,11 @@ namespace LD46
     {
 
         public Room Current;
+        public Theme theme;
 
-        public Level(Room c)
+        public Level(Room c, Theme theme)
         {
+            this.theme = theme;
             Current = c;
         }
 

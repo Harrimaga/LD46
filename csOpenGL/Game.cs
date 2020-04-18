@@ -18,6 +18,7 @@ namespace LD46
 
         private Player p = new Player(128, 128);
         private Enemy e = new Enemy(1, 1000, 50, 0, 2, 128, 128, 5);
+        private Theme theme = new Theme("Basic");
         private Room room = new Room(16, 16);
 
         public Game(Window window)
@@ -28,7 +29,7 @@ namespace LD46
 
         public void OnLoad()
         {
-            Globals.l = new Level(room);
+            Globals.l = new Level(room, theme);
         }
 
         public void Update(double delta)
