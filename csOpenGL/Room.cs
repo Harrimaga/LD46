@@ -17,6 +17,7 @@ namespace LD46
             width = x;
             height = y;
             tileGrid = new Sprite[x, y];
+            this.tileStyle = tileStyle;
             this.tileSize = tileSize;
 
             for (int i = 0; i < x; i++)
