@@ -66,7 +66,7 @@ namespace LD46
         public void DrawMinimap()
         {
             back.Draw(1920 - 200, 1080 - 200, 0, 0, 0, 0, 0.85f);
-            Current.DrawOnMinimap(0, 0, 1, 1920 - 200, 1080 - 200, null);
+            Current.DrawOnMinimap(100 - Current.width/2, 100 - Current.height/2, 1, 1920 - 200, 1080 - 200, null);
         }
 
         public void Update(double delta)
