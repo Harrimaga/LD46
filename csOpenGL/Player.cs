@@ -12,19 +12,23 @@ namespace LD46
         public double attackTimer = 0, attackSpeed = 0, attackPoint = 1, damage;
         public bool attacked = false, attacking = false, a = false;
         public string name;
-        public Sprite UIBack;
+        public Sprite UIBack, HBarUI, HBarBackUI, MBarUI, MBarBackUI;
         public List<Item> items = new List<Item>();
         public List<DrawnButton> buttons = new List<DrawnButton>();
 
-        public Player(double Health, float x, float y, int texNum, int attackTexNum, int spriteNum, int w, int h, double speed, double attackPoint, double attackSpeed, string name, double damage, double PhysicalAmp, double MagicalAmp)
+        public Player(double Health, double Mana, float x, float y, int texNum, int attackTexNum, int spriteNum, int w, int h, double speed, double attackPoint, double attackSpeed, string name, double damage, double PhysicalAmp, double MagicalAmp)
         {
-            Init(Health, x, y, texNum, attackTexNum, spriteNum, w, h, speed);
+            Init(Health, Mana, x, y, texNum, attackTexNum, spriteNum, w, h, speed);
             ani = new Animation(0, 3, 10);
             this.attackSpeed = attackSpeed;
             this.attackPoint = attackPoint;
             this.damage = damage;
             this.name = name;
             UIBack = new Sprite(200, 880, 0, Window.texs[2]);
+            HBarUI = new Sprite(w, h / 8, 0, Window.texs[2]);
+            HBarBackUI = new Sprite(w, h / 8, 0, Window.texs[2]);
+            MBarUI = new Sprite(w, h / 8, 0, Window.texs[2]);
+            MBarBackUI = new Sprite(w, h / 8, 0, Window.texs[2]);
             EquipItem(new Sword());
             EquipItem(new Sword());
             EquipItem(new Sword());
@@ -37,6 +41,8 @@ namespace LD46
             EquipItem(new Sword());
             EquipItem(new Sword());
             EquipItem(new Sword());
+            
+            
         }
 
         public override void Update(double delta)
@@ -132,8 +138,6 @@ namespace LD46
         {
             List<Enemy> enemies = Globals.l.Current.enemies;
 
-
-
             if (attacking)
             {
                 attackTimer += delta;
@@ -195,6 +199,27 @@ namespace LD46
             int y = 5;
             UIBack.w = 190;
             UIBack.h = 45;
+
+            HBarUI.w = (int)(200 * Health / MaxHealth);
+            HBarUI.h = 30;
+            HBarBackUI.w = 200;
+            HBarBackUI.h = 30;
+            HBarBackUI.Draw(1720, 750, 0, 0, 0, 0);
+            HBarUI.Draw(1720, 750, 0, (float)(1 - Health / MaxHealth), (float)(Health / MaxHealth), 0);
+
+            MBarUI.w = (int)(200 * Mana / MaxMana);
+            MBarUI.h = 30;
+            MBarBackUI.w = 200;
+            MBarBackUI.h = 30;
+            MBarBackUI.Draw(1720, 800, 0, 0, 0, 0);
+            MBarUI.Draw(1720, 800, 0, 0, 1 - (float)(Mana / MaxMana), 1);
+
+            string TextHP = "HP: " + Health + "/" + MaxHealth;
+            string TextMP = "MP: " + Mana + "/" + MaxMana;
+
+            Window.window.DrawTextCentered(TextHP, (int)(1720 + (200 / 2)), (int)(750 + (30 / 2) - 12), Globals.buttonFont);
+            Window.window.DrawTextCentered(TextMP, (int)(1720 + (200 / 2)), (int)(800 + (30 / 2) - 12), Globals.buttonFont);
+
             foreach (Item it in items)
             {
                 UIBack.Draw(1725, y, false, 0, 0, 0, 0, 0.5f);
