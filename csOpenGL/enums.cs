@@ -44,4 +44,11 @@ namespace LD46
         SOUTH = 2,
         EAST = 3,
     }
+
+    public enum SpellEffect
+    {
+        I,
+        HATE,
+        LIFE,
+    }
 }
