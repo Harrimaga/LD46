@@ -25,10 +25,10 @@ namespace LD46
 
         public void Add(SData s)
         {
-            if(size == max)
+            if (size == max)
             {
                 SData[] n = new SData[max * 2];
-                for(int i = 0; i < max; i++)
+                for (int i = 0; i < max; i++)
                 {
                     n[i] = data[i];
                 }
@@ -103,12 +103,12 @@ namespace LD46
             {
                 shader = new Shader("Shaders/vs.glsl", "Shaders/fs.glsl");
             }
-            
+
             vbo = GL.GenBuffer();
             vao = GL.GenVertexArray();
             GL.BindVertexArray(vao);
             GL.BindBuffer(BufferTarget.ArrayBuffer, vbo);
-            GL.BufferData(BufferTarget.ArrayBuffer, sizeof(float)*data.Length, data, BufferUsageHint.StaticDraw);
+            GL.BufferData(BufferTarget.ArrayBuffer, sizeof(float) * data.Length, data, BufferUsageHint.StaticDraw);
             GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 3 * sizeof(float), 0);
             GL.EnableVertexAttribArray(0);
 
@@ -117,18 +117,16 @@ namespace LD46
             GL.BindBufferBase(BufferRangeTarget.ShaderStorageBuffer, 0, ssbo);
 
             //Font
-            font = new QFont("Fonts/arial.ttf", 36*Height/1080.0f, new QuickFont.Configuration.QFontBuilderConfiguration(true));
+            font = new QFont("Fonts/arial.ttf", 36 * Height / 1080.0f, new QuickFont.Configuration.QFontBuilderConfiguration(true));
             textDrawing = new QFontDrawing();
             Matrix4 m = Matrix4.Identity;
-            m.M11 /= (float)(1920.0/2);
-            m.M22 /= (float)(1080.0/2);
+            m.M11 /= (float)(1920.0 / 2);
+            m.M22 /= (float)(1080.0 / 2);
             textDrawing.ProjectionMatrix = m;
 
             //Textures
             Window.texs.Add(new Texture("Textures/Test.png", 16, 16, 8, 8));
-            Window.texs.Add(new Texture("Textures/BasicTile.png", 32, 32, 32, 32));
-            Window.texs.Add(new Texture("Textures/BasicWall.png", 32, 32, 32, 32));
-            Window.texs.Add(new Texture("Textures/BasicStairs.png", 32, 32, 32, 32));
+            
 
             game = new Game(this);
             base.OnLoad(e);
@@ -144,7 +142,7 @@ namespace LD46
 
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
-            delta = e.Time*60;
+            delta = e.Time * 60;
             Update();
             foreach (Texture t in Window.texs)
             {
@@ -153,13 +151,13 @@ namespace LD46
 
             GL.BindBuffer(BufferTarget.ArrayBuffer, vbo);
             GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 3 * sizeof(float), 0);
-            
+
             GL.Clear(ClearBufferMask.ColorBufferBit);
             GL.Viewport(0, 0, Width, Height);
             shader.Use();
             SData[] sdd = Window.sd.getData();
             GL.BindBufferBase(BufferRangeTarget.ShaderStorageBuffer, 0, ssbo);
-            GL.BufferData<SData>(BufferTarget.ShaderStorageBuffer, (sizeof(int)*4+2*sizeof(long)+9*sizeof(float))*Window.sd.Count(), sdd, BufferUsageHint.DynamicDraw);
+            GL.BufferData<SData>(BufferTarget.ShaderStorageBuffer, (sizeof(int) * 4 + 2 * sizeof(long) + 9 * sizeof(float)) * Window.sd.Count(), sdd, BufferUsageHint.DynamicDraw);
             GL.Uniform2(GL.GetUniformLocation(shader.Handle, "screenSize"), Width, Height);
             GL.BindVertexArray(vao);
             GL.MemoryBarrier(MemoryBarrierFlags.AllBarrierBits);
@@ -214,18 +212,18 @@ namespace LD46
 
         protected override void OnMouseMove(MouseMoveEventArgs e)
         {
-            mouseX = (int)(e.X/screenScaleX);
+            mouseX = (int)(e.X / screenScaleX);
             mouseY = (int)(e.Y / screenScaleX);
             base.OnMouseMove(e);
         }
 
         public void DrawText(string text, int x, int y, QFont f = null)
         {
-            if(f == null)
+            if (f == null)
             {
                 f = font;
             }
-            textDrawing.Print(f, text, new Vector3(x-960, 540-y, 0), QFontAlignment.Left);
+            textDrawing.Print(f, text, new Vector3(x - 960, 540 - y, 0), QFontAlignment.Left);
         }
 
         public void DrawText(string text, int x, int y, float r, float g, float b, float a, QFont f = null)
