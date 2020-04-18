@@ -23,7 +23,6 @@ namespace LD46
             Rng = new Random(seed);
             CreateRoom();
             Current.visited = true;
-            back = new Sprite(200, 200, 0, Window.texs[2]);
         }
 
         private bool CreateRoom(int deepness = 0, Room lastRoom = null)
