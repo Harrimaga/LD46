@@ -67,8 +67,8 @@ namespace LD46
                 locationInGrid = Rng.Next(1, newRoom.height - 2);
                 locationInGrid2 = Rng.Next(1, lastRoom.height - 2);
             }
-            newRoom.AddConnection(new Connection(lastRoom, directions[index], locationInGrid2));
-            lastRoom.AddConnection(new Connection(newRoom, (Direction)(((int)directions[index] + 2) % 4), locationInGrid));
+            newRoom.AddConnection(new Connection(lastRoom, (Direction)(((int)directions[index] + 2) % 4), locationInGrid));
+            lastRoom.AddConnection(new Connection(newRoom, directions[index], locationInGrid2));
             directions.RemoveAt(index);
 
             List<bool> result = new List<bool>();
