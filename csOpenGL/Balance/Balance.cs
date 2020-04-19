@@ -63,5 +63,11 @@ namespace LD46
         public const string WAND_OF_BLUE_DESCRIPTION = "A wand of Blue power.";
         public const double WAND_OF_BLUE_MAGIC_AMP = 0.25;
         public const double WAND_OF_BLUE_MANA = -10;
+        //Helm of Pylonius
+        public const Rarity HEML_OF_PYLONIUS_RARITY = Rarity.SUPER_RARE;
+        public const string HEML_OF_PYLONIUS_DESCRIPTION = "A super fancy hat that makes you stronger.";
+        public const double HEML_OF_PYLONIUS_BLOCK = 5;
+        public const double HEML_OF_PYLONIUS_HP_REGEN = 0.1;
+        public const double HEML_OF_PYLONIUS_SPEED = 1;
     }
 }
