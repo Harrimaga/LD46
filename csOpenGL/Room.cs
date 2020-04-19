@@ -43,22 +43,29 @@ namespace LD46
                     else
                     {
                         tileGrid[i, j] = new Tile(new Sprite(tileSize, tileSize, 0, theme.GetTextureByType(TileType.TILE)), Walkable.WALKABLE, TileType.TILE);
-                        if(Globals.l.Rng.Next(1000) < 12)
+                        if (Globals.l.Rng.Next(1000) < 12)
                         {
                             enemies.Add(new TestEnemy(i * Globals.TileSize, j * Globals.TileSize));
                         }
                         else if (Globals.l.Rng.Next(1000) < 5)
                         {
-                            items.Add(new ItemPos(i*Globals.TileSize, j*Globals.TileSize, (float)(Globals.l.Rng.NextDouble()*2*Math.PI), new Sword()));
+                            if (Globals.l.Rng.Next(100) < 50)
+                            {
+                                items.Add(new ItemPos(i * Globals.TileSize, j * Globals.TileSize, (float)(Globals.l.Rng.NextDouble() * 2 * Math.PI), new Sword()));
+                            }
+                            else
+                            {
+                                items.Add(new ItemPos(i * Globals.TileSize, j * Globals.TileSize, (float)(Globals.l.Rng.NextDouble() * 2 * Math.PI), new OrbOfHealth()));
+                            }
                         }
-                    }                 
+                    }
                 }
             }
         }
 
         public Tile getTile(int x, int y)
         {
-            if(x<0 || x>=width ||y<0||y>=height)
+            if (x < 0 || x >= width || y < 0 || y >= height)
             {
                 return new Tile(new Sprite(tileSize, tileSize, 0, Theme.GetTextureByType(TileType.WALL)), Walkable.SOLID, TileType.WALL);
             }
@@ -88,14 +95,14 @@ namespace LD46
             {
                 s.Draw(x, y, false, 0, cc, cc, cc, 1);
             }
-           
+
         }
 
         public int getLocation(Room r)
         {
-            foreach(Connection c in Connections)
+            foreach (Connection c in Connections)
             {
-                if(c.Room == r)
+                if (c.Room == r)
                 {
                     return c.location;
                 }
@@ -122,10 +129,35 @@ namespace LD46
             }
         }
 
+        public void TryPickup()
+        {
+            bool b = false;
+            ItemPos pickedUp = new ItemPos();
+            foreach (ItemPos it in items)
+            {
+                if (Globals.checkCol(it.x, it.y, Globals.TileSize, Globals.TileSize, (int)Globals.l.p.x, (int)Globals.l.p.y, Globals.l.p.w, Globals.l.p.h))
+                {
+                    Globals.l.p.EquipItem(it.it);
+                    b = true;
+                    pickedUp = it;
+                    break;
+                }
+            }
+            if (b)
+            {
+                items.Remove(pickedUp);
+            }
+        }
+
+        public void DropItem(Item i, float x, float y)
+        {
+            items.Add(new ItemPos((int)(x + (1.5 * Globals.l.Rng.NextDouble() - 0.75) * Globals.TileSize), (int)(y + (1.5 * Globals.l.Rng.NextDouble() - 0.75) * Globals.TileSize), (float)(Globals.l.Rng.NextDouble() * 2 * Math.PI), i));
+        }
+
         public void AddConnection(Connection connection)
         {
             Connections.Add(connection);
-            switch(connection.Direction)
+            switch (connection.Direction)
             {
                 case Direction.NORTH:
                     tileGrid[connection.location, 0] = new Tile(new Sprite(tileSize, tileSize, 0, Theme.GetTextureByType(TileType.TILE)), Walkable.WALKABLE, TileType.DOOR);

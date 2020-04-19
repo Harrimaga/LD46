@@ -18,6 +18,7 @@ namespace LD46
         private Hotkey up = new Hotkey(true).AddKey(Key.W).AddKey(Key.Up);
         private Hotkey down = new Hotkey(true).AddKey(Key.S).AddKey(Key.Down);
         private Hotkey attack = new Hotkey(false).AddKey(Key.Space);
+        private Hotkey pickUp = new Hotkey(false).AddKey(Key.Q);
 
         public List<DrawnButton> buttons = new List<DrawnButton>();
         private Player p;
@@ -34,7 +35,7 @@ namespace LD46
         {
             //buttons.Add(new DrawnButton("Red Velvet", 500, 500, 200, 50, () => { Console.WriteLine("Button 1"); }));
             p = new Fighter(Globals.TileSize, Globals.TileSize);
-            new Level(theme, p, 5);
+            new Level(theme, p, 0);
         }
 
         public void Update(double delta)
@@ -45,6 +46,7 @@ namespace LD46
             if (up.IsDown()) p.SetDir(0, -1);
             if (down.IsDown()) p.SetDir(0, 1);
             if (attack.IsDown()) p.a = true;
+            if (pickUp.IsDown()) Globals.l.Current.TryPickup();
 
             Globals.l.Update(delta);
         }
@@ -65,11 +67,13 @@ namespace LD46
         {
             if(e.Button == MouseButton.Left)
             {
-                foreach (DrawnButton button in buttons)
+                for(int i = buttons.Count-1; i >= 0; i--)
                 {
+                    DrawnButton button = buttons[i];
                     if (button.IsInButton(mx, my))
                     {
                         button.OnClick();
+                        break;
                     }
                 }
             }

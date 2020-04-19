@@ -29,20 +29,6 @@ namespace LD46
             HBarBackUI = new Sprite(w, h / 8, 0, Window.texs[2]);
             MBarUI = new Sprite(w, h / 8, 0, Window.texs[2]);
             MBarBackUI = new Sprite(w, h / 8, 0, Window.texs[2]);
-            EquipItem(new Sword());
-            EquipItem(new Sword());
-            EquipItem(new Sword());
-            EquipItem(new Sword());
-            EquipItem(new Sword());
-            EquipItem(new Sword());
-            EquipItem(new Sword());
-            EquipItem(new Sword());
-            EquipItem(new Sword());
-            EquipItem(new Sword());
-            EquipItem(new Sword());
-            EquipItem(new Sword());
-            
-            
         }
 
         public override void Update(double delta)
@@ -233,7 +219,7 @@ namespace LD46
 
         public void EquipItem(Item item)
         {
-            DrawnButton b = new DrawnButton("", 1725, 5 + 55 * items.Count, 190, 45, () => { });
+            DrawnButton b = new DrawnButton("", 1725, 5 + 55 * items.Count, 190, 45, () => { DequipItem(item); });
             b.a = 0;
             Game.game.buttons.Add(b);
             buttons.Add(b);
@@ -273,7 +259,13 @@ namespace LD46
                 }
             }
             DrawnButton b = buttons[i];
+            buttons.Remove(b);
             Game.game.buttons.Remove(b);
+            Globals.l.Current.DropItem(item, x, y);
+            for(int j = i; j < buttons.Count; j++)
+            {
+                buttons[j].Y -= 55;
+            }
             items.Remove(item);
             foreach (Effect e in item.GrantedEffects)
             {

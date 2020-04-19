@@ -13,8 +13,8 @@ namespace LD46
 
         private Sprite Sprite { get; set; }
         public string Text { get; set; }
-        private float X { get; set; }
-        private float Y { get; set; }
+        public float X { get; set; }
+        public float Y { get; set; }
         private float Width { get; set; }
         private float Height { get; set; }
         private EventAction OnClickAction { get; set; }
