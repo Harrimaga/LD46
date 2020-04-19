@@ -42,30 +42,30 @@ namespace LD46
         /// </summary>
         //Orb of health
         public const Rarity ORB_OF_HEALTH_RARITY = Rarity.RARE;
-        public const string ORB_OF_HEALTH_DESCRIPTION = "An orb granting extra vitality to its carrier.";
+        public const string ORB_OF_HEALTH_DESCRIPTION = "+20HP";
         public const int ORB_OF_HEALTH_HEALTH = 20;
         //Sword
         public const Rarity SWORD_RARITY = Rarity.BASIC;
-        public const string SWORD_DESCRIPTION = "A trusty sword, for all your slashing needs.";
+        public const string SWORD_DESCRIPTION = "+10% Physical amp";
         public const double SWORD_PHYSICAL_AMP = 0.1;
         //Wand Of green
         public const Rarity WAND_OF_GREEN_RARITY = Rarity.BASIC;
-        public const string WAND_OF_GREEN_DESCRIPTION = "A wand of Green power.";
+        public const string WAND_OF_GREEN_DESCRIPTION = "+10% Magic amp";
         public const double WAND_OF_GREEN_MAGICAL_AMP = 0.1;
         //Wand Of red
         public const Rarity WAND_OF_RED_RARITY = Rarity.RARE;
-        public const string WAND_OF_RED_DESCRIPTION = "A wand of Red power.";
+        public const string WAND_OF_RED_DESCRIPTION = "+20MP, +0.1MP Regen\n-10HP";
         public const double WAND_OF_RED_HEALTH = -10;
         public const double WAND_OF_RED_MANA = 20;
         public const double WAND_OF_RED_MANAREGEN = 0.1;
         //Wand Of Blue
         public const Rarity WAND_OF_BLUE_RARITY = Rarity.RARE;
-        public const string WAND_OF_BLUE_DESCRIPTION = "A wand of Blue power.";
+        public const string WAND_OF_BLUE_DESCRIPTION = "+25% Magic amp\n-10MP";
         public const double WAND_OF_BLUE_MAGIC_AMP = 0.25;
         public const double WAND_OF_BLUE_MANA = -10;
         //Helm of Pylonius
         public const Rarity HEML_OF_PYLONIUS_RARITY = Rarity.SUPER_RARE;
-        public const string HEML_OF_PYLONIUS_DESCRIPTION = "A super fancy hat that makes you stronger.";
+        public const string HEML_OF_PYLONIUS_DESCRIPTION = "+5 Block, +0.1HP regen, +1 Speed";
         public const double HEML_OF_PYLONIUS_BLOCK = 5;
         public const double HEML_OF_PYLONIUS_HP_REGEN = 0.1;
         public const double HEML_OF_PYLONIUS_SPEED = 1;
