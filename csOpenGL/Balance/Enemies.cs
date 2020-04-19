@@ -23,6 +23,7 @@ namespace LD46
         public const double RANGED_ENEMY_ATTACKPOINT = 1;
         public const double RANGED_ENEMY_DAMAGE = 10;
         public const int RANGED_ENEMY_RANGE = 500;
+        public const float RANGED_PROJECTILE_SPEED = 12.5f;
 
     }
 }

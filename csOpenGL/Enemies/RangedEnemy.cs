@@ -12,6 +12,7 @@ namespace LD46
         {
             range = Enemies.RANGED_ENEMY_RANGE;
             minDistance = range;
+            projectileSpeed = Enemies.RANGED_PROJECTILE_SPEED;
         }
 
         public override void AIMove(double delta)
