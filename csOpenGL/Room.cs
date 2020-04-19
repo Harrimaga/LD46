@@ -191,7 +191,7 @@ namespace LD46
             }
         }
 
-        public void DrawOnMinimap(int x, int y, float cc)
+        public virtual void DrawOnMinimap(int x, int y, float cc)
         {
             if (visited)
             {
@@ -201,7 +201,11 @@ namespace LD46
             {
                 s.Draw(x, y, false, 0, cc, cc, cc, 1);
             }
+        }
 
+        public virtual void DrawOnMinimap(int x, int y, float r, float g, float b)
+        {
+            s.Draw(x, y, false, 0, r, g, b, 1);
         }
 
         public int getLocation(Room r)

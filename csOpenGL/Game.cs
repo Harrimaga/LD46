@@ -54,6 +54,12 @@ namespace LD46
             switch (gameState)
             {
                 case GameState.PLAYING:
+                    if (Globals.Boss.Health == 0)
+                    {
+                        gameState = GameState.DEAD;
+                        Globals.rootActionLog.BossDeath();
+                        return;
+                    };
                     if (left.IsDown()) p.SetDir(-1, 0);
                     if (right.IsDown()) p.SetDir(1, 0);
                     if (up.IsDown()) p.SetDir(0, -1);
@@ -133,7 +139,7 @@ namespace LD46
                     Globals.rootActionLog.Draw();
                     break;
                 case GameState.DEAD:
-                    Window.window.DrawTextCentered("You died!", 960, 300);
+                    Window.window.DrawTextCentered("You lost!", 960, 300);
                     Globals.rootActionLog.Draw();
                     break;
                 case GameState.WON:
@@ -188,7 +194,7 @@ namespace LD46
             buttons.Clear();
             pp.ReAddButtons();
             p = pp;
-            Globals.PossibleBosses = new List<Enemy> { new Hirrathak() };
+            Globals.PossibleBosses = new List<Enemy> { /*new Hirrathak(),*/ new Pylonius() };
             new Level(Globals.Themes[Globals.Rng.Next(Globals.Themes.Count)], p, Globals.Rng.Next());
             gameState = GameState.PLAYING;
             LevelsPlayed = 0;

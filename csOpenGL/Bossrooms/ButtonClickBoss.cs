@@ -14,7 +14,8 @@ namespace LD46
         {
             ButtonCLicksNeeded = 4;
             enemies.Clear();
-            enemies.Add(theme.GetBoss());
+            Globals.Boss = theme.GetBoss();
+            enemies.Add(Globals.Boss);
             Random rng = new Random();
             for (int i = 0; i < 4; i++)
             {
@@ -33,6 +34,11 @@ namespace LD46
                 tileGrid[rng.Next(1, 24), rng.Next(1, 24)] = new Tile(new Sprite(tileSize, tileSize, 0, Theme.GetTextureByType(TileType.STAIRS)), Walkable.WALKABLE, TileType.STAIRS, 0);
                 Globals.rootActionLog.Add("You have finished this boss, stairs have appeared");
             }
+        }
+
+        public override void DrawOnMinimap(int x, int y, float cc)
+        {
+            base.DrawOnMinimap(x, y, 0.5f, 0.5f, 0);
         }
     }
 }

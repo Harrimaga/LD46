@@ -32,12 +32,14 @@ namespace LD46
             switch (tileStyle)
             {
                 case("Space"):
-                    enemies.Add(new EnemySpawn(3, (int x, int y) => { return new TestEnemy(x, y); }));
-                    enemies.Add(new EnemySpawn(1, (int x, int y) => { return new RangedEnemy(x, y); }));
+                    enemies.Add(new EnemySpawn(4, (int x, int y) => { return new SuicideCharger(x, y); }));
+                    enemies.Add(new EnemySpawn(30, (int x, int y) => { return new TestEnemy(x, y); }));
+                    enemies.Add(new EnemySpawn(10, (int x, int y) => { return new RangedEnemy(x, y); }));
                     break;
                 case ("SpaceDark"):
-                    enemies.Add(new EnemySpawn(3, (int x, int y) => { return new TestEnemy(x, y); }));
-                    enemies.Add(new EnemySpawn(1, (int x, int y) => { return new RappidFireRanged(x, y); }));
+                    enemies.Add(new EnemySpawn(4, (int x, int y) => { return new SuicideCharger(x, y); }));
+                    enemies.Add(new EnemySpawn(30, (int x, int y) => { return new DarkEnemy(x, y); }));
+                    enemies.Add(new EnemySpawn(10, (int x, int y) => { return new RappidFireRanged(x, y); }));
                     break;
             }
             foreach (EnemySpawn e in enemies)
