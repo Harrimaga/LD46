@@ -16,8 +16,7 @@ namespace LD46
         public List<Item> items = new List<Item>();
         public List<Spell> Spells { get; set; }
         public List<DrawnButton> itemButtons = new List<DrawnButton>(), spellButtons = new List<DrawnButton>();
-        public double HealthRegen { get; set; }
-        public double ManaRegen { get; set; }
+
 
         public Player(double Health, double Mana, float x, float y, int texNum, int attackTexNum, int spriteNum, int w, int h, double speed, double attackPoint, double attackSpeed, string name, double damage, double PhysicalAmp, double MagicalAmp, double standardBlock, double blockRegen, string weaponName)
         {
@@ -37,6 +36,7 @@ namespace LD46
             MBarUI = new Sprite(w, h / 8, 0, Window.texs[2]);
             MBarBackUI = new Sprite(w, h / 8, 0, Window.texs[2]);
             AddSpell(new Fireball());
+            AddSpell(new Slowness());
         }
 
         public override void Update(double delta)

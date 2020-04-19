@@ -158,6 +158,7 @@
     <Compile Include="SoundManager.cs" />
     <Compile Include="Spell.cs" />
     <Compile Include="Spells\Fireball.cs" />
+    <Compile Include="Spells\Slowness.cs" />
     <Compile Include="Sprite.cs" />
     <Compile Include="Texture.cs" />
     <Compile Include="Theme.cs" />

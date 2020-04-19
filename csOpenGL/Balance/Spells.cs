@@ -16,5 +16,14 @@ namespace LD46
         public const string FIREBALL_DESCRIPTION = "Fiery ball of death and destruction";
         public const double FIREBALL_AOE = 300;
 
+        //Slowness
+        public const double SLOWNESS_MANA = 30;
+        public const double SLOWNESS_DAMAGE = 0;
+        public const double SLOWNESS_COOLDOWN = 10 * 60;
+        public const string SLOWNESS_NAME = "Slowness";
+        public const string SLOWNESS_DESCRIPTION = "Slowing cloud";
+        public const double SLOWNESS_AOE = 150;
+        public const double SLOWNESS_DURATION = 1 * 60;
+        public const double SLOWNESS_MAGNITUDE = 0.20;
     }
 }

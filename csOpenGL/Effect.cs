@@ -23,13 +23,18 @@ namespace LD46
         {
             if(TimeLeft == -999) //-999 means doesn't expire
             {
-                return false; // Therefor it never expires
+                return false; // Therefore it never expires
             } else if(TimeLeft < 0) // Had already expired before
             {
                 return true; //So we don't want to decrease the timeleft even further
             }
             TimeLeft -= deltaTime;
             return TimeLeft < 0;
+        }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
         }
     }
 }

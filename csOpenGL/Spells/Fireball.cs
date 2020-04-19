@@ -15,7 +15,7 @@ namespace LD46
                 Spells.FIREBALL_COOLDOWN, 
                 Spells.FIREBALL_NAME, 
                 Spells.FIREBALL_DESCRIPTION, 
-                new List<SpellEffect> {  }, 
+                new List<Effect> {  }, 
                 Spells.FIREBALL_AOE, 
                 new Sprite(40,40,0, Window.texs[8]), 
                 new Animation(0,3,30))
