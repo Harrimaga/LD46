@@ -27,6 +27,7 @@ namespace LD46
         private Hotkey pickUp = new Hotkey(false).AddKey(Key.Q);
         private Hotkey interact = new Hotkey(false).AddKey(Key.C);
         private int Seed = 5;
+        private GameState gameState = GameState.PLAYING;
 
         public List<DrawnButton> buttons = new List<DrawnButton>();
         private Player p;
@@ -42,7 +43,6 @@ namespace LD46
 
         public void OnLoad()
         {
-            //buttons.Add(new DrawnButton("Red Velvet", 500, 500, 200, 50, () => { Console.WriteLine("Button 1"); }));
             p = new Fighter(Globals.TileSize, Globals.TileSize);
             new Level(Globals.Themes[Globals.Rng.Next(Globals.Themes.Count)], p, Seed);
             LevelsPlayed = 0;
@@ -51,36 +51,38 @@ namespace LD46
         public void Update(double delta)
         {
             //Updating logic
-            if (p.Health > 0)
+            switch (gameState)
             {
-                if (left.IsDown()) p.SetDir(-1, 0);
-                if (right.IsDown()) p.SetDir(1, 0);
-                if (up.IsDown()) p.SetDir(0, -1);
-                if (down.IsDown()) p.SetDir(0, 1);
-                if (attack.IsDown()) p.a = true;
-                if (pickUp.IsDown()) Globals.l.Current.TryPickup();
-                //Spell hotkeys
-                if (num1.IsDown()) TrySpellAttack(0);
-                if (num2.IsDown()) TrySpellAttack(1);
-                if (num3.IsDown()) TrySpellAttack(2);
-                if (num4.IsDown()) TrySpellAttack(3);
-                if (num5.IsDown()) TrySpellAttack(4);
-                if (num6.IsDown()) TrySpellAttack(5);
-                if (interact.IsDown()) TryInteraction();
+                case GameState.PLAYING:
+                    if (left.IsDown()) p.SetDir(-1, 0);
+                    if (right.IsDown()) p.SetDir(1, 0);
+                    if (up.IsDown()) p.SetDir(0, -1);
+                    if (down.IsDown()) p.SetDir(0, 1);
+                    if (attack.IsDown()) p.a = true;
+                    if (pickUp.IsDown()) Globals.l.Current.TryPickup();
+                    //Spell hotkeys
+                    if (num1.IsDown()) TrySpellAttack(0);
+                    if (num2.IsDown()) TrySpellAttack(1);
+                    if (num3.IsDown()) TrySpellAttack(2);
+                    if (num4.IsDown()) TrySpellAttack(3);
+                    if (num5.IsDown()) TrySpellAttack(4);
+                    if (num6.IsDown()) TrySpellAttack(5);
+                    if (interact.IsDown()) TryInteraction();
 
-                Globals.l.Update(delta);
-                if(p.Health <= 0)
-                {
-                    buttons.Clear();
-                    buttons.Add(new DrawnButton("Restart", 760, 600, 400, 75, () => { Restart(); }));
-                }
+                    Globals.l.Update(delta);
+                    if (p.Health <= 0)
+                    {
+                        gameState = GameState.DEAD;
+                        buttons.Clear();
+                        buttons.Add(new DrawnButton("Restart", 760, 600, 400, 75, () => { Restart(); }));
+                    }
+                    break;
             }
-
         }
 
         private void TrySpellAttack(int spellSlot)
         {
-            if(spellSlot < Globals.l.p.Spells.Count )
+            if (spellSlot < Globals.l.p.Spells.Count)
             {
                 Spell spell = Globals.l.p.Spells[spellSlot];
                 spell.Cast(Window.window.mouseX + Window.camX, Window.window.mouseY + Window.camY, Globals.l.Current.enemies, Globals.l.p);
@@ -89,15 +91,19 @@ namespace LD46
 
         private void TryInteraction()
         {
-            Tile t = Globals.l.Current.getTile((int)Globals.l.p.x/Globals.l.Current.tileSize, (int)Globals.l.p.y / Globals.l.Current.tileSize);
-            if(t.GetTileType() == TileType.BUTTON)
+            Tile t = Globals.l.Current.getTile((int)Globals.l.p.x / Globals.l.Current.tileSize, (int)Globals.l.p.y / Globals.l.Current.tileSize);
+            if (t.GetTileType() == TileType.BUTTON)
             {
                 Globals.l.Current.PressButton(Globals.l.p.x, Globals.l.p.y);
-            } else if (t.GetTileType() == TileType.STAIRS)
+            }
+            else if (t.GetTileType() == TileType.STAIRS)
             {
-                if(++LevelsPlayed >= 8)
+                if (++LevelsPlayed >= 8)
                 {
                     //Need ui for winning game
+                    gameState = GameState.WON;
+                    buttons.Clear();
+                    buttons.Add(new DrawnButton("Restart", 760, 600, 400, 75, () => { Restart(); }));
                     Globals.rootActionLog.Add("You have won the game");
                 }
                 else
@@ -112,28 +118,32 @@ namespace LD46
         public void Draw()
         {
             //Do all you draw calls here
-            if (p.Health > 0)
+            switch (gameState)
             {
-                Globals.l.Draw();
-                Window.window.DrawText("Level: " + LevelsPlayed, 1725, 830);
-            }
-            else
-            {
-                Window.window.DrawTextCentered("You died!", 960, 300);
+                case GameState.PLAYING:
+                    Globals.l.Draw();
+                    Window.window.DrawText("Level: " + LevelsPlayed, 1725, 830);
+                    break;
+                case GameState.DEAD:
+                    Window.window.DrawTextCentered("You died!", 960, 300);
+                    break;
+                case GameState.WON:
+                    Window.window.DrawTextCentered("You won!", 960, 300);
+                    break;
             }
             Globals.rootActionLog.Draw();
             foreach (DrawnButton button in buttons)
             {
                 button.Draw();
             }
-            
+
         }
 
         public void MouseDown(MouseButtonEventArgs e, int mx, int my)
         {
-            if(e.Button == MouseButton.Left)
+            if (e.Button == MouseButton.Left)
             {
-                for(int i = buttons.Count-1; i >= 0; i--)
+                for (int i = buttons.Count - 1; i >= 0; i--)
                 {
                     DrawnButton button = buttons[i];
                     if (button.IsInButton(mx, my))
@@ -149,12 +159,14 @@ namespace LD46
         {
 
         }
-        
+
         public void Restart()
         {
             buttons.Clear();
             p = new Fighter(Globals.TileSize, Globals.TileSize);
-            new Level(theme, p, Globals.l.Rng.Next());
+            new Level(Globals.Themes[Globals.Rng.Next(Globals.Themes.Count)], p, Globals.Rng.Next());
+            gameState = GameState.PLAYING;
+            LevelsPlayed = 0;
         }
 
     }
