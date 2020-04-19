@@ -13,7 +13,7 @@ namespace LD46
             Balance.SWORD_RARITY,
             Balance.SWORD_DESCRIPTION,
             new Sprite(40, 40, 0, Window.texs[0]),
-            new Effect[] { new Effect(EffectType.HP, 20, -999) }
+            new Effect[] { new Effect(EffectType.HP, Balance.ORB_OF_HEALTH_HEALTH, -999) }
             )
         {
 

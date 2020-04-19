@@ -95,21 +95,38 @@ namespace LD46
                                 enemies.Add(new RangedEnemy(i * Globals.TileSize, j * Globals.TileSize));
                             }
                         }
-                        else if (Globals.l.Rng.Next(1000) < 5)
+                        else if (Globals.l.Rng.Next(1000) < 3)
                         {
-                            if (Globals.l.Rng.Next(100) < 50)
+                            int rn = Globals.Rng.Next(5);
+                            Item it = null;
+                            switch (rn)
                             {
-                                items.Add(new ItemPos(i * Globals.TileSize, j * Globals.TileSize, (float)(Globals.l.Rng.NextDouble() * 2 * Math.PI), new Sword()));
+                                case 0:
+                                    it = new Sword();
+                                    break;
+                                case 1:
+                                    it = new OrbOfHealth();
+                                    break;
+                                case 2:
+                                    it = new WandOfRed();
+                                    break;
+                                case 3:
+                                    it = new WandOfBlue();
+                                    break;
+                                case 4:
+                                    it = new WandOfGreen();
+                                    break;
                             }
-                            else
+                            if (it != null)
                             {
-                                items.Add(new ItemPos(i * Globals.TileSize, j * Globals.TileSize, (float)(Globals.l.Rng.NextDouble() * 2 * Math.PI), new OrbOfHealth()));
+                                items.Add(new ItemPos(i * Globals.TileSize, j * Globals.TileSize, (float)(Globals.l.Rng.NextDouble() * 2 * Math.PI), it));
                             }
                         }
                     }
                 }
             }
         }
+
 
         public Tile getTile(int x, int y)
         {

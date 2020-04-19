@@ -38,7 +38,7 @@ namespace LD46
                     directions.Remove(dir);
                 }
             }
-            if (deepness > 12)
+            if (deepness > 8)
             {
                 return true;
             }
@@ -67,7 +67,7 @@ namespace LD46
                 return results.All((singleResult) => { return singleResult; });
             }
             Room newRoom = null;
-            if (!HasBossRoom && (deepness == 12 || Rng.Next(75) < deepness))
+            if (!HasBossRoom && (Rng.Next(75) < deepness))
             {
                 newRoom = new ButtonClickBoss(theme);
                 HasBossRoom = true;

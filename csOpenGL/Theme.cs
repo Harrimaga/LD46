@@ -10,12 +10,11 @@ namespace LD46
     {
         public string tileStyle;
         public List<Texture> textures;
-        public List<Enemy> PossibleBosses { get; set; }
 
         public Theme(string tileStyle = "Basic")
         {
             this.tileStyle = tileStyle;
-            PossibleBosses = new List<Enemy>();
+            Globals.PossibleBosses = new List<Enemy>();
             textures = new List<Texture>();
             textures.Add(new Texture("Textures/" + tileStyle + "Tile.png", tileStyle == "Space" || tileStyle == "SpaceDark" ? 64 : 32, 32, 32, 32));
             textures.Add(new Texture("Textures/" + tileStyle + "Wall.png", tileStyle == "Space" || tileStyle == "SpaceDark" ? 128 : 32, 32, 32, 32));
@@ -47,13 +46,13 @@ namespace LD46
 
         public Enemy GetBoss()
         {
-            if(PossibleBosses.Count == 0)
+            if(Globals.PossibleBosses.Count == 0)
             {
                 //Return a fallback
                 return new TestEnemy(12*Globals.l.Current.tileSize, 12*Globals.l.Current.tileSize);
             }
-            Enemy boss = PossibleBosses[new Random().Next(0, PossibleBosses.Count)];
-            PossibleBosses.Remove(boss);
+            Enemy boss = Globals.PossibleBosses[new Random().Next(0, Globals.PossibleBosses.Count)];
+            Globals.PossibleBosses.Remove(boss);
             return boss;
         }
     }

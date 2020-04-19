@@ -13,7 +13,7 @@ namespace LD46
             Balance.SWORD_RARITY,
             Balance.SWORD_DESCRIPTION,
             new Sprite(40, 40, 0, Window.texs[4]),
-            new Effect[] { new Effect(EffectType.PHYSICAL_DAMAGE, 0.1, -999) }
+            new Effect[] { new Effect(EffectType.PHYSICAL_DAMAGE, Balance.SWORD_PHYSICAL_AMP, -999) }
             )
         {
 

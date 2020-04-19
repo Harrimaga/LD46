@@ -307,6 +307,20 @@ namespace LD46
                         case EffectType.PHYSICAL_DAMAGE:
                             PhysicalAmp += e.Modifier;
                             break;
+                        case EffectType.SPEED:
+                            speed += e.Modifier;
+                            break;
+                        case EffectType.MANA:
+                            double Manapercent = Mana / MaxMana;
+                            MaxMana += e.Modifier;
+                            Mana = MaxMana * Manapercent;
+                            break;
+                        case EffectType.MPREGEN:
+                            ManaRegen += e.Modifier;
+                            break;
+                        case EffectType.HPREGEN:
+                            HealthRegen += e.Modifier;
+                            break;
                     }
                 }
             }
@@ -352,6 +366,20 @@ namespace LD46
                         case EffectType.PHYSICAL_DAMAGE:
                             PhysicalAmp -= e.Modifier;
                             break;
+                        case EffectType.SPEED:
+                            speed -= e.Modifier;
+                            break;
+                        case EffectType.MANA:
+                            double Manapercent = Mana / MaxMana;
+                            MaxMana -= e.Modifier;
+                            Mana = MaxMana * Manapercent;
+                            break;
+                        case EffectType.MPREGEN:
+                            ManaRegen -= e.Modifier;
+                            break;
+                        case EffectType.HPREGEN:
+                            HealthRegen -= e.Modifier;
+                            break;
                     }
                 }
             }
@@ -381,6 +409,20 @@ namespace LD46
                                 break;
                             case EffectType.PHYSICAL_DAMAGE:
                                 PhysicalAmp -= e.Modifier;
+                                break;
+                            case EffectType.SPEED:
+                                speed -= e.Modifier;
+                                break;
+                            case EffectType.MANA:
+                                double Manapercent = Mana / MaxMana;
+                                MaxMana -= e.Modifier;
+                                Mana = MaxMana * Manapercent;
+                                break;
+                            case EffectType.MPREGEN:
+                                ManaRegen -= e.Modifier;
+                                break;
+                            case EffectType.HPREGEN:
+                                HealthRegen -= e.Modifier;
                                 break;
                         }
                     }

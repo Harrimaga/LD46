@@ -126,6 +126,7 @@
     <Compile Include="Balance\Balance.cs" />
     <Compile Include="Balance\Enemies.cs" />
     <Compile Include="Balance\Spells.cs" />
+    <Compile Include="Enemies\Bosses\Hirrathak.cs" />
     <Compile Include="Enemies\RangedEnemy.cs" />
     <Compile Include="Bossrooms\ButtonClickBoss.cs" />
     <Compile Include="Items\OrbOfHealth.cs" />
@@ -137,6 +138,9 @@
     <Compile Include="Enemy.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="enums.cs" />
+    <Compile Include="Items\WandOfBlue.cs" />
+    <Compile Include="Items\WandOfGreen.cs" />
+    <Compile Include="Items\WandOfRed.cs" />
     <Compile Include="Players\Fighter.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Globals.cs" />
