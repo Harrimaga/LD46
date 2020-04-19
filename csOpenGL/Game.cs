@@ -115,6 +115,7 @@ namespace LD46
             if (p.Health > 0)
             {
                 Globals.l.Draw();
+                Window.window.DrawText("Level: " + LevelsPlayed, 1725, 830);
             }
             else
             {
