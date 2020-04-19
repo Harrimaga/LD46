@@ -109,7 +109,7 @@ namespace LD46
                     dis = (float)Math.Sqrt(xd * xd + yd * yd);
                     xd /= dis;
                     yd /= dis;
-                    Globals.l.Current.projectiles.Add(new Projectile(x + w / 2 - Globals.TileSize / 4, y + h / 2 - Globals.TileSize / 4, xd * projectileSpeed, yd * projectileSpeed, damage, false, this, 0, 0, Globals.TileSize / 2, Globals.TileSize / 2, "Projectile", 1, new Animation(0, 2, 5)));
+                    Globals.l.Current.projectiles.Add(new Projectile(x + w / 2 - Globals.TileSize / 4, y + h / 2 - Globals.TileSize / 4, xd * projectileSpeed, yd * projectileSpeed, damage, false, this, 5, 0, Globals.TileSize / 2, Globals.TileSize / 2, "Projectile", 1, new Animation(0, 2, 5)));
                     attacked = true;
                     s = baseAnimation;
                     ani = new Animation(0, 3, 10);
