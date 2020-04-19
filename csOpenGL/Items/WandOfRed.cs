@@ -12,7 +12,7 @@ namespace LD46
             "Wand of red",
             Balance.WAND_OF_RED_RARITY,
             Balance.WAND_OF_RED_DESCRIPTION,
-            new Sprite(40, 40, 0, Window.texs[8]),
+            new Sprite(40, 40, 0, Window.texs[9]),
             new Effect[] {
                 new Effect(EffectType.HP, Balance.WAND_OF_RED_HEALTH, -999),
                 new Effect(EffectType.MANA, Balance.WAND_OF_RED_MANA, -999),

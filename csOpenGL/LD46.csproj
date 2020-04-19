@@ -129,6 +129,7 @@
     <Compile Include="Enemies\Bosses\Hirrathak.cs" />
     <Compile Include="Enemies\RangedEnemy.cs" />
     <Compile Include="Bossrooms\ButtonClickBoss.cs" />
+    <Compile Include="Items\HelmOfPylonius.cs" />
     <Compile Include="Items\OrbOfHealth.cs" />
     <Compile Include="Items\Sword.cs" />
     <Compile Include="Connection.cs" />
@@ -288,6 +289,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\SpaceWall.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\Spells\FireBall.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\Test.png">

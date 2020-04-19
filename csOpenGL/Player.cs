@@ -119,6 +119,8 @@ namespace LD46
                 BasicAttack(delta);
             }
 
+            UpdateInventorySprites(delta);
+
             xDir = 0;
             yDir = 0;
 
@@ -133,6 +135,14 @@ namespace LD46
             if (y != 0)
             {
                 yDir = y;
+            }
+        }
+
+        public void UpdateInventorySprites(double delta)
+        {
+            foreach (Spell sp in Spells)
+            {
+                sp.Update(delta);
             }
         }
 
@@ -195,46 +205,48 @@ namespace LD46
 
         public void DrawUI()
         {
-            UIBack.w = 200;
+            UIBack.w = 250;
             UIBack.h = 915;
-            UIBack.Draw(1720, 0, false, 0, 0.5f, 0.5f, 0.5f, 0.85f);
+            UIBack.Draw(1670, 0, false, 0, 0.5f, 0.5f, 0.5f, 0.85f);
             int y = 5;
-            UIBack.w = 190;
-            UIBack.h = 45;
 
-            HBarUI.w = (int)(200 * Health / MaxHealth);
+            HBarUI.w = (int)(250 * Health / MaxHealth);
             HBarUI.h = 30;
-            HBarBackUI.w = 200;
+            HBarBackUI.w = 250;
             HBarBackUI.h = 30;
-            HBarBackUI.Draw(1720, 755, false, 0, 0, 0, 0);
-            HBarUI.Draw(1720, 755, false, 0, (float)(1 - Health / MaxHealth) / 2, (float)(Health / MaxHealth) / 2, 0);
+            HBarBackUI.Draw(1670, 755, false, 0, 0, 0, 0);
+            HBarUI.Draw(1670, 755, false, 0, (float)(1 - Health / MaxHealth) / 2, (float)(Health / MaxHealth) / 2, 0);
 
-            MBarUI.w = (int)(200 * Mana / MaxMana);
+            MBarUI.w = (int)(250 * Mana / MaxMana);
             MBarUI.h = 30;
-            MBarBackUI.w = 200;
+            MBarBackUI.w = 250;
             MBarBackUI.h = 30;
-            MBarBackUI.Draw(1720, 800, false, 0, 0, 0, 0);
-            MBarUI.Draw(1720, 800, false, 0, 0, 1 - (float)(Mana / MaxMana), 1);
+            MBarBackUI.Draw(1670, 800, false, 0, 0, 0, 0);
+            MBarUI.Draw(1670, 800, false, 0, 0, 1 - (float)(Mana / MaxMana), 1);
 
             string TextHP = "HP: " + (int)Health + "/" + MaxHealth;
             string TextMP = "MP: " + (int)Mana + "/" + MaxMana;
 
-            Window.window.DrawTextCentered(TextHP, (int)(1720 + (200 / 2)), (int)(750 + (30 / 2) - 12), Globals.buttonFont);
-            Window.window.DrawTextCentered(TextMP, (int)(1720 + (200 / 2)), (int)(800 + (30 / 2) - 12), Globals.buttonFont);
-            Window.window.DrawTextCentered("Block: " + (int)CurrentBlock, (int)(1720 + (200 / 2)), (int)(880 + (30 / 2) - 12), Globals.buttonFont);
+            Window.window.DrawTextCentered(TextHP, (int)(1670 + (250 / 2)), (int)(750 + (30 / 2) - 12), Globals.buttonFont);
+            Window.window.DrawTextCentered(TextMP, (int)(1670 + (250 / 2)), (int)(800 + (30 / 2) - 12), Globals.buttonFont);
+            Window.window.DrawTextCentered("Block: " + (int)CurrentBlock, (int)(1670 + (250 / 2)), (int)(880 + (30 / 2) - 12), Globals.buttonFont);
 
+            UIBack.w = 240;
+            UIBack.h = 45;
             foreach (Spell sp in Spells)
             {
-                UIBack.Draw(1725, y, false, 0, 0, 0, 0, 0.5f);
-                sp.Draw(1727, y + 2);
+                UIBack.Draw(1675, y, false, 0, 0, 0, 0, 0.5f);
+                sp.Draw(1677, y + 2);
                 y += 50;
             }
             y = 355;
+            UIBack.w = 240;
+            UIBack.h = 55;
             foreach (Item it in items)
             {
-                UIBack.Draw(1725, y, false, 0, 0, 0, 0, 0.5f);
-                it.Draw(1727, y + 2);
-                y += 50;
+                UIBack.Draw(1675, y, false, 0, 0, 0, 0, 0.5f);
+                it.Draw(1677, y + 2);
+                y += 60;
             }
         }
 
@@ -270,7 +282,7 @@ namespace LD46
 
         public void EquipItem(Item item)
         {
-            DrawnButton b = new DrawnButton("", 1725, 355 + 50 * items.Count, 190, 45, () => { DequipItem(item); });
+            DrawnButton b = new DrawnButton("", 1725, 355 + 60 * items.Count, 190, 45, () => { DequipItem(item); });
             b.a = 0;
             Game.game.buttons.Add(b);
             itemButtons.Add(b);
@@ -332,7 +344,7 @@ namespace LD46
             Globals.l.Current.DropItem(item, x, y);
             for(int j = i; j < itemButtons.Count; j++)
             {
-                itemButtons[j].Y -= 50;
+                itemButtons[j].Y -= 60;
             }
             items.Remove(item);
             foreach (Effect e in item.GrantedEffects)

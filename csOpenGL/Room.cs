@@ -95,9 +95,9 @@ namespace LD46
                                 enemies.Add(new RangedEnemy(i * Globals.TileSize, j * Globals.TileSize));
                             }
                         }
-                        else if (Globals.l.Rng.Next(1000) < 5)
+                        else if (Globals.l.Rng.Next(1000) < 3)
                         {
-                            int rn = Globals.Rng.Next(5);
+                            int rn = Globals.Rng.Next(6);
                             Item it = null;
                             switch (rn)
                             {
@@ -115,6 +115,9 @@ namespace LD46
                                     break;
                                 case 4:
                                     it = new WandOfGreen();
+                                    break;
+                                case 5:
+                                    it = new HelmOfPylonius();
                                     break;
                             }
                             if (it != null)
