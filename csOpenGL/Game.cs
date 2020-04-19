@@ -91,26 +91,34 @@ namespace LD46
 
         private void TryInteraction()
         {
-            Tile t = Globals.l.Current.getTile((int)Globals.l.p.x / Globals.l.Current.tileSize, (int)Globals.l.p.y / Globals.l.Current.tileSize);
-            if (t.GetTileType() == TileType.BUTTON)
+            for(int i = 0; i < 2; i++)
             {
-                Globals.l.Current.PressButton(Globals.l.p.x, Globals.l.p.y);
-            }
-            else if (t.GetTileType() == TileType.STAIRS)
-            {
-                if (++LevelsPlayed >= 8)
+                for(int j = 0; j < 2; j++)
                 {
-                    //Need ui for winning game
-                    gameState = GameState.WON;
-                    buttons.Clear();
-                    buttons.Add(new DrawnButton("Restart", 760, 600, 400, 75, () => { Restart(); }));
-                    Globals.rootActionLog.Add("You have won the game");
-                }
-                else
-                {
-                    Globals.l = new Level(Globals.Themes[Globals.Rng.Next(Globals.Themes.Count)], Globals.l.p, Globals.Rng.Next());
-                    p.x = Globals.TileSize;
-                    p.y = Globals.TileSize;
+                    Tile t = Globals.l.Current.getTile(i + (int)Globals.l.p.x / Globals.l.Current.tileSize, j + (int)Globals.l.p.y / Globals.l.Current.tileSize);
+                    if (t.GetTileType() == TileType.BUTTON)
+                    {
+                        Globals.l.Current.PressButton(i*Globals.TileSize + Globals.l.p.x, j * Globals.TileSize + Globals.l.p.y);
+                        return;
+                    }
+                    else if (t.GetTileType() == TileType.STAIRS)
+                    {
+                        if (++LevelsPlayed >= 8)
+                        {
+                            //Need ui for winning game
+                            gameState = GameState.WON;
+                            buttons.Clear();
+                            buttons.Add(new DrawnButton("Restart", 760, 600, 400, 75, () => { Restart(); }));
+                            Globals.rootActionLog.Add("You have won the game");
+                        }
+                        else
+                        {
+                            Globals.l = new Level(Globals.Themes[Globals.Rng.Next(Globals.Themes.Count)], Globals.l.p, Globals.Rng.Next());
+                            p.x = Globals.TileSize;
+                            p.y = Globals.TileSize;
+                        }
+                        return;
+                    }
                 }
             }
         }
