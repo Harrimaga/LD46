@@ -17,8 +17,8 @@ namespace LD46
             this.tileStyle = tileStyle;
             PossibleBosses = new List<Enemy>();
             textures = new List<Texture>();
-            textures.Add(new Texture("Textures/" + tileStyle + "Tile.png", 32, 32, 32, 32));
-            textures.Add(new Texture("Textures/" + tileStyle + "Wall.png", 32, 32, 32, 32));
+            textures.Add(new Texture("Textures/" + tileStyle + "Tile.png", tileStyle == "Space" || tileStyle == "SpaceDark" ? 64 : 32, 32, 32, 32));
+            textures.Add(new Texture("Textures/" + tileStyle + "Wall.png", tileStyle == "Space" || tileStyle == "SpaceDark" ? 128 : 32, 32, 32, 32));
             textures.Add(new Texture("Textures/" + tileStyle + "Stairs.png", 32, 32, 32, 32));
 
             foreach (var item in textures)
