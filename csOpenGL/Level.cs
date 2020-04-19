@@ -49,7 +49,15 @@ namespace LD46
                 results.Add(CreateRoom(++deepness, Current));
                 return results.All((singleResult) => { return singleResult; });
             }
-            Room newRoom = new Room(Rng.Next(4, 25), Rng.Next(4, 25), theme);
+            Room newRoom = null;
+            if(deepness == 12 || Rng.Next(75) < deepness)
+            {
+                newRoom = new ButtonClickBoss(theme);
+            }
+            else
+            {
+                newRoom = new Room(Rng.Next(4, 25), Rng.Next(4, 25), theme);
+            }
             FileHandler.WriteText("Created a room with size (" + newRoom.width + "," + newRoom.height + ")", "../../logs/log.txt", WriteModes.CREATE_OR_APPEND);
 
             int index = Rng.Next(0, directions.Count);

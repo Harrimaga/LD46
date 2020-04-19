@@ -206,8 +206,8 @@ namespace LD46
             MBarBackUI.Draw(1720, 800, false, 0, 0, 0, 0);
             MBarUI.Draw(1720, 800, false, 0, 0, 1 - (float)(Mana / MaxMana), 1);
 
-            string TextHP = "HP: " + Health + "/" + MaxHealth;
-            string TextMP = "MP: " + Mana + "/" + MaxMana;
+            string TextHP = "HP: " + (int)Health + "/" + MaxHealth;
+            string TextMP = "MP: " + (int)Mana + "/" + MaxMana;
 
             Window.window.DrawTextCentered(TextHP, (int)(1720 + (200 / 2)), (int)(750 + (30 / 2) - 12), Globals.buttonFont);
             Window.window.DrawTextCentered(TextMP, (int)(1720 + (200 / 2)), (int)(800 + (30 / 2) - 12), Globals.buttonFont);
@@ -235,7 +235,9 @@ namespace LD46
                     switch (e.Affects)
                     {
                         case EffectType.HP:
+                            double HPpercent = Health / MaxHealth;
                             MaxHealth += e.Modifier;
+                            Health = MaxHealth * HPpercent;
                             break;
                         case EffectType.BLOCK:
                             throw new NotImplementedException("Block is not implemented");
@@ -277,7 +279,9 @@ namespace LD46
                     switch (e.Affects)
                     {
                         case EffectType.HP:
+                            double HPpercent = Health / MaxHealth;
                             MaxHealth -= e.Modifier;
+                            Health = MaxHealth * HPpercent;
                             break;
                         case EffectType.BLOCK:
                             throw new NotImplementedException("Block is not implemented");

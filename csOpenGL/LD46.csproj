@@ -127,6 +127,7 @@
     <Compile Include="Balance\Enemies.cs" />
     <Compile Include="Balance\Spells.cs" />
     <Compile Include="Enemies\RangedEnemy.cs" />
+    <Compile Include="Bossrooms\ButtonClickBoss.cs" />
     <Compile Include="Items\OrbOfHealth.cs" />
     <Compile Include="Items\Sword.cs" />
     <Compile Include="Connection.cs" />
@@ -224,6 +225,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\Player\PlayerIdle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\SpaceDarkStairs.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\SpaceDarkTile.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\SpaceDarkWall.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\SpaceStairs.png">

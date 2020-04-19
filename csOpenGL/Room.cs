@@ -19,7 +19,7 @@ namespace LD46
         public List<ItemPos> items;
         public bool visited;
         public List<Connection> Connections { get; set; }
-        private Theme Theme { get; set; }
+        public Theme Theme { get; set; }
 
         public Room(int x, int y, Theme theme, int tileSize = Globals.TileSize)
         {
@@ -64,16 +64,24 @@ namespace LD46
                             corner = true;
                             rotation = 1.5f * (float)Math.PI;
                         }
-                        else if (j == 0 || j == y - 1)
+                        else if (j == 0)
                         {
                             rotation = .5f * (float)Math.PI;
+                        }
+                        else if (j == y - 1)
+                        {
+                            rotation = 1.5f * (float)Math.PI;
+                        }
+                        else if (i == x - 1)
+                        {
+                            rotation = (float)Math.PI;
                         }
 
                         tileGrid[i, j] = new Tile(new Sprite(tileSize, tileSize, corner ? 1 : 0, theme.GetTextureByType(TileType.WALL)), Walkable.SOLID, TileType.WALL, rotation);
                     }
                     else
                     {
-                        tileGrid[i, j] = new Tile(new Sprite(tileSize, tileSize, 0, theme.GetTextureByType(TileType.TILE)), Walkable.WALKABLE, TileType.TILE, 0);
+                        tileGrid[i, j] = new Tile(new Sprite(tileSize, tileSize, Globals.l.Rng.Next(2) > 0 ? 0 : 1, theme.GetTextureByType(TileType.TILE)), Walkable.WALKABLE, TileType.TILE, 0);
                         if (Globals.l.Rng.Next(1000) < 12)
                         {
                             if (Globals.l.Rng.Next(100) < 75)
@@ -108,6 +116,11 @@ namespace LD46
                 return new Tile(new Sprite(tileSize, tileSize, 0, Theme.GetTextureByType(TileType.WALL)), Walkable.SOLID, TileType.WALL, 0);
             }
             return tileGrid[x, y];
+        }
+
+        public void SetTile(int x, int y, Tile tile)
+        {
+            tileGrid[x, y] = tile;
         }
 
         public void Update(double delta)
@@ -217,17 +230,30 @@ namespace LD46
             {
                 case Direction.NORTH:
                     tileGrid[connection.location, 0] = new Tile(new Sprite(tileSize, tileSize, 0, Theme.GetTextureByType(TileType.TILE)), Walkable.WALKABLE, TileType.DOOR, 0);
+                    tileGrid[connection.location - 1, 0] = new Tile(new Sprite(tileSize, tileSize, 2, Theme.GetTextureByType(TileType.WALL)), Walkable.SOLID, TileType.WALL, connection.location - 1 == 0 ? 0 : 0.5f * (float)Math.PI);
+                    tileGrid[connection.location + 1, 0] = new Tile(new Sprite(tileSize, tileSize, 3, Theme.GetTextureByType(TileType.WALL)), Walkable.SOLID, TileType.WALL, connection.location + 1 == 0 ? 0 : 1.5f * (float)Math.PI);
                     break;
                 case Direction.EAST:
                     tileGrid[width - 1, connection.location] = new Tile(new Sprite(tileSize, tileSize, 0, Theme.GetTextureByType(TileType.TILE)), Walkable.WALKABLE, TileType.DOOR, 0);
+                    tileGrid[width - 1, connection.location - 1] = new Tile(new Sprite(tileSize, tileSize, 2, Theme.GetTextureByType(TileType.WALL)), Walkable.SOLID, TileType.WALL, connection.location - 1 == 0 ? 0.5f * (float)Math.PI : (float)Math.PI);
+                    tileGrid[width - 1, connection.location + 1] = new Tile(new Sprite(tileSize, tileSize, 3, Theme.GetTextureByType(TileType.WALL)), Walkable.SOLID, TileType.WALL, connection.location + 1 == 0 ? 0.5f * (float)Math.PI : 0);
                     break;
                 case Direction.SOUTH:
                     tileGrid[connection.location, height - 1] = new Tile(new Sprite(tileSize, tileSize, 0, Theme.GetTextureByType(TileType.TILE)), Walkable.WALKABLE, TileType.DOOR, 0);
+                    tileGrid[connection.location - 1, height - 1] = new Tile(new Sprite(tileSize, tileSize, 2, Theme.GetTextureByType(TileType.WALL)), Walkable.SOLID, TileType.WALL, connection.location - 1 == 0 ? (float)Math.PI : 0.5f * (float)Math.PI);
+                    tileGrid[connection.location + 1, height - 1] = new Tile(new Sprite(tileSize, tileSize, 3, Theme.GetTextureByType(TileType.WALL)), Walkable.SOLID, TileType.WALL, connection.location + 1 == 0 ? (float)Math.PI : 1.5f * (float)Math.PI);
                     break;
                 case Direction.WEST:
                     tileGrid[0, connection.location] = new Tile(new Sprite(tileSize, tileSize, 0, Theme.GetTextureByType(TileType.TILE)), Walkable.WALKABLE, TileType.DOOR, 0);
+                    tileGrid[0, connection.location - 1] = new Tile(new Sprite(tileSize, tileSize, 2, Theme.GetTextureByType(TileType.WALL)), Walkable.SOLID, TileType.WALL, connection.location - 1 == 0 ? 1.5f * (float)Math.PI : (float)Math.PI);
+                    tileGrid[0, connection.location + 1] = new Tile(new Sprite(tileSize, tileSize, 3, Theme.GetTextureByType(TileType.WALL)), Walkable.SOLID, TileType.WALL, connection.location + 1 == 0 ? 1.5f * (float)Math.PI : 0);
                     break;
             }
+        }
+
+        public virtual void PressButton(float px, float py)
+        {
+
         }
     }
 
@@ -245,5 +271,4 @@ namespace LD46
             this.rot = rot;
         }
     }
-
 }
