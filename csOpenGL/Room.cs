@@ -158,6 +158,7 @@ namespace LD46
 
         public void TryPickup()
         {
+            if (Globals.l.p.items.Count >= 15) return;
             bool b = false;
             ItemPos pickedUp = new ItemPos();
             foreach (ItemPos it in items)

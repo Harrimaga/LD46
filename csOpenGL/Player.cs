@@ -14,11 +14,13 @@ namespace LD46
         public string name;
         public Sprite UIBack, HBarUI, HBarBackUI, MBarUI, MBarBackUI;
         public List<Item> items = new List<Item>();
+        public List<Spell> Spells { get; set; }
         public List<DrawnButton> buttons = new List<DrawnButton>();
 
         public Player(double Health, double Mana, float x, float y, int texNum, int attackTexNum, int spriteNum, int w, int h, double speed, double attackPoint, double attackSpeed, string name, double damage, double PhysicalAmp, double MagicalAmp)
         {
-            Init(Health, Mana, x, y, texNum, attackTexNum, spriteNum, w, h, speed);
+            Init(Health, Mana, x, y, texNum, attackTexNum, spriteNum, w, h, speed, PhysicalAmp, MagicalAmp);
+            Spells = new List<Spell>();
             ani = new Animation(0, 3, 10);
             this.attackSpeed = attackSpeed;
             this.attackPoint = attackPoint;
@@ -29,6 +31,7 @@ namespace LD46
             HBarBackUI = new Sprite(w, h / 8, 0, Window.texs[2]);
             MBarUI = new Sprite(w, h / 8, 0, Window.texs[2]);
             MBarBackUI = new Sprite(w, h / 8, 0, Window.texs[2]);
+            Spells.Add(new Fireball());
         }
 
         public override void Update(double delta)
@@ -193,8 +196,8 @@ namespace LD46
             HBarUI.h = 30;
             HBarBackUI.w = 200;
             HBarBackUI.h = 30;
-            HBarBackUI.Draw(1720, 750, false, 0, 0, 0, 0);
-            HBarUI.Draw(1720, 750, false, 0, (float)(1 - Health / MaxHealth) / 2, (float)(Health / MaxHealth) / 2, 0); 
+            HBarBackUI.Draw(1720, 755, false, 0, 0, 0, 0);
+            HBarUI.Draw(1720, 755, false, 0, (float)(1 - Health / MaxHealth) / 2, (float)(Health / MaxHealth) / 2, 0); 
 
             MBarUI.w = (int)(200 * Mana / MaxMana);
             MBarUI.h = 30;
@@ -213,13 +216,13 @@ namespace LD46
             {
                 UIBack.Draw(1725, y, false, 0, 0, 0, 0, 0.5f);
                 it.Draw(1727, y + 2);
-                y += 55;
+                y += 50;
             }
         }
 
         public void EquipItem(Item item)
         {
-            DrawnButton b = new DrawnButton("", 1725, 5 + 55 * items.Count, 190, 45, () => { DequipItem(item); });
+            DrawnButton b = new DrawnButton("", 1725, 5 + 50 * items.Count, 190, 45, () => { DequipItem(item); });
             b.a = 0;
             Game.game.buttons.Add(b);
             buttons.Add(b);
@@ -264,7 +267,7 @@ namespace LD46
             Globals.l.Current.DropItem(item, x, y);
             for(int j = i; j < buttons.Count; j++)
             {
-                buttons[j].Y -= 55;
+                buttons[j].Y -= 50;
             }
             items.Remove(item);
             foreach (Effect e in item.GrantedEffects)

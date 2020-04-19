@@ -9,7 +9,7 @@ namespace LD46
     public abstract class Entity
     {
 
-        protected double MaxHealth, Health, MaxMana, Mana, PhysicalAmp, MagicalAmp, speed;
+        public double MaxHealth, Health, MaxMana, Mana, PhysicalAmp, MagicalAmp, speed;
         public int w, h;
         protected float rotation = 0, r = 1, g = 1, b = 1, a = 1;
         public float x, y;
@@ -37,6 +37,21 @@ namespace LD46
             HBar = new Sprite(w, h / 8, 0, Window.texs[2]);
             HBarBack = new Sprite(w, h / 8, 0, Window.texs[2]);
             attack = new Sprite(w, h, 0, Window.texs[attackTexNum]);
+        }
+
+        public double GetMagicAmp()
+        {
+            return MagicalAmp;
+        }
+
+        public bool LoseMana(double mana)
+        {
+            if(mana > Mana)
+            {
+                return false;
+            }
+            Mana -= mana;
+            return true;
         }
 
         public virtual void Draw()
