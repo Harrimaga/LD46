@@ -14,6 +14,7 @@ namespace LD46
         public bool isMagic;
         public Entity Shooter;
         public Sprite s;
+        public Animation ani = null;
         public int w, h, pierce;
         public string pname;
 
@@ -31,6 +32,7 @@ namespace LD46
             this.pierce = pierce;
             Shooter = shooter;
             s = new Sprite(w, h, sNum, Window.texs[tNum]);
+            this.ani = ani;
         }
 
         public void Draw()
@@ -40,6 +42,7 @@ namespace LD46
 
         public bool Update(double delta)
         {
+            ani.Update(s, delta);
             x += (float)(xSpeed * delta);
             y += (float)(ySpeed * delta);
             for (int i = (int)(x / Globals.TileSize); i < (int)(x / Globals.TileSize) + 2 + w / Globals.TileSize && i < Globals.l.Current.width && i > -1; i++)
