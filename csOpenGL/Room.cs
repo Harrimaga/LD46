@@ -60,9 +60,17 @@ namespace LD46
                             corner = true;
                             rotation = 1.5f * (float)Math.PI;
                         }
-                        else if (j == 0 || j == y - 1)
+                        else if (j == 0)
                         {
                             rotation = .5f * (float)Math.PI;
+                        }
+                        else if (j == y - 1)
+                        {
+                            rotation = 1.5f * (float)Math.PI;
+                        }
+                        else if (i == x - 1)
+                        {
+                            rotation = (float)Math.PI;
                         }
 
                         tileGrid[i, j] = new Tile(new Sprite(tileSize, tileSize, corner ? 1 : 0, theme.GetTextureByType(TileType.WALL)), Walkable.SOLID, TileType.WALL, rotation);
