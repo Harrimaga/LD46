@@ -57,7 +57,8 @@ namespace LD46
     {
         PLAYING,
         DEAD,
-        WON
+        WON,
+        MAINMENU
     }
 
 }
