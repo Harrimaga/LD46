@@ -21,7 +21,6 @@ namespace LD46
             Height = height;
             X = x;
             Y = y;
-            Place(tileGrid);
         }
 
         public abstract void Place(Tile[,] tileGrid);
