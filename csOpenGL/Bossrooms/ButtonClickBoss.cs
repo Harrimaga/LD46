@@ -37,5 +37,10 @@ namespace LD46
                 Globals.rootActionLog.Add("You have finished this boss, stairs have appeared");
             }
         }
+
+        public override void DrawOnMinimap(int x, int y, float cc)
+        {
+            base.DrawOnMinimap(x, y, 0.5f, 0.5f, 0);
+        }
     }
 }

@@ -127,6 +127,7 @@
     <Compile Include="Balance\Enemies.cs" />
     <Compile Include="Balance\Spells.cs" />
     <Compile Include="Enemies\Bosses\Hirrathak.cs" />
+    <Compile Include="Enemies\Bosses\Pylonius.cs" />
     <Compile Include="Enemies\RangedEnemy.cs" />
     <Compile Include="Bossrooms\ButtonClickBoss.cs" />
     <Compile Include="Enemies\RappidFireRanged.cs" />

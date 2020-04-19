@@ -57,9 +57,10 @@ namespace LD46
             }
         }
 
-        public void BasicMeleeAttack(double delta)
+        public bool BasicMeleeAttack(double delta)
         {
             Player p = Globals.l.p;
+            bool hashit = false;
 
             float xd = p.x + p.w / 2 - x - w / 2;
             float yd = p.y + p.h / 2 - y - h / 2;
@@ -72,6 +73,7 @@ namespace LD46
                     if (!attacked && attackTimer > attackSpeed * attackPoint)
                     {
                         p.DealPhysicalDamage(damage, name, "their Fist", this);
+                        hashit = true;
                         attacked = true;
                         s = baseAnimation;
                         ani = new Animation(0, 3, 10);
@@ -98,6 +100,7 @@ namespace LD46
                 s = baseAnimation;
                 ani = new Animation(0, 3, 10);
             }
+            return hashit;
         }
         public void BasicRangedAttack(double delta)
         {

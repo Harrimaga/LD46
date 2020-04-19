@@ -50,5 +50,15 @@ namespace LD46
         public const double HIRRATHAK_PHYSICAL_AMP = 0.9;
         public const double HIRRATHAK_MAGICAL_AMP = 1.2;
 
+        public const int PYLONIUS_HEALTH = 100;
+        public const int PYLONIUS_MANA = 50;
+        public const double PYLONIUS_SPEED = 3;
+        public const double PYLONIUS_ATTACKSPEED = 30;
+        public const double PYLONIUS_ATTACKPOINT = 0.6;
+        public const double PYLONIUS_DAMAGE = 35;
+        public const double PYLONIUS_BLOCK = 5;
+        public const double PYLONIUS_PHYSICAL_AMP = 1.5;
+        public const double PYLONIUS_MAGICAL_AMP = 0.3;
+
     }
 }
