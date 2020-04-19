@@ -98,7 +98,7 @@ namespace LD46
                                 enemies.Add(new RangedEnemy(i * Globals.TileSize, j * Globals.TileSize));
                             }
                         }
-                        else if (Globals.l.Rng.Next(1000) < 300)
+                        else if (Globals.l.Rng.Next(1000) < 3)
                         {
                             int rn = Globals.Rng.Next(chanceTotal);
                             Item it = null;
