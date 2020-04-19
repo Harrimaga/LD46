@@ -144,6 +144,7 @@
     <Compile Include="Item.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="Player.cs" />
+    <Compile Include="Players\Mage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Projectile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -203,6 +204,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Textures\Player\WizardAttack.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\Player\WizardIdle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Textures\BasicButton.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
