@@ -9,7 +9,7 @@ namespace LD46
     public class WandOfBlue : Item
     {
         public WandOfBlue() : base(
-            "Wand of red",
+            "Wand of Blue",
             Balance.WAND_OF_BLUE_RARITY,
             Balance.WAND_OF_BLUE_DESCRIPTION,
             new Sprite(40, 40, 0, Window.texs[9]),
