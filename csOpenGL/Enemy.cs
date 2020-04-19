@@ -25,7 +25,7 @@ namespace LD46
 
         public override void Update(double delta)
         {
-            AIMove(delta);
+            if (!stunned) AIMove(delta);
             base.Update(delta);
             Player p = Globals.l.p;
             float xd = p.x + p.w / 2 - x - w / 2;
@@ -33,7 +33,7 @@ namespace LD46
             float dis = (float)Math.Sqrt(xd * xd + yd * yd);
             xd /= dis;
             yd /= dis;
-            rotation = (float)Math.Atan2(xd, -yd);
+            if (!stunned) rotation = (float)Math.Atan2(xd, -yd);
         }
 
         public virtual void AIMove(double delta)
@@ -53,7 +53,7 @@ namespace LD46
                 yd /= dis;
                 xDir = xd;
                 yDir = yd;
-                Move((float)(xd * delta * speed), (float)(yd * delta * speed));
+                if (!stunned) Move((float)(xd * delta * speed), (float)(yd * delta * speed));
             }
         }
 
@@ -76,7 +76,7 @@ namespace LD46
                         s = baseAnimation;
                         ani = new Animation(0, 3, 10);
                     }
-                    else if (attackTimer > attackSpeed)
+                    else if (attackTimer > attackSpeed || stunned)
                     {
                         attacking = false;
                         s = baseAnimation;
@@ -123,7 +123,7 @@ namespace LD46
                     s = baseAnimation;
                     ani = new Animation(0, 3, 10);
                 }
-                else if (attackTimer > attackSpeed)
+                else if (attackTimer > attackSpeed || stunned)
                 {
                     attacking = false;
                     s = baseAnimation;

@@ -19,6 +19,7 @@ namespace LD46
         protected int attackAnimation = 0;
         public List<Effect> effects;
         public string name;
+        public bool stunned;
         protected double RegenTick { get; set; }
         protected double TimePassed { get; set; }
         public double StandardBlock { get; set; }
@@ -46,6 +47,7 @@ namespace LD46
             this.w = w;
             this.h = h;
             this.accuracy = accuracy;
+            stunned = false;
             s = new Sprite(w, h, spriteNum, Window.texs[texNum]);
             baseAnimation = s;
             HBar = new Sprite(w, h / 8, 0, Window.texs[2]);
@@ -244,6 +246,9 @@ namespace LD46
                     case EffectType.HPREGEN:
                         HealthRegen += effect.Modifier;
                         break;
+                    case EffectType.STUN:
+                        stunned = true;
+                        break;
                 }
             }
         }
@@ -286,6 +291,17 @@ namespace LD46
                             break;
                         case EffectType.HPREGEN:
                             HealthRegen -= e.Modifier;
+                            break;
+                        case EffectType.STUN:
+                            stunned = false;
+                            foreach (Effect effect in effects)
+                            {
+                                if (effect.Affects == EffectType.STUN && effect != e && !removables.Contains(effect))
+                                {
+                                    stunned = true;
+                                }
+                            }
+                            
                             break;
                     }
                 }

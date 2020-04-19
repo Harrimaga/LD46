@@ -37,6 +37,7 @@ namespace LD46
             MBarBackUI = new Sprite(w, h / 8, 0, Window.texs[2]);
             AddSpell(new Fireball());
             AddSpell(new Slowness());
+            AddSpell(new Disable());
         }
 
         public override void Update(double delta)
@@ -47,7 +48,7 @@ namespace LD46
                 xDir /= dis;
                 yDir /= dis;
             }
-            Move((float)(delta * xDir * speed), (float)(delta * yDir * speed));
+            if (!stunned) Move((float)(delta * xDir * speed), (float)(delta * yDir * speed));
             Window.camX = x - 960 + w / 2;
             Window.camY = y - 540 + h / 2;
 
@@ -173,7 +174,7 @@ namespace LD46
                     a = false;
                     ani = new Animation(0, s.texture.totW / s.texture.sW - 1, 10);
                 }
-                else if (attackTimer > attackSpeed)
+                else if (attackTimer > attackSpeed || stunned)
                 {
                     attacking = false;
                     s = baseAnimation;
@@ -231,12 +232,19 @@ namespace LD46
             Window.window.DrawTextCentered(TextMP, (int)(1670 + (250 / 2)), (int)(800 + (30 / 2) - 12), Globals.buttonFont);
             Window.window.DrawTextCentered("Block: " + (int)CurrentBlock, (int)(1670 + (250 / 2)), (int)(880 + (30 / 2) - 12), Globals.buttonFont);
 
-            UIBack.w = 240;
+            UIBack.w = 200;
             UIBack.h = 45;
+
+            int i = 0;
             foreach (Spell sp in Spells)
             {
-                UIBack.Draw(1675, y, false, 0, 0, 0, 0, 0.5f);
-                sp.Draw(1677, y + 2);
+                i++;
+                string TextSpellNumber = i.ToString();
+                string TextSpellMana = sp.Mana.ToString();
+                UIBack.Draw(1715, y, false, 0, 0, 0, 0, 0.5f);
+                sp.Draw(1717, y + 2);
+                Window.window.DrawTextCentered(TextSpellNumber, 1691, y + 9, Globals.buttonFont);
+                Window.window.DrawTextCentered(TextSpellMana, 1900, y + 9, Globals.buttonFont);
                 y += 50;
             }
             y = 355;

@@ -41,15 +41,15 @@ namespace LD46
         /// Items
         /// </summary>
         //Orb of health
-        public const Rarity ORB_OF_HEALTH_RARITY = Rarity.RARE;
+        public const Rarity ORB_OF_HEALTH_RARITY = Rarity.UNCOMMON;
         public const string ORB_OF_HEALTH_DESCRIPTION = "+20HP";
         public const int ORB_OF_HEALTH_HEALTH = 20;
         //Sword
-        public const Rarity SWORD_RARITY = Rarity.BASIC;
+        public const Rarity SWORD_RARITY = Rarity.COMMON;
         public const string SWORD_DESCRIPTION = "+10% Physical amp";
         public const double SWORD_PHYSICAL_AMP = 0.1;
         //Wand Of green
-        public const Rarity WAND_OF_GREEN_RARITY = Rarity.BASIC;
+        public const Rarity WAND_OF_GREEN_RARITY = Rarity.COMMON;
         public const string WAND_OF_GREEN_DESCRIPTION = "+10% Magic amp";
         public const double WAND_OF_GREEN_MAGICAL_AMP = 0.1;
         //Wand Of red
@@ -59,7 +59,7 @@ namespace LD46
         public const double WAND_OF_RED_MANA = 20;
         public const double WAND_OF_RED_MANAREGEN = 0.1;
         //Wand Of Blue
-        public const Rarity WAND_OF_BLUE_RARITY = Rarity.RARE;
+        public const Rarity WAND_OF_BLUE_RARITY = Rarity.UNCOMMON;
         public const string WAND_OF_BLUE_DESCRIPTION = "+25% Magic amp\n-10MP";
         public const double WAND_OF_BLUE_MAGIC_AMP = 0.25;
         public const double WAND_OF_BLUE_MANA = -10;
