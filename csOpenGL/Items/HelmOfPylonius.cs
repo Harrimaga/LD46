@@ -13,7 +13,7 @@ namespace LD46
             "Helm of Pylonius",
             Balance.HEML_OF_PYLONIUS_RARITY,
             Balance.HEML_OF_PYLONIUS_DESCRIPTION,
-            new Sprite(40, 40, 0, Window.texs[11]),
+            new Sprite(40, 40, 0, Window.texs[12]),
             new Effect[] {
                 new Effect(EffectType.BLOCK, Balance.HEML_OF_PYLONIUS_BLOCK, -999),
                 new Effect(EffectType.HPREGEN, Balance.HEML_OF_PYLONIUS_HP_REGEN, -999),
