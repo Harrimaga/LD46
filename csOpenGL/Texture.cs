@@ -13,7 +13,7 @@ namespace LD46
     {
 
         public long Handle;
-        int totW, totH, sW, sH, wNum, hNum;
+        public int totW, totH, sW, sH, wNum, hNum;
 
         public Texture(string file, int totW, int totH, int sW, int sH)
         {

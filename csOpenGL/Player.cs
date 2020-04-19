@@ -11,7 +11,7 @@ namespace LD46
 
         public double attackTimer = 0, attackSpeed = 0, attackPoint = 1, damage;
         public bool attacked = false, attacking = false, a = false;
-        public string name;
+        public string weaponName;
         public Sprite UIBack, HBarUI, HBarBackUI, MBarUI, MBarBackUI;
         public List<Item> items = new List<Item>();
         public List<Spell> Spells { get; set; }
@@ -19,17 +19,18 @@ namespace LD46
         public double HealthRegen { get; set; }
         public double ManaRegen { get; set; }
 
-        public Player(double Health, double Mana, float x, float y, int texNum, int attackTexNum, int spriteNum, int w, int h, double speed, double attackPoint, double attackSpeed, string name, double damage, double PhysicalAmp, double MagicalAmp, double standardBlock, double blockRegen)
+        public Player(double Health, double Mana, float x, float y, int texNum, int attackTexNum, int spriteNum, int w, int h, double speed, double attackPoint, double attackSpeed, string name, double damage, double PhysicalAmp, double MagicalAmp, double standardBlock, double blockRegen, string weaponName)
         {
             HealthRegen = 0.1;
             ManaRegen = 0.1;
             Init(Health, Mana, x, y, texNum, attackTexNum, spriteNum, w, h, speed, 1, standardBlock, PhysicalAmp, MagicalAmp, blockRegen);
             Spells = new List<Spell>();
-            ani = new Animation(0, 3, 10);
+            ani = new Animation(0, s.texture.totW / s.texture.sW - 1, 10);
             this.attackSpeed = attackSpeed;
             this.attackPoint = attackPoint;
             this.damage = damage;
             this.name = name;
+            this.weaponName = weaponName;
             UIBack = new Sprite(200, 880, 0, Window.texs[2]);
             HBarUI = new Sprite(w, h / 8, 0, Window.texs[2]);
             HBarBackUI = new Sprite(w, h / 8, 0, Window.texs[2]);
@@ -152,7 +153,7 @@ namespace LD46
 
                         if (dis <= (enemy.w / 2 + w / 2) * 1.2f)
                         {
-                            enemy.DealPhysicalDamage(damage * PhysicalAmp, name, "their blade");
+                            enemy.DealPhysicalDamage(damage * PhysicalAmp, name, "their " + weaponName);
                         }
                     }
 
@@ -160,20 +161,20 @@ namespace LD46
                     attacking = false;
                     s = baseAnimation;
                     a = false;
-                    ani = new Animation(0, 3, 10);
+                    ani = new Animation(0, s.texture.totW / s.texture.sW - 1, 10);
                 }
                 else if (attackTimer > attackSpeed)
                 {
                     attacking = false;
                     s = baseAnimation;
                     a = false;
-                    ani = new Animation(0, 3, 10);
+                    ani = new Animation(0, s.texture.totW / s.texture.sW - 1, 10);
                 }
             }
             else
             {
                 s = attack;
-                ani = new Animation(0, 9, attackSpeed / 10);
+                ani = new Animation(0, attack.texture.totW / s.texture.sW - 1, attackSpeed / 10);
                 attackTimer = 0;
                 attacked = false;
                 attacking = true;
@@ -387,5 +388,18 @@ namespace LD46
                 Mana = Mana + ManaRegen > MaxMana ? MaxMana : Mana + ManaRegen;
             }
         }
+
+        public void ReAddButtons()
+        {
+            foreach(DrawnButton b in itemButtons)
+            {
+                Game.game.buttons.Add(b);
+            }
+            foreach (DrawnButton b in spellButtons)
+            {
+                Game.game.buttons.Add(b);
+            }
+        }
+
     }
 }
