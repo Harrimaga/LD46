@@ -164,6 +164,7 @@
     <Compile Include="Spells\PillarOfLight.cs" />
     <Compile Include="Sprite.cs" />
     <Compile Include="Structure.cs" />
+    <Compile Include="Structures\DefenseLaser.cs" />
     <Compile Include="Structures\Wall.cs" />
     <Compile Include="Texture.cs" />
     <Compile Include="Theme.cs" />

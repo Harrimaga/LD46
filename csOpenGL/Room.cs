@@ -21,6 +21,7 @@ namespace LD46
         public List<ItemPos> items;
         public List<SpellPos> spells;
         public bool visited;
+        public List<Structure> Structures { get; set; }
         public List<Connection> Connections { get; set; }
         public Theme Theme { get; set; }
 
@@ -41,6 +42,7 @@ namespace LD46
             removables = new List<Enemy>();
             projectiles = new List<Projectile>();
             removeProjectiles = new List<Projectile>();
+            Structures = new List<Structure>();
             for (int i = 0; i < x; i++)
             {
                 for (int j = 0; j < y; j++)
@@ -120,7 +122,7 @@ namespace LD46
                     {
                         int structW = 3;
                         int structH = 1;
-                        _ = new Wall(Globals.Rng.Next(2, width - 1 - structW), Globals.Rng.Next(2, height - 1 - structH), tileGrid, theme, true);
+                        Structures.Add(new Wall(Globals.Rng.Next(2, width - 1 - structW), Globals.Rng.Next(2, height - 1 - structH), tileGrid, theme, true));
                     }
                 }
                 else if (odds < 100)
@@ -129,7 +131,14 @@ namespace LD46
                     {
                         int structW = 1;
                         int structH = 3;
-                        _ = new Wall(Globals.Rng.Next(2, width - 1 - structW), Globals.Rng.Next(2, height - 1 - structH), tileGrid, theme, false);
+                        Structures.Add(new Wall(Globals.Rng.Next(2, width - 1 - structW), Globals.Rng.Next(2, height - 1 - structH), tileGrid, theme, false));
+                    }
+                }else if (odds < 140)
+                {
+                    if(width>=5 && height>=5)
+                    {
+                        int structH = 1;
+                        Structures.Add(new DefenseLaser(1, Globals.Rng.Next(2, height - 1 - structH), tileGrid, theme, width - 2));
                     }
                 }
             }
@@ -176,7 +185,10 @@ namespace LD46
                 enemies.Remove(enemy);
             }
             removables.Clear();
-
+            foreach(Structure structure in Structures)
+            {
+                structure.Update(delta);
+            }
         }
 
         public void DrawOnMinimap(int x, int y, float cc)
