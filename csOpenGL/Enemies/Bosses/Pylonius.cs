@@ -10,14 +10,15 @@ namespace LD46
     {
 
         public bool charging, hasHit;
-        public double minSpeed, chargeTime, chargeCooldown;
+        public double minSpeed, chargeTime, chargeCooldownMax, chargeCooldown;
         public Pylonius() : base(Enemies.PYLONIUS_HEALTH, Enemies.PYLONIUS_MANA, 12 * Globals.TileSize, 12 * Globals.TileSize, 6, 3, 3, Globals.TileSize, Globals.TileSize, Enemies.PYLONIUS_SPEED, Enemies.RANGED_ENEMY_ATTACKPOINT, Enemies.PYLONIUS_ATTACKSPEED, Enemies.PYLONIUS_DAMAGE, "Pylonius, the Bull", Enemies.PYLONIUS_BLOCK, Enemies.PYLONIUS_PHYSICAL_AMP, Enemies.PYLONIUS_MAGICAL_AMP)
         {
             charging = false;
             hasHit = false;
             minSpeed = speed;
-            chargeTime = 100 * 60;
-            chargeCooldown = 15 * 60;
+            chargeTime = 10 * 60;
+            chargeCooldownMax = 8 * 60;
+            chargeCooldown = 0;
         }
 
         public override void Update(double delta)
@@ -30,16 +31,19 @@ namespace LD46
             if (!charging && speed == minSpeed && chargeCooldown <= 0)
             {
                 charging = true;
+                chargeCooldown = chargeCooldownMax;
                 hasHit = false;
             }
             if (!charging)
             {
-                if (!hasHit) speed += 0.1;
+                if (!hasHit) speed += 0.04;
                 StupidMovement(delta);
                 hasHit = BasicMeleeAttack(delta);
                 if (hasHit)
                 {
                     speed = minSpeed;
+                    charging = false;
+                    hasHit = false;
                 }
             }
             if (charging)
@@ -47,11 +51,10 @@ namespace LD46
                 chargeTime -= delta;
                 if (chargeTime <= 0)
                 {
-                    chargeTime = 3 * 60;
-                    hasHit = false;
+                    chargeTime = 10 * 60;
                     charging = false;
                 }
-                speed += 0.1;
+                speed += 0.06;
             }
 
             chargeCooldown -= delta;
