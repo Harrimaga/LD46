@@ -84,6 +84,8 @@ namespace LD46
             {
                 CurrentCooldown -= deltaTime;
             }
+
+            SpellAnimation.Update(Icon, deltaTime);
         }
     }
 }
