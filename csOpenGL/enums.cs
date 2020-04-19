@@ -24,7 +24,8 @@ namespace LD46
         SPEED,
         MANA,
         MPREGEN,
-        HPREGEN
+        HPREGEN,
+        STUN
     }
 
     public enum Walkable

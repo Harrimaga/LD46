@@ -34,5 +34,14 @@ namespace LD46
         public const string PILLAR_OF_LIGHT_NAME = "Pillar of light";
         public const string PILLAR_OF_LIGHT_DESCRIPTION = "The heavens opening the gate allowing light to flood out. Or someone just shines their lamp directly in your eye.";
         public const double PILLAR_OF_LIGHT_AOE = 200;
+
+        //Disable
+        public const double DISABLE_MANA = 50;
+        public const double DISABLE_DAMAGE = 0;
+        public const double DISABLE_COOLDOWN = 20 * 60;
+        public const double DISABLE_DURATION = 3 * 60;
+        public const string DISABLE_NAME = "Disable";
+        public const string DISABLE_DESCRIPTION = "Disable entities";
+        public const double DISABLE_AOE = 100;
     }
 }
