@@ -121,6 +121,8 @@ namespace LD46
                             Globals.l = new Level(Globals.Themes[Globals.Rng.Next(Globals.Themes.Count)], Globals.l.p, Globals.Rng.Next());
                             p.x = Globals.TileSize;
                             p.y = Globals.TileSize;
+                            p.Health = p.MaxHealth;
+                            p.Mana = p.MaxMana;
                         }
                         return;
                     }
