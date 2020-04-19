@@ -78,7 +78,7 @@ namespace LD46
             directions.RemoveAt(index);
 
             List<bool> result = new List<bool>();
-            for (int i = 0; i < Rng.Next(0, 4); i++)
+            for (int i = 0; i < Rng.Next(Math.Max(0, 3 - deepness/2), 4); i++)
             {
                 result.Add(CreateRoom(++deepness, newRoom));
             }
