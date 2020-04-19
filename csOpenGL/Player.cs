@@ -16,15 +16,11 @@ namespace LD46
         public List<Item> items = new List<Item>();
         public List<Spell> Spells { get; set; }
         public List<DrawnButton> itemButtons = new List<DrawnButton>(), spellButtons = new List<DrawnButton>();
-        private double RegenTick { get; set; }
-        private double TimePassed { get; set; }
         public double HealthRegen { get; set; }
         public double ManaRegen { get; set; }
 
         public Player(double Health, double Mana, float x, float y, int texNum, int attackTexNum, int spriteNum, int w, int h, double speed, double attackPoint, double attackSpeed, string name, double damage, double PhysicalAmp, double MagicalAmp, double standardBlock, double blockRegen)
         {
-            RegenTick = 60;
-            TimePassed = 0;
             HealthRegen = 0.1;
             ManaRegen = 0.1;
             Init(Health, Mana, x, y, texNum, attackTexNum, spriteNum, w, h, speed, 1, standardBlock, PhysicalAmp, MagicalAmp, blockRegen);
@@ -389,7 +385,6 @@ namespace LD46
                 TimePassed -= RegenTick;
                 Health = Health + HealthRegen > MaxHealth ? MaxHealth : Health + HealthRegen;
                 Mana = Mana + ManaRegen > MaxMana ? MaxMana : Mana + ManaRegen;
-                CurrentBlock = CurrentBlock + BlockRegen > StandardBlock ? CurrentBlock : CurrentBlock + BlockRegen; //Because player doesn't call base update for entity
             }
         }
     }
