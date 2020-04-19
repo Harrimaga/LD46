@@ -178,6 +178,7 @@ namespace LD46
             buttons.Clear();
             gameState = GameState.MAINMENU;
             buttons.Add(new DrawnButton("Fighter", 760, 400, 400, 75, () => { Restart(new Fighter(Globals.TileSize, Globals.TileSize)); }));
+            buttons.Add(new DrawnButton("Mage", 760, 500, 400, 75, () => { Restart(new Mage(Globals.TileSize, Globals.TileSize)); }));
         }
 
         public void Restart(Player pp)

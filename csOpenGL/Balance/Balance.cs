@@ -34,6 +34,8 @@ namespace LD46
         public const double MAGE_BASE_MANA = 100;
         public const double MAGE_BASE_SPEED = 5;
         public const string MAGE_NAME = "Mage";
+        public const double MAGE_BLOCK = 20;
+        public const double MAGE_BLOCK_REGEN = 0.1;
 
         /// <summary>
         /// Items
