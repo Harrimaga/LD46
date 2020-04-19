@@ -17,6 +17,7 @@ namespace LD46
         public double AOE { get; set; }
         public Sprite Icon { get; set; }
         public Animation SpellAnimation { get; set; }
+        public double CurrentCooldown { get; set; }
 
         protected Spell(double mana, double damage, double cooldown, string name, string description, List<SpellEffect> effects, double aOE, Sprite icon, Animation spellAnimation)
         {
@@ -62,5 +63,17 @@ namespace LD46
             Window.window.DrawText(Name, (int)x + 45, (int)y + 7, Globals.buttonFont);
         }
 
+
+        public void Update(double deltaTime)
+        {
+            if(CurrentCooldown - deltaTime < 0)
+            {
+                CurrentCooldown = 0;
+            }
+            else
+            {
+                CurrentCooldown -= deltaTime;
+            }
+        }
     }
 }

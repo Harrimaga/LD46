@@ -18,8 +18,8 @@ namespace LD46
             Random rng = new Random();
             for (int i = 0; i < 4; i++)
             {
-                int randX = rng.Next(1, 25);
-                int randY = rng.Next(1, 25);
+                int randX = rng.Next(1, 24);
+                int randY = rng.Next(1, 24);
                 tileGrid[randX, randY] = new Tile(new Sprite(tileSize, tileSize, 0, theme.GetTextureByType(TileType.BUTTON)), Walkable.WALKABLE, TileType.BUTTON, 0);
             }
         }
@@ -30,7 +30,7 @@ namespace LD46
             if (--ButtonCLicksNeeded < 1)
             {
                 Random rng = new Random();
-                tileGrid[rng.Next(1, 25), rng.Next(1, 25)] = new Tile(new Sprite(tileSize, tileSize, 0, Theme.GetTextureByType(TileType.STAIRS)), Walkable.WALKABLE, TileType.STAIRS, 0);
+                tileGrid[rng.Next(1, 24), rng.Next(1, 24)] = new Tile(new Sprite(tileSize, tileSize, 0, Theme.GetTextureByType(TileType.STAIRS)), Walkable.WALKABLE, TileType.STAIRS, 0);
                 Globals.rootActionLog.Add("You have finished this boss, stairs have appeared");
             }
         }
