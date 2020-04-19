@@ -191,16 +191,16 @@ namespace LD46
             }
         }
 
-        public override void DealPhysicalDamage(double damage, string name, string with)
+        public override void DealPhysicalDamage(double damage, string name, string with, Entity Attacker = null, double knockBackMod = 1)
         {
             //Globals.rootActionLog.TakeDamage(name, damage, with);
-            base.DealPhysicalDamage(damage, name, with);
+            base.DealPhysicalDamage(damage, name, with, Attacker, knockBackMod);
         }
 
-        public override void DealMagicDamage(double damage, string name, string with)
+        public override void DealMagicDamage(double damage, string name, string with, Entity Attacker = null, double knockBackMod = 1)
         {
             Globals.rootActionLog.TakeDamage(name, damage, with);
-            base.DealMagicDamage(damage, name, with);
+            base.DealMagicDamage(damage, name, with, Attacker, knockBackMod);
         }
 
         public void DrawUI()
