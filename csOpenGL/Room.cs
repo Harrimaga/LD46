@@ -14,6 +14,8 @@ namespace LD46
         public Sprite s;
         public List<Enemy> enemies;
         public List<Enemy> removables;
+        public List<Projectile> removeProjectiles;
+        public List<Projectile> projectiles;
         public List<ItemPos> items;
         public bool visited;
         public List<Connection> Connections { get; set; }
@@ -32,6 +34,8 @@ namespace LD46
             this.tileSize = tileSize;
             enemies = new List<Enemy>();
             removables = new List<Enemy>();
+            projectiles = new List<Projectile>();
+            removeProjectiles = new List<Projectile>();
             for (int i = 0; i < x; i++)
             {
                 for (int j = 0; j < y; j++)
@@ -72,7 +76,14 @@ namespace LD46
                         tileGrid[i, j] = new Tile(new Sprite(tileSize, tileSize, 0, theme.GetTextureByType(TileType.TILE)), Walkable.WALKABLE, TileType.TILE, 0);
                         if (Globals.l.Rng.Next(1000) < 12)
                         {
-                            enemies.Add(new TestEnemy(i * Globals.TileSize, j * Globals.TileSize));
+                            if (Globals.l.Rng.Next(100) < 75)
+                            {
+                                enemies.Add(new TestEnemy(i * Globals.TileSize, j * Globals.TileSize));
+                            }
+                            else
+                            {
+                                enemies.Add(new RangedEnemy(i * Globals.TileSize, j * Globals.TileSize));
+                            }
                         }
                         else if (Globals.l.Rng.Next(1000) < 5)
                         {
@@ -101,6 +112,18 @@ namespace LD46
 
         public void Update(double delta)
         {
+            foreach (var p in projectiles)
+            {
+                if(p.Update(delta))
+                {
+                    removeProjectiles.Add(p);
+                }
+            }
+            foreach (var p in removeProjectiles)
+            {
+                projectiles.Remove(p);
+            }
+            removeProjectiles.Clear();
             foreach (var enemy in enemies)
             {
                 enemy.Update(delta);
@@ -109,7 +132,8 @@ namespace LD46
             {
                 enemies.Remove(enemy);
             }
-            removables = new List<Enemy>();
+            removables.Clear();
+
         }
 
         public void DrawOnMinimap(int x, int y, float cc)
@@ -153,6 +177,10 @@ namespace LD46
             foreach (var enemy in enemies)
             {
                 enemy.Draw();
+            }
+            foreach (var p in projectiles)
+            {
+                p.Draw();
             }
         }
 

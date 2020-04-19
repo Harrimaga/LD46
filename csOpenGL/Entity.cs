@@ -9,7 +9,7 @@ namespace LD46
     public abstract class Entity
     {
 
-        public double MaxHealth, Health, MaxMana, Mana, PhysicalAmp, MagicalAmp, speed;
+        public double MaxHealth, Health, MaxMana, Mana, PhysicalAmp, MagicalAmp, speed, accuracy;
         public int w, h;
         protected float rotation = 0, r = 1, g = 1, b = 1, a = 1;
         public float x, y;
@@ -19,7 +19,7 @@ namespace LD46
         protected int attackAnimation = 0;
         public string name;
 
-        public void Init(double Health, double Mana, float x, float y, int texNum, int attackTexNum, int spriteNum, int w, int h, double speed, double PhysicalAmp = 1, double MagicalAmp = 1)
+        public void Init(double Health, double Mana, float x, float y, int texNum, int attackTexNum, int spriteNum, int w, int h, double speed, double accuracy, double PhysicalAmp = 1, double MagicalAmp = 1)
         {
             this.MaxHealth = Health;
             this.Health = Health;
@@ -32,6 +32,7 @@ namespace LD46
             this.speed = speed;
             this.w = w;
             this.h = h;
+            this.accuracy = accuracy;
             s = new Sprite(w, h, spriteNum, Window.texs[texNum]);
             baseAnimation = s;
             HBar = new Sprite(w, h / 8, 0, Window.texs[2]);
