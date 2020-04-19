@@ -27,6 +27,13 @@ namespace LD46
         {
             AIMove(delta);
             base.Update(delta);
+            Player p = Globals.l.p;
+            float xd = p.x + p.w / 2 - x - w / 2;
+            float yd = p.y + p.h / 2 - y - h / 2;
+            float dis = (float)Math.Sqrt(xd * xd + yd * yd);
+            xd /= dis;
+            yd /= dis;
+            rotation = (float)Math.Atan2(xd, -yd);
         }
 
         public virtual void AIMove(double delta)
@@ -99,6 +106,7 @@ namespace LD46
             float xd = p.x + p.w / 2 - x - w / 2;
             float yd = p.y + p.h / 2 - y - h / 2;
             float dis = (float)Math.Sqrt(xd * xd + yd * yd);
+            
             if (attacking)
             {
                 attackTimer += delta;
@@ -109,6 +117,7 @@ namespace LD46
                     dis = (float)Math.Sqrt(xd * xd + yd * yd);
                     xd /= dis;
                     yd /= dis;
+                    rotation = (float)Math.Atan2(xd, -yd);
                     Globals.l.Current.projectiles.Add(new Projectile(x + w / 2 - Globals.TileSize / 4, y + h / 2 - Globals.TileSize / 4, xd * projectileSpeed, yd * projectileSpeed, damage, false, this, 5, 0, Globals.TileSize / 2, Globals.TileSize / 2, "Projectile", 1, new Animation(0, 2, 5)));
                     attacked = true;
                     s = baseAnimation;
