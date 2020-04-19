@@ -57,6 +57,13 @@ namespace LD46
             }
         }
 
+        public void Draw(float x, float y)
+        {
+            Icon.Draw(x, y, false);
+            Window.window.DrawText(Name, (int)x + 45, (int)y + 7, Globals.buttonFont);
+        }
+
+
         public void Update(double deltaTime)
         {
             if(CurrentCooldown - deltaTime < 0)
