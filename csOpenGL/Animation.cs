@@ -9,8 +9,8 @@ namespace LD46
     public class Animation
     {
 
-        private int start, last, current;
-        private double time, timer = 0;
+        public int start, last, current;
+        public double time, timer = 0;
 
         public Animation(int start, int last, double time)
         {
