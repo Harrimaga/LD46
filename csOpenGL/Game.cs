@@ -22,7 +22,7 @@ namespace LD46
 
         public List<DrawnButton> buttons = new List<DrawnButton>();
         private Player p;
-        private Theme theme = new Theme("Basic");
+        private Theme theme = new Theme("Space");
 
         public Game(Window window)
         {

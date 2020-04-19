@@ -38,11 +38,38 @@ namespace LD46
                 {
                     if (i == 0 || i == x - 1 || j == 0 || j == y - 1)
                     {
-                        tileGrid[i, j] = new Tile(new Sprite(tileSize, tileSize, 0, theme.GetTextureByType(TileType.WALL)), Walkable.SOLID, TileType.WALL);
+                        float rotation = 0;
+                        bool corner = false;
+
+                        if (i == 0 && j == 0)
+                        {
+                            corner = true;
+                        }
+                        else if (i == x - 1 && j == 0)
+                        {
+                            corner = true;
+                            rotation = .5f * (float)Math.PI;
+                        }
+                        else if (i == x - 1 && j == y - 1)
+                        {
+                            corner = true;
+                            rotation = (float)Math.PI;
+                        }
+                        else if (i == 0 && j == y - 1)
+                        {
+                            corner = true;
+                            rotation = 1.5f * (float)Math.PI;
+                        }
+                        else if (j == 0 || j == y - 1)
+                        {
+                            rotation = .5f * (float)Math.PI;
+                        }
+
+                        tileGrid[i, j] = new Tile(new Sprite(tileSize, tileSize, corner ? 1 : 0, theme.GetTextureByType(TileType.WALL)), Walkable.SOLID, TileType.WALL, rotation);
                     }
                     else
                     {
-                        tileGrid[i, j] = new Tile(new Sprite(tileSize, tileSize, 0, theme.GetTextureByType(TileType.TILE)), Walkable.WALKABLE, TileType.TILE);
+                        tileGrid[i, j] = new Tile(new Sprite(tileSize, tileSize, 0, theme.GetTextureByType(TileType.TILE)), Walkable.WALKABLE, TileType.TILE, 0);
                         if (Globals.l.Rng.Next(1000) < 12)
                         {
                             enemies.Add(new TestEnemy(i * Globals.TileSize, j * Globals.TileSize));
@@ -67,7 +94,7 @@ namespace LD46
         {
             if (x < 0 || x >= width || y < 0 || y >= height)
             {
-                return new Tile(new Sprite(tileSize, tileSize, 0, Theme.GetTextureByType(TileType.WALL)), Walkable.SOLID, TileType.WALL);
+                return new Tile(new Sprite(tileSize, tileSize, 0, Theme.GetTextureByType(TileType.WALL)), Walkable.SOLID, TileType.WALL, 0);
             }
             return tileGrid[x, y];
         }
@@ -160,16 +187,16 @@ namespace LD46
             switch (connection.Direction)
             {
                 case Direction.NORTH:
-                    tileGrid[connection.location, 0] = new Tile(new Sprite(tileSize, tileSize, 0, Theme.GetTextureByType(TileType.TILE)), Walkable.WALKABLE, TileType.DOOR);
+                    tileGrid[connection.location, 0] = new Tile(new Sprite(tileSize, tileSize, 0, Theme.GetTextureByType(TileType.TILE)), Walkable.WALKABLE, TileType.DOOR, 0);
                     break;
                 case Direction.EAST:
-                    tileGrid[width - 1, connection.location] = new Tile(new Sprite(tileSize, tileSize, 0, Theme.GetTextureByType(TileType.TILE)), Walkable.WALKABLE, TileType.DOOR);
+                    tileGrid[width - 1, connection.location] = new Tile(new Sprite(tileSize, tileSize, 0, Theme.GetTextureByType(TileType.TILE)), Walkable.WALKABLE, TileType.DOOR, 0);
                     break;
                 case Direction.SOUTH:
-                    tileGrid[connection.location, height - 1] = new Tile(new Sprite(tileSize, tileSize, 0, Theme.GetTextureByType(TileType.TILE)), Walkable.WALKABLE, TileType.DOOR);
+                    tileGrid[connection.location, height - 1] = new Tile(new Sprite(tileSize, tileSize, 0, Theme.GetTextureByType(TileType.TILE)), Walkable.WALKABLE, TileType.DOOR, 0);
                     break;
                 case Direction.WEST:
-                    tileGrid[0, connection.location] = new Tile(new Sprite(tileSize, tileSize, 0, Theme.GetTextureByType(TileType.TILE)), Walkable.WALKABLE, TileType.DOOR);
+                    tileGrid[0, connection.location] = new Tile(new Sprite(tileSize, tileSize, 0, Theme.GetTextureByType(TileType.TILE)), Walkable.WALKABLE, TileType.DOOR, 0);
                     break;
             }
         }
