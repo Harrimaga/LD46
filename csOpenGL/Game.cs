@@ -142,6 +142,9 @@ namespace LD46
                     break;
                 case GameState.MAINMENU:
                     Window.window.DrawTextCentered("Choose your class:", 960, 300);
+                    Window.window.DrawTextCentered("W,A,S,D = Move     SPACE = Attack     1-6 = Use Spell     Q = Pick up item     C = Interact",960, 800, Globals.buttonFont);
+                    Window.window.DrawTextCentered("Complete the dungeon, but keep the Boss Alive! He is just a friendly guy. (He can attack you though)", 960, 900, Globals.buttonFont);
+                    Window.window.DrawTextCentered("Tutorial by: Tim", 960, 1000, Globals.buttonFont);
                     break;
             }
             foreach (DrawnButton button in buttons)
