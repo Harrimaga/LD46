@@ -100,6 +100,10 @@ namespace LD46
                 }
 
                 HaveItemsExpired(delta);
+                foreach(Spell s in Spells)
+                {
+                    s.Update(delta);
+                }
             }
 
             base.Update(delta);
