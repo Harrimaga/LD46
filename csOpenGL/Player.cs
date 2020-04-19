@@ -57,7 +57,7 @@ namespace LD46
                 for (int j = (int)(y / Globals.TileSize); j < (int)(y / Globals.TileSize) + 2 + h / Globals.TileSize && j < Globals.l.Current.height && j > -1; j++)
                 {
                     Tile t = Globals.l.Current.getTile(i, j);
-                    if (t.GetTileType() == TileType.DOOR)
+                    if (t.GetTileType() == TileType.DOOR && Globals.checkCol((int)x, (int)y, w, h, i * Globals.TileSize, j * Globals.TileSize, Globals.TileSize, Globals.TileSize))
                     {
                         Direction d = Direction.SOUTH;
                         if (i == 0)
@@ -102,6 +102,7 @@ namespace LD46
                                 Window.camY = y - 540 + h / 2;
                             }
                         }
+                        return;
                     }
                 }
             }

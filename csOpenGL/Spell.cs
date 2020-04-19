@@ -47,7 +47,7 @@ namespace LD46
             int targets = 0;
             foreach (Entity target in possibleTargets)
             {
-                if(Math.Abs(target.x-x) < AOE && Math.Abs(target.y-y) < AOE)
+                if(Math.Abs(target.x-x + target.w) < AOE && Math.Abs(target.y-y + target.h) < AOE)
                 {
                     //Deal damage and add the spell effects to the enemies withing AOE
                     target.DealMagicDamage(damage, Globals.l.p.name, caster.name);

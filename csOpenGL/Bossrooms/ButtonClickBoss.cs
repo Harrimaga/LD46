@@ -14,7 +14,8 @@ namespace LD46
         {
             ButtonCLicksNeeded = 4;
             enemies.Clear();
-            enemies.Add(theme.GetBoss());
+            Globals.Boss = theme.GetBoss();
+            enemies.Add(Globals.Boss);
             Random rng = new Random();
             for (int i = 0; i < 4; i++)
             {
