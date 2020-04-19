@@ -15,7 +15,7 @@ namespace LD46
                 Spells.PILLAR_OF_LIGHT_COOLDOWN,
                 Spells.PILLAR_OF_LIGHT_NAME,
                 Spells.PILLAR_OF_LIGHT_DESCRIPTION,
-                new List<SpellEffect> { },
+                new List<Effect> { },
                 Spells.PILLAR_OF_LIGHT_AOE,
                 new Sprite(40, 40, 0, Window.texs[1]),
                 new Animation(0, 3, 30))

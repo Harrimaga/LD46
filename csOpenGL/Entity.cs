@@ -173,6 +173,21 @@ namespace LD46
             Globals.rootActionLog.TakeDamage(name, damage, with);
         }
 
+        public virtual void KnockBack(Entity e, double mod, double damage)
+        {
+            double xd = e.x + e.w / 2 - x - w / 2;
+            double yd = e.y + e.h / 2 - y - h / 2;
+            xd *= -1;
+            yd *= -1;
+            double distance = Math.Sqrt(xd * xd + yd * yd);
+            xd /= distance;
+            yd /= distance;
+            xd *= mod * damage * 25 / MaxHealth;
+            yd *= mod * damage * 25 / MaxHealth;
+            knockBackX += xd;
+            knockBackY += yd;
+        }
+
         public virtual void DealMagicDamage(double damage, string name, string with, Entity Attacker = null, double knockBackMod = 1)
         {
             if (CurrentBlock * 0.8 > damage)
@@ -281,7 +296,7 @@ namespace LD46
             }
         }
 
-        public void Move(float xa, float ya)
+        public bool Move(float xa, float ya)
         {
             bool ret = false;
             x += xa;
