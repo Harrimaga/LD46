@@ -14,9 +14,11 @@ namespace LD46
         public Theme theme;
         public Player p;
         public Random Rng { get; set; }
+        private bool HasBossRoom { get; set; }
 
         public Level(Theme theme, Player p, int seed)
         {
+            HasBossRoom = false;
             Globals.l = this;
             this.theme = theme;
             this.p = p;
@@ -47,12 +49,28 @@ namespace LD46
                 List<bool> results = new List<bool>();
 
                 results.Add(CreateRoom(++deepness, Current));
+                if (!HasBossRoom) //No bossroom had been created
+                {
+                    Room roomToUpdate = Current;
+                    for (int i = 0; i < 12; i++)
+                    {
+                        roomToUpdate = roomToUpdate.Connections[Rng.Next(roomToUpdate.Connections.Count)].Room;
+                    }
+                    Room bossRoom = new ButtonClickBoss(theme);
+                    foreach (Connection conn in roomToUpdate.Connections)
+                    {
+                        bossRoom.AddConnection(conn);
+                        Connection otherSide = conn.Room.Connections.Find((connection) => { return connection.Direction == (Direction)(((int)conn.Direction + 2) % 4); });
+                        otherSide.Room = bossRoom;
+                    }
+                }
                 return results.All((singleResult) => { return singleResult; });
             }
             Room newRoom = null;
-            if(deepness == 12 || Rng.Next(75) < deepness)
+            if (!HasBossRoom && (deepness == 12 || Rng.Next(75) < deepness))
             {
                 newRoom = new ButtonClickBoss(theme);
+                HasBossRoom = true;
             }
             else
             {
@@ -78,7 +96,7 @@ namespace LD46
             directions.RemoveAt(index);
 
             List<bool> result = new List<bool>();
-            for (int i = 0; i < Rng.Next(Math.Max(0, 3 - deepness/2), 4); i++)
+            for (int i = 0; i < Rng.Next(Math.Max(0, 3 - deepness / 2), 4); i++)
             {
                 result.Add(CreateRoom(++deepness, newRoom));
             }

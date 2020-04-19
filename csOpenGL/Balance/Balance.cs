@@ -21,6 +21,8 @@ namespace LD46
         public const double FIGHTER_BASE_MANA = 50;
         public const double FIGHTER_BASE_SPEED = 5;
         public const string FIGHTER_NAME = "Fighter";
+        public const double FIGHTER_BLOCK = 20;
+        public const double FIGHTER_BLOCK_REGEN = 0.1;
 
         //Mage
         public const double MAGE_PHYSICAL_DAMAGE_AMP = 0.5;

@@ -15,11 +15,19 @@ namespace LD46
         public Sprite UIBack, HBarUI, HBarBackUI, MBarUI, MBarBackUI;
         public List<Item> items = new List<Item>();
         public List<Spell> Spells { get; set; }
-        public List<DrawnButton> buttons = new List<DrawnButton>();
+        public List<DrawnButton> itemButtons = new List<DrawnButton>(), spellButtons = new List<DrawnButton>();
+        private double RegenTick { get; set; }
+        private double TimePassed { get; set; }
+        public double HealthRegen { get; set; }
+        public double ManaRegen { get; set; }
 
-        public Player(double Health, double Mana, float x, float y, int texNum, int attackTexNum, int spriteNum, int w, int h, double speed, double attackPoint, double attackSpeed, string name, double damage, double PhysicalAmp, double MagicalAmp)
+        public Player(double Health, double Mana, float x, float y, int texNum, int attackTexNum, int spriteNum, int w, int h, double speed, double attackPoint, double attackSpeed, string name, double damage, double PhysicalAmp, double MagicalAmp, double standardBlock, double blockRegen)
         {
-            Init(Health, Mana, x, y, texNum, attackTexNum, spriteNum, w, h, speed, 1, PhysicalAmp, MagicalAmp);
+            RegenTick = 60;
+            TimePassed = 0;
+            HealthRegen = 0.1;
+            ManaRegen = 0.1;
+            Init(Health, Mana, x, y, texNum, attackTexNum, spriteNum, w, h, speed, 1, standardBlock, PhysicalAmp, MagicalAmp, blockRegen);
             Spells = new List<Spell>();
             ani = new Animation(0, s.texture.totW / s.texture.sW - 1, 10);
             this.attackSpeed = attackSpeed;
@@ -31,7 +39,7 @@ namespace LD46
             HBarBackUI = new Sprite(w, h / 8, 0, Window.texs[2]);
             MBarUI = new Sprite(w, h / 8, 0, Window.texs[2]);
             MBarBackUI = new Sprite(w, h / 8, 0, Window.texs[2]);
-            Spells.Add(new Fireball());
+            AddSpell(new Fireball());
         }
 
         public override void Update(double delta)
@@ -99,7 +107,12 @@ namespace LD46
                     }
                 }
 
+                Regen(delta);
                 HaveItemsExpired(delta);
+                foreach (Spell s in Spells)
+                {
+                    s.Update(delta);
+                }
             }
 
             base.Update(delta);
@@ -186,7 +199,7 @@ namespace LD46
         public void DrawUI()
         {
             UIBack.w = 200;
-            UIBack.h = 880;
+            UIBack.h = 915;
             UIBack.Draw(1720, 0, false, 0, 0.5f, 0.5f, 0.5f, 0.85f);
             int y = 5;
             UIBack.w = 190;
@@ -197,7 +210,7 @@ namespace LD46
             HBarBackUI.w = 200;
             HBarBackUI.h = 30;
             HBarBackUI.Draw(1720, 755, false, 0, 0, 0, 0);
-            HBarUI.Draw(1720, 755, false, 0, (float)(1 - Health / MaxHealth) / 2, (float)(Health / MaxHealth) / 2, 0); 
+            HBarUI.Draw(1720, 755, false, 0, (float)(1 - Health / MaxHealth) / 2, (float)(Health / MaxHealth) / 2, 0);
 
             MBarUI.w = (int)(200 * Mana / MaxMana);
             MBarUI.h = 30;
@@ -211,7 +224,15 @@ namespace LD46
 
             Window.window.DrawTextCentered(TextHP, (int)(1720 + (200 / 2)), (int)(750 + (30 / 2) - 12), Globals.buttonFont);
             Window.window.DrawTextCentered(TextMP, (int)(1720 + (200 / 2)), (int)(800 + (30 / 2) - 12), Globals.buttonFont);
+            Window.window.DrawTextCentered("Block: " + (int)CurrentBlock, (int)(1720 + (200 / 2)), (int)(880 + (30 / 2) - 12), Globals.buttonFont);
 
+            foreach (Spell sp in Spells)
+            {
+                UIBack.Draw(1725, y, false, 0, 0, 0, 0, 0.5f);
+                sp.Draw(1727, y + 2);
+                y += 50;
+            }
+            y = 355;
             foreach (Item it in items)
             {
                 UIBack.Draw(1725, y, false, 0, 0, 0, 0, 0.5f);
@@ -220,12 +241,42 @@ namespace LD46
             }
         }
 
-        public void EquipItem(Item item)
+        public void AddSpell(Spell spell)
         {
-            DrawnButton b = new DrawnButton("", 1725, 5 + 50 * items.Count, 190, 45, () => { DequipItem(item); });
+            DrawnButton b = new DrawnButton("", 1725, 5 + 50 * Spells.Count, 190, 45, () => { RemoveSpell(spell); });
             b.a = 0;
             Game.game.buttons.Add(b);
-            buttons.Add(b);
+            spellButtons.Add(b);
+            Spells.Add(spell);
+        }
+
+        public void RemoveSpell(Spell spell)
+        {
+            int i = 0;
+            for (i = 0; i < Spells.Count; i++)
+            {
+                if (Spells[i] == spell)
+                {
+                    break;
+                }
+            }
+            DrawnButton b = spellButtons[i];
+            spellButtons.Remove(b);
+            Game.game.buttons.Remove(b);
+            Globals.l.Current.DropSpell(spell, x, y);
+            for (int j = i; j < spellButtons.Count; j++)
+            {
+                spellButtons[j].Y -= 50;
+            }
+            Spells.Remove(spell);
+        }
+
+        public void EquipItem(Item item)
+        {
+            DrawnButton b = new DrawnButton("", 1725, 355 + 50 * items.Count, 190, 45, () => { DequipItem(item); });
+            b.a = 0;
+            Game.game.buttons.Add(b);
+            itemButtons.Add(b);
 
             items.Add(item);
             foreach (Effect e in item.GrantedEffects)
@@ -240,7 +291,8 @@ namespace LD46
                             Health = MaxHealth * HPpercent;
                             break;
                         case EffectType.BLOCK:
-                            throw new NotImplementedException("Block is not implemented");
+                            StandardBlock += e.Modifier;
+                            CurrentBlock += e.Modifier;
                             break;
                         case EffectType.MAGICAL_DAMAGE:
                             MagicalAmp += e.Modifier;
@@ -258,18 +310,18 @@ namespace LD46
             int i = 0;
             for (i = 0; i < items.Count; i++)
             {
-                if(items[i] == item)
+                if (items[i] == item)
                 {
                     break;
                 }
             }
-            DrawnButton b = buttons[i];
-            buttons.Remove(b);
+            DrawnButton b = itemButtons[i];
+            itemButtons.Remove(b);
             Game.game.buttons.Remove(b);
             Globals.l.Current.DropItem(item, x, y);
-            for(int j = i; j < buttons.Count; j++)
+            for(int j = i; j < itemButtons.Count; j++)
             {
-                buttons[j].Y -= 50;
+                itemButtons[j].Y -= 50;
             }
             items.Remove(item);
             foreach (Effect e in item.GrantedEffects)
@@ -284,7 +336,8 @@ namespace LD46
                             Health = MaxHealth * HPpercent;
                             break;
                         case EffectType.BLOCK:
-                            throw new NotImplementedException("Block is not implemented");
+                            StandardBlock -= e.Modifier;
+                            CurrentBlock -= e.Modifier;
                             break;
                         case EffectType.MAGICAL_DAMAGE:
                             MagicalAmp -= e.Modifier;
@@ -299,19 +352,22 @@ namespace LD46
 
         public void HaveItemsExpired(double delta)
         {
-            foreach(Item i in items)
+            foreach (Item i in items)
             {
-                foreach(Effect e in i.GrantedEffects)
+                foreach (Effect e in i.GrantedEffects)
                 {
-                    if(e.HasExpired(delta))
+                    if (e.HasExpired(delta))
                     {
                         switch (e.Affects)
                         {
                             case EffectType.HP:
+                                double HPpercent = Health / MaxHealth;
                                 MaxHealth -= e.Modifier;
+                                Health = MaxHealth * HPpercent;
                                 break;
                             case EffectType.BLOCK:
-                                throw new NotImplementedException("Block is not implemented");
+                                StandardBlock -= e.Modifier;
+                                CurrentBlock -= e.Modifier;
                                 break;
                             case EffectType.MAGICAL_DAMAGE:
                                 MagicalAmp -= e.Modifier;
@@ -322,6 +378,18 @@ namespace LD46
                         }
                     }
                 }
+            }
+        }
+
+        public void Regen(double deltaTime)
+        {
+            TimePassed += deltaTime;
+            if (TimePassed > RegenTick)
+            {
+                TimePassed -= RegenTick;
+                Health = Health + HealthRegen > MaxHealth ? MaxHealth : Health + HealthRegen;
+                Mana = Mana + ManaRegen > MaxMana ? MaxMana : Mana + ManaRegen;
+                CurrentBlock = CurrentBlock + BlockRegen > StandardBlock ? CurrentBlock : CurrentBlock + BlockRegen; //Because player doesn't call base update for entity
             }
         }
     }
