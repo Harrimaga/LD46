@@ -20,13 +20,13 @@ namespace LD46
             {
                 int randX = rng.Next(1, 25);
                 int randY = rng.Next(1, 25);
-                tileGrid[randX, randY] = new Tile(new Sprite(tileSize, tileSize, 0, theme.GetTextureByType(TileType.STAIRS)), Walkable.WALKABLE, TileType.BUTTON, 0);
+                tileGrid[randX, randY] = new Tile(new Sprite(tileSize, tileSize, 0, theme.GetTextureByType(TileType.BUTTON)), Walkable.WALKABLE, TileType.BUTTON, 0);
             }
         }
 
         public override void PressButton(float px, float py)
         {
-            tileGrid[(int)px / tileSize, (int)py / tileSize] = new Tile(new Sprite(tileSize, tileSize, 0, Theme.GetTextureByType(TileType.TILE)), Walkable.WALKABLE, TileType.TILE, 0);
+            tileGrid[(int)px / tileSize, (int)py / tileSize] = new Tile(new Sprite(tileSize, tileSize, 1, Theme.GetTextureByType(TileType.BUTTON)), Walkable.WALKABLE, TileType.TILE, 0);
             if (--ButtonCLicksNeeded < 1)
             {
                 Random rng = new Random();

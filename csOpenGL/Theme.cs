@@ -20,6 +20,7 @@ namespace LD46
             textures.Add(new Texture("Textures/" + tileStyle + "Tile.png", tileStyle == "Space" || tileStyle == "SpaceDark" ? 64 : 32, 32, 32, 32));
             textures.Add(new Texture("Textures/" + tileStyle + "Wall.png", tileStyle == "Space" || tileStyle == "SpaceDark" ? 128 : 32, 32, 32, 32));
             textures.Add(new Texture("Textures/" + tileStyle + "Stairs.png", 32, 32, 32, 32));
+            textures.Add(new Texture("Textures/" + tileStyle + "Button.png", 64, 32, 32, 32));
 
             foreach (var item in textures)
             {
@@ -37,6 +38,8 @@ namespace LD46
                     return textures[1];
                 case TileType.STAIRS:
                     return textures[2];
+                case TileType.BUTTON:
+                    return textures[3];
                 default:
                     return null;
             }
