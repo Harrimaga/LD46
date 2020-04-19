@@ -38,7 +38,7 @@ namespace LD46
                     directions.Remove(dir);
                 }
             }
-            if (deepness > 8)
+            if (deepness > 7)
             {
                 return true;
             }
@@ -96,7 +96,7 @@ namespace LD46
             directions.RemoveAt(index);
 
             List<bool> result = new List<bool>();
-            for (int i = 0; i < Rng.Next(Math.Max(0, 3 - deepness / 2), 4); i++)
+            for (int i = 0; i < Rng.Next(Math.Max(0, 2 - deepness / 2), 4); i++)
             {
                 result.Add(CreateRoom(++deepness, newRoom));
             }
