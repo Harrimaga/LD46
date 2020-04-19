@@ -50,13 +50,6 @@ namespace LD46
         EAST = 3,
     }
 
-    public enum SpellEffect
-    {
-        I,
-        HATE,
-        LIFE,
-    }
-
     public enum GameState
     {
         PLAYING,

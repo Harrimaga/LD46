@@ -17,12 +17,15 @@ namespace LD46
         protected Animation ani = null;
         protected float xDir, yDir;
         protected int attackAnimation = 0;
+        public List<Effect> effects;
         public string name;
         protected double RegenTick { get; set; }
         protected double TimePassed { get; set; }
         public double StandardBlock { get; set; }
         public double CurrentBlock { get; set; }
         public double BlockRegen { get; set; }
+        public double HealthRegen { get; set; }
+        public double ManaRegen { get; set; }
 
         public void Init(double Health, double Mana, float x, float y, int texNum, int attackTexNum, int spriteNum, int w, int h, double speed, double accuracy, double standardBlock, double PhysicalAmp = 1, double MagicalAmp = 1, double blockRegen = 0.1, double regenTick = 60)
         {
@@ -48,6 +51,7 @@ namespace LD46
             HBar = new Sprite(w, h / 8, 0, Window.texs[2]);
             HBarBack = new Sprite(w, h / 8, 0, Window.texs[2]);
             attack = new Sprite(w, h, 0, Window.texs[attackTexNum]);
+            effects = new List<Effect>();
         }
 
         public double GetMagicAmp()
@@ -75,7 +79,8 @@ namespace LD46
 
         public virtual void Update(double delta)
         {
-            if (ani != null)
+
+            if(ani != null)
             {
                 ani.Update(s, delta);
             }
@@ -144,6 +149,7 @@ namespace LD46
                     }
                 }
             }
+            EffextUpdate(delta);
         }
 
         public virtual void DealPhysicalDamage(double damage, string name, string with, Entity Attacker = null, double knockBackMod = 1)
@@ -167,6 +173,21 @@ namespace LD46
             Globals.rootActionLog.TakeDamage(name, damage, with);
         }
 
+        public virtual void KnockBack(Entity e, double mod, double damage)
+        {
+            double xd = e.x + e.w / 2 - x - w / 2;
+            double yd = e.y + e.h / 2 - y - h / 2;
+            xd *= -1;
+            yd *= -1;
+            double distance = Math.Sqrt(xd * xd + yd * yd);
+            xd /= distance;
+            yd /= distance;
+            xd *= mod * damage * 25 / MaxHealth;
+            yd *= mod * damage * 25 / MaxHealth;
+            knockBackX += xd;
+            knockBackY += yd;
+        }
+
         public virtual void DealMagicDamage(double damage, string name, string with, Entity Attacker = null, double knockBackMod = 1)
         {
             if (CurrentBlock * 0.8 > damage)
@@ -187,19 +208,92 @@ namespace LD46
             if (Health < 0) Health = 0;
         }
 
-        public virtual void KnockBack(Entity e, double mod, double damage)
+        public void TakeEffect(Effect effect)
         {
-            double xd = e.x + e.w / 2 - x - w / 2;
-            double yd = e.y + e.h / 2 - y - h / 2;
-            xd *= -1;
-            yd *= -1;
-            double distance = Math.Sqrt(xd * xd + yd * yd);
-            xd /= distance;
-            yd /= distance;
-            xd *= mod * damage * 25 / MaxHealth;
-            yd *= mod * damage * 25 / MaxHealth;
-            knockBackX += xd;
-            knockBackY += yd;
+            effects.Add(effect);
+            if (!effect.HasExpired(0))
+            {
+                switch (effect.Affects)
+                {
+                    case EffectType.HP:
+                        double HPpercent = Health / MaxHealth;
+                        MaxHealth += effect.Modifier;
+                        Health = MaxHealth * HPpercent;
+                        break;
+                    case EffectType.BLOCK:
+                        StandardBlock += effect.Modifier;
+                        CurrentBlock += effect.Modifier;
+                        break;
+                    case EffectType.MAGICAL_DAMAGE:
+                        MagicalAmp += effect.Modifier;
+                        break;
+                    case EffectType.PHYSICAL_DAMAGE:
+                        PhysicalAmp += effect.Modifier;
+                        break;
+                    case EffectType.SPEED:
+                        speed *= effect.Modifier;
+                        break;
+                    case EffectType.MANA:
+                        double Manapercent = Mana / MaxMana;
+                        MaxMana += effect.Modifier;
+                        Mana = MaxMana * Manapercent;
+                        break;
+                    case EffectType.MPREGEN:
+                        ManaRegen += effect.Modifier;
+                        break;
+                    case EffectType.HPREGEN:
+                        HealthRegen += effect.Modifier;
+                        break;
+                }
+            }
+        }
+
+        public void EffextUpdate(double delta)
+        {
+            List<Effect> removables = new List<Effect>();
+            foreach (Effect e in effects)
+            {
+                if (e.HasExpired(delta))
+                {
+                    removables.Add(e);
+                    switch (e.Affects)
+                    {
+                        case EffectType.HP:
+                            double HPpercent = Health / MaxHealth;
+                            MaxHealth -= e.Modifier;
+                            Health = MaxHealth * HPpercent;
+                            break;
+                        case EffectType.BLOCK:
+                            StandardBlock -= e.Modifier;
+                            CurrentBlock -= e.Modifier;
+                            break;
+                        case EffectType.MAGICAL_DAMAGE:
+                            MagicalAmp -= e.Modifier;
+                            break;
+                        case EffectType.PHYSICAL_DAMAGE:
+                            PhysicalAmp -= e.Modifier;
+                            break;
+                        case EffectType.SPEED:
+                            speed /= e.Modifier;
+                            break;
+                        case EffectType.MANA:
+                            double Manapercent = Mana / MaxMana;
+                            MaxMana -= e.Modifier;
+                            Mana = MaxMana * Manapercent;
+                            break;
+                        case EffectType.MPREGEN:
+                            ManaRegen -= e.Modifier;
+                            break;
+                        case EffectType.HPREGEN:
+                            HealthRegen -= e.Modifier;
+                            break;
+                    }
+                }
+            }
+            foreach (Effect effect in removables)
+            {
+                effects.Remove(effect);
+            }
         }
 
         public bool Move(float xa, float ya)

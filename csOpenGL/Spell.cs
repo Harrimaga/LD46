@@ -6,21 +6,23 @@ using System.Threading.Tasks;
 
 namespace LD46
 {
-    public abstract class Spell
+    public class Spell : ICloneable
     {
         public double Mana { get; set; }
         public double Damage { get; set; }
         public double Cooldown { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public List<SpellEffect> Effects { get; set; }
+
+        public double Duration { get; set; }
+        public List<Effect> Effects { get; set; }
         public double AOE { get; set; }
         public Sprite Icon { get; set; }
         public Sprite CooldownSprite { get; set; }
         public Animation SpellAnimation { get; set; }
         public double CurrentCooldown { get; set; }
 
-        protected Spell(double mana, double damage, double cooldown, string name, string description, List<SpellEffect> effects, double aOE, Sprite icon, Animation spellAnimation)
+        protected Spell(double mana, double damage, double cooldown, string name, string description, List<Effect> effects, double aOE, Sprite icon, Animation spellAnimation)
         {
             Mana = mana;
             Damage = damage;
@@ -48,6 +50,10 @@ namespace LD46
                 {
                     //Deal damage and add the spell effects to the enemies withing AOE
                     target.DealMagicDamage(damage, Globals.l.p.name, caster.name);
+                    foreach (Effect effect in Effects)
+                    {
+                        target.TakeEffect((Effect)effect.Clone());
+                    }
                     if (caster == Globals.l.p)
                     {
                         Globals.rootActionLog.DealDamage(target.name, damage, Name);
@@ -86,6 +92,19 @@ namespace LD46
             }
 
             SpellAnimation.Update(Icon, deltaTime);
+        }
+
+        public object Clone()
+        {
+            List<Effect> effects = new List<Effect>();
+            foreach(Effect e in Effects)
+            {
+                effects.Add(new Effect(e.Affects, e.Modifier, e.TimeLeft));
+            }
+
+            Spell s = new Spell(Mana, Damage, Cooldown, Name, Description, effects, AOE, new Sprite(Icon.w, Icon.h, Icon.num, Icon.texture), new Animation(SpellAnimation.start, SpellAnimation.last, SpellAnimation.time));
+
+            return s;
         }
     }
 }

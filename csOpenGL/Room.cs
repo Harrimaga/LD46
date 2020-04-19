@@ -253,17 +253,7 @@ namespace LD46
         public void DropSpell(float x, float y)
         {
             int rn = Globals.Rng.Next(1);
-            Spell s = null;
-            switch (rn)
-            {
-                case 0:
-                    s = new Fireball();
-                    break;
-            }
-            if (s != null)
-            {
-                spells.Add(new SpellPos((int)(x + (1.5 * Globals.l.Rng.NextDouble() - 0.75) * Globals.TileSize), (int)(y + (1.5 * Globals.l.Rng.NextDouble() - 0.75) * Globals.TileSize), s));
-            }
+            spells.Add(new SpellPos((int)(x + (1.5 * Globals.l.Rng.NextDouble() - 0.75) * Globals.TileSize), (int)(y + (1.5 * Globals.l.Rng.NextDouble() - 0.75) * Globals.TileSize), (Spell)Globals.Spells[Globals.Rng.Next(Globals.Spells.Count)].Clone()));
         }
 
         public void AddConnection(Connection connection)
