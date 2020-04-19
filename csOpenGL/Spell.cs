@@ -31,7 +31,7 @@ namespace LD46
             AOE = aOE;
             Icon = icon;
             SpellAnimation = spellAnimation;
-            CooldownSprite = new Sprite(0, 40, 0, Window.texs[2]);
+            CooldownSprite = new Sprite(0, 45, 0, Window.texs[2]);
         }
 
         public void Cast(float x, float y, IEnumerable<Entity> possibleTargets, Entity caster)
@@ -68,8 +68,8 @@ namespace LD46
         public void Draw(float x, float y)
         {
             Icon.Draw(x, y, false);
-            CooldownSprite.w = 200*(int)(CurrentCooldown / Cooldown);
-            CooldownSprite.Draw(x - 5, y, false, 0, 0, 0, 0, 0.2f);
+            CooldownSprite.w = (int)(190*CurrentCooldown / Cooldown);
+            CooldownSprite.Draw(x - 2, y - 2, false, 0, 0, 0, 0, 0.8f);
             Window.window.DrawText(Name, (int)x + 45, (int)y + 7, Globals.buttonFont);
         }
 

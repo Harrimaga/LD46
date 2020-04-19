@@ -317,7 +317,7 @@ namespace LD46
             itemButtons.Remove(b);
             Game.game.buttons.Remove(b);
             Globals.l.Current.DropItem(item, x, y);
-            for(int j = i; j < buttons.Count; j++)
+            for(int j = i; j < itemButtons.Count; j++)
             {
                 itemButtons[j].Y -= 50;
             }
