@@ -31,7 +31,6 @@ namespace LD46
 
         public List<DrawnButton> buttons = new List<DrawnButton>();
         private Player p;
-        private Theme theme = new Theme("SpaceDark");
         private int LevelsPlayed { get; set; }
 
         public Game(Window window)
@@ -186,9 +185,11 @@ namespace LD46
             buttons.Clear();
             pp.ReAddButtons();
             p = pp;
+            Globals.PossibleBosses = new List<Enemy> { new Hirrathak() };
             new Level(Globals.Themes[Globals.Rng.Next(Globals.Themes.Count)], p, Globals.Rng.Next());
             gameState = GameState.PLAYING;
             LevelsPlayed = 0;
+            
         }
 
     }
