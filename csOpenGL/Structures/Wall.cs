@@ -8,15 +8,16 @@ namespace LD46
 {
     public class Wall : Structure
     {
-        private bool horizontal;
+        private bool Horizontal;
         public Wall(int x, int y, Tile[,] tileGrid, Theme theme, bool horizontal) : base(horizontal ? 3 : 1, horizontal ? 1 : 3, x, y, tileGrid, theme)
         {
-            this.horizontal = horizontal;
+            Horizontal = horizontal;
+            Place(tileGrid);
         }
 
         public override void Place(Tile[,] tileGrid)
         {
-            if (horizontal)
+            if (Horizontal)
             {
                 tileGrid[X + 1, Y] = new Tile(new Sprite(Globals.TileSize, Globals.TileSize, 0, Theme.GetTextureByType(TileType.WALL)), Walkable.SOLID, TileType.WALL, 0.5f * (float)Math.PI);
                 tileGrid[X + 2, Y] = new Tile(new Sprite(Globals.TileSize, Globals.TileSize, 2, Theme.GetTextureByType(TileType.WALL)), Walkable.SOLID, TileType.WALL, X - 1 == 0 ? 0 : 0.5f * (float)Math.PI);
