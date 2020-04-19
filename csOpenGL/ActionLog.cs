@@ -46,6 +46,11 @@ namespace LD46
             Add(entityName + " has died.");
         }
 
+        public void BossDeath()
+        {
+            Add("Game lost because the boss died.");
+        }
+
         private void CheckLimit()
         {
             while (ActionList.Count > Limit)
