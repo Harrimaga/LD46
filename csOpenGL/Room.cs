@@ -17,6 +17,7 @@ namespace LD46
         public List<Projectile> removeProjectiles;
         public List<Projectile> projectiles;
         public List<ItemPos> items;
+        public List<SpellPos> spells;
         public bool visited;
         public List<Connection> Connections { get; set; }
         public Theme Theme { get; set; }
@@ -25,6 +26,7 @@ namespace LD46
         {
             Connections = new List<Connection>();
             items = new List<ItemPos>();
+            spells = new List<SpellPos>();
             Theme = theme;
             s = new Sprite(x, y, 0, Window.texs[2]);
             visited = false;
@@ -127,7 +129,7 @@ namespace LD46
         {
             foreach (var p in projectiles)
             {
-                if(p.Update(delta))
+                if (p.Update(delta))
                 {
                     removeProjectiles.Add(p);
                 }
@@ -143,6 +145,10 @@ namespace LD46
             }
             foreach (var enemy in removables)
             {
+                if (Globals.Rng.Next(100) < 10)
+                {
+                    DropSpell(enemy.x, enemy.y);
+                }
                 enemies.Remove(enemy);
             }
             removables.Clear();
@@ -187,6 +193,10 @@ namespace LD46
             {
                 it.it.DrawOnGround(it.x, it.y, it.rot);
             }
+            foreach (SpellPos spell in spells)
+            {
+                spell.spell.DrawOnGround(spell.x, spell.y);
+            }
             foreach (var enemy in enemies)
             {
                 enemy.Draw();
@@ -199,28 +209,52 @@ namespace LD46
 
         public void TryPickup()
         {
-            if (Globals.l.p.items.Count >= 15) return;
-            bool b = false;
-            ItemPos pickedUp = new ItemPos();
             foreach (ItemPos it in items)
             {
+                if (Globals.l.p.items.Count >= 6) break;
                 if (Globals.checkCol(it.x, it.y, Globals.TileSize, Globals.TileSize, (int)Globals.l.p.x, (int)Globals.l.p.y, Globals.l.p.w, Globals.l.p.h))
                 {
                     Globals.l.p.EquipItem(it.it);
-                    b = true;
-                    pickedUp = it;
-                    break;
+                    items.Remove(it);
+                    return;
                 }
             }
-            if (b)
+            foreach (SpellPos spell in spells)
             {
-                items.Remove(pickedUp);
+                if (Globals.l.p.Spells.Count >= 6) break;
+                if (Globals.checkCol(spell.x, spell.y, Globals.TileSize, Globals.TileSize, (int)Globals.l.p.x, (int)Globals.l.p.y, Globals.l.p.w, Globals.l.p.h))
+                {
+                    Globals.l.p.AddSpell(spell.spell);
+                    spells.Remove(spell);
+                    return;
+                }
             }
         }
 
         public void DropItem(Item i, float x, float y)
         {
             items.Add(new ItemPos((int)(x + (1.5 * Globals.l.Rng.NextDouble() - 0.75) * Globals.TileSize), (int)(y + (1.5 * Globals.l.Rng.NextDouble() - 0.75) * Globals.TileSize), (float)(Globals.l.Rng.NextDouble() * 2 * Math.PI), i));
+        }
+
+        public void DropSpell(Spell s, float x, float y)
+        {
+            spells.Add(new SpellPos((int)(x + (1.5 * Globals.l.Rng.NextDouble() - 0.75) * Globals.TileSize), (int)(y + (1.5 * Globals.l.Rng.NextDouble() - 0.75) * Globals.TileSize), s));
+        }
+
+        public void DropSpell(float x, float y)
+        {
+            int rn = Globals.Rng.Next(1);
+            Spell s = null;
+            switch (rn)
+            {
+                case 0:
+                    s = new Fireball();
+                    break;
+            }
+            if (s != null)
+            {
+                spells.Add(new SpellPos((int)(x + (1.5 * Globals.l.Rng.NextDouble() - 0.75) * Globals.TileSize), (int)(y + (1.5 * Globals.l.Rng.NextDouble() - 0.75) * Globals.TileSize), s));
+            }
         }
 
         public void AddConnection(Connection connection)
@@ -269,6 +303,19 @@ namespace LD46
             this.y = y;
             this.it = it;
             this.rot = rot;
+        }
+    }
+
+    public struct SpellPos
+    {
+        public int x, y;
+        public Spell spell;
+
+        public SpellPos(int x, int y, Spell spell)
+        {
+            this.x = x;
+            this.y = y;
+            this.spell = spell;
         }
     }
 }

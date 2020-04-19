@@ -70,6 +70,7 @@ namespace LD46
             if (!HasBossRoom && (deepness == 12 || Rng.Next(75) < deepness))
             {
                 newRoom = new ButtonClickBoss(theme);
+                HasBossRoom = true;
             }
             else
             {
