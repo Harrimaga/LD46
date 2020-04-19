@@ -3,19 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static LD46.Itemchances;
 
 namespace LD46
 {
     public class Room
     {
         public Tile[,] tileGrid;
-        public int width, height, tileSize;
+        public int width, height, tileSize, chanceTotal = 0;
         public string tileStyle;
         public Sprite s;
         public List<Enemy> enemies;
         public List<Enemy> removables;
         public List<Projectile> removeProjectiles;
         public List<Projectile> projectiles;
+        public List<Itemchances> itemDrops;
         public List<ItemPos> items;
         public List<SpellPos> spells;
         public bool visited;
@@ -24,6 +26,7 @@ namespace LD46
 
         public Room(int x, int y, Theme theme, int tileSize = Globals.TileSize)
         {
+            AddItems();
             Connections = new List<Connection>();
             items = new List<ItemPos>();
             spells = new List<SpellPos>();
@@ -95,30 +98,17 @@ namespace LD46
                                 enemies.Add(new RangedEnemy(i * Globals.TileSize, j * Globals.TileSize));
                             }
                         }
-                        else if (Globals.l.Rng.Next(1000) < 3)
+                        else if (Globals.l.Rng.Next(1000) < 300)
                         {
-                            int rn = Globals.Rng.Next(6);
+                            int rn = Globals.Rng.Next(chanceTotal);
                             Item it = null;
-                            switch (rn)
+                            foreach(Itemchances item in itemDrops)
                             {
-                                case 0:
-                                    it = new Sword();
+                                if(rn < item.chance)
+                                {
+                                    it = item.make();
                                     break;
-                                case 1:
-                                    it = new OrbOfHealth();
-                                    break;
-                                case 2:
-                                    it = new WandOfRed();
-                                    break;
-                                case 3:
-                                    it = new WandOfBlue();
-                                    break;
-                                case 4:
-                                    it = new WandOfGreen();
-                                    break;
-                                case 5:
-                                    it = new HelmOfPylonius();
-                                    break;
+                                }
                             }
                             if (it != null)
                             {
@@ -129,7 +119,6 @@ namespace LD46
                 }
             }
         }
-
 
         public Tile getTile(int x, int y)
         {
@@ -264,17 +253,7 @@ namespace LD46
         public void DropSpell(float x, float y)
         {
             int rn = Globals.Rng.Next(1);
-            Spell s = null;
-            switch (rn)
-            {
-                case 0:
-                    s = new Fireball();
-                    break;
-            }
-            if (s != null)
-            {
-                spells.Add(new SpellPos((int)(x + (1.5 * Globals.l.Rng.NextDouble() - 0.75) * Globals.TileSize), (int)(y + (1.5 * Globals.l.Rng.NextDouble() - 0.75) * Globals.TileSize), s));
-            }
+            spells.Add(new SpellPos((int)(x + (1.5 * Globals.l.Rng.NextDouble() - 0.75) * Globals.TileSize), (int)(y + (1.5 * Globals.l.Rng.NextDouble() - 0.75) * Globals.TileSize), (Spell)Globals.Spells[Globals.Rng.Next(Globals.Spells.Count)].Clone()));
         }
 
         public void AddConnection(Connection connection)
@@ -308,6 +287,68 @@ namespace LD46
         public virtual void PressButton(float px, float py)
         {
 
+        }
+
+        private void AddItems()
+        {
+            itemDrops = new List<Itemchances>();
+            AddItem(new Sword(), () => { return new Sword(); });
+            AddItem(new OrbOfHealth(), () => { return new OrbOfHealth(); });
+            AddItem(new WandOfBlue(), () => { return new WandOfBlue(); });
+            AddItem(new WandOfGreen(), () => { return new WandOfGreen(); });
+            AddItem(new WandOfRed(), () => { return new WandOfRed(); });
+            AddItem(new HelmOfPylonius(), () => { return new HelmOfPylonius(); });
+
+            int i = 0;
+            foreach(Itemchances itc in itemDrops)
+            {
+                int j = i + itc.chance;
+                itc.chance += i;
+                i = j;
+            }
+        }
+
+        private void AddItem(Item it, Create make)
+        {
+            int chance = 0;
+            switch(it.Rarity)
+            {
+                case Rarity.BASIC:
+                    chance = 0;
+                    break;
+                case Rarity.COMMON:
+                    chance = 10;
+                    break;
+                case Rarity.UNCOMMON:
+                    chance = 5;
+                    break;
+                case Rarity.RARE:
+                    chance = 2;
+                    break;
+                case Rarity.SUPER_RARE:
+                    chance = 1;
+                    break;
+
+            }
+            chanceTotal += chance;
+            itemDrops.Add(new Itemchances(it.Rarity, chance, make));
+        }
+
+    }
+
+    public class Itemchances
+    {
+
+        public Rarity rarity;
+        public int chance;
+        public delegate Item Create();
+        public Create make;
+
+        public Itemchances(Rarity rarity, int chance, Create make)
+        {
+            this.rarity = rarity;
+            this.chance = chance;
+            this.make = make;
         }
     }
 

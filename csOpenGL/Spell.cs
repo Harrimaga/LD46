@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LD46
 {
-    public abstract class Spell
+    public class Spell : ICloneable
     {
         public double Mana { get; set; }
         public double Damage { get; set; }
@@ -92,6 +92,19 @@ namespace LD46
             }
 
             SpellAnimation.Update(Icon, deltaTime);
+        }
+
+        public object Clone()
+        {
+            List<Effect> effects = new List<Effect>();
+            foreach(Effect e in Effects)
+            {
+                effects.Add(new Effect(e.Affects, e.Modifier, e.TimeLeft));
+            }
+
+            Spell s = new Spell(Mana, Damage, Cooldown, Name, Description, effects, AOE, new Sprite(Icon.w, Icon.h, Icon.num, Icon.texture), new Animation(SpellAnimation.start, SpellAnimation.last, SpellAnimation.time));
+
+            return s;
         }
     }
 }
