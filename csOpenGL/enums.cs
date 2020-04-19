@@ -52,4 +52,12 @@ namespace LD46
         HATE,
         LIFE,
     }
+
+    public enum GameState
+    {
+        PLAYING,
+        DEAD,
+        WON
+    }
+
 }
