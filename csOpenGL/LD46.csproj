@@ -126,6 +126,7 @@
     <Compile Include="Balance\Balance.cs" />
     <Compile Include="Balance\Enemies.cs" />
     <Compile Include="Balance\Spells.cs" />
+    <Compile Include="Enemies\Bosses\Hirrathak.cs" />
     <Compile Include="Enemies\RangedEnemy.cs" />
     <Compile Include="Bossrooms\ButtonClickBoss.cs" />
     <Compile Include="Items\OrbOfHealth.cs" />

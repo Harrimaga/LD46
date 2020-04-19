@@ -10,10 +10,12 @@ namespace LD46
     public static class Globals
     {
 
+        
         public static Level l = null;
         public const int TileSize = 64;
         public static QFont buttonFont = new QFont("Fonts/arial.ttf", 16, new QuickFont.Configuration.QFontBuilderConfiguration(true));
         public static QFont logFont = new QFont("Fonts/arial.ttf", 10, new QuickFont.Configuration.QFontBuilderConfiguration(true));
+        public static List<Enemy> PossibleBosses = new List<Enemy> { new Hirrathak() };
         public static ActionLog rootActionLog = new ActionLog(15);
         public static List<Theme> Themes = new List<Theme> { new Theme("Space"), new Theme("SpaceDark") };
         public static Random Rng = new Random();
