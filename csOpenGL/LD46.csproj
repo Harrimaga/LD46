@@ -125,6 +125,7 @@
     <Compile Include="ActionLog.cs" />
     <Compile Include="Balance\Balance.cs" />
     <Compile Include="Balance\Enemies.cs" />
+    <Compile Include="Balance\Spells.cs" />
     <Compile Include="Items\OrbOfHealth.cs" />
     <Compile Include="Items\Sword.cs" />
     <Compile Include="Connection.cs" />
@@ -147,6 +148,7 @@
     <Compile Include="Shader.cs" />
     <Compile Include="SoundManager.cs" />
     <Compile Include="Spell.cs" />
+    <Compile Include="Spells\Fireball.cs" />
     <Compile Include="Sprite.cs" />
     <Compile Include="Texture.cs" />
     <Compile Include="Theme.cs" />
@@ -231,7 +233,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Sound\" />
-    <Folder Include="Spells\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

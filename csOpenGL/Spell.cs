@@ -31,15 +31,27 @@ namespace LD46
             SpellAnimation = spellAnimation;
         }
 
-        public void Cast(float x, float y)
+        public void Cast(float x, float y, IEnumerable<Entity> possibleTargets, Entity caster)
         {
-            foreach(Enemy enemy in Globals.l.Current.enemies)
+            double damage = Damage * caster.GetMagicAmp();
+            if(!caster.LoseMana(Mana))
             {
-                if(Math.Abs(enemy.x-x) < AOE && Math.Abs(enemy.y-y) < AOE)
+                return;
+            }
+            foreach (Entity target in possibleTargets)
+            {
+                if(Math.Abs(target.x-x) < AOE && Math.Abs(target.y-y) < AOE)
                 {
                     //Deal damage and add the spell effects to the enemies withing AOE
-                    enemy.DealMagicDamage(Damage, Globals.l.p.name, Name);
-
+                    target.DealMagicDamage(damage, Globals.l.p.name, caster.name);
+                    if (caster == Globals.l.p)
+                    {
+                        Globals.rootActionLog.DealDamage(target.name, damage, Name);
+                    }
+                    else
+                    {
+                        Globals.rootActionLog.TakeDamage(target.name, damage, Name);
+                    }
                 }
             }
         }
