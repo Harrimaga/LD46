@@ -117,7 +117,7 @@ namespace LD46
             GL.BindBufferBase(BufferRangeTarget.ShaderStorageBuffer, 0, ssbo);
 
             //Font
-            font = new QFont("Fonts/arial.ttf", 36 * Height / 1080.0f, new QuickFont.Configuration.QFontBuilderConfiguration(true));
+            font = new QFont("Fonts/arial.ttf", 36, new QuickFont.Configuration.QFontBuilderConfiguration(true));
             textDrawing = new QFontDrawing();
             Matrix4 m = Matrix4.Identity;
             m.M11 /= (float)(1920.0 / 2);
@@ -129,6 +129,7 @@ namespace LD46
             Window.texs.Add(new Texture("Textures/ButtonDown.png", 48, 16, 48, 16));                //1
             Window.texs.Add(new Texture("Textures/WhitePixel.png", 1, 1, 1, 1));                    //2
             Window.texs.Add(new Texture("Textures/Player/PlayerAttack.png", 400, 40, 40, 40));      //3
+            Window.texs.Add(new Texture("Textures/Items/Sword.png", 54, 54, 54, 54));               //4
 
             game = new Game(this);
             base.OnLoad(e);
@@ -216,7 +217,7 @@ namespace LD46
         protected override void OnMouseMove(MouseMoveEventArgs e)
         {
             mouseX = (int)(e.X / screenScaleX);
-            mouseY = (int)(e.Y / screenScaleX);
+            mouseY = (int)(e.Y / screenScaleY);
             base.OnMouseMove(e);
         }
 

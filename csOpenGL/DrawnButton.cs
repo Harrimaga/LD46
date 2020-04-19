@@ -13,8 +13,8 @@ namespace LD46
 
         private Sprite Sprite { get; set; }
         public string Text { get; set; }
-        private float X { get; set; }
-        private float Y { get; set; }
+        public float X { get; set; }
+        public float Y { get; set; }
         private float Width { get; set; }
         private float Height { get; set; }
         private EventAction OnClickAction { get; set; }
@@ -36,6 +36,10 @@ namespace LD46
             Height = height;
             OnClickAction = onClickAction;
             Sprite = new Sprite((int)width, (int)height, 0, Window.texs[1]);
+            r = 1;
+            g = 1;
+            b = 1;
+            a = 1;
         }
 
         public bool IsInButton(float x, float y)
@@ -50,7 +54,7 @@ namespace LD46
 
         public void Draw()
         {
-            Sprite.Draw(X, Y, true, 0, r, g, b, a);
+            Sprite.Draw(X, Y, false, 0, r, g, b, a);
             Window.window.DrawTextCentered(Text, (int)(X + (Width / 2)), (int)(Y + (Height / 2) - 12), Globals.buttonFont);
             
         }

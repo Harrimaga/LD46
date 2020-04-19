@@ -9,11 +9,11 @@ namespace LD46
     public class OrbOfHealth : Item
     {
         public OrbOfHealth() : base(
-            "Sword",
+            "Orb Of Health",
             Balance.SWORD_RARITY,
             Balance.SWORD_DESCRIPTION,
-            new Sprite(0, 0, 0, new Texture("", 0, 0, 0, 0)),
-            new Effect[] { new Effect(EffectType.PHYSICAL_DAMAGE, 0.1, -999) }
+            new Sprite(40, 40, 0, Window.texs[0]),
+            new Effect[] { new Effect(EffectType.HP, 20, -999) }
             )
         {
 

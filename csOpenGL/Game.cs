@@ -24,6 +24,7 @@ namespace LD46
         private Hotkey num4 = new Hotkey(false).AddKey(Key.Number4);
         private Hotkey num5 = new Hotkey(false).AddKey(Key.Number5);
         private Hotkey num6 = new Hotkey(false).AddKey(Key.Number6);
+        private Hotkey pickUp = new Hotkey(false).AddKey(Key.Q);
 
         public List<DrawnButton> buttons = new List<DrawnButton>();
         private Player p;
@@ -40,26 +41,36 @@ namespace LD46
         {
             //buttons.Add(new DrawnButton("Red Velvet", 500, 500, 200, 50, () => { Console.WriteLine("Button 1"); }));
             p = new Fighter(Globals.TileSize, Globals.TileSize);
-            new Level(theme, p, 5);
+            new Level(theme, p, 0);
         }
 
         public void Update(double delta)
         {
             //Updating logic
-            if (left.IsDown()) p.SetDir(-1, 0);
-            if (right.IsDown()) p.SetDir(1, 0);
-            if (up.IsDown()) p.SetDir(0, -1);
-            if (down.IsDown()) p.SetDir(0, 1);
-            if (attack.IsDown()) p.a = true;
-            //Spell hotkeys
-            if (num1.IsDown()) TrySpellAttack(0);
-            if (num2.IsDown()) TrySpellAttack(1);
-            if (num3.IsDown()) TrySpellAttack(2);
-            if (num4.IsDown()) TrySpellAttack(3);
-            if (num5.IsDown()) TrySpellAttack(4);
-            if (num6.IsDown()) TrySpellAttack(5);
+            if (p.Health > 0)
+            {
+                if (left.IsDown()) p.SetDir(-1, 0);
+                if (right.IsDown()) p.SetDir(1, 0);
+                if (up.IsDown()) p.SetDir(0, -1);
+                if (down.IsDown()) p.SetDir(0, 1);
+                if (attack.IsDown()) p.a = true;
+                if (pickUp.IsDown()) Globals.l.Current.TryPickup();
+                //Spell hotkeys
+                if (num1.IsDown()) TrySpellAttack(0);
+                if (num2.IsDown()) TrySpellAttack(1);
+                if (num3.IsDown()) TrySpellAttack(2);
+                if (num4.IsDown()) TrySpellAttack(3);
+                if (num5.IsDown()) TrySpellAttack(4);
+                if (num6.IsDown()) TrySpellAttack(5);
 
-            Globals.l.Update(delta);
+                Globals.l.Update(delta);
+                if(p.Health <= 0)
+                {
+                    buttons.Clear();
+                    buttons.Add(new DrawnButton("Restart", 760, 600, 400, 75, () => { Restart(); }));
+                }
+            }
+
         }
 
         private void TrySpellAttack(int spellSlot)
@@ -74,7 +85,14 @@ namespace LD46
         public void Draw()
         {
             //Do all you draw calls here
-            Globals.l.Draw();
+            if (p.Health > 0)
+            {
+                Globals.l.Draw();
+            }
+            else
+            {
+                Window.window.DrawTextCentered("You died!", 960, 300);
+            }
             Globals.rootActionLog.Draw();
             foreach (DrawnButton button in buttons)
             {
@@ -87,11 +105,13 @@ namespace LD46
         {
             if(e.Button == MouseButton.Left)
             {
-                foreach (DrawnButton button in buttons)
+                for(int i = buttons.Count-1; i >= 0; i--)
                 {
+                    DrawnButton button = buttons[i];
                     if (button.IsInButton(mx, my))
                     {
                         button.OnClick();
+                        break;
                     }
                 }
             }
@@ -102,5 +122,12 @@ namespace LD46
 
         }
         
+        public void Restart()
+        {
+            buttons.Clear();
+            p = new Fighter(Globals.TileSize, Globals.TileSize);
+            new Level(theme, p, Globals.l.Rng.Next());
+        }
+
     }
 }
