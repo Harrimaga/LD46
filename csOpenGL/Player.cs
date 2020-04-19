@@ -232,12 +232,17 @@ namespace LD46
             Window.window.DrawTextCentered(TextMP, (int)(1670 + (250 / 2)), (int)(800 + (30 / 2) - 12), Globals.buttonFont);
             Window.window.DrawTextCentered("Block: " + (int)CurrentBlock, (int)(1670 + (250 / 2)), (int)(880 + (30 / 2) - 12), Globals.buttonFont);
 
-            UIBack.w = 240;
+            UIBack.w = 200;
             UIBack.h = 45;
+
+            int i = 0;
             foreach (Spell sp in Spells)
             {
-                UIBack.Draw(1675, y, false, 0, 0, 0, 0, 0.5f);
-                sp.Draw(1677, y + 2);
+                i++;
+                string TextSpellNumber = i.ToString();
+                UIBack.Draw(1715, y, false, 0, 0, 0, 0, 0.5f);
+                sp.Draw(1717, y + 2);
+                Window.window.DrawTextCentered(TextSpellNumber, 1691, y + 9, Globals.buttonFont);
                 y += 50;
             }
             y = 355;
