@@ -23,7 +23,8 @@ namespace LD46
                 tileGrid[randX, randY] = new Tile(new Sprite(tileSize, tileSize, 0, theme.GetTextureByType(TileType.BUTTON)), Walkable.WALKABLE, TileType.BUTTON, 0);
             }
 
-            _ = new Wall(7, 7, tileGrid, theme);
+            _ = new Wall(7, 7, tileGrid, theme, true);
+            _ = new Wall(14, 14, tileGrid, theme, false);
         }
 
         public override void PressButton(float px, float py)
