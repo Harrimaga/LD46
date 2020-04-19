@@ -15,7 +15,7 @@ namespace LD46
         public const double FIREBALL_COOLDOWN = 4 * 60;
         public const string FIREBALL_NAME = "Fireball";
         public const string FIREBALL_DESCRIPTION = "Fiery ball of death and destruction";
-        public const double FIREBALL_AOE = 300;
+        public const double FIREBALL_AOE = 150;
 
         //Slowness
         public const double SLOWNESS_MANA = 30;
@@ -33,7 +33,7 @@ namespace LD46
         public const double PILLAR_OF_LIGHT_COOLDOWN = 3 * 60;
         public const string PILLAR_OF_LIGHT_NAME = "Pillar of light";
         public const string PILLAR_OF_LIGHT_DESCRIPTION = "The heavens opening the gate allowing light to flood out. Or someone just shines their lamp directly in your eye.";
-        public const double PILLAR_OF_LIGHT_AOE = 200;
+        public const double PILLAR_OF_LIGHT_AOE = 75;
 
         //Disable
         public const double DISABLE_MANA = 50;
