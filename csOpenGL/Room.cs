@@ -99,7 +99,7 @@ namespace LD46
                         {
                             int rn = Globals.Rng.Next(5);
                             Item it = null;
-                            switch(rn)
+                            switch (rn)
                             {
                                 case 0:
                                     it = new Sword();
@@ -117,7 +117,8 @@ namespace LD46
                                     it = new WandOfGreen();
                                     break;
                             }
-                            if(it != null)
+                            if (it != null)
+                            {
                                 items.Add(new ItemPos(i * Globals.TileSize, j * Globals.TileSize, (float)(Globals.l.Rng.NextDouble() * 2 * Math.PI), it));
                             }
                         }
@@ -125,6 +126,7 @@ namespace LD46
                 }
             }
         }
+
 
         public Tile getTile(int x, int y)
         {

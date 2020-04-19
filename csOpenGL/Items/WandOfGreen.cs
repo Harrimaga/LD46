@@ -12,7 +12,7 @@ namespace LD46
             "Wand of green",
             Balance.WAND_OF_GREEN_RARITY,
             Balance.WAND_OF_GREEN_DESCRIPTION,
-            new Sprite(40, 40, 0, Window.texs[4]),
+            new Sprite(40, 40, 0, Window.texs[10]),
             new Effect[] { new Effect(EffectType.MAGICAL_DAMAGE, Balance.WAND_OF_GREEN_MAGICAL_AMP, -999) }
             )
         {
