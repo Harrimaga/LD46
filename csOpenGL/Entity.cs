@@ -18,10 +18,18 @@ namespace LD46
         protected float xDir, yDir;
         protected int attackAnimation = 0;
         public string name;
+        protected double RegenTick { get; set; }
+        protected double TimePassed { get; set; }
+        public double StandardBlock { get; set; }
+        public double CurrentBlock { get; set; }
+        public double BlockRegen { get; set; }
 
-        public void Init(double Health, double Mana, float x, float y, int texNum, int attackTexNum, int spriteNum, int w, int h, double speed, double accuracy, double PhysicalAmp = 1, double MagicalAmp = 1)
+        public void Init(double Health, double Mana, float x, float y, int texNum, int attackTexNum, int spriteNum, int w, int h, double speed, double accuracy, double standardBlock, double PhysicalAmp = 1, double MagicalAmp = 1, double blockRegen = 0.1)
         {
             this.MaxHealth = Health;
+            StandardBlock = standardBlock;
+            CurrentBlock = standardBlock;
+            BlockRegen = blockRegen;
             this.Health = Health;
             this.MaxMana = Mana;
             this.Mana = Mana;
@@ -73,11 +81,21 @@ namespace LD46
             {
                 rotation = (float)Math.Atan2(xDir, -yDir);
             }
-
+            RegenBlock(delta);
         }
 
         public virtual void DealPhysicalDamage(double damage, string name, string with)
         {
+            if(CurrentBlock > damage)
+            {
+                CurrentBlock -= damage;
+                damage = 0;
+            }
+            else
+            {
+                damage -= CurrentBlock;
+                CurrentBlock = 0;
+            }
             Health -= damage;
             if (Health < 0) Health = 0;
             Globals.rootActionLog.TakeDamage(name, damage, with);
@@ -85,6 +103,16 @@ namespace LD46
 
         public virtual void DealMagicDamage(double damage, string name, string with)
         {
+            if (CurrentBlock * 0.8 > damage)
+            {
+                CurrentBlock -= damage;
+                damage = 0;
+            }
+            else
+            {
+                damage -= CurrentBlock * 0.8;
+                CurrentBlock = 0;
+            }
             Health -= damage;
             if (Health < 0) Health = 0;
         }
@@ -138,5 +166,14 @@ namespace LD46
             return null;
         }
 
+        protected void RegenBlock(double deltaTime)
+        {
+            TimePassed += deltaTime;
+            if (TimePassed > RegenTick)
+            {
+                TimePassed -= RegenTick;
+                CurrentBlock = CurrentBlock + BlockRegen > StandardBlock ? CurrentBlock : CurrentBlock + BlockRegen;
+            }
+        }
     }
 }

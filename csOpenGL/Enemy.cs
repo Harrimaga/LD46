@@ -14,9 +14,9 @@ namespace LD46
         public bool attacked = false, attacking = false;
         public int maxDistance = 1000, minDistance = Globals.TileSize, range = 600;
 
-        public Enemy(double Health, double Mana, float x, float y, int texNum, int attackTexNum, int spriteNum, int w, int h, double speed, double attackPoint, double attackSpeed, double damage, string name, double PhysicalAmp = 1, double MagicalAmp = 1)
+        public Enemy(double Health, double Mana, float x, float y, int texNum, int attackTexNum, int spriteNum, int w, int h, double speed, double attackPoint, double attackSpeed, double damage, string name, double standardBlock, double PhysicalAmp = 1, double MagicalAmp = 1)
         {
-            Init(Health, Mana, x, y, texNum, attackTexNum, spriteNum, w, h, speed, 1, PhysicalAmp, MagicalAmp);
+            Init(Health, Mana, x, y, texNum, attackTexNum, spriteNum, w, h, speed, 1, standardBlock, PhysicalAmp, MagicalAmp);
             this.attackSpeed = attackSpeed;
             this.attackPoint = attackPoint;
             this.damage = damage;
