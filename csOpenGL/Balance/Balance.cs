@@ -23,6 +23,9 @@ namespace LD46
         public const string FIGHTER_NAME = "Fighter";
         public const double FIGHTER_BLOCK = 20;
         public const double FIGHTER_BLOCK_REGEN = 0.1;
+        public const double FIGHTER_MANA_REGEN = 0.1;
+        public const double FIGHTER_HEALTH_REGEN = 0.2;
+
 
         //Mage
         public const double MAGE_PHYSICAL_DAMAGE_AMP = 0.5;
@@ -36,6 +39,8 @@ namespace LD46
         public const string MAGE_NAME = "Mage";
         public const double MAGE_BLOCK = 20;
         public const double MAGE_BLOCK_REGEN = 0.1;
+        public const double MAGE_MANA_REGEN = 0.4;
+        public const double MAGE_HEALTH_REGEN = 0.1;
 
         /// <summary>
         /// Items
