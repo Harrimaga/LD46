@@ -240,9 +240,11 @@ namespace LD46
             {
                 i++;
                 string TextSpellNumber = i.ToString();
+                string TextSpellMana = sp.Mana.ToString();
                 UIBack.Draw(1715, y, false, 0, 0, 0, 0, 0.5f);
                 sp.Draw(1717, y + 2);
                 Window.window.DrawTextCentered(TextSpellNumber, 1691, y + 9, Globals.buttonFont);
+                Window.window.DrawTextCentered(TextSpellMana, 1900, y + 9, Globals.buttonFont);
                 y += 50;
             }
             y = 355;
