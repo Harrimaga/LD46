@@ -14,7 +14,7 @@ namespace LD46
         public int X { get; set; }
         public int Y { get; set; }
 
-        protected Structure(int width, int height, int x, int y, int[,] tileGrid, Theme theme)
+        protected Structure(int width, int height, int x, int y, Tile[,] tileGrid, Theme theme)
         {
             Theme = theme;
             Width = width;
@@ -24,7 +24,7 @@ namespace LD46
             Place(tileGrid);
         }
 
-        public abstract void Place(int[,] tileGrid);
+        public abstract void Place(Tile[,] tileGrid);
         public virtual void Update(double deltaTime)
         {
             //For general structures nothing needs to happen here
