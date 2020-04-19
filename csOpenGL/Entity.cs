@@ -9,7 +9,7 @@ namespace LD46
     public abstract class Entity
     {
 
-        public double MaxHealth, Health, MaxMana, Mana, PhysicalAmp, MagicalAmp, speed, accuracy;
+        public double MaxHealth, Health, MaxMana, Mana, PhysicalAmp, MagicalAmp, speed, accuracy, knockBackX = 0, knockBackY = 0;
         public int w, h;
         protected float rotation = 0, r = 1, g = 1, b = 1, a = 1;
         public float x, y;
@@ -57,7 +57,7 @@ namespace LD46
 
         public bool LoseMana(double mana)
         {
-            if(mana > Mana)
+            if (mana > Mana)
             {
                 return false;
             }
@@ -75,7 +75,7 @@ namespace LD46
 
         public virtual void Update(double delta)
         {
-            if(ani != null)
+            if (ani != null)
             {
                 ani.Update(s, delta);
             }
@@ -84,11 +84,71 @@ namespace LD46
                 rotation = (float)Math.Atan2(xDir, -yDir);
             }
             RegenBlock(delta);
+            if (knockBackX > 0)
+            {
+                knockBackX -= 0.2 * delta;
+                if (knockBackX <= 0)
+                {
+                    knockBackX = 0;
+                }
+                else
+                {
+                    if (Move((float)knockBackX, 0))
+                    {
+                        knockBackX = 0;
+                    }
+                }
+            }
+            else if(knockBackX < 0)
+            {
+                knockBackX += 0.2 * delta;
+                if (knockBackX >= 0)
+                {
+                    knockBackX = 0;
+                }
+                else
+                {
+                    if(Move((float)knockBackX, 0))
+                    {
+                        knockBackX = 0;
+                    }
+                }
+            }
+            if (knockBackY > 0)
+            {
+                knockBackY -= 0.2 * delta;
+                if (knockBackY <= 0)
+                {
+                    knockBackY = 0;
+                }
+                else
+                {
+                    if(Move(0, (float)knockBackY))
+                    {
+                        knockBackY = 0;
+                    }
+                }
+            }
+            else if (knockBackY < 0)
+            {
+                knockBackY += 0.2 * delta;
+                if (knockBackY >= 0)
+                {
+                    knockBackY = 0;
+                }
+                else
+                {
+                    if (Move(0, (float)knockBackY))
+                    {
+                        knockBackY = 0;
+                    }
+                }
+            }
         }
 
-        public virtual void DealPhysicalDamage(double damage, string name, string with)
+        public virtual void DealPhysicalDamage(double damage, string name, string with, Entity Attacker = null, double knockBackMod = 1)
         {
-            if(CurrentBlock > damage)
+            if (CurrentBlock > damage)
             {
                 CurrentBlock -= damage;
                 damage = 0;
@@ -98,12 +158,16 @@ namespace LD46
                 damage -= CurrentBlock;
                 CurrentBlock = 0;
             }
+            if (Attacker != null && damage != 0)
+            {
+                KnockBack(Attacker, knockBackMod, damage);
+            }
             Health -= damage;
             if (Health < 0) Health = 0;
             Globals.rootActionLog.TakeDamage(name, damage, with);
         }
 
-        public virtual void DealMagicDamage(double damage, string name, string with)
+        public virtual void DealMagicDamage(double damage, string name, string with, Entity Attacker = null, double knockBackMod = 1)
         {
             if (CurrentBlock * 0.8 > damage)
             {
@@ -115,12 +179,32 @@ namespace LD46
                 damage -= CurrentBlock * 0.8;
                 CurrentBlock = 0;
             }
+            if (Attacker != null && damage != 0)
+            {
+                KnockBack(Attacker, knockBackMod, damage);
+            }
             Health -= damage;
             if (Health < 0) Health = 0;
         }
 
-        public void Move(float xa, float ya)
+        public virtual void KnockBack(Entity e, double mod, double damage)
         {
+            double xd = e.x + e.w / 2 - x - w / 2;
+            double yd = e.y + e.h / 2 - y - h / 2;
+            xd *= -1;
+            yd *= -1;
+            double distance = Math.Sqrt(xd * xd + yd * yd);
+            xd /= distance;
+            yd /= distance;
+            xd *= mod * damage * 25 / MaxHealth;
+            yd *= mod * damage * 25 / MaxHealth;
+            knockBackX += xd;
+            knockBackY += yd;
+        }
+
+        public bool Move(float xa, float ya)
+        {
+            bool ret = false;
             x += xa;
             int[] coll = CheckCollision();
             if (coll != null)
@@ -134,6 +218,7 @@ namespace LD46
                     x = (1 + coll[0]) * Globals.TileSize;
                 }
             }
+            ret = ret || coll != null;
             y += ya;
             coll = CheckCollision();
             if (coll != null)
@@ -147,20 +232,21 @@ namespace LD46
                     y = (1 + coll[1]) * Globals.TileSize;
                 }
             }
+            return ret || coll != null;
         }
 
         public virtual int[] CheckCollision()
         {
-            for(int i = (int)(x/Globals.TileSize); i < (int)(x / Globals.TileSize) + 2 + w/Globals.TileSize && i < Globals.l.Current.width && i > -1; i++)
+            for (int i = (int)(x / Globals.TileSize); i < (int)(x / Globals.TileSize) + 2 + w / Globals.TileSize && i < Globals.l.Current.width && i > -1; i++)
             {
-                for(int j = (int)(y / Globals.TileSize); j < (int)(y / Globals.TileSize) + 2 + h / Globals.TileSize && j < Globals.l.Current.height && j > -1; j++)
+                for (int j = (int)(y / Globals.TileSize); j < (int)(y / Globals.TileSize) + 2 + h / Globals.TileSize && j < Globals.l.Current.height && j > -1; j++)
                 {
                     Tile t = Globals.l.Current.getTile(i, j);
                     if (t.GetWalkable() == Walkable.SOLID)
                     {
                         if (Globals.checkCol((int)x, (int)y, w, h, i * Globals.TileSize, j * Globals.TileSize, Globals.TileSize, Globals.TileSize))
                         {
-                            return new int[]{ i, j };
+                            return new int[] { i, j };
                         }
                     }
                 }
