@@ -300,12 +300,12 @@ namespace LD46
                                 {
                                     stunned = true;
                                 }
-                            }
-                            
+                            } 
                             break;
                     }
                 }
             }
+
             foreach (Effect effect in removables)
             {
                 effects.Remove(effect);

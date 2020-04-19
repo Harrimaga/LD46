@@ -138,6 +138,10 @@ namespace LD46
             Window.texs.Add(new Texture("Textures/Items/WandOfBlue.png", 16, 16, 16, 16));          //10
             Window.texs.Add(new Texture("Textures/Items/WandOfGreen.png", 16, 16, 16, 16));         //11
             Window.texs.Add(new Texture("Textures/Items/HelmOfPylonius.png", 32, 32, 32, 32));      //12
+            Window.texs.Add(new Texture("Textures/Spells/FireballSpell.png", 24, 24, 24, 24));      //13
+            Window.texs.Add(new Texture("Textures/Spells/SlownessSpell.png", 24, 24, 24, 24));      //14
+            Window.texs.Add(new Texture("Textures/Spells/DisableSpell.png", 24, 24, 24, 24));       //15
+            Window.texs.Add(new Texture("Textures/Spells/PillarOfLightSpell.png", 24, 24, 24, 24)); //16
 
             game = new Game(this);
             base.OnLoad(e);

@@ -17,8 +17,8 @@ namespace LD46
                 Spells.PILLAR_OF_LIGHT_DESCRIPTION,
                 new List<Effect> { },
                 Spells.PILLAR_OF_LIGHT_AOE,
-                new Sprite(40, 40, 0, Window.texs[1]),
-                new Animation(0, 3, 30))
+                new Sprite(40, 40, 0, Window.texs[16]),
+                new Animation(0, 0, 30))
         {
         }
     }
