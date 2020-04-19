@@ -43,8 +43,9 @@ namespace LD46
 
         public void OnLoad()
         {
-            p = new Fighter(Globals.TileSize, Globals.TileSize);
-            new Level(Globals.Themes[Globals.Rng.Next(Globals.Themes.Count)], p, Seed);
+            //p = new Fighter(Globals.TileSize, Globals.TileSize);
+            //new Level(Globals.Themes[Globals.Rng.Next(Globals.Themes.Count)], p, Seed);
+            ToMainMenu();
             LevelsPlayed = 0;
         }
 
@@ -74,7 +75,7 @@ namespace LD46
                     {
                         gameState = GameState.DEAD;
                         buttons.Clear();
-                        buttons.Add(new DrawnButton("Restart", 760, 600, 400, 75, () => { Restart(); }));
+                        buttons.Add(new DrawnButton("Restart", 760, 600, 400, 75, () => { ToMainMenu(); }));
                     }
                     break;
             }
@@ -105,10 +106,9 @@ namespace LD46
                     {
                         if (++LevelsPlayed >= 8)
                         {
-                            //Need ui for winning game
                             gameState = GameState.WON;
                             buttons.Clear();
-                            buttons.Add(new DrawnButton("Restart", 760, 600, 400, 75, () => { Restart(); }));
+                            buttons.Add(new DrawnButton("Restart", 760, 600, 400, 75, () => { ToMainMenu(); }));
                             Globals.rootActionLog.Add("You have won the game");
                         }
                         else
@@ -131,15 +131,20 @@ namespace LD46
                 case GameState.PLAYING:
                     Globals.l.Draw();
                     Window.window.DrawText("Level: " + LevelsPlayed, 1725, 830);
+                    Globals.rootActionLog.Draw();
                     break;
                 case GameState.DEAD:
                     Window.window.DrawTextCentered("You died!", 960, 300);
+                    Globals.rootActionLog.Draw();
                     break;
                 case GameState.WON:
                     Window.window.DrawTextCentered("You won!", 960, 300);
+                    Globals.rootActionLog.Draw();
+                    break;
+                case GameState.MAINMENU:
+                    Window.window.DrawTextCentered("Choose your class:", 960, 300);
                     break;
             }
-            Globals.rootActionLog.Draw();
             foreach (DrawnButton button in buttons)
             {
                 button.Draw();
@@ -168,10 +173,17 @@ namespace LD46
 
         }
 
-        public void Restart()
+        public void ToMainMenu()
         {
             buttons.Clear();
-            p = new Fighter(Globals.TileSize, Globals.TileSize);
+            gameState = GameState.MAINMENU;
+            buttons.Add(new DrawnButton("Fighter", 760, 400, 400, 75, () => { Restart(new Fighter(Globals.TileSize, Globals.TileSize)); }));
+        }
+
+        public void Restart(Player pp)
+        {
+            buttons.Clear();
+            p = pp;
             new Level(Globals.Themes[Globals.Rng.Next(Globals.Themes.Count)], p, Globals.Rng.Next());
             gameState = GameState.PLAYING;
             LevelsPlayed = 0;
