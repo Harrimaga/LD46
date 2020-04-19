@@ -19,7 +19,7 @@ namespace LD46
 
         public Player(double Health, double Mana, float x, float y, int texNum, int attackTexNum, int spriteNum, int w, int h, double speed, double attackPoint, double attackSpeed, string name, double damage, double PhysicalAmp, double MagicalAmp)
         {
-            Init(Health, Mana, x, y, texNum, attackTexNum, spriteNum, w, h, speed);
+            Init(Health, Mana, x, y, texNum, attackTexNum, spriteNum, w, h, speed, PhysicalAmp, MagicalAmp);
             Spells = new List<Spell>();
             ani = new Animation(0, 3, 10);
             this.attackSpeed = attackSpeed;
