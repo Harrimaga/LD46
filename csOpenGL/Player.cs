@@ -212,6 +212,13 @@ namespace LD46
             Window.window.DrawTextCentered(TextHP, (int)(1720 + (200 / 2)), (int)(750 + (30 / 2) - 12), Globals.buttonFont);
             Window.window.DrawTextCentered(TextMP, (int)(1720 + (200 / 2)), (int)(800 + (30 / 2) - 12), Globals.buttonFont);
 
+            foreach(Spell sp in Spells)
+            {
+                UIBack.Draw(1725, y, false, 0, 0, 0, 0, 0.5f);
+                sp.Draw(1727, y + 2);
+                y += 50;
+            }
+            y = 355;
             foreach (Item it in items)
             {
                 UIBack.Draw(1725, y, false, 0, 0, 0, 0, 0.5f);
