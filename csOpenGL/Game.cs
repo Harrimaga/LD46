@@ -28,7 +28,7 @@ namespace LD46
 
         public List<DrawnButton> buttons = new List<DrawnButton>();
         private Player p;
-        private Theme theme = new Theme("Space");
+        private Theme theme = new Theme("SpaceDark");
 
         public Game(Window window)
         {
