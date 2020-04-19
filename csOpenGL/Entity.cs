@@ -9,7 +9,7 @@ namespace LD46
     public abstract class Entity
     {
 
-        protected double MaxHealth, Health, MaxMana, Mana, PhysicalAmp, MagicalAmp, speed;
+        public double MaxHealth, Health, MaxMana, Mana, PhysicalAmp, MagicalAmp, speed;
         public int w, h;
         protected float rotation = 0, r = 1, g = 1, b = 1, a = 1;
         public float x, y;

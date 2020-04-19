@@ -41,20 +41,36 @@ namespace LD46
         public void Update(double delta)
         {
             //Updating logic
-            if (left.IsDown()) p.SetDir(-1, 0);
-            if (right.IsDown()) p.SetDir(1, 0);
-            if (up.IsDown()) p.SetDir(0, -1);
-            if (down.IsDown()) p.SetDir(0, 1);
-            if (attack.IsDown()) p.a = true;
-            if (pickUp.IsDown()) Globals.l.Current.TryPickup();
+            if (p.Health > 0)
+            {
+                if (left.IsDown()) p.SetDir(-1, 0);
+                if (right.IsDown()) p.SetDir(1, 0);
+                if (up.IsDown()) p.SetDir(0, -1);
+                if (down.IsDown()) p.SetDir(0, 1);
+                if (attack.IsDown()) p.a = true;
+                if (pickUp.IsDown()) Globals.l.Current.TryPickup();
 
-            Globals.l.Update(delta);
+                Globals.l.Update(delta);
+                if(p.Health <= 0)
+                {
+                    buttons.Clear();
+                    buttons.Add(new DrawnButton("Restart", 760, 600, 400, 75, () => { Restart(); }));
+                }
+            }
+
         }
 
         public void Draw()
         {
             //Do all you draw calls here
-            Globals.l.Draw();
+            if (p.Health > 0)
+            {
+                Globals.l.Draw();
+            }
+            else
+            {
+                Window.window.DrawTextCentered("You died!", 960, 300);
+            }
             Globals.rootActionLog.Draw();
             foreach (DrawnButton button in buttons)
             {
@@ -84,5 +100,11 @@ namespace LD46
 
         }
         
+        public void Restart()
+        {
+            p = new Fighter(Globals.TileSize, Globals.TileSize);
+            new Level(theme, p, Globals.l.Rng.Next());
+        }
+
     }
 }
