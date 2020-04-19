@@ -31,7 +31,8 @@ namespace LD46
         public virtual void Draw(float x, float y)
         {
             Sprite.Draw(x, y, false);
-            Window.window.DrawText(Name, (int)x + 45, (int)y+7, Globals.buttonFont);
+            Window.window.DrawText(Name, (int)x + 45, (int)y - 2, Globals.buttonFont);
+            Window.window.DrawText(Description, (int)x + 45, (int)y+20, Globals.logFont);
         }
 
         public virtual void DrawOnGround(int x, int y, float rot)
