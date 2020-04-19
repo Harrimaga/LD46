@@ -24,12 +24,14 @@ namespace LD46
         public double CurrentBlock { get; set; }
         public double BlockRegen { get; set; }
 
-        public void Init(double Health, double Mana, float x, float y, int texNum, int attackTexNum, int spriteNum, int w, int h, double speed, double accuracy, double standardBlock, double PhysicalAmp = 1, double MagicalAmp = 1, double blockRegen = 0.1)
+        public void Init(double Health, double Mana, float x, float y, int texNum, int attackTexNum, int spriteNum, int w, int h, double speed, double accuracy, double standardBlock, double PhysicalAmp = 1, double MagicalAmp = 1, double blockRegen = 0.1, double regenTick = 60)
         {
+            TimePassed = 0;
             this.MaxHealth = Health;
             StandardBlock = standardBlock;
             CurrentBlock = standardBlock;
             BlockRegen = blockRegen;
+            RegenTick = regenTick;
             this.Health = Health;
             this.MaxMana = Mana;
             this.Mana = Mana;
