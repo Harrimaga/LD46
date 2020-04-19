@@ -16,6 +16,7 @@ namespace LD46
         public List<SpellEffect> Effects { get; set; }
         public double AOE { get; set; }
         public Sprite Icon { get; set; }
+        public Sprite CooldownSprite { get; set; }
         public Animation SpellAnimation { get; set; }
         public double CurrentCooldown { get; set; }
 
@@ -30,6 +31,7 @@ namespace LD46
             AOE = aOE;
             Icon = icon;
             SpellAnimation = spellAnimation;
+            CooldownSprite = new Sprite(0, 40, 0, Window.texs[2]);
         }
 
         public void Cast(float x, float y, IEnumerable<Entity> possibleTargets, Entity caster)
@@ -57,9 +59,16 @@ namespace LD46
             }
         }
 
+        public void DrawOnGround(float x, float y)
+        {
+            Icon.Draw(x, y, true);
+        }
+
         public void Draw(float x, float y)
         {
             Icon.Draw(x, y, false);
+            CooldownSprite.w = 200*(int)(CurrentCooldown / Cooldown);
+            CooldownSprite.Draw(x - 5, y, false, 0, 0, 0, 0, 0.2f);
             Window.window.DrawText(Name, (int)x + 45, (int)y + 7, Globals.buttonFont);
         }
 

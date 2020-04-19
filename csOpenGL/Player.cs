@@ -15,7 +15,7 @@ namespace LD46
         public Sprite UIBack, HBarUI, HBarBackUI, MBarUI, MBarBackUI;
         public List<Item> items = new List<Item>();
         public List<Spell> Spells { get; set; }
-        public List<DrawnButton> buttons = new List<DrawnButton>();
+        public List<DrawnButton> itemButtons = new List<DrawnButton>(), spellButtons = new List<DrawnButton>();
 
         public Player(double Health, double Mana, float x, float y, int texNum, int attackTexNum, int spriteNum, int w, int h, double speed, double attackPoint, double attackSpeed, string name, double damage, double PhysicalAmp, double MagicalAmp)
         {
@@ -31,7 +31,7 @@ namespace LD46
             HBarBackUI = new Sprite(w, h / 8, 0, Window.texs[2]);
             MBarUI = new Sprite(w, h / 8, 0, Window.texs[2]);
             MBarBackUI = new Sprite(w, h / 8, 0, Window.texs[2]);
-            Spells.Add(new Fireball());
+            AddSpell(new Fireball());
         }
 
         public override void Update(double delta)
@@ -227,12 +227,42 @@ namespace LD46
             }
         }
 
-        public void EquipItem(Item item)
+        public void AddSpell(Spell spell)
         {
-            DrawnButton b = new DrawnButton("", 1725, 5 + 50 * items.Count, 190, 45, () => { DequipItem(item); });
+            DrawnButton b = new DrawnButton("", 1725, 5 + 50 * Spells.Count, 190, 45, () => { RemoveSpell(spell); });
             b.a = 0;
             Game.game.buttons.Add(b);
-            buttons.Add(b);
+            spellButtons.Add(b);
+            Spells.Add(spell);
+        }
+
+        public void RemoveSpell(Spell spell)
+        {
+            int i = 0;
+            for (i = 0; i < Spells.Count; i++)
+            {
+                if (Spells[i] == spell)
+                {
+                    break;
+                }
+            }
+            DrawnButton b = spellButtons[i];
+            spellButtons.Remove(b);
+            Game.game.buttons.Remove(b);
+            Globals.l.Current.DropSpell(spell, x, y);
+            for (int j = i; j < spellButtons.Count; j++)
+            {
+                spellButtons[j].Y -= 50;
+            }
+            Spells.Remove(spell);
+        }
+
+        public void EquipItem(Item item)
+        {
+            DrawnButton b = new DrawnButton("", 1725, 355 + 50 * items.Count, 190, 45, () => { DequipItem(item); });
+            b.a = 0;
+            Game.game.buttons.Add(b);
+            itemButtons.Add(b);
 
             items.Add(item);
             foreach (Effect e in item.GrantedEffects)
@@ -270,13 +300,13 @@ namespace LD46
                     break;
                 }
             }
-            DrawnButton b = buttons[i];
-            buttons.Remove(b);
+            DrawnButton b = itemButtons[i];
+            itemButtons.Remove(b);
             Game.game.buttons.Remove(b);
             Globals.l.Current.DropItem(item, x, y);
-            for(int j = i; j < buttons.Count; j++)
+            for(int j = i; j < itemButtons.Count; j++)
             {
-                buttons[j].Y -= 50;
+                itemButtons[j].Y -= 50;
             }
             items.Remove(item);
             foreach (Effect e in item.GrantedEffects)
