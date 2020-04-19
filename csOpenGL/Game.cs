@@ -103,6 +103,8 @@ namespace LD46
                 else
                 {
                     Globals.l = new Level(Globals.Themes[Globals.Rng.Next(Globals.Themes.Count)], Globals.l.p, Globals.Rng.Next());
+                    p.x = Globals.TileSize;
+                    p.y = Globals.TileSize;
                 }
             }
         }
@@ -113,6 +115,7 @@ namespace LD46
             if (p.Health > 0)
             {
                 Globals.l.Draw();
+                Window.window.DrawText("Level: " + LevelsPlayed, 1725, 830);
             }
             else
             {
