@@ -36,6 +36,11 @@ namespace LD46
             Add(enemyName + " deals " + damage + " damage to you using " + source);
         }
 
+        public void CastSpell(string spellName, string caster, int targets)
+        {
+            Add(caster + " casts " + spellName + ", affecting " + targets + " targets");
+        }
+
         public void Death(string entityName)
         {
             Add(entityName + " has died.");

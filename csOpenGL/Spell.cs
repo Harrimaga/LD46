@@ -44,12 +44,14 @@ namespace LD46
                 return;
             }
             CurrentCooldown = Cooldown;
+            int targets = 0;
             foreach (Entity target in possibleTargets)
             {
                 if(Math.Abs(target.x-x) < AOE && Math.Abs(target.y-y) < AOE)
                 {
                     //Deal damage and add the spell effects to the enemies withing AOE
                     target.DealMagicDamage(damage, Globals.l.p.name, caster.name);
+                    targets++;
                     foreach (Effect effect in Effects)
                     {
                         target.TakeEffect((Effect)effect.Clone());
@@ -64,6 +66,7 @@ namespace LD46
                     }
                 }
             }
+            Globals.rootActionLog.CastSpell(Name, caster.name, targets);
         }
 
         public void DrawOnGround(float x, float y)
