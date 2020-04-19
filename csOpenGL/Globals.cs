@@ -15,6 +15,8 @@ namespace LD46
         public static QFont buttonFont = new QFont("Fonts/arial.ttf", 16, new QuickFont.Configuration.QFontBuilderConfiguration(true));
         public static QFont logFont = new QFont("Fonts/arial.ttf", 10, new QuickFont.Configuration.QFontBuilderConfiguration(true));
         public static ActionLog rootActionLog = new ActionLog(15);
+        public static List<Theme> Themes = new List<Theme> { new Theme("Basic"), new Theme("Space"), new Theme("SpaceDark") };
+        public static Random Rng = new Random();
 
         public static bool checkCol(int x1, int y1, int w1, int h1, int x2, int y2, int w2, int h2)
         {

@@ -26,10 +26,12 @@ namespace LD46
         private Hotkey num6 = new Hotkey(false).AddKey(Key.Number6);
         private Hotkey pickUp = new Hotkey(false).AddKey(Key.Q);
         private Hotkey interact = new Hotkey(false).AddKey(Key.C);
+        private int Seed = 5;
 
         public List<DrawnButton> buttons = new List<DrawnButton>();
         private Player p;
         private Theme theme = new Theme("SpaceDark");
+        private int LevelsPlayed { get; set; }
 
         public Game(Window window)
         {
@@ -42,7 +44,8 @@ namespace LD46
         {
             //buttons.Add(new DrawnButton("Red Velvet", 500, 500, 200, 50, () => { Console.WriteLine("Button 1"); }));
             p = new Fighter(Globals.TileSize, Globals.TileSize);
-            new Level(theme, p, 0);
+            new Level(Globals.Themes[Globals.Rng.Next(Globals.Themes.Count)], p, Seed);
+            LevelsPlayed = 0;
         }
 
         public void Update(double delta)
@@ -90,6 +93,17 @@ namespace LD46
             if(t.GetTileType() == TileType.BUTTON)
             {
                 Globals.l.Current.PressButton(Globals.l.p.x, Globals.l.p.y);
+            } else if (t.GetTileType() == TileType.STAIRS)
+            {
+                if(++LevelsPlayed >= 8)
+                {
+                    //Need ui for winning game
+                    Globals.rootActionLog.Add("You have won the game");
+                }
+                else
+                {
+                    Globals.l = new Level(Globals.Themes[Globals.Rng.Next(Globals.Themes.Count)], Globals.l.p, Globals.Rng.Next());
+                }
             }
         }
 
