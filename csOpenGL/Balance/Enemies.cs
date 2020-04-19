@@ -17,6 +17,22 @@ namespace LD46
         public const double TEST_ENEMY_DAMAGE = 13;
         public const double TEST_BLOCK = 5;
 
+        public const int DARK_ENEMY_HEALTH = 125;
+        public const int DARK_ENEMY_MANA = 0;
+        public const double DARK_ENEMY_SPEED = 3;
+        public const double DARK_ENEMY_ATTACKSPEED = 55;
+        public const double DARK_ENEMY_ATTACKPOINT = 1;
+        public const double DARK_ENEMY_DAMAGE = 10;
+        public const double DARK_BLOCK = 6;
+
+        public const int SUICIDE_CHARGER_ENEMY_HEALTH = 50;
+        public const int SUICIDE_CHARGER_ENEMY_MANA = 0;
+        public const double SUICIDE_CHARGER_ENEMY_SPEED = 15;
+        public const double SUICIDE_CHARGER_ENEMY_ATTACKSPEED = 120;
+        public const double SUICIDE_CHARGER_ENEMY_ATTACKPOINT = 1;
+        public const double SUICIDE_CHARGER_ENEMY_DAMAGE = 30;
+        public const double SUICIDE_CHARGER_BLOCK = 2;
+
         public const int RANGED_ENEMY_HEALTH = 50;
         public const int RANGED_ENEMY_MANA = 0;
         public const double RANGED_ENEMY_SPEED = 2.5;

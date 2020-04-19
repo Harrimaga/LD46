@@ -327,8 +327,8 @@ namespace LD46
                 {
                     x = (1 + coll[0]) * Globals.TileSize;
                 }
+                ret = true;
             }
-            ret = ret || coll != null;
             y += ya;
             coll = CheckCollision();
             if (coll != null)
@@ -341,8 +341,9 @@ namespace LD46
                 {
                     y = (1 + coll[1]) * Globals.TileSize;
                 }
+                ret = true;
             }
-            return ret || coll != null;
+            return ret;
         }
 
         public virtual int[] CheckCollision()
