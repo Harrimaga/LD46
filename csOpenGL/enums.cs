@@ -35,6 +35,7 @@ namespace LD46
         WALL,
         STAIRS,
         DOOR,
+        BUTTON,
     }
 
     public enum Direction

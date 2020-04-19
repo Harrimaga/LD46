@@ -17,7 +17,7 @@ namespace LD46
         public List<ItemPos> items;
         public bool visited;
         public List<Connection> Connections { get; set; }
-        private Theme Theme { get; set; }
+        public Theme Theme { get; set; }
 
         public Room(int x, int y, Theme theme, int tileSize = Globals.TileSize)
         {
@@ -70,6 +70,11 @@ namespace LD46
                 return new Tile(new Sprite(tileSize, tileSize, 0, Theme.GetTextureByType(TileType.WALL)), Walkable.SOLID, TileType.WALL);
             }
             return tileGrid[x, y];
+        }
+
+        public void SetTile(int x, int y, Tile tile)
+        {
+            tileGrid[x, y] = tile;
         }
 
         public void Update(double delta)
@@ -174,6 +179,11 @@ namespace LD46
                     break;
             }
         }
+
+        public virtual void PressButton(float px, float py)
+        {
+
+        }
     }
 
     public struct ItemPos
@@ -190,5 +200,4 @@ namespace LD46
             this.rot = rot;
         }
     }
-
 }
