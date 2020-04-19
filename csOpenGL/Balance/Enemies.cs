@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LD46
 {
-    class Enemies
+    public static class Enemies
     {
 
         public const int TEST_ENEMY_HEALTH = 100;

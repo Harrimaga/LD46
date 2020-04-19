@@ -185,10 +185,11 @@ namespace LD46
             buttons.Clear();
             pp.ReAddButtons();
             p = pp;
+            Globals.PossibleBosses = new List<Enemy> { new Hirrathak() };
             new Level(Globals.Themes[Globals.Rng.Next(Globals.Themes.Count)], p, Globals.Rng.Next());
             gameState = GameState.PLAYING;
             LevelsPlayed = 0;
-            Globals.PossibleBosses = new List<Enemy> { new Hirrathak() };
+            
         }
 
     }
