@@ -131,8 +131,8 @@ namespace LD46
             Window.texs.Add(new Texture("Textures/Player/PlayerAttack.png", 400, 40, 40, 40));      //3
             Window.texs.Add(new Texture("Textures/Items/Sword.png", 54, 54, 54, 54));               //4
             Window.texs.Add(new Texture("Textures/Projectile.png", 96, 32, 32, 32));                //5
-            Window.texs.Add(new Texture("Textures/Player/WizardIdle.png", 256, 64, 64, 64));        //6
-            Window.texs.Add(new Texture("Textures/Player/WizardAttack.png", 832, 64, 64, 64));      //7
+            Window.texs.Add(new Texture("Textures/Player/WizardIdle.png", 232, 58, 58, 58));        //6
+            Window.texs.Add(new Texture("Textures/Player/WizardAttack.png", 754, 58, 58, 58));      //7
 
             game = new Game(this);
             base.OnLoad(e);

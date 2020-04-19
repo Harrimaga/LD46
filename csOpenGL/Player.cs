@@ -11,7 +11,7 @@ namespace LD46
 
         public double attackTimer = 0, attackSpeed = 0, attackPoint = 1, damage;
         public bool attacked = false, attacking = false, a = false;
-        public string name;
+        public string weaponName;
         public Sprite UIBack, HBarUI, HBarBackUI, MBarUI, MBarBackUI;
         public List<Item> items = new List<Item>();
         public List<Spell> Spells { get; set; }
@@ -19,7 +19,7 @@ namespace LD46
         public double HealthRegen { get; set; }
         public double ManaRegen { get; set; }
 
-        public Player(double Health, double Mana, float x, float y, int texNum, int attackTexNum, int spriteNum, int w, int h, double speed, double attackPoint, double attackSpeed, string name, double damage, double PhysicalAmp, double MagicalAmp, double standardBlock, double blockRegen)
+        public Player(double Health, double Mana, float x, float y, int texNum, int attackTexNum, int spriteNum, int w, int h, double speed, double attackPoint, double attackSpeed, string name, double damage, double PhysicalAmp, double MagicalAmp, double standardBlock, double blockRegen, string weaponName)
         {
             HealthRegen = 0.1;
             ManaRegen = 0.1;
@@ -30,6 +30,7 @@ namespace LD46
             this.attackPoint = attackPoint;
             this.damage = damage;
             this.name = name;
+            this.weaponName = weaponName;
             UIBack = new Sprite(200, 880, 0, Window.texs[2]);
             HBarUI = new Sprite(w, h / 8, 0, Window.texs[2]);
             HBarBackUI = new Sprite(w, h / 8, 0, Window.texs[2]);
@@ -152,7 +153,7 @@ namespace LD46
 
                         if (dis <= (enemy.w / 2 + w / 2) * 1.2f)
                         {
-                            enemy.DealPhysicalDamage(damage * PhysicalAmp, name, "their blade");
+                            enemy.DealPhysicalDamage(damage * PhysicalAmp, name, "their " + weaponName);
                         }
                     }
 
