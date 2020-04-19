@@ -10,21 +10,21 @@ namespace LD46
     {
         private double CastingSpeed { get; set; }
         private bool Casting { get; set; }
-        private Spell FireBall { get; set; }
+        private Spell PillarOfLight { get; set; }
         private float TargetX { get; set; }
         private float TargetY { get; set; }
         private double SwingBack { get; set; }
 
         public Hirrathak() : base(Enemies.HIRRATHAK_HEALTH, Enemies.HIRRATHAK_MANA, 12* Globals.TileSize, 12 * Globals.TileSize, 0, 3, 3, Globals.TileSize, Globals.TileSize, Enemies.HIRRATHAK_SPEED, Enemies.HIRRATHAK_ATTACKPOINT, Enemies.HIRRATHAK_ATTACKSPEED, Enemies.HIRRATHAK_DAMAGE, "Hirrathak, the Purple", Enemies.HIRRATHAK_BLOCK, Enemies.HIRRATHAK_PHYSICAL_AMP, Enemies.HIRRATHAK_MAGICAL_AMP)
         {
-            FireBall = new Fireball();
+            PillarOfLight = new PillarOfLight();
             CastingSpeed = 40;
             SwingBack = 500;
         }
 
         public override void Update(double delta)
         {
-            FireBall.Update(delta);
+            PillarOfLight.Update(delta);
             base.Update(delta);
         }
 
@@ -49,7 +49,7 @@ namespace LD46
                 attackTimer += delta;
                 if (!attacked && attackTimer > CastingSpeed)
                 {
-                    FireBall.Cast(TargetX, TargetY, new List<Player>() { Globals.l.p }, this);
+                    PillarOfLight.Cast(TargetX, TargetY, new List<Player>() { Globals.l.p }, this);
                     attacked = true;
                     s = baseAnimation;
                     ani = new Animation(0, 3, 10);
