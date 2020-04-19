@@ -10,6 +10,8 @@ namespace LD46
     {
         public string tileStyle;
         public List<Texture> textures;
+        public List<EnemySpawn> enemies;
+        public int chanceTotal = 0;
 
         public Theme(string tileStyle = "Basic")
         {
@@ -24,6 +26,24 @@ namespace LD46
             foreach (var item in textures)
             {
                 Window.texs.Add(item);
+            }
+
+            enemies = new List<EnemySpawn>();
+            switch (tileStyle)
+            {
+                case("Space"):
+                    enemies.Add(new EnemySpawn(3, (int x, int y) => { return new TestEnemy(x, y); }));
+                    enemies.Add(new EnemySpawn(1, (int x, int y) => { return new RangedEnemy(x, y); }));
+                    break;
+                case ("SpaceDark"):
+                    enemies.Add(new EnemySpawn(3, (int x, int y) => { return new TestEnemy(x, y); }));
+                    enemies.Add(new EnemySpawn(1, (int x, int y) => { return new RappidFireRanged(x, y); }));
+                    break;
+            }
+            foreach (EnemySpawn e in enemies)
+            {
+                chanceTotal += e.chance;
+                e.chance = chanceTotal;
             }
         }
 
@@ -55,5 +75,35 @@ namespace LD46
             Globals.PossibleBosses.Remove(boss);
             return boss;
         }
+
+        public Enemy GetEnemy(int x, int y)
+        {
+            int rn = Globals.l.Rng.Next(chanceTotal);
+            foreach( EnemySpawn e in enemies)
+            {
+                if(rn < e.chance)
+                {
+                    return e.make(x, y);
+                }
+            }
+            return null;
+        }
+
     }
+
+    public class EnemySpawn
+    {
+
+        public int chance;
+        public delegate Enemy Spawn(int x, int y);
+        public Spawn make;
+
+        public EnemySpawn(int chance, Spawn make)
+        {
+            this.chance = chance;
+            this.make = make;
+        }
+    }
+
+
 }
