@@ -34,9 +34,13 @@ namespace LD46
         public void Cast(float x, float y, IEnumerable<Entity> possibleTargets, Entity caster)
         {
             double damage = Damage * caster.GetMagicAmp();
+            if(!caster.LoseMana(Mana))
+            {
+                return;
+            }
             foreach (Entity target in possibleTargets)
             {
-                if(Math.Abs(target.x-x) < AOE && Math.Abs(target.y-y) < AOE && caster.LoseMana(Mana))
+                if(Math.Abs(target.x-x) < AOE && Math.Abs(target.y-y) < AOE)
                 {
                     //Deal damage and add the spell effects to the enemies withing AOE
                     target.DealMagicDamage(damage, Globals.l.p.name, caster.name);
