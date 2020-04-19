@@ -184,6 +184,7 @@ namespace LD46
         public void Restart(Player pp)
         {
             buttons.Clear();
+            pp.ReAddButtons();
             p = pp;
             new Level(Globals.Themes[Globals.Rng.Next(Globals.Themes.Count)], p, Globals.Rng.Next());
             gameState = GameState.PLAYING;

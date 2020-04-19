@@ -387,5 +387,18 @@ namespace LD46
                 Mana = Mana + ManaRegen > MaxMana ? MaxMana : Mana + ManaRegen;
             }
         }
+
+        public void ReAddButtons()
+        {
+            foreach(DrawnButton b in itemButtons)
+            {
+                Game.game.buttons.Add(b);
+            }
+            foreach (DrawnButton b in spellButtons)
+            {
+                Game.game.buttons.Add(b);
+            }
+        }
+
     }
 }
