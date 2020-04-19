@@ -102,6 +102,7 @@ namespace LD46
         
         public void Restart()
         {
+            buttons.Clear();
             p = new Fighter(Globals.TileSize, Globals.TileSize);
             new Level(theme, p, Globals.l.Rng.Next());
         }
