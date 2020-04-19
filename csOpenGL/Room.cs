@@ -97,13 +97,28 @@ namespace LD46
                         }
                         else if (Globals.l.Rng.Next(1000) < 5)
                         {
-                            if (Globals.l.Rng.Next(100) < 50)
+                            int rn = Globals.Rng.Next(5);
+                            Item it = null;
+                            switch(rn)
                             {
-                                items.Add(new ItemPos(i * Globals.TileSize, j * Globals.TileSize, (float)(Globals.l.Rng.NextDouble() * 2 * Math.PI), new Sword()));
+                                case 0:
+                                    it = new Sword();
+                                    break;
+                                case 1:
+                                    it = new OrbOfHealth();
+                                    break;
+                                case 2:
+                                    it = new WandOfRed();
+                                    break;
+                                case 3:
+                                    it = new WandOfBlue();
+                                    break;
+                                case 4:
+                                    it = new WandOfGreen();
+                                    break;
                             }
-                            else
-                            {
-                                items.Add(new ItemPos(i * Globals.TileSize, j * Globals.TileSize, (float)(Globals.l.Rng.NextDouble() * 2 * Math.PI), new OrbOfHealth()));
+                            if(it != null)
+                                items.Add(new ItemPos(i * Globals.TileSize, j * Globals.TileSize, (float)(Globals.l.Rng.NextDouble() * 2 * Math.PI), it));
                             }
                         }
                     }

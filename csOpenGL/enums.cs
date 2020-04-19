@@ -21,6 +21,10 @@ namespace LD46
         PHYSICAL_DAMAGE,
         MAGICAL_DAMAGE,
         BLOCK,
+        SPEED,
+        MANA,
+        MPREGEN,
+        HPREGEN
     }
 
     public enum Walkable
