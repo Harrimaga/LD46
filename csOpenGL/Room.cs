@@ -95,9 +95,9 @@ namespace LD46
                         {
                             int rn = Globals.Rng.Next(chanceTotal);
                             Item it = null;
-                            foreach(Itemchances item in itemDrops)
+                            foreach (Itemchances item in itemDrops)
                             {
-                                if(rn < item.chance)
+                                if (rn < item.chance)
                                 {
                                     it = item.make();
                                     break;
@@ -108,6 +108,28 @@ namespace LD46
                                 items.Add(new ItemPos(i * Globals.TileSize, j * Globals.TileSize, (float)(Globals.l.Rng.NextDouble() * 2 * Math.PI), it));
                             }
                         }
+                    }
+                }
+            }
+            for (int i = 0; i < 5; i++)
+            {
+                int odds = Globals.Rng.Next(0, 1000);
+                if (odds < 50)
+                {
+                    if(width >= 7 && height >= 5)
+                    {
+                        int structW = 3;
+                        int structH = 1;
+                        _ = new Wall(Globals.Rng.Next(2, width - 1 - structW), Globals.Rng.Next(2, height - 1 - structH), tileGrid, theme, true);
+                    }
+                }
+                else if (odds < 100)
+                {
+                    if (width >= 5 && height >= 7)
+                    {
+                        int structW = 1;
+                        int structH = 3;
+                        _ = new Wall(Globals.Rng.Next(2, width - 1 - structW), Globals.Rng.Next(2, height - 1 - structH), tileGrid, theme, false);
                     }
                 }
             }
@@ -293,7 +315,7 @@ namespace LD46
             AddItem(new HelmOfPylonius(), () => { return new HelmOfPylonius(); });
 
             int i = 0;
-            foreach(Itemchances itc in itemDrops)
+            foreach (Itemchances itc in itemDrops)
             {
                 int j = i + itc.chance;
                 itc.chance += i;
@@ -304,7 +326,7 @@ namespace LD46
         private void AddItem(Item it, Create make)
         {
             int chance = 0;
-            switch(it.Rarity)
+            switch (it.Rarity)
             {
                 case Rarity.BASIC:
                     chance = 0;
