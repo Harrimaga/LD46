@@ -39,6 +39,21 @@ namespace LD46
             attack = new Sprite(w, h, 0, Window.texs[attackTexNum]);
         }
 
+        public double GetMagicAmp()
+        {
+            return MagicalAmp;
+        }
+
+        public bool LoseMana(double mana)
+        {
+            if(mana > Mana)
+            {
+                return false;
+            }
+            Mana -= mana;
+            return true;
+        }
+
         public virtual void Draw()
         {
             s.Draw(x, y, true, rotation, r, g, b, a);

@@ -14,11 +14,13 @@ namespace LD46
         public string name;
         public Sprite UIBack, HBarUI, HBarBackUI, MBarUI, MBarBackUI;
         public List<Item> items = new List<Item>();
+        public List<Spell> Spells { get; set; }
         public List<DrawnButton> buttons = new List<DrawnButton>();
 
         public Player(double Health, double Mana, float x, float y, int texNum, int attackTexNum, int spriteNum, int w, int h, double speed, double attackPoint, double attackSpeed, string name, double damage, double PhysicalAmp, double MagicalAmp)
         {
             Init(Health, Mana, x, y, texNum, attackTexNum, spriteNum, w, h, speed);
+            Spells = new List<Spell>();
             ani = new Animation(0, 3, 10);
             this.attackSpeed = attackSpeed;
             this.attackPoint = attackPoint;
@@ -29,6 +31,7 @@ namespace LD46
             HBarBackUI = new Sprite(w, h / 8, 0, Window.texs[2]);
             MBarUI = new Sprite(w, h / 8, 0, Window.texs[2]);
             MBarBackUI = new Sprite(w, h / 8, 0, Window.texs[2]);
+            Spells.Add(new Fireball());
             EquipItem(new Sword());
             EquipItem(new Sword());
             EquipItem(new Sword());

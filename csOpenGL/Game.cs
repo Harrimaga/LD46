@@ -18,6 +18,12 @@ namespace LD46
         private Hotkey up = new Hotkey(true).AddKey(Key.W).AddKey(Key.Up);
         private Hotkey down = new Hotkey(true).AddKey(Key.S).AddKey(Key.Down);
         private Hotkey attack = new Hotkey(false).AddKey(Key.Space);
+        private Hotkey num1 = new Hotkey(false).AddKey(Key.Number1);
+        private Hotkey num2 = new Hotkey(false).AddKey(Key.Number2);
+        private Hotkey num3 = new Hotkey(false).AddKey(Key.Number3);
+        private Hotkey num4 = new Hotkey(false).AddKey(Key.Number4);
+        private Hotkey num5 = new Hotkey(false).AddKey(Key.Number5);
+        private Hotkey num6 = new Hotkey(false).AddKey(Key.Number6);
 
         public List<DrawnButton> buttons = new List<DrawnButton>();
         private Player p;
@@ -45,8 +51,24 @@ namespace LD46
             if (up.IsDown()) p.SetDir(0, -1);
             if (down.IsDown()) p.SetDir(0, 1);
             if (attack.IsDown()) p.a = true;
+            //Spell hotkeys
+            if (num1.IsDown()) TrySpellAttack(0);
+            if (num2.IsDown()) TrySpellAttack(1);
+            if (num3.IsDown()) TrySpellAttack(2);
+            if (num4.IsDown()) TrySpellAttack(3);
+            if (num5.IsDown()) TrySpellAttack(4);
+            if (num6.IsDown()) TrySpellAttack(5);
 
             Globals.l.Update(delta);
+        }
+
+        private void TrySpellAttack(int spellSlot)
+        {
+            if(spellSlot < Globals.l.p.Spells.Count )
+            {
+                Spell spell = Globals.l.p.Spells[spellSlot];
+                spell.Cast(Window.window.mouseX + Window.camX, Window.window.mouseY + Window.camY, Globals.l.Current.enemies, Globals.l.p);
+            }
         }
 
         public void Draw()
