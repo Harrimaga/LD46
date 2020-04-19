@@ -89,14 +89,7 @@ namespace LD46
                         tileGrid[i, j] = new Tile(new Sprite(tileSize, tileSize, Globals.l.Rng.Next(2) > 0 ? 0 : 1, theme.GetTextureByType(TileType.TILE)), Walkable.WALKABLE, TileType.TILE, 0);
                         if (Globals.l.Rng.Next(1000) < 12)
                         {
-                            if (Globals.l.Rng.Next(100) < 75)
-                            {
-                                enemies.Add(new TestEnemy(i * Globals.TileSize, j * Globals.TileSize));
-                            }
-                            else
-                            {
-                                enemies.Add(new RangedEnemy(i * Globals.TileSize, j * Globals.TileSize));
-                            }
+                            enemies.Add(theme.GetEnemy(i * Globals.TileSize, j * Globals.TileSize));
                         }
                         else if (Globals.l.Rng.Next(1000) < 3)
                         {

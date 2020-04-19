@@ -104,13 +104,13 @@ namespace LD46
                         }
                     }
                 }
+            }
 
-                Regen(delta);
-                HaveItemsExpired(delta);
-                foreach (Spell s in Spells)
-                {
-                    s.Update(delta);
-                }
+            Regen(delta);
+            HaveItemsExpired(delta);
+            foreach (Spell s in Spells)
+            {
+                s.Update(delta);
             }
 
             base.Update(delta);

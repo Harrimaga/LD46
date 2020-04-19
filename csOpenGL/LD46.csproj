@@ -129,6 +129,7 @@
     <Compile Include="Enemies\Bosses\Hirrathak.cs" />
     <Compile Include="Enemies\RangedEnemy.cs" />
     <Compile Include="Bossrooms\ButtonClickBoss.cs" />
+    <Compile Include="Enemies\RappidFireRanged.cs" />
     <Compile Include="Items\HelmOfPylonius.cs" />
     <Compile Include="Items\OrbOfHealth.cs" />
     <Compile Include="Items\Sword.cs" />
