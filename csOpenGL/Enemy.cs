@@ -10,6 +10,7 @@ namespace LD46
     {
 
         public double attackTimer = 0, attackSpeed = 0, attackPoint = 0, damage;
+        public float projectileSpeed = 10;
         public bool attacked = false, attacking = false;
         public int maxDistance = 1000, minDistance = Globals.TileSize, range = 600;
 
@@ -108,7 +109,7 @@ namespace LD46
                     dis = (float)Math.Sqrt(xd * xd + yd * yd);
                     xd /= dis;
                     yd /= dis;
-                    Globals.l.Current.projectiles.Add(new Projectile(x + w / 2 - Globals.TileSize / 4, y + h / 2 - Globals.TileSize / 4, xd * 12.5f, yd * 12.5f, damage, false, this, 0, 0, Globals.TileSize / 2, Globals.TileSize / 2, "Projectile"));
+                    Globals.l.Current.projectiles.Add(new Projectile(x + w / 2 - Globals.TileSize / 4, y + h / 2 - Globals.TileSize / 4, xd * projectileSpeed, yd * projectileSpeed, damage, false, this, 0, 0, Globals.TileSize / 2, Globals.TileSize / 2, "Projectile"));
                     attacked = true;
                     s = baseAnimation;
                     ani = new Animation(0, 3, 10);
