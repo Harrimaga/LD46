@@ -37,10 +37,11 @@ namespace LD46
         public void Cast(float x, float y, IEnumerable<Entity> possibleTargets, Entity caster)
         {
             double damage = Damage * caster.GetMagicAmp();
-            if(!caster.LoseMana(Mana))
+            if(CurrentCooldown > 0 || !caster.LoseMana(Mana))
             {
                 return;
             }
+            CurrentCooldown = Cooldown;
             foreach (Entity target in possibleTargets)
             {
                 if(Math.Abs(target.x-x) < AOE && Math.Abs(target.y-y) < AOE)
