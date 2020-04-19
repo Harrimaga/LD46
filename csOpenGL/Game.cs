@@ -43,7 +43,7 @@ namespace LD46
         public void OnLoad()
         {
             //buttons.Add(new DrawnButton("Red Velvet", 500, 500, 200, 50, () => { Console.WriteLine("Button 1"); }));
-            p = new Fighter(Globals.TileSize, Globals.TileSize);
+            p = new Mage(Globals.TileSize, Globals.TileSize);
             new Level(Globals.Themes[Globals.Rng.Next(Globals.Themes.Count)], p, Seed);
             LevelsPlayed = 0;
         }

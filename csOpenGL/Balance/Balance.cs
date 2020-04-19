@@ -22,6 +22,17 @@ namespace LD46
         public const double FIGHTER_BASE_SPEED = 5;
         public const string FIGHTER_NAME = "Fighter";
 
+        //Mage
+        public const double MAGE_PHYSICAL_DAMAGE_AMP = 0.5;
+        public const double MAGE_MAGICAL_DAMAGE_AMP = 1.3;
+        public const double MAGE_BASE_ATTACK_POINT = 1;
+        public const double MAGE_BASE_ATTACK_SPEED = 80;
+        public const double MAGE_BASE_DAMAGE = 30;
+        public const double MAGE_BASE_HEALTH = 75;
+        public const double MAGE_BASE_MANA = 100;
+        public const double MAGE_BASE_SPEED = 5;
+        public const string MAGE_NAME = "Mage";
+
         /// <summary>
         /// Items
         /// </summary>

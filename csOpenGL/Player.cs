@@ -21,7 +21,7 @@ namespace LD46
         {
             Init(Health, Mana, x, y, texNum, attackTexNum, spriteNum, w, h, speed, 1, PhysicalAmp, MagicalAmp);
             Spells = new List<Spell>();
-            ani = new Animation(0, 3, 10);
+            ani = new Animation(0, s.texture.totW / s.texture.sW - 1, 10);
             this.attackSpeed = attackSpeed;
             this.attackPoint = attackPoint;
             this.damage = damage;
@@ -151,20 +151,20 @@ namespace LD46
                     attacking = false;
                     s = baseAnimation;
                     a = false;
-                    ani = new Animation(0, 3, 10);
+                    ani = new Animation(0, s.texture.totW / s.texture.sW - 1, 10);
                 }
                 else if (attackTimer > attackSpeed)
                 {
                     attacking = false;
                     s = baseAnimation;
                     a = false;
-                    ani = new Animation(0, 3, 10);
+                    ani = new Animation(0, s.texture.totW / s.texture.sW - 1, 10);
                 }
             }
             else
             {
                 s = attack;
-                ani = new Animation(0, 9, attackSpeed / 10);
+                ani = new Animation(0, attack.texture.totW / s.texture.sW - 1, attackSpeed / 10);
                 attackTimer = 0;
                 attacked = false;
                 attacking = true;
