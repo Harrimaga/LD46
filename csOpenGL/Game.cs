@@ -59,6 +59,9 @@ namespace LD46
             //Updating logic
             switch (gameState)
             {
+                case GameState.NEXTLEVEL:
+                    if (pickUp.IsDown()) Globals.l.Current.TryPickup();
+                    break;
                 case GameState.PLAYING:
                     if (Globals.Boss.Health == 0)
                     {
@@ -143,16 +146,57 @@ namespace LD46
                         }
                         else
                         {
-                            Globals.l = new Level(Globals.Themes[Globals.Rng.Next(Globals.Themes.Count)], Globals.l.p, Globals.Rng.Next());
-                            p.x = Globals.TileSize;
-                            p.y = Globals.TileSize;
-                            p.Health = p.MaxHealth;
-                            p.Mana = p.MaxMana;
+                            gameState = GameState.NEXTLEVEL;
+                            buttons.Add(new DrawnButton("Full heal", 760, 400, 400, 75, () => { FullHeal(); }));
+                            for(int k = 0; k < 4; k++)
+                            {
+                                int rn = Globals.Rng.Next(Globals.l.Current.chanceTotal);
+                                Item it = null;
+                                foreach (Itemchances item in Globals.l.Current.itemDrops)
+                                {
+                                    if (rn < item.chance)
+                                    {
+                                        it = item.make();
+                                        break;
+                                    }
+                                }
+                                if (it != null)
+                                {
+                                    buttons.Add(new DrawnButton("", 770 + k * 100, 500, 80, 80, () => { GiveItem(it); }, it.Sprite.texture));
+                                }
+                                
+                            }
                         }
                         return;
                     }
                 }
             }
+        }
+
+        private void FullHeal()
+        {
+            p.Health = p.MaxHealth;
+            p.Mana = p.MaxMana;
+            GotoNextLevel();
+        }
+
+        private void GiveItem(Item i)
+        {
+            if(Globals.l.p.items.Count < 6)
+            {
+                Globals.l.p.EquipItem(i);
+                GotoNextLevel();
+            }
+        }
+
+        private void GotoNextLevel()
+        {
+            Globals.l = new Level(Globals.Themes[Globals.Rng.Next(Globals.Themes.Count)], Globals.l.p, Globals.Rng.Next());
+            p.x = Globals.TileSize;
+            p.y = Globals.TileSize;
+            gameState = GameState.PLAYING;
+            buttons.Clear();
+            p.ReAddButtons();
         }
 
         public void Draw()
@@ -171,6 +215,11 @@ namespace LD46
                     break;
                 case GameState.WON:
                     Window.window.DrawTextCentered("You won!", 960, 300);
+                    Globals.rootActionLog.Draw();
+                    break;
+                case GameState.NEXTLEVEL:
+                    Window.window.DrawTextCentered("Choose a bonus", 960, 300);
+                    p.DrawUI();
                     Globals.rootActionLog.Draw();
                     break;
                 case GameState.MAINMENU:

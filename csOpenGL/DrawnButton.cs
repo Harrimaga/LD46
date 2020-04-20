@@ -23,7 +23,7 @@ namespace LD46
         public float b { get; set; }
         public float a { get; set; }
 
-        public DrawnButton(string text, float x, float y, float width, float height, EventAction onClickAction)
+        public DrawnButton(string text, float x, float y, float width, float height, EventAction onClickAction, Texture tex = null)
         {
             if(height<25)
             {
@@ -35,7 +35,14 @@ namespace LD46
             Width = width;
             Height = height;
             OnClickAction = onClickAction;
-            Sprite = new Sprite((int)width, (int)height, 0, Window.texs[1]);
+            if(tex == null)
+            {
+                Sprite = new Sprite((int)width, (int)height, 0, Window.texs[1]);
+            } 
+            else
+            {
+                Sprite = new Sprite((int)width, (int)height, 0, tex);
+            }
             r = 1;
             g = 1;
             b = 1;
