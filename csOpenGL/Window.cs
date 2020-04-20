@@ -166,6 +166,12 @@ namespace LD46
             Window.texs.Add(new Texture("Textures/Spells/SurgeSpell.png", 24, 24, 24, 24));         //38
             Window.texs.Add(new Texture("Textures/Spells/WallSpell.png", 24, 24, 24, 24));          //39
             Window.texs.Add(new Texture("Textures/Items/Hammer.png", 24, 24, 24, 24));              //40
+            Window.texs.Add(new Texture("Textures/Twaelf.png", 32, 32, 32, 32));                    //41
+            Window.texs.Add(new Texture("Textures/YureonAttack.png", 754, 58, 58, 58));             //42
+            Window.texs.Add(new Texture("Textures/YureonIdle.png", 232, 58, 58, 58));               //43
+            Window.texs.Add(new Texture("Textures/YeeterAnimation.png", 80, 40, 40, 40));           //44
+
+
 
 
 

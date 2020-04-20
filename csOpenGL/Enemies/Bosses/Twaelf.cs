@@ -12,7 +12,7 @@ namespace LD46
         public int maxTurrets, currentTurrets;
         public double spawnTimer, spawnTimerBase;
 
-        public Twaelf() : base(Enemies.TWAELF_HEALTH, Enemies.TWAELF_MANA, 12 * Globals.TileSize, 12 * Globals.TileSize, 6, 7, 0, Globals.TileSize * 3, Globals.TileSize * 3, Enemies.TWAELF_SPEED, Enemies.TWAELF_ATTACKPOINT, Enemies.TWAELF_ATTACKSPEED, Enemies.TWAELF_DAMAGE, "Twaelf, the Spawner", Enemies.TWAELF_BLOCK, Enemies.TWAELF_PHYSICAL_AMP, Enemies.TWAELF_MAGICAL_AMP)
+        public Twaelf() : base(Enemies.TWAELF_HEALTH, Enemies.TWAELF_MANA, 12 * Globals.TileSize, 12 * Globals.TileSize, 41, 41, 0, Globals.TileSize * 3, Globals.TileSize * 3, Enemies.TWAELF_SPEED, Enemies.TWAELF_ATTACKPOINT, Enemies.TWAELF_ATTACKSPEED, Enemies.TWAELF_DAMAGE, "Twaelf, the Spawner", Enemies.TWAELF_BLOCK, Enemies.TWAELF_PHYSICAL_AMP, Enemies.TWAELF_MAGICAL_AMP)
         {
             maxTurrets = 12;
             currentTurrets = 0;
