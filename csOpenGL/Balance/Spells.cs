@@ -54,6 +54,16 @@ namespace LD46
         public const string SHIELD_DESCRIPTION = "Gives you a temporary shield";
         public const double SHIELD_AOE = 0;
 
+        //Surge
+        public const double SURGE_MANA = 25;
+        public const double SURGE_DAMAGE = 0;
+        public const double SURGE_COOLDOWN = 10 * 60;
+        public const double SURGE_DURATION = 2 * 60;
+        public const double SURGE_SPEED = 5;
+        public const string SURGE_NAME = "Surge";
+        public const string SURGE_DESCRIPTION = "Makes you go very fast";
+        public const double SURGE_AOE = 0;
+
 
         //Banishment
         public const double BANISHMENT_MANA = 30;
