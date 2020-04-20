@@ -27,8 +27,9 @@ namespace LD46
         public int pAniStop { get; set; }
         public double pAniDuration { get; set; }
         public float particleSpeed { get; set; }
+        public float pr, pb, pg;
 
-        protected Spell(double mana, double damage, double cooldown, string name, string description, List<Effect> effects, double aOE, Sprite icon, Animation spellAnimation, int particleSprite = 17, int particleAmount = 1000, int pAniStart = 0, int pAniStop = 11, double pAniDuration = 2.5, float particleSpeed = 0)
+        protected Spell(double mana, double damage, double cooldown, string name, string description, List<Effect> effects, double aOE, Sprite icon, Animation spellAnimation, int particleSprite = 17, int particleAmount = 1000, int pAniStart = 0, int pAniStop = 11, double pAniDuration = 2.5, float particleSpeed = 0, float pr = 1, float pg = 1, float pb = 1)
         {
             Mana = mana;
             Damage = damage;
@@ -45,6 +46,9 @@ namespace LD46
             this.pAniStop = pAniStop;
             this.pAniDuration = pAniDuration;
             this.particleSpeed = particleSpeed;
+            this.pr = pr;
+            this.pg = pg;
+            this.pb = pb;
             CooldownSprite = new Sprite(0, 45, 0, Window.texs[2]);
         }
 
@@ -67,7 +71,7 @@ namespace LD46
                 if (distance <= ((20 - particleSpeed)/20) * (AOE - Globals.TileSize / 2))
                 {
 
-                    Globals.l.Current.particles.Add(new Particle(px, py, particleSpeed*(float)(((distance) /(AOE - Globals.TileSize/2)) * xd/distance), particleSpeed * (float)(((distance) / (AOE - Globals.TileSize / 2)) * yd / distance), Globals.TileSize / 2, Globals.TileSize / 2, particleSprite, 0, 30, 1, 1, 1, true, new Animation(pAniStart, pAniStop, pAniDuration)));
+                    Globals.l.Current.particles.Add(new Particle(px, py, particleSpeed*(float)(((distance) /(AOE - Globals.TileSize/2)) * xd/distance), particleSpeed * (float)(((distance) / (AOE - Globals.TileSize / 2)) * yd / distance), Globals.TileSize / 2, Globals.TileSize / 2, particleSprite, 0, 30, pr, pg, pb, true, new Animation(pAniStart, pAniStop, pAniDuration)));
                 }
             }
             foreach (Entity target in possibleTargets)
