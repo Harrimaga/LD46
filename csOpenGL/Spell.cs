@@ -56,11 +56,6 @@ namespace LD46
 
         public void Cast(float x, float y, IEnumerable<Entity> possibleTargets, Entity caster)
         {
-            if (CurrentCooldown > 0 || !caster.LoseMana(Mana))
-            {
-                return;
-            }
-            CurrentCooldown = Cooldown;
             switch (spellType)
             {
                 case SpellType.AOE:
@@ -69,11 +64,19 @@ namespace LD46
                 case SpellType.SELF_TARGET:
                     SelfTargetSpell(x, y, caster);
                     break;
+                case SpellType.SINGLE_TARGET:
+                    SingleTargetSpell(x, y, possibleTargets, caster);
+                    break;
             }
         }
 
         private void AOESpell(float x, float y, IEnumerable<Entity> possibleTargets, Entity caster)
         {
+            if (CurrentCooldown > 0 || !caster.LoseMana(Mana))
+            {
+                return;
+            }
+            CurrentCooldown = Cooldown;
             double damage = Damage * caster.GetMagicAmp();
             int targets = 0;
             for (int i = 0; i < particleAmount; i++)
@@ -117,6 +120,11 @@ namespace LD46
 
         private void SelfTargetSpell(float x, float y, Entity caster)
         {
+            if (CurrentCooldown > 0 || !caster.LoseMana(Mana))
+            {
+                return;
+            }
+            CurrentCooldown = Cooldown;
             double damage = Damage * caster.GetMagicAmp();
             for (int i = 0; i < particleAmount; i++)
             {
@@ -125,7 +133,7 @@ namespace LD46
                 float distance = (float)Math.Sqrt(xs * xs + ys * ys);
                 xs /= distance;
                 ys /= distance;
-                Globals.l.Current.particles.Add(new Particle(caster.x + caster.w/2 - Globals.TileSize/4, caster.y + caster.h / 2 - Globals.TileSize / 4, xs, ys, Globals.TileSize / 2, Globals.TileSize / 2, particleSprite, 0, 30, pr, pg, pb, true, new Animation(pAniStart, pAniStop, pAniDuration)));
+                Globals.l.Current.particles.Add(new Particle(caster.x + caster.w / 2 - Globals.TileSize / 4, caster.y + caster.h / 2 - Globals.TileSize / 4, xs, ys, Globals.TileSize / 2, Globals.TileSize / 2, particleSprite, 0, 30, pr, pg, pb, true, new Animation(pAniStart, pAniStop, pAniDuration)));
             }
 
             caster.DealMagicDamage(damage, Globals.l.p.name, caster.name);
@@ -142,6 +150,48 @@ namespace LD46
                 else
                 {
                     Globals.rootActionLog.TakeDamage(caster.name, damage, Name);
+                }
+            }
+        }
+
+        private void SingleTargetSpell(float x, float y, IEnumerable<Entity> possibleTargets, Entity caster)
+        {
+            double damage = Damage * caster.GetMagicAmp();
+            foreach (Entity target in possibleTargets)
+            {
+                if (Globals.checkCol((int)x, (int)y, 0, 0, (int)target.x, (int)target.y, target.w, target.h))
+                {
+                    if (CurrentCooldown > 0 || !caster.LoseMana(Mana))
+                    {
+                        return;
+                    }
+                    CurrentCooldown = Cooldown;
+                    //PARTICLES
+                    for (int i = 0; i < particleAmount; i++)
+                    {
+                        float xs = (float)(2 * Globals.Rng.NextDouble() - 1) * particleSpeed;
+                        float ys = (float)(2 * Globals.Rng.NextDouble() - 1) * particleSpeed;
+                        float distance = (float)Math.Sqrt(xs * xs + ys * ys);
+                        xs /= distance;
+                        ys /= distance;
+                        Globals.l.Current.particles.Add(new Particle(target.x + target.w / 2 - Globals.TileSize / 4, target.y + target.h / 2 - Globals.TileSize / 4, xs, ys, Globals.TileSize / 2, Globals.TileSize / 2, particleSprite, 0, 30, pr, pg, pb, true, new Animation(pAniStart, pAniStop, pAniDuration)));
+                    }
+                    //Deal damage and add the spell effects to the enemies withing AOE
+                    target.DealMagicDamage(damage, Globals.l.p.name, caster.name);
+                    foreach (Effect effect in Effects)
+                    {
+                        target.TakeEffect((Effect)effect.Clone());
+                    }
+                    if (caster == Globals.l.p)
+                    {
+                        Globals.rootActionLog.DealDamage(target.name, damage, Name);
+                    }
+                    else
+                    {
+                        Globals.rootActionLog.TakeDamage(target.name, damage, Name);
+                    }
+                    Globals.rootActionLog.CastSpell(Name, caster.name, 1);
+                    return;
                 }
             }
         }

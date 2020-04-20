@@ -53,5 +53,14 @@ namespace LD46
         public const string SHIELD_NAME = "Shield";
         public const string SHIELD_DESCRIPTION = "Gives you a temporary shield";
         public const double SHIELD_AOE = 0;
+
+
+        //Banishment
+        public const double BANISHMENT_MANA = 30;
+        public const double BANISHMENT_DAMAGE = 999999;
+        public const double BANISHMENT_COOLDOWN = 15 * 60;
+        public const string BANISHMENT_NAME = "Banishment";
+        public const string BANISHMENT_DESCRIPTION = "Kills a target enemy";
+        public const double BANISHMENT_AOE = 0;
     }
 }
