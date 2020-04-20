@@ -146,6 +146,7 @@
     <Compile Include="Items\WandOfBlue.cs" />
     <Compile Include="Items\WandOfGreen.cs" />
     <Compile Include="Items\WandOfRed.cs" />
+    <Compile Include="Particle.cs" />
     <Compile Include="Players\Fighter.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Globals.cs" />
@@ -228,7 +229,9 @@
     <Content Include="Textures\Spells\DisableSpell.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Textures\Explosion.png" />
+    <Content Include="Textures\Explosion.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Textures\Spells\FireballSpell.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
