@@ -126,11 +126,13 @@
     <Compile Include="Balance\Balance.cs" />
     <Compile Include="Balance\Enemies.cs" />
     <Compile Include="Balance\Spells.cs" />
+    <Compile Include="Bossrooms\HordeBoss.cs" />
     <Compile Include="Bossrooms\MazeBossRoom.cs" />
     <Compile Include="Bossrooms\PrayerCircleBossRoom.cs" />
     <Compile Include="Enemies\Bosses\Hirrathak.cs" />
     <Compile Include="Enemies\Bosses\Pylonius.cs" />
     <Compile Include="Enemies\Bosses\Twaelf.cs" />
+    <Compile Include="Enemies\Bosses\Yureon.cs" />
     <Compile Include="Enemies\DarkEnemy.cs" />
     <Compile Include="Enemies\RangedEnemy.cs" />
     <Compile Include="Bossrooms\ButtonClickBoss.cs" />

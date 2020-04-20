@@ -171,7 +171,7 @@ namespace LD46
             tileGrid[x, y] = tile;
         }
 
-        public void Update(double delta)
+        public virtual void Update(double delta)
         {
             foreach (var p in projectiles)
             {
