@@ -25,7 +25,8 @@ namespace LD46
         MANA,
         MPREGEN,
         HPREGEN,
-        STUN
+        STUN,
+        KNOCKBACK
     }
 
     public enum Walkable
@@ -41,6 +42,7 @@ namespace LD46
         STAIRS,
         DOOR,
         BUTTON,
+        PRAYERCIRLE,
     }
 
     public enum Direction

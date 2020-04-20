@@ -171,7 +171,7 @@ namespace LD46
             tileGrid[x, y] = tile;
         }
 
-        public void Update(double delta)
+        public virtual void Update(double delta)
         {
             foreach (var p in projectiles)
             {
@@ -371,6 +371,7 @@ namespace LD46
             AddItem(new HelmOfPylonius(), () => { return new HelmOfPylonius(); });
             AddItem(new HealthPotion(), () => { return new HealthPotion(); });
             AddItem(new ManaPotion(), () => { return new ManaPotion(); });
+            AddItem(new Hammer(), () => { return new Hammer(); });
 
             int i = 0;
             foreach (Itemchances itc in itemDrops)

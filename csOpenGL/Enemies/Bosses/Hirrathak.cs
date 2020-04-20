@@ -77,8 +77,8 @@ namespace LD46
                 CurrentSpell = possibleSpells[Globals.Rng.Next(possibleSpells.Count)];
                 s = attack;
                 ani = attackAni;
-                TargetX = Globals.l.p.x;
-                TargetY = Globals.l.p.y;
+                TargetX = Globals.l.p.x - Globals.l.p.w / 2;
+                TargetY = Globals.l.p.y - Globals.l.p.h / 2;
                 attackTimer = 0;
                 attacking = false;
                 Casting = true;

@@ -126,15 +126,19 @@
     <Compile Include="Balance\Balance.cs" />
     <Compile Include="Balance\Enemies.cs" />
     <Compile Include="Balance\Spells.cs" />
+    <Compile Include="Bossrooms\HordeBoss.cs" />
+    <Compile Include="Bossrooms\PrayerCircleBossRoom.cs" />
     <Compile Include="Enemies\Bosses\Hirrathak.cs" />
     <Compile Include="Enemies\Bosses\Pylonius.cs" />
     <Compile Include="Enemies\Bosses\Twaelf.cs" />
+    <Compile Include="Enemies\Bosses\Yureon.cs" />
     <Compile Include="Enemies\DarkEnemy.cs" />
     <Compile Include="Enemies\RangedEnemy.cs" />
     <Compile Include="Bossrooms\ButtonClickBoss.cs" />
     <Compile Include="Enemies\RappidFireRanged.cs" />
     <Compile Include="Enemies\SuicideCharger.cs" />
     <Compile Include="Enemies\Turret.cs" />
+    <Compile Include="Items\Hammer.cs" />
     <Compile Include="Items\HealthPotion.cs" />
     <Compile Include="Items\HelmOfPylonius.cs" />
     <Compile Include="Items\ManaPotion.cs" />
@@ -177,6 +181,7 @@
     <Compile Include="Sprite.cs" />
     <Compile Include="Structure.cs" />
     <Compile Include="Structures\DefenseLaser.cs" />
+    <Compile Include="Structures\PrayerCircle.cs" />
     <Compile Include="Structures\Wall.cs" />
     <Compile Include="Texture.cs" />
     <Compile Include="Theme.cs" />

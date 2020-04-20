@@ -96,5 +96,15 @@ namespace LD46
         public const float TURRET_PROJECTILE_SPEED = 12.5f;
         public const double TURRET_BLOCK = 0;
 
+        public const int YUREON_HEALTH = 45;
+        public const int YUREON_MANA = 1400;
+        public const double YUREON_SPEED = 1;
+        public const double YUREON_ATTACKSPEED = 70;
+        public const double YUREON_ATTACKPOINT = 1;
+        public const double YUREON_DAMAGE = 13;
+        public const double YUREON_BLOCK = 0;
+        public const double YUREON_PHYSICAL_AMP = 0.2;
+        public const double YUREON_MAGICAL_AMP = 1.8;
+
     }
 }

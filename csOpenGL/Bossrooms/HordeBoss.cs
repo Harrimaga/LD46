@@ -6,18 +6,16 @@ using System.Threading.Tasks;
 
 namespace LD46
 {
-    public class ButtonClickBoss : Room
+    public class HordeBoss : Room
     {
-        public int ButtonCLicksNeeded { get; set; }
-
-        public ButtonClickBoss(Theme theme) : base(25, 25, theme)
+        bool Finished { get; set; }
+        public HordeBoss(Theme theme) : base(25, 25, theme)
         {
-            ButtonCLicksNeeded = 6;
-            enemies.Clear();
-            Globals.Boss = theme.GetBoss();
-            enemies.Add(Globals.Boss);
-            Random rng = new Random();
-
+            for (int i = 0; i < 10; i++)
+            {
+                Random rng = new Random();
+                enemies.Add(theme.GetEnemy(rng.Next(2, 23), rng.Next(2, 23)));
+            }
             for (int i = 0; i < 5; i++)
             {
                 int odds = Globals.Rng.Next(0, 1000);
@@ -48,36 +46,18 @@ namespace LD46
                     }
                 }
             }
-
-            for (int i = 0; i < 6; i++)
-            {
-                int randX = rng.Next(1, 24);
-                int randY = rng.Next(1, 24);
-                if (tileGrid[randX, randY].GetWalkable() == Walkable.WALKABLE && tileGrid[randX, randY].GetTileType() == TileType.TILE)
-                {
-                    tileGrid[randX, randY] = new Tile(new Sprite(tileSize, tileSize, 0, theme.GetTextureByType(TileType.BUTTON)), Walkable.WALKABLE, TileType.BUTTON, 0);
-                }
-                else
-                {
-                    i--;
-                }
-            }
         }
 
-        public override void PressButton(float px, float py)
+        public override void Update(double delta)
         {
-            tileGrid[(int)px / tileSize, (int)py / tileSize] = new Tile(new Sprite(tileSize, tileSize, 1, Theme.GetTextureByType(TileType.BUTTON)), Walkable.WALKABLE, TileType.TILE, 0);
-            if (--ButtonCLicksNeeded < 1)
+            base.Update(delta);
+            if(enemies.Count<=1 && !Finished)
             {
+                Finished = true;
                 Random rng = new Random();
                 tileGrid[rng.Next(1, 24), rng.Next(1, 24)] = new Tile(new Sprite(tileSize, tileSize, 0, Theme.GetTextureByType(TileType.STAIRS)), Walkable.WALKABLE, TileType.STAIRS, 0);
                 Globals.rootActionLog.Add("You have finished this boss, stairs have appeared");
             }
-        }
-
-        public override void DrawOnMinimap(int x, int y, float cc)
-        {
-            base.DrawOnMinimap(x, y, 0.5f, 0.5f, 0);
         }
     }
 }

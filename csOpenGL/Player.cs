@@ -152,7 +152,7 @@ namespace LD46
 
                         if (dis <= (enemy.w / 2 + w / 2) * 1.2f)
                         {
-                            enemy.DealPhysicalDamage(damage * PhysicalAmp, name, "their " + weaponName);
+                            enemy.DealPhysicalDamage(damage * PhysicalAmp, name, "their " + weaponName, this, KnockBackMod);
                         }
                     }
 
@@ -319,6 +319,9 @@ namespace LD46
                         case EffectType.HPREGEN:
                             HealthRegen += e.Modifier;
                             break;
+                        case EffectType.KNOCKBACK:
+                            KnockBackMod += e.Modifier;
+                            break;
                     }
                 }
             }
@@ -381,6 +384,9 @@ namespace LD46
                         case EffectType.HPREGEN:
                             HealthRegen -= e.Modifier;
                             break;
+                        case EffectType.KNOCKBACK:
+                            KnockBackMod -= e.Modifier;
+                            break;
                     }
                 }
             }
@@ -424,6 +430,9 @@ namespace LD46
                                 break;
                             case EffectType.HPREGEN:
                                 HealthRegen -= e.Modifier;
+                                break;
+                            case EffectType.KNOCKBACK:
+                                KnockBackMod -= e.Modifier;
                                 break;
                         }
                     }
