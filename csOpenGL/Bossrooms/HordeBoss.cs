@@ -11,7 +11,8 @@ namespace LD46
         bool Finished { get; set; }
         public HordeBoss(Theme theme) : base(25, 25, theme)
         {
-            
+            isBossRoom = true;
+
             for (int i = 0; i < 10; i++)
             {
                 Random rng = new Random();

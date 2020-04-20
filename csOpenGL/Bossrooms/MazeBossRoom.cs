@@ -11,6 +11,7 @@ namespace LD46
 
         public MazeBossRoom(Theme theme) : base(25, 25, theme, Globals.TileSize, false)
         {
+            isBossRoom = true;
             enemies.Clear();
             Globals.Boss = theme.GetBoss();
             enemies.Add(Globals.Boss);

@@ -70,4 +70,11 @@ namespace LD46
         NEXTLEVEL
     }
 
+    public enum MusicPlaying
+    {
+        NOTHING,
+        NORMAL,
+        BOSS
+    }
+
 }

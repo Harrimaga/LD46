@@ -12,6 +12,7 @@ namespace LD46
 
         public PrayerCircleBossRoom(Theme theme) : base(25, 25, theme)
         {
+            isBossRoom = true;
             CirclesToGo = 2;
             enemies.Clear();
             Globals.Boss = theme.GetBoss();

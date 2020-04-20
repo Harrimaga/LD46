@@ -76,6 +76,16 @@ namespace LD46
                             {
                                 Globals.l.Current = c.Room;
                                 Globals.l.Current.visited = true;
+                                if(c.Room.isBossRoom)
+                                {
+                                    Globals.musicPlaying = MusicPlaying.BOSS;
+                                    SoundManager.PlayMusic("Sound/Track12.wav");
+                                }
+                                else if(Globals.musicPlaying != MusicPlaying.NORMAL)
+                                {
+                                    Globals.musicPlaying = MusicPlaying.NORMAL;
+                                    SoundManager.PlayMusic("Sound/Track17.wav");
+                                }
                                 switch (d)
                                 {
                                     case Direction.NORTH:
