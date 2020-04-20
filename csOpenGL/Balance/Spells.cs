@@ -62,5 +62,18 @@ namespace LD46
         public const string BANISHMENT_NAME = "Banishment";
         public const string BANISHMENT_DESCRIPTION = "Kills a target enemy";
         public const double BANISHMENT_AOE = 0;
+
+
+        //Ray Of Frost
+        public const double RAY_OF_FROST_MANA = 5;
+        public const double RAY_OF_FROST_DAMAGE = 5;
+        public const double RAY_OF_FROST_COOLDOWN = 2 * 60;
+        public const string RAY_OF_FROST_NAME = "Ray of Frost";
+        public const string RAY_OF_FROST_DESCRIPTION = "Ich benutze frost strahle";
+        public const double RAY_OF_FROST_AOE = 0;
+        public const double RAY_OF_FROST_SLOW = 0.7;
+        public const double RAY_OF_FROST_DURATION = 3*60;
+        public const float RAY_OF_FROST_PROJECTILE_SPEED = 10;
+        public const int RAY_OF_FROST_PIERCE = 99999;
     }
 }
