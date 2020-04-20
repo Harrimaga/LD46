@@ -49,6 +49,23 @@ namespace LD46
             Window.camX = x - 960 + w / 2;
             Window.camY = y - 540 + h / 2;
 
+            Regen(delta);
+            HaveItemsExpired(delta);
+            foreach (Spell s in Spells)
+            {
+                s.Update(delta);
+            }
+
+            base.Update(delta);
+
+            if (a)
+            {
+                BasicAttack(delta);
+            }
+
+            xDir = 0;
+            yDir = 0;
+
             for (int i = (int)(x / Globals.TileSize); i < (int)(x / Globals.TileSize) + 2 + w / Globals.TileSize && i < Globals.l.Current.width && i > -1; i++)
             {
                 for (int j = (int)(y / Globals.TileSize); j < (int)(y / Globals.TileSize) + 2 + h / Globals.TileSize && j < Globals.l.Current.height && j > -1; j++)
@@ -113,24 +130,6 @@ namespace LD46
                     }
                 }
             }
-
-            Regen(delta);
-            HaveItemsExpired(delta);
-            foreach (Spell s in Spells)
-            {
-                s.Update(delta);
-            }
-
-            base.Update(delta);
-
-            if (a)
-            {
-                BasicAttack(delta);
-            }
-
-            xDir = 0;
-            yDir = 0;
-
         }
 
         public void SetDir(int x, int y)
