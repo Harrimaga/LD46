@@ -64,7 +64,8 @@ namespace LD46
         PLAYING,
         DEAD,
         WON,
-        MAINMENU
+        MAINMENU,
+        NEXTLEVEL
     }
 
 }
