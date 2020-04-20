@@ -26,7 +26,8 @@ namespace LD46
         MPREGEN,
         HPREGEN,
         STUN,
-        KNOCKBACK
+        KNOCKBACK,
+        ATTACK_SPEED
     }
 
     public enum Walkable

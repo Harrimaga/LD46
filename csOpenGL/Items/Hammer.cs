@@ -16,7 +16,7 @@ namespace LD46
             new Sprite(40, 40, 0, Window.texs[40]),
             new Effect[] {
                 new Effect(EffectType.PHYSICAL_DAMAGE, Balance.HAMMER_PHYSICAL_AMP, -999),
-                new Effect(EffectType.SPEED, Balance.HAMMER_SPEED, -999),
+                new Effect(EffectType.ATTACK_SPEED, Balance.HAMMER_SPEED, -999),
                 new Effect(EffectType.KNOCKBACK, Balance.HAMMER_KNOCKBACK, -999)
             }
             )

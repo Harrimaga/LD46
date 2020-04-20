@@ -18,6 +18,7 @@ namespace LD46
         protected Animation idleAni = null;
         protected Animation ani = null;
         public double KnockBackMod = 1;
+        public double attackSpeed = 0;
         protected float xDir, yDir;
         protected int attackAnimation = 0;
         public List<Effect> effects;
@@ -237,6 +238,9 @@ namespace LD46
                     case EffectType.SPEED:
                         speed *= effect.Modifier;
                         break;
+                    case EffectType.ATTACK_SPEED:
+                        attackSpeed += effect.Modifier;
+                        break;
                     case EffectType.MANA:
                         double Manapercent = Mana / MaxMana;
                         MaxMana += effect.Modifier;
@@ -297,6 +301,9 @@ namespace LD46
                             break;
                         case EffectType.MPREGEN:
                             ManaRegen -= e.Modifier;
+                            break;
+                        case EffectType.ATTACK_SPEED:
+                            attackSpeed -= e.Modifier;
                             break;
                         case EffectType.HPREGEN:
                             HealthRegen -= e.Modifier;

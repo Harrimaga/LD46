@@ -9,7 +9,7 @@ namespace LD46
     public class Player : Entity
     {
 
-        public double attackTimer = 0, attackSpeed = 0, attackPoint = 1, damage;
+        public double attackTimer = 0, attackPoint = 1, damage;
         public bool attacked = false, attacking = false, a = false;
         public string weaponName;
         public Sprite UIBack, HBarUI, HBarBackUI, MBarUI, MBarBackUI;

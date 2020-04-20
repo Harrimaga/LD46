@@ -177,6 +177,7 @@ namespace LD46
         {
             p.Health = p.MaxHealth;
             p.Mana = p.MaxMana;
+            p.CurrentBlock = p.StandardBlock;
             GotoNextLevel();
         }
 
