@@ -16,7 +16,7 @@ namespace LD46
             for (int i = 0; i < 10; i++)
             {
                 Random rng = new Random();
-                enemies.Add(theme.GetEnemy(rng.Next(2, 23), rng.Next(2, 23)));
+                enemies.Add(theme.GetEnemy(rng.Next(2, 23)*Globals.TileSize, rng.Next(2, 23) * Globals.TileSize));
             }
             for (int i = 0; i < 5; i++)
             {
