@@ -59,6 +59,12 @@ namespace LD46
         public const Rarity SWORD_RARITY = Rarity.COMMON;
         public const string SWORD_DESCRIPTION = "+10% Physical amp";
         public const double SWORD_PHYSICAL_AMP = 0.1;
+        //Hammer
+        public const Rarity HAMMER_RARITY = Rarity.UNCOMMON;
+        public const string HAMMER_DESCRIPTION = "+10% Physical amp\n+0.5 KnockBack, -0.5 Speed";
+        public const double HAMMER_PHYSICAL_AMP = 0.1;
+        public const double HAMMER_KNOCKBACK = 0.5;
+        public const double HAMMER_SPEED = -0.5;
         //Wand Of green
         public const Rarity WAND_OF_GREEN_RARITY = Rarity.COMMON;
         public const string WAND_OF_GREEN_DESCRIPTION = "+10% Magic amp";

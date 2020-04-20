@@ -14,7 +14,6 @@ namespace LD46
         public string weaponName;
         public Sprite UIBack, HBarUI, HBarBackUI, MBarUI, MBarBackUI;
         public List<Item> items = new List<Item>();
-        public double KnockBackMod = 1;
         public List<Spell> Spells { get; set; }
         public List<DrawnButton> itemButtons = new List<DrawnButton>(), spellButtons = new List<DrawnButton>();
 
@@ -320,6 +319,9 @@ namespace LD46
                         case EffectType.HPREGEN:
                             HealthRegen += e.Modifier;
                             break;
+                        case EffectType.KNOCKBACK:
+                            KnockBackMod += e.Modifier;
+                            break;
                     }
                 }
             }
@@ -382,6 +384,9 @@ namespace LD46
                         case EffectType.HPREGEN:
                             HealthRegen -= e.Modifier;
                             break;
+                        case EffectType.KNOCKBACK:
+                            KnockBackMod -= e.Modifier;
+                            break;
                     }
                 }
             }
@@ -425,6 +430,9 @@ namespace LD46
                                 break;
                             case EffectType.HPREGEN:
                                 HealthRegen -= e.Modifier;
+                                break;
+                            case EffectType.KNOCKBACK:
+                                KnockBackMod -= e.Modifier;
                                 break;
                         }
                     }
