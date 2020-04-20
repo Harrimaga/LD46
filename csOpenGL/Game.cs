@@ -58,6 +58,7 @@ namespace LD46
                     {
                         gameState = GameState.DEAD;
                         Globals.rootActionLog.BossDeath();
+                        buttons.Add(new DrawnButton("Restart", 760, 600, 400, 75, () => { ToMainMenu(); }));
                         return;
                     };
                     if (left.IsDown()) p.SetDir(-1, 0);
