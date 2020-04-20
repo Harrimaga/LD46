@@ -12,6 +12,8 @@ namespace LD46
         Tile Tile { get; set; }
         double TimeLeft { get; set; }
         bool SetTileBack { get; set; }
+        int setX { get; set; }
+        int setY { get; set; }
 
         public ReflectingWall(): base(
             Spells.CREATE_WALL_MANA,
@@ -37,12 +39,15 @@ namespace LD46
             {
                 return;
             }
+            setX = (int)(x / Globals.TileSize);
+            setY = (int)(y / Globals.TileSize);
             CurrentCooldown = Cooldown;
-            Tile = Globals.l.Current.getTile((int)(x / Globals.TileSize), (int)(y / Globals.TileSize));
+            Tile = Globals.l.Current.getTile(setX, setY);
             if(Tile.GetTileType()==TileType.TILE)
             {
-                TileCopy = (Tile)Tile.Clone();
+                TileCopy = Tile;
                 Tile = new Tile(new Sprite(Globals.TileSize, Globals.TileSize, 0, Globals.l.Current.Theme.GetTextureByType(TileType.WALL)), Walkable.SOLID, TileType.WALL, 0);
+                Globals.l.Current.SetTile(setX, setY, Tile);
                 TimeLeft = 240;
                 SetTileBack = false;
             }
@@ -56,6 +61,7 @@ namespace LD46
             {
                 Tile = TileCopy;
                 SetTileBack = true;
+                Globals.l.Current.SetTile(setX, setY, Tile);
             }
         }
     }
