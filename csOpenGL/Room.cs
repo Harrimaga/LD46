@@ -18,6 +18,7 @@ namespace LD46
         public List<Projectile> removeProjectiles;
         public List<Projectile> projectiles;
         public List<Itemchances> itemDrops;
+        public List<Particle> particles;
         public List<ItemPos> items;
         public List<SpellPos> spells;
         public bool visited;
@@ -41,6 +42,7 @@ namespace LD46
             enemies = new List<Enemy>();
             removables = new List<Enemy>();
             projectiles = new List<Projectile>();
+            particles = new List<Particle>();
             removeProjectiles = new List<Projectile>();
             Structures = new List<Structure>();
             for (int i = 0; i < x; i++)
@@ -189,6 +191,19 @@ namespace LD46
             {
                 structure.Update(delta);
             }
+            int num = 0;
+            for(int i = particles.Count-1; i >= 0; i--)
+            {
+                if(particles[i].Update(delta))
+                {
+                    particles[i] = particles[particles.Count - 1 - num];
+                    num++;
+                }
+            }
+            if (num > 0)
+            {
+                particles.RemoveRange(particles.Count - num, num);
+            }
         }
 
         public virtual void DrawOnMinimap(int x, int y, float cc)
@@ -236,6 +251,10 @@ namespace LD46
             foreach (SpellPos spell in spells)
             {
                 spell.spell.DrawOnGround(spell.x, spell.y);
+            }
+            foreach (Particle p in particles)
+            {
+                p.Draw();
             }
             foreach (var enemy in enemies)
             {

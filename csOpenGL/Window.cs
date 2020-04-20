@@ -142,6 +142,7 @@ namespace LD46
             Window.texs.Add(new Texture("Textures/Spells/SlownessSpell.png", 24, 24, 24, 24));      //14
             Window.texs.Add(new Texture("Textures/Spells/DisableSpell.png", 24, 24, 24, 24));       //15
             Window.texs.Add(new Texture("Textures/Spells/PillarOfLightSpell.png", 24, 24, 24, 24)); //16
+            Window.texs.Add(new Texture("Textures/Explosion.png", 300, 60, 60, 60));                //17
 
             game = new Game(this);
             base.OnLoad(e);
