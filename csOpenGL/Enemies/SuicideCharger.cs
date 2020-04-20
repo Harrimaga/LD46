@@ -24,6 +24,18 @@ namespace LD46
             Player p = Globals.l.p;
             if(Globals.checkCol((int)p.x, (int)p.y, p.w, p.h, (int)x, (int)y, w, h))
             {
+                for (int i = 0; i < 150; i++)
+                {
+                    float px = (float)(x + (Globals.Rng.NextDouble() * 2 - 1) * (Globals.TileSize));
+                    float py = (float)(y + (Globals.Rng.NextDouble() * 2 - 1) * (Globals.TileSize));
+                    float xd = px - x;
+                    float yd = py - y;
+                    double distance = Math.Sqrt(xd * xd + yd * yd);
+                    if (distance <= Globals.TileSize)
+                    {
+                        Globals.l.Current.particles.Add(new Particle(px, py, 0, 0, Globals.TileSize / 2, Globals.TileSize / 2, 17, 0, 30, 1, 1, 1, true, new Animation(0, 11, 2.5)));
+                    }
+                }
                 p.DealPhysicalDamage(damage, name, "Explosion", this, 2);
                 Health = 0;
                 Globals.rootActionLog.Death(this.name);

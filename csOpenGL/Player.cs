@@ -39,7 +39,7 @@ namespace LD46
             AddSpell(new Slowness());
             AddSpell(new Disable());
             AddSpell(new PillarOfLight());
-            AddSpell(new Shield());
+            AddSpell(new Banishment());
         }
 
         public override void Update(double delta)

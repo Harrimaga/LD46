@@ -162,6 +162,7 @@
     <Compile Include="Shader.cs" />
     <Compile Include="SoundManager.cs" />
     <Compile Include="Spell.cs" />
+    <Compile Include="Spells\Banishment.cs" />
     <Compile Include="Spells\Disable.cs" />
     <Compile Include="Spells\Fireball.cs" />
     <Compile Include="Spells\Shield.cs" />
