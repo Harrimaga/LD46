@@ -126,6 +126,7 @@
     <Compile Include="Balance\Balance.cs" />
     <Compile Include="Balance\Enemies.cs" />
     <Compile Include="Balance\Spells.cs" />
+    <Compile Include="Bossrooms\PrayerCircleBossRoom.cs" />
     <Compile Include="Enemies\Bosses\Hirrathak.cs" />
     <Compile Include="Enemies\Bosses\Pylonius.cs" />
     <Compile Include="Enemies\Bosses\Twaelf.cs" />
@@ -177,6 +178,7 @@
     <Compile Include="Sprite.cs" />
     <Compile Include="Structure.cs" />
     <Compile Include="Structures\DefenseLaser.cs" />
+    <Compile Include="Structures\PrayerCircle.cs" />
     <Compile Include="Structures\Wall.cs" />
     <Compile Include="Texture.cs" />
     <Compile Include="Theme.cs" />

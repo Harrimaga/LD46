@@ -56,7 +56,7 @@ namespace LD46
                     {
                         roomToUpdate = roomToUpdate.Connections[Rng.Next(roomToUpdate.Connections.Count)].Room;
                     }
-                    Room bossRoom = new ButtonClickBoss(theme);
+                    Room bossRoom = CreateABossRoom(theme);
                     foreach (Connection conn in roomToUpdate.Connections)
                     {
                         bossRoom.AddConnection(conn);
@@ -69,7 +69,7 @@ namespace LD46
             Room newRoom = null;
             if (!HasBossRoom && (Rng.Next(75) < deepness))
             {
-                newRoom = new ButtonClickBoss(theme);
+                newRoom = CreateABossRoom(theme);
                 HasBossRoom = true;
             }
             else
@@ -101,6 +101,20 @@ namespace LD46
                 result.Add(CreateRoom(++deepness, newRoom));
             }
             return result.All((singleResult) => { return singleResult; });
+        }
+
+        private Room CreateABossRoom(Theme theme)
+        {
+            switch (Rng.Next(2))
+            {
+                case 0:
+                    return new ButtonClickBoss(theme);
+                case 1:
+                    return new PrayerCircleBossRoom(theme);
+                default:
+                    return new ButtonClickBoss(theme);
+            }
+
         }
 
         public void Draw()

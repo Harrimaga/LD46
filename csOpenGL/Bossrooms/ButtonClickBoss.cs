@@ -17,7 +17,7 @@ namespace LD46
             Globals.Boss = theme.GetBoss();
             enemies.Add(Globals.Boss);
             Random rng = new Random();
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 6; i++)
             {
                 int randX = rng.Next(1, 24);
                 int randY = rng.Next(1, 24);

@@ -41,6 +41,7 @@ namespace LD46
         STAIRS,
         DOOR,
         BUTTON,
+        PRAYERCIRLE,
     }
 
     public enum Direction
