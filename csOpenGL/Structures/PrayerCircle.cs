@@ -27,7 +27,7 @@ namespace LD46
         public override void Update(double deltaTime)
         {
             base.Update(deltaTime);
-            if ((int)(Globals.l.p.y / Globals.TileSize) == Y && (int)(Globals.l.p.x / Globals.TileSize) >= X && (int)(Globals.l.p.y / Globals.TileSize) <= X + Width && !Prayed)
+            if (Globals.checkCol(X* Globals.TileSize, Y*Globals.TileSize, Globals.TileSize, Globals.TileSize, (int)Globals.l.p.x, (int)Globals.l.p.y, Globals.l.p.w, Globals.l.p.h) && !Prayed)
             {
                 TimePrayed += deltaTime;
                 if(TimePrayed>TimeToPray)
