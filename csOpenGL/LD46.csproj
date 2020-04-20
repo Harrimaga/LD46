@@ -126,6 +126,7 @@
     <Compile Include="Balance\Balance.cs" />
     <Compile Include="Balance\Enemies.cs" />
     <Compile Include="Balance\Spells.cs" />
+    <Compile Include="Bossrooms\HordeBoss.cs" />
     <Compile Include="Bossrooms\PrayerCircleBossRoom.cs" />
     <Compile Include="Enemies\Bosses\Hirrathak.cs" />
     <Compile Include="Enemies\Bosses\Pylonius.cs" />
