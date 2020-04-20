@@ -21,7 +21,14 @@ namespace LD46
             {
                 int randX = rng.Next(1, 24);
                 int randY = rng.Next(1, 24);
-                tileGrid[randX, randY] = new Tile(new Sprite(tileSize, tileSize, 0, theme.GetTextureByType(TileType.BUTTON)), Walkable.WALKABLE, TileType.BUTTON, 0);
+                if (tileGrid[randX, randY].GetWalkable() == Walkable.WALKABLE)
+                {
+                    tileGrid[randX, randY] = new Tile(new Sprite(tileSize, tileSize, 0, theme.GetTextureByType(TileType.BUTTON)), Walkable.WALKABLE, TileType.BUTTON, 0);
+                }
+                else
+                {
+                    i--;
+                }
             }
         }
 
