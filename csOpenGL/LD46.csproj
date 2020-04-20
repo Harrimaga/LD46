@@ -392,6 +392,7 @@
     <Content Include="Textures\Spells\FireBall.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Textures\Spells\SurgeSpell.png" />
     <Content Include="Textures\Spells\WallSpell.png" />
     <Content Include="Textures\Test.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
