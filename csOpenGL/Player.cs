@@ -14,6 +14,7 @@ namespace LD46
         public string weaponName;
         public Sprite UIBack, HBarUI, HBarBackUI, MBarUI, MBarBackUI;
         public List<Item> items = new List<Item>();
+        public double KnockBackMod = 1;
         public List<Spell> Spells { get; set; }
         public List<DrawnButton> itemButtons = new List<DrawnButton>(), spellButtons = new List<DrawnButton>();
 
@@ -152,7 +153,7 @@ namespace LD46
 
                         if (dis <= (enemy.w / 2 + w / 2) * 1.2f)
                         {
-                            enemy.DealPhysicalDamage(damage * PhysicalAmp, name, "their " + weaponName);
+                            enemy.DealPhysicalDamage(damage * PhysicalAmp, name, "their " + weaponName, this, KnockBackMod);
                         }
                     }
 
