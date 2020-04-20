@@ -9,7 +9,7 @@ namespace LD46
     class SuicideCharger : Enemy
     {
 
-        public SuicideCharger(int x, int y) : base(Enemies.SUICIDE_CHARGER_ENEMY_HEALTH, Enemies.SUICIDE_CHARGER_ENEMY_MANA, x, y, 44, 44, 0, Globals.TileSize, Globals.TileSize, Enemies.SUICIDE_CHARGER_ENEMY_SPEED, Enemies.SUICIDE_CHARGER_ENEMY_ATTACKPOINT, Enemies.SUICIDE_CHARGER_ENEMY_ATTACKSPEED, Enemies.SUICIDE_CHARGER_ENEMY_DAMAGE, "Peter", Enemies.SUICIDE_CHARGER_BLOCK)
+        public SuicideCharger(int x, int y) : base(Enemies.SUICIDE_CHARGER_ENEMY_HEALTH, Enemies.SUICIDE_CHARGER_ENEMY_MANA, x, y, 44, 44, 0, Globals.TileSize, Globals.TileSize, Enemies.SUICIDE_CHARGER_ENEMY_SPEED, Enemies.SUICIDE_CHARGER_ENEMY_ATTACKPOINT, Enemies.SUICIDE_CHARGER_ENEMY_ATTACKSPEED, Enemies.SUICIDE_CHARGER_ENEMY_DAMAGE, "a Yetee", Enemies.SUICIDE_CHARGER_BLOCK)
         {
             attackAni = new Animation(0, 9, 10);
             idleAni = new Animation(0, 3, 10);
