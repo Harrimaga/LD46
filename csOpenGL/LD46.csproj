@@ -235,7 +235,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Sound\Track12.wav" />
+    <Content Include="Sound\Track12.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Sound\Track17.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
