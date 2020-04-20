@@ -220,6 +220,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Textures\PillarOfLightParticle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Textures\PyloniusAttack.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

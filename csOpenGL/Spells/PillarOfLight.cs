@@ -19,7 +19,7 @@ namespace LD46
                 Spells.PILLAR_OF_LIGHT_AOE,
                 new Sprite(40, 40, 0, Window.texs[16]),
                 new Animation(0, 0, 30),
-                2,
+                20,
                 100,
                 0,
                 0,
