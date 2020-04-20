@@ -212,7 +212,7 @@ namespace LD46
             {
                 case GameState.PLAYING:
                     Globals.l.Draw();
-                    Window.window.DrawText("Level: " + LevelsPlayed + 1, 1725, 830);
+                    Window.window.DrawText("Level: " + (int)(LevelsPlayed + 1), 1725, 830);
                     Globals.rootActionLog.Draw();
                     break;
                 case GameState.DEAD:
