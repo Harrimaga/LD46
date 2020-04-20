@@ -11,13 +11,19 @@ namespace LD46
         public double Interval { get; set; }
         private double InternalTimer { get; set; }
 
+        public double damageTimer;
+        public double damageTimerBase;
+
         private List<Sprite> sprites;
 
         private Animation ani;
+
         public DefenseLaser(int x, int y, Tile[,] tileGrid, Theme theme, int width) : base(width, 1, x, y, tileGrid, theme)
         {
             Interval = 100;
             InternalTimer = 0;
+            damageTimer = 0;
+            damageTimerBase = 1 * 60;
             ani = new Animation(0, 15, 10);
             sprites = new List<Sprite>();
 
@@ -48,24 +54,40 @@ namespace LD46
         {
             base.Update(deltaTime);
             InternalTimer += deltaTime;
+            damageTimer += deltaTime;
             if(InternalTimer > Interval)
             {
-                OnTrigger();
-                InternalTimer -= Interval;
+                active = !active;
+                InternalTimer = 0;
             }
 
-            foreach (Sprite sprite in sprites)
+            if (damageTimer > damageTimerBase)
             {
-                ani.Update(sprite, deltaTime);
+                if (active)
+                {
+                    OnTrigger();
+                    damageTimer = 0;
+                }
+            }
+
+            if (active)
+            {
+                foreach (Sprite sprite in sprites)
+                {
+                    ani.Update(sprite, deltaTime);
+                }
             }
         }
 
         public override void Draw()
         {
-            for (int i = 0; i < sprites.Count; i++)
+            if (active)
             {
-                sprites[i].Draw(X * Globals.TileSize + i * Globals.TileSize, Y * Globals.TileSize);
-            }
+                for (int i = 0; i < sprites.Count; i++)
+                {
+                    sprites[i].Draw(X * Globals.TileSize + i * Globals.TileSize, Y * Globals.TileSize);
+                }
+            }  
         }
 
         public override void OnTrigger()

@@ -14,6 +14,8 @@ namespace LD46
         public int X { get; set; }
         public int Y { get; set; }
 
+        protected bool active;
+
         protected Structure(int width, int height, int x, int y, Tile[,] tileGrid, Theme theme)
         {
             Theme = theme;

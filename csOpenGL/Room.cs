@@ -91,27 +91,6 @@ namespace LD46
                     else
                     {
                         tileGrid[i, j] = new Tile(new Sprite(tileSize, tileSize, Globals.l.Rng.Next(2) > 0 ? 0 : 1, theme.GetTextureByType(TileType.TILE)), Walkable.WALKABLE, TileType.TILE, 0);
-                        if (Globals.l.Rng.Next(1000) < 12)
-                        {
-                            enemies.Add(theme.GetEnemy(i * Globals.TileSize, j * Globals.TileSize));
-                        }
-                        else if (Globals.l.Rng.Next(1000) < 3)
-                        {
-                            int rn = Globals.Rng.Next(chanceTotal);
-                            Item it = null;
-                            foreach (Itemchances item in itemDrops)
-                            {
-                                if (rn < item.chance)
-                                {
-                                    it = item.make();
-                                    break;
-                                }
-                            }
-                            if (it != null)
-                            {
-                                items.Add(new ItemPos(i * Globals.TileSize, j * Globals.TileSize, (float)(Globals.l.Rng.NextDouble() * 2 * Math.PI), it));
-                            }
-                        }
                     }
                 }
             }
@@ -141,6 +120,37 @@ namespace LD46
                     {
                         int structH = 1;
                         Structures.Add(new DefenseLaser(1, Globals.Rng.Next(2, height - 1 - structH), tileGrid, theme, width - 2));
+                    }
+                }
+            }
+
+            for (int i = 1; i < x - 1; i++)
+            {
+                for (int j = 1; j < y - 1; j++)
+                {
+                    if (tileGrid[i, j].GetWalkable() == Walkable.WALKABLE)
+                    {
+                        if (Globals.l.Rng.Next(1000) < 12)
+                        {
+                            enemies.Add(theme.GetEnemy(i * Globals.TileSize, j * Globals.TileSize));
+                        }
+                        else if (Globals.l.Rng.Next(1000) < 3)
+                        {
+                            int rn = Globals.Rng.Next(chanceTotal);
+                            Item it = null;
+                            foreach (Itemchances item in itemDrops)
+                            {
+                                if (rn < item.chance)
+                                {
+                                    it = item.make();
+                                    break;
+                                }
+                            }
+                            if (it != null)
+                            {
+                                items.Add(new ItemPos(i * Globals.TileSize, j * Globals.TileSize, (float)(Globals.l.Rng.NextDouble() * 2 * Math.PI), it));
+                            }
+                        }
                     }
                 }
             }
