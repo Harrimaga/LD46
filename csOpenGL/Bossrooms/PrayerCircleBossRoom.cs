@@ -12,6 +12,7 @@ namespace LD46
 
         public PrayerCircleBossRoom(Theme theme) : base(25, 25, theme)
         {
+            isBossRoom = true;
             CirclesToGo = 2;
             enemies.Clear();
             Globals.Boss = theme.GetBoss();
@@ -49,7 +50,7 @@ namespace LD46
                 }
             }
 
-                for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 2; i++)
             {
                 int randX = rng.Next(1, 24);
                 int randY = rng.Next(1, 24);
@@ -59,7 +60,7 @@ namespace LD46
 
         public void HasPrayed()
         {
-            if(--CirclesToGo < 1)
+            if (--CirclesToGo < 1)
             {
                 Random rng = new Random();
                 tileGrid[rng.Next(1, 24), rng.Next(1, 24)] = new Tile(new Sprite(tileSize, tileSize, 0, Theme.GetTextureByType(TileType.STAIRS)), Walkable.WALKABLE, TileType.STAIRS, 0);

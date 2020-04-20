@@ -24,7 +24,7 @@ namespace LD46
             this.ManaRegen = ManaRegen;
             Init(Health, Mana, x, y, texNum, attackTexNum, spriteNum, w, h, speed, 1, standardBlock, PhysicalAmp, MagicalAmp, blockRegen);
             Spells = new List<Spell>();
-            ani = new Animation(0, s.texture.totW / s.texture.sW - 1, 10);
+            ani = new Animation(0, s.texture.totW / s.texture.sW - 1, attackSpeed / 10);
             this.attackSpeed = attackSpeed;
             this.attackPoint = attackPoint;
             this.damage = damage;
@@ -76,6 +76,16 @@ namespace LD46
                             {
                                 Globals.l.Current = c.Room;
                                 Globals.l.Current.visited = true;
+                                if(c.Room.isBossRoom)
+                                {
+                                    Globals.musicPlaying = MusicPlaying.BOSS;
+                                    SoundManager.PlayMusic("Sound/Track12.wav");
+                                }
+                                else if(Globals.musicPlaying != MusicPlaying.NORMAL)
+                                {
+                                    Globals.musicPlaying = MusicPlaying.NORMAL;
+                                    SoundManager.PlayMusic("Sound/Track17.wav");
+                                }
                                 switch (d)
                                 {
                                     case Direction.NORTH:

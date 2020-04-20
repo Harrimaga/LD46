@@ -11,11 +11,12 @@ namespace LD46
         bool Finished { get; set; }
         public HordeBoss(Theme theme) : base(25, 25, theme)
         {
-            
+            isBossRoom = true;
+
             for (int i = 0; i < 10; i++)
             {
                 Random rng = new Random();
-                enemies.Add(theme.GetEnemy(rng.Next(2, 23), rng.Next(2, 23)));
+                enemies.Add(theme.GetEnemy(rng.Next(2, 23)*Globals.TileSize, rng.Next(2, 23) * Globals.TileSize));
             }
             for (int i = 0; i < 5; i++)
             {

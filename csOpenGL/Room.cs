@@ -21,7 +21,7 @@ namespace LD46
         public List<Particle> particles;
         public List<ItemPos> items;
         public List<SpellPos> spells;
-        public bool visited;
+        public bool visited, isBossRoom = false;
         public List<Structure> Structures { get; set; }
         public List<Connection> Connections { get; set; }
         public Theme Theme { get; set; }

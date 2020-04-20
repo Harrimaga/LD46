@@ -197,6 +197,11 @@ namespace LD46
             gameState = GameState.PLAYING;
             buttons.Clear();
             p.ReAddButtons();
+            if (Globals.musicPlaying != MusicPlaying.NORMAL)
+            {
+                Globals.musicPlaying = MusicPlaying.NORMAL;
+                SoundManager.PlayMusic("Sound/Track17.wav");
+            }
         }
 
         public void Draw()
@@ -274,6 +279,11 @@ namespace LD46
             new Level(Globals.Themes[Globals.Rng.Next(Globals.Themes.Count)], p, Globals.Rng.Next());
             gameState = GameState.PLAYING;
             LevelsPlayed = 0;
+            if(Globals.musicPlaying != MusicPlaying.NORMAL)
+            {
+                Globals.musicPlaying = MusicPlaying.NORMAL;
+                SoundManager.PlayMusic("Sound/Track17.wav");
+            }
         }
     }
 }

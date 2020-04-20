@@ -11,17 +11,22 @@ namespace LD46
         public bool Prayed { get; set; }
         public double TimePrayed { get; set; }
         public double TimeToPray { get; set; }
+        public Sprite sprite { get; set; }
 
         public PrayerCircle(int x, int y, Tile[,] tileGrid, Theme theme):base(1,1,x,y,tileGrid,theme)
         {
-            Place(tileGrid);
+            sprite = new Sprite(Globals.TileSize, Globals.TileSize, 0, Window.texs[37]);
             Prayed = false;
             TimePrayed = 0;
             TimeToPray = 240;
         }
         public override void Place(Tile[,] tileGrid)
         {
-            tileGrid[X,Y] = new Tile(new Sprite(Globals.TileSize, Globals.TileSize, 0, Theme.GetTextureByType(TileType.STAIRS)), Walkable.WALKABLE, TileType.PRAYERCIRLE, 0);
+        }
+
+        public override void Draw()
+        {
+            sprite.Draw(X * Globals.TileSize, Y * Globals.TileSize);   
         }
 
         public override void Update(double deltaTime)
@@ -35,6 +40,7 @@ namespace LD46
                     Prayed = true;
                     PrayerCircleBossRoom room = (PrayerCircleBossRoom)Globals.l.Current;
                     room.HasPrayed();
+                    sprite.texture = Window.texs[36];
                 }
             }
         }

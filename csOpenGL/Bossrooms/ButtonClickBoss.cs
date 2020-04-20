@@ -12,6 +12,7 @@ namespace LD46
 
         public ButtonClickBoss(Theme theme) : base(25, 25, theme)
         {
+            isBossRoom = true;
             ButtonCLicksNeeded = 6;
             enemies.Clear();
             Globals.Boss = theme.GetBoss();
