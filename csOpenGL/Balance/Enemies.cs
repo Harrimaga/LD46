@@ -86,7 +86,7 @@ namespace LD46
         public const double TWAELF_PHYSICAL_AMP = 1.5;
         public const double TWAELF_MAGICAL_AMP = 0.3;
 
-        public const int TURRET_HEALTH = 50;
+        public const int TURRET_HEALTH = 1;
         public const int TURRET_MANA = 0;
         public const double TURRET_SPEED = 0;
         public const double TURRET_ATTACKSPEED = 75;

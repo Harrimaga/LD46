@@ -18,7 +18,7 @@ namespace LD46
             currentTurrets = 0;
             spawnTimer = 0;
             spawnTimerBase = 5 * 60;
-            minDistance = 100;
+            minDistance = 200;
             attackAni = new Animation(0, 9, 10);
             idleAni = new Animation(0, 3, 10);
         }
