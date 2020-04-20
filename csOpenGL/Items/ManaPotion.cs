@@ -13,7 +13,7 @@ namespace LD46
             "Mana potion",
             Balance.MANA_POTION_RARITY,
             Balance.MANA_POTION_DESCRIPTION,
-            new Sprite(40, 40, 0, Window.texs[0]),
+            new Sprite(40, 40, 0, Window.texs[26]),
             new Effect[] { }
             )
         {

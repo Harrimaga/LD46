@@ -13,7 +13,7 @@ namespace LD46
             "Health potion",
             Balance.HEALTH_POTION_RARITY,
             Balance.HEALTH_POTION_DESCRIPTION,
-            new Sprite(40, 40, 0, Window.texs[0]),
+            new Sprite(40, 40, 0, Window.texs[27]),
             new Effect[] { }
             )
         {
