@@ -76,5 +76,25 @@ namespace LD46
         public const double PYLONIUS_PHYSICAL_AMP = 1.5;
         public const double PYLONIUS_MAGICAL_AMP = 0.3;
 
+        public const int TWAELF_HEALTH = 100;
+        public const int TWAELF_MANA = 50;
+        public const double TWAELF_SPEED = 5;
+        public const double TWAELF_ATTACKSPEED = 30;
+        public const double TWAELF_ATTACKPOINT = 0.6;
+        public const double TWAELF_DAMAGE = 30;
+        public const double TWAELF_BLOCK = 5;
+        public const double TWAELF_PHYSICAL_AMP = 1.5;
+        public const double TWAELF_MAGICAL_AMP = 0.3;
+
+        public const int TURRET_HEALTH = 50;
+        public const int TURRET_MANA = 0;
+        public const double TURRET_SPEED = 0;
+        public const double TURRET_ATTACKSPEED = 75;
+        public const double TURRET_ATTACKPOINT = 1;
+        public const double TURRET_DAMAGE = 10;
+        public const int TURRET_RANGE = 2000;
+        public const float TURRET_PROJECTILE_SPEED = 12.5f;
+        public const double TURRET_BLOCK = 0;
+
     }
 }

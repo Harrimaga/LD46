@@ -146,6 +146,7 @@ namespace LD46
         public override void DealPhysicalDamage(double damage, string name, string with, Entity Attacker = null, double knockBackMod = 1)
         {
             base.DealPhysicalDamage(damage, name, with, Attacker, knockBackMod);
+            Globals.rootActionLog.EnemyTakeDamageFromEnemy(this.name, name, damage);
 
             if (Health < 1)
             {

@@ -21,6 +21,7 @@ namespace LD46
             Theme = theme;
             Width = width;
             Height = height;
+            active = true;
             X = x;
             Y = y;
         }

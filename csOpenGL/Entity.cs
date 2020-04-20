@@ -172,7 +172,6 @@ namespace LD46
             }
             Health -= damage;
             if (Health < 0) Health = 0;
-            Globals.rootActionLog.TakeDamage(name, damage, with);
         }
 
         public virtual void KnockBack(Entity e, double mod, double damage)

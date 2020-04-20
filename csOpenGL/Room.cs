@@ -14,7 +14,7 @@ namespace LD46
         public string tileStyle;
         public Sprite s;
         public List<Enemy> enemies;
-        public List<Enemy> removables;
+        public List<Enemy> removables, addables;
         public List<Projectile> removeProjectiles;
         public List<Projectile> projectiles;
         public List<Itemchances> itemDrops;
@@ -41,6 +41,7 @@ namespace LD46
             this.tileSize = tileSize;
             enemies = new List<Enemy>();
             removables = new List<Enemy>();
+            addables = new List<Enemy>();
             projectiles = new List<Projectile>();
             particles = new List<Particle>();
             removeProjectiles = new List<Projectile>();
@@ -197,6 +198,11 @@ namespace LD46
                 enemies.Remove(enemy);
             }
             removables.Clear();
+            foreach (var enemy in addables)
+            {
+                enemies.Add(enemy);
+            }
+            addables.Clear();
             foreach(Structure structure in Structures)
             {
                 structure.Update(delta);
