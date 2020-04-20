@@ -30,8 +30,8 @@ namespace LD46
         private Hotkey num0 = new Hotkey(false).AddKey(Key.V);
         private Hotkey numm = new Hotkey(false).AddKey(Key.B);
         private Hotkey nump = new Hotkey(false).AddKey(Key.N);
-        private Hotkey pickUp = new Hotkey(false).AddKey(Key.Q);
-        private Hotkey interact = new Hotkey(false).AddKey(Key.C);
+        private Hotkey pickUp = new Hotkey(false).AddKey(Key.R);
+        private Hotkey interact = new Hotkey(false).AddKey(Key.R);
         private int Seed = 5;
         private GameState gameState = GameState.PLAYING;
 
