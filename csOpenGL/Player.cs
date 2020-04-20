@@ -324,7 +324,7 @@ namespace LD46
             }
         }
 
-        public void DequipItem(Item item)
+        public void DequipItem(Item item, bool drop = true)
         {
             int i = 0;
             for (i = 0; i < items.Count; i++)
@@ -337,7 +337,10 @@ namespace LD46
             DrawnButton b = itemButtons[i];
             itemButtons.Remove(b);
             Game.game.buttons.Remove(b);
-            Globals.l.Current.DropItem(item, x, y);
+            if (drop)
+            {
+                Globals.l.Current.DropItem(item, x, y);
+            }
             for(int j = i; j < itemButtons.Count; j++)
             {
                 itemButtons[j].Y -= 60;

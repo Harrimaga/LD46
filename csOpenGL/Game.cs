@@ -24,6 +24,12 @@ namespace LD46
         private Hotkey num4 = new Hotkey(false).AddKey(Key.Number4);
         private Hotkey num5 = new Hotkey(false).AddKey(Key.Number5);
         private Hotkey num6 = new Hotkey(false).AddKey(Key.Number6);
+        private Hotkey num7 = new Hotkey(false).AddKey(Key.Number7);
+        private Hotkey num8 = new Hotkey(false).AddKey(Key.Number8);
+        private Hotkey num9 = new Hotkey(false).AddKey(Key.Number9);
+        private Hotkey num0 = new Hotkey(false).AddKey(Key.Number0);
+        private Hotkey numm = new Hotkey(false).AddKey(Key.Minus);
+        private Hotkey nump = new Hotkey(false).AddKey(Key.Plus);
         private Hotkey pickUp = new Hotkey(false).AddKey(Key.Q);
         private Hotkey interact = new Hotkey(false).AddKey(Key.C);
         private int Seed = 5;
@@ -74,6 +80,12 @@ namespace LD46
                     if (num4.IsDown()) TrySpellAttack(3);
                     if (num5.IsDown()) TrySpellAttack(4);
                     if (num6.IsDown()) TrySpellAttack(5);
+                    if (num7.IsDown()) TryItemAttack(0);
+                    if (num8.IsDown()) TryItemAttack(1);
+                    if (num9.IsDown()) TryItemAttack(2);
+                    if (num0.IsDown()) TryItemAttack(3);
+                    if (numm.IsDown()) TryItemAttack(4);
+                    if (nump.IsDown()) TryItemAttack(5);
                     if (interact.IsDown()) TryInteraction();
 
                     Globals.l.Update(delta);
@@ -93,6 +105,18 @@ namespace LD46
             {
                 Spell spell = Globals.l.p.Spells[spellSlot];
                 spell.Cast(Window.window.mouseX + Window.camX, Window.window.mouseY + Window.camY, Globals.l.Current.enemies, Globals.l.p);
+            }
+        }
+
+        private void TryItemAttack(int itemSlot)
+        {
+            if (itemSlot < Globals.l.p.Spells.Count)
+            {
+                Item item = Globals.l.p.items[itemSlot];
+                if(item.UseItem(Window.window.mouseX + Window.camX, Window.window.mouseY + Window.camY, Globals.l.Current.enemies, Globals.l.p))
+                {
+                    Globals.l.p.DequipItem(item, false);
+                }
             }
         }
 

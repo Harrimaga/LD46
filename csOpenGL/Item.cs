@@ -23,9 +23,9 @@ namespace LD46
             GrantedEffects = grantedEffects;
         }
 
-        public virtual void UseItem()
+        public virtual bool UseItem(float x, float y, IEnumerable<Entity> possibleTargets, Entity caster)
         {
-
+            return false;
         }
 
         public virtual void Draw(float x, float y)
