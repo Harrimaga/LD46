@@ -8,7 +8,7 @@ namespace LD46
 {
     public class RangedEnemy : Enemy
     {
-        public RangedEnemy(int x, int y) : base(Enemies.RANGED_ENEMY_HEALTH, Enemies.RANGED_ENEMY_MANA, x, y, 0, 3, 3, Globals.TileSize, Globals.TileSize, Enemies.RANGED_ENEMY_SPEED, Enemies.RANGED_ENEMY_ATTACKPOINT, Enemies.RANGED_ENEMY_ATTACKSPEED, Enemies.RANGED_ENEMY_DAMAGE, "Ranged", Enemies.RANGED_BLOCK)
+        public RangedEnemy(int x, int y) : base(Enemies.RANGED_ENEMY_HEALTH, Enemies.RANGED_ENEMY_MANA, x, y, 0, 3, 3, Globals.TileSize, Globals.TileSize, Enemies.RANGED_ENEMY_SPEED, Enemies.RANGED_ENEMY_ATTACKPOINT, Enemies.RANGED_ENEMY_ATTACKSPEED, Enemies.RANGED_ENEMY_DAMAGE, "a raio", Enemies.RANGED_BLOCK)
         {
             range = Enemies.RANGED_ENEMY_RANGE;
             minDistance = range;

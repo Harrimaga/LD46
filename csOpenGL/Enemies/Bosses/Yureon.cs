@@ -11,7 +11,7 @@ namespace LD46
         public List<Spell> Spells { get; set; }
         public double CastingSpeed { get; set; }
 
-        public Yureon(): base(Enemies.YUREON_HEALTH, Enemies.YUREON_MANA, 12 * Globals.TileSize, 12 * Globals.TileSize, 6, 7, 0, Globals.TileSize * 3, Globals.TileSize * 3, Enemies.YUREON_SPEED, Enemies.YUREON_ATTACKPOINT, Enemies.YUREON_ATTACKSPEED, Enemies.YUREON_DAMAGE, "Yureon, Cannon of glass", Enemies.YUREON_BLOCK, Enemies.YUREON_PHYSICAL_AMP, Enemies.YUREON_MAGICAL_AMP)
+        public Yureon(): base(Enemies.YUREON_HEALTH, Enemies.YUREON_MANA, 12 * Globals.TileSize, 12 * Globals.TileSize, 43, 42, 0, Globals.TileSize * 3, Globals.TileSize * 3, Enemies.YUREON_SPEED, Enemies.YUREON_ATTACKPOINT, Enemies.YUREON_ATTACKSPEED, Enemies.YUREON_DAMAGE, "Yureon, Cannon of glass", Enemies.YUREON_BLOCK, Enemies.YUREON_PHYSICAL_AMP, Enemies.YUREON_MAGICAL_AMP)
         {
             Spells = new List<Spell>
             {

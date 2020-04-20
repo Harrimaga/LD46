@@ -8,7 +8,7 @@ namespace LD46
 {
     public class RappidFireRanged : Enemy
     {
-        public RappidFireRanged(int x, int y) : base(Enemies.RAPPID_FIRE_ENEMY_HEALTH, Enemies.RAPPID_FIRE_ENEMY_MANA, x, y, 0, 3, 3, Globals.TileSize, Globals.TileSize, Enemies.RAPPID_FIRE_ENEMY_SPEED, Enemies.RAPPID_FIRE_ENEMY_ATTACKPOINT, Enemies.RAPPID_FIRE_ENEMY_ATTACKSPEED, Enemies.RAPPID_FIRE_ENEMY_DAMAGE, "Ranged", Enemies.RANGED_BLOCK)
+        public RappidFireRanged(int x, int y) : base(Enemies.RAPPID_FIRE_ENEMY_HEALTH, Enemies.RAPPID_FIRE_ENEMY_MANA, x, y, 0, 3, 3, Globals.TileSize, Globals.TileSize, Enemies.RAPPID_FIRE_ENEMY_SPEED, Enemies.RAPPID_FIRE_ENEMY_ATTACKPOINT, Enemies.RAPPID_FIRE_ENEMY_ATTACKSPEED, Enemies.RAPPID_FIRE_ENEMY_DAMAGE, "a quick Raio", Enemies.RANGED_BLOCK)
         {
             range = Enemies.RAPPID_FIRE_ENEMY_RANGE;
             minDistance = range;
