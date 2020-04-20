@@ -127,6 +127,7 @@
     <Compile Include="Balance\Enemies.cs" />
     <Compile Include="Balance\Spells.cs" />
     <Compile Include="Bossrooms\HordeBoss.cs" />
+    <Compile Include="Bossrooms\MazeBossRoom.cs" />
     <Compile Include="Bossrooms\PrayerCircleBossRoom.cs" />
     <Compile Include="Enemies\Bosses\Hirrathak.cs" />
     <Compile Include="Enemies\Bosses\Pylonius.cs" />
@@ -258,6 +259,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\PillarOfLightParticle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\Player\FighterAttack.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\Player\FighterIdle.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\PyloniusAttack.png">
