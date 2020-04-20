@@ -272,8 +272,12 @@
     <Content Include="Textures\Player\FighterIdle.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Textures\PrayerCircleActive.png" />
-    <Content Include="Textures\PrayerCircleInactive.png" />
+    <Content Include="Textures\PrayerCircleActive.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\PrayerCircleInactive.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Textures\PyloniusAttack.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

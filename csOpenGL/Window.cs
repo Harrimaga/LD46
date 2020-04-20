@@ -161,6 +161,8 @@ namespace LD46
             Window.texs.Add(new Texture("Textures/Turret.png", 64, 32, 32, 32));                    //33
             Window.texs.Add(new Texture("Textures/Player/FighterIdle.png", 108, 54, 54, 54));       //34
             Window.texs.Add(new Texture("Textures/Player/FighterAttack.png", 270, 54, 54, 54));     //35
+            Window.texs.Add(new Texture("Textures/PrayerCircleActive.png", 32, 32, 32, 32));        //36
+            Window.texs.Add(new Texture("Textures/PrayerCircleInactive.png", 32, 32, 32, 32));      //37
 
 
 
