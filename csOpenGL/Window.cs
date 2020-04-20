@@ -147,6 +147,9 @@ namespace LD46
             Window.texs.Add(new Texture("Textures/PyloniusAttack.png", 512, 64, 64, 64));           //19
             Window.texs.Add(new Texture("Textures/PillarOfLightParticle.png", 16, 16, 16, 16));     //20
             Window.texs.Add(new Texture("Textures/BasicParticle.png", 16, 16, 16, 16));             //21
+            Window.texs.Add(new Texture("Textures/LaserLeft.png", 256, 16, 16, 16));                //22
+            Window.texs.Add(new Texture("Textures/LaserMiddle.png", 256, 16, 16, 16));              //23
+            Window.texs.Add(new Texture("Textures/LaserRight.png", 256, 16, 16, 16));               //24
 
 
             game = new Game(this);

@@ -12,11 +12,13 @@ namespace LD46
         private double InternalTimer { get; set; }
 
         private List<Sprite> sprites;
+
+        private Animation ani;
         public DefenseLaser(int x, int y, Tile[,] tileGrid, Theme theme, int width) : base(width, 1, x, y, tileGrid, theme)
         {
             Interval = 100;
             InternalTimer = 0;
-
+            ani = new Animation(0, 15, 10);
             sprites = new List<Sprite>();
 
             Place(tileGrid);
@@ -26,8 +28,19 @@ namespace LD46
         {
             for(int i = X; i<X+Width;i++)
             {
+                if (i == X)
+                {
+                    sprites.Add(new Sprite(Globals.TileSize, Globals.TileSize, 0, Window.texs[22]));
+                }
+                else if (i == X + Width - 1)
+                {
+                    sprites.Add(new Sprite(Globals.TileSize, Globals.TileSize, 0, Window.texs[24]));
+                }
+                else
+                {
+                    sprites.Add(new Sprite(Globals.TileSize, Globals.TileSize, 0, Window.texs[23]));
+                }
                 tileGrid[i, Y] = new Tile(new Sprite(Globals.TileSize, Globals.TileSize, 0, Theme.GetTextureByType(TileType.TILE)), Walkable.WALKABLE, TileType.TILE, 0); //Should be an animated laser
-                sprites.Add(new Sprite(Globals.TileSize, Globals.TileSize, 0, Theme.GetTextureByType))
             }
         }
 
@@ -40,11 +53,19 @@ namespace LD46
                 OnTrigger();
                 InternalTimer -= Interval;
             }
+
+            foreach (Sprite sprite in sprites)
+            {
+                ani.Update(sprite, deltaTime);
+            }
         }
 
-        public override void Draw(double deltaTime)
+        public override void Draw()
         {
-
+            for (int i = 0; i < sprites.Count; i++)
+            {
+                sprites[i].Draw(X * Globals.TileSize + i * Globals.TileSize, Y * Globals.TileSize);
+            }
         }
 
         public override void OnTrigger()

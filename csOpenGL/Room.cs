@@ -264,6 +264,10 @@ namespace LD46
             {
                 p.Draw();
             }
+            foreach (var structure in Structures)
+            {
+                structure.Draw();
+            }
         }
 
         public void TryPickup()

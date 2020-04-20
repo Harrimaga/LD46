@@ -29,7 +29,7 @@ namespace LD46
             //For general structures nothing needs to happen here
         }
 
-        public virtual void Draw(double deltaTime)
+        public virtual void Draw()
         {
 
         }
