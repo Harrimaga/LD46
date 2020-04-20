@@ -105,7 +105,7 @@ namespace LD46
 
         private Room CreateABossRoom(Theme theme)
         {
-            switch (Rng.Next(2))
+            switch (Rng.Next(3))
             {
                 case 0:
                     return new ButtonClickBoss(theme);
