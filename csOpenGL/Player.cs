@@ -39,6 +39,7 @@ namespace LD46
             AddSpell(new Slowness());
             AddSpell(new Disable());
             AddSpell(new PillarOfLight());
+            AddSpell(new Shield());
         }
 
         public override void Update(double delta)
@@ -122,8 +123,6 @@ namespace LD46
                 BasicAttack(delta);
             }
 
-            UpdateInventorySprites(delta);
-
             xDir = 0;
             yDir = 0;
 
@@ -138,14 +137,6 @@ namespace LD46
             if (y != 0)
             {
                 yDir = y;
-            }
-        }
-
-        public void UpdateInventorySprites(double delta)
-        {
-            foreach (Spell sp in Spells)
-            {
-                sp.Update(delta);
             }
         }
 

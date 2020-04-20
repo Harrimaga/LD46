@@ -271,6 +271,10 @@ namespace LD46
                         case EffectType.BLOCK:
                             StandardBlock -= e.Modifier;
                             CurrentBlock -= e.Modifier;
+                            if(CurrentBlock < 0)
+                            {
+                                CurrentBlock = 0;
+                            }
                             break;
                         case EffectType.MAGICAL_DAMAGE:
                             MagicalAmp -= e.Modifier;

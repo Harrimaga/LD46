@@ -51,6 +51,14 @@ namespace LD46
         EAST = 3,
     }
 
+    public enum SpellType
+    {
+        AOE,
+        SELF_TARGET,
+        SINGLE_TARGET,
+        PROJECTILE
+    }
+
     public enum GameState
     {
         PLAYING,

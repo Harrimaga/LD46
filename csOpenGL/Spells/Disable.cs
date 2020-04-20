@@ -18,6 +18,7 @@ namespace LD46
             Spells.DISABLE_AOE,
             new Sprite(40, 40, 0, Window.texs[15]),
             new Animation(0, 0, 30),
+            SpellType.AOE,
                 21,
                 100,
                 0,

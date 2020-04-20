@@ -43,5 +43,15 @@ namespace LD46
         public const string DISABLE_NAME = "Disable";
         public const string DISABLE_DESCRIPTION = "Disable entities";
         public const double DISABLE_AOE = 100;
+
+        //Shield
+        public const double SHIELD_MANA = 15;
+        public const double SHIELD_DAMAGE = 0;
+        public const double SHIELD_COOLDOWN = 10 * 60;
+        public const double SHIELD_DURATION = 5 * 60;
+        public const double SHIELD_BLOCK = 50;
+        public const string SHIELD_NAME = "Shield";
+        public const string SHIELD_DESCRIPTION = "Gives you a temporary shield";
+        public const double SHIELD_AOE = 0;
     }
 }
