@@ -71,7 +71,7 @@ namespace LD46
         public const double WAND_OF_GREEN_MAGICAL_AMP = 0.1;
         //Wand Of red
         public const Rarity WAND_OF_RED_RARITY = Rarity.RARE;
-        public const string WAND_OF_RED_DESCRIPTION = "+20MP, +0.1MP Regen\n-10HP";
+        public const string WAND_OF_RED_DESCRIPTION = "+20MP, +0.3MP Regen\n-15HP";
         public const double WAND_OF_RED_HEALTH = -15;
         public const double WAND_OF_RED_MANA = 20;
         public const double WAND_OF_RED_MANAREGEN = 0.3;
@@ -82,7 +82,7 @@ namespace LD46
         public const double WAND_OF_BLUE_MANA = -10;
         //Helm of Pylonius
         public const Rarity HEML_OF_PYLONIUS_RARITY = Rarity.SUPER_RARE;
-        public const string HEML_OF_PYLONIUS_DESCRIPTION = "+5 Block, +0.1HP regen, +1 Speed";
+        public const string HEML_OF_PYLONIUS_DESCRIPTION = "+5 Block, +0.2HP regen, +1 Speed";
         public const double HEML_OF_PYLONIUS_BLOCK = 5;
         public const double HEML_OF_PYLONIUS_HP_REGEN = 0.2;
         public const double HEML_OF_PYLONIUS_SPEED = 1;
