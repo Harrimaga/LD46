@@ -63,6 +63,14 @@ namespace LD46
         public const string BANISHMENT_DESCRIPTION = "Kills a target enemy";
         public const double BANISHMENT_AOE = 0;
 
+        //CreateWall
+        public const double CREATE_WALL_MANA = 5;
+        public const double CREATE_WALL_DAMAGE = 0;
+        public const double CREATE_WALL_COOLDOWN = 5 * 60;
+        public const string CREATE_WALL_NAME = "Reflective Wall";
+        public const string CREATE_WALL_DESCRIPTION = "Spawns a wall";
+        public const double CREATE_WALL_AOE = 0;
+
 
         //Ray Of Frost
         public const double RAY_OF_FROST_MANA = 5;

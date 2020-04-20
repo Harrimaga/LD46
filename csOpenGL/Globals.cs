@@ -18,7 +18,7 @@ namespace LD46
         
         public static ActionLog rootActionLog = new ActionLog(15);
         public static List<Theme> Themes = new List<Theme> { new Theme("Space"), new Theme("SpaceDark") };
-        public static List<Spell> Spells = new List<Spell> { new Fireball(), new PillarOfLight(), new Slowness(), new Shield(), new RayOfFrost(), new Disable(), new Banishment() };
+        public static List<Spell> Spells = new List<Spell> { new Fireball(), new PillarOfLight(), new Slowness(), new Shield(), new RayOfFrost(), new Disable(), new Banishment() , new ReflectingWall()};
         public static Random Rng = new Random();
         public static Enemy Boss = null;
 

@@ -14,9 +14,11 @@ namespace LD46
 
         public long Handle;
         public int totW, totH, sW, sH, wNum, hNum;
+        public string file;
 
         public Texture(string file, int totW, int totH, int sW, int sH)
         {
+            this.file = file;
             this.totW = totW;
             this.totH = totH;
             this.sW = sW;

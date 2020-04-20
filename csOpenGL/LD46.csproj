@@ -176,6 +176,7 @@
     <Compile Include="Spells\Disable.cs" />
     <Compile Include="Spells\Fireball.cs" />
     <Compile Include="Spells\RayOfFrost.cs" />
+    <Compile Include="Spells\ReflectingWall.cs" />
     <Compile Include="Spells\Shield.cs" />
     <Compile Include="Spells\Slowness.cs" />
     <Compile Include="Spells\PillarOfLight.cs" />
