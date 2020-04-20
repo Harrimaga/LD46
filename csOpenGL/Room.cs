@@ -251,7 +251,7 @@ namespace LD46
             return 0;
         }
 
-        public void Draw(float x, float y)
+        public virtual void Draw(float x, float y)
         {
             for (int i = 0; i < width; i++)
             {
