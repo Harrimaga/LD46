@@ -145,6 +145,8 @@ namespace LD46
             Window.texs.Add(new Texture("Textures/Explosion.png", 300, 60, 60, 60));                //17
             Window.texs.Add(new Texture("Textures/PyloniusIdle.png", 256, 64, 64, 64));             //18
             Window.texs.Add(new Texture("Textures/PyloniusAttack.png", 512, 64, 64, 64));           //19
+            Window.texs.Add(new Texture("Textures/PillarOfLightParticle.png", 16, 16, 16, 16));     //20
+            Window.texs.Add(new Texture("Textures/BasicParticle.png", 16, 16, 16, 16));             //21
 
 
             game = new Game(this);
@@ -180,7 +182,7 @@ namespace LD46
             shader.Use();
             SData[] sdd = Window.sd.getData();
             GL.BindBufferBase(BufferRangeTarget.ShaderStorageBuffer, 0, ssbo);
-            GL.BufferData<SData>(BufferTarget.ShaderStorageBuffer, (sizeof(int) * 4 + 2 * sizeof(long) + 9 * sizeof(float)) * Window.sd.Count(), sdd, BufferUsageHint.DynamicDraw);
+            GL.BufferData<SData>(BufferTarget.ShaderStorageBuffer, (sizeof(int) * 5 + 1 * sizeof(long) + 9 * sizeof(float)) * Window.sd.Count(), sdd, BufferUsageHint.DynamicDraw);
             GL.Uniform2(GL.GetUniformLocation(shader.Handle, "screenSize"), Width, Height);
             GL.BindVertexArray(vao);
             GL.MemoryBarrier(MemoryBarrierFlags.AllBarrierBits);

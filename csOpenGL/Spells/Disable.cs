@@ -17,7 +17,17 @@ namespace LD46
             new List<Effect> { new Effect(EffectType.STUN, 0, Spells.DISABLE_DURATION) },
             Spells.DISABLE_AOE,
             new Sprite(40, 40, 0, Window.texs[15]),
-            new Animation(0, 0, 30))
+            new Animation(0, 0, 30),
+            SpellType.AOE,
+                21,
+                100,
+                0,
+                0,
+                100,
+                1,
+                0.4f,
+                0.1f,
+                0.1f)
         {
         }
     }

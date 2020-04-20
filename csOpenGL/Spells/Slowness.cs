@@ -18,7 +18,17 @@ namespace LD46
                 new List<Effect> { new Effect(EffectType.SPEED, Spells.SLOWNESS_MAGNITUDE, Spells.SLOWNESS_DURATION)},
                 Spells.SLOWNESS_AOE,
                 new Sprite(40, 40, 0, Window.texs[14]),
-                new Animation(0, 0, 30))
+                new Animation(0, 0, 30),
+                SpellType.AOE,
+                21,
+                200,
+                0,
+                0,
+                100,
+                1,
+                0,
+                0,
+                0.2f)
         {
         }
     }

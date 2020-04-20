@@ -18,7 +18,8 @@ namespace LD46
                 new List<Effect> {  }, 
                 Spells.FIREBALL_AOE, 
                 new Sprite(40,40,0, Window.texs[13]), 
-                new Animation(0,0,30))
+                new Animation(0,0,30),
+            SpellType.AOE)
         {
         }
     }
