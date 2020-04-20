@@ -29,6 +29,13 @@ namespace LD46
         public float particleSpeed { get; set; }
         public float pr, pb, pg;
         public SpellType spellType { get; set; }
+        //Projectile Stuff
+        public float projectileSpeed { get; set; }
+        public int ptNum { get; set; }
+        public int psNum { get; set; }
+        public int pierce { get; set; }
+        public Animation projectileAni { get; set; }
+
 
         protected Spell(double mana, double damage, double cooldown, string name, string description, List<Effect> effects, double aOE, Sprite icon, Animation spellAnimation, SpellType spellType, int particleSprite = 17, int particleAmount = 1000, int pAniStart = 0, int pAniStop = 11, double pAniDuration = 2.5, float particleSpeed = 0, float pr = 1, float pg = 1, float pb = 1)
         {
@@ -54,6 +61,35 @@ namespace LD46
             CooldownSprite = new Sprite(0, 45, 0, Window.texs[2]);
         }
 
+        protected Spell(Animation projectileAni, float projectileSpeed, int ptNum, int psNum, int pierce, double mana, double damage, double cooldown, string name, string description, List<Effect> effects, Sprite icon, Animation spellAnimation, int particleSprite = 17, int particleAmount = 1000, int pAniStart = 0, int pAniStop = 11, double pAniDuration = 2.5, float particleSpeed = 0, float pr = 1, float pg = 1, float pb = 1)
+        {
+            Mana = mana;
+            Damage = damage;
+            Cooldown = cooldown;
+            Name = name;
+            Description = description;
+            Effects = effects;
+            AOE = 0;
+            Icon = icon;
+            SpellAnimation = spellAnimation;
+            this.particleAmount = particleAmount;
+            this.particleSprite = particleSprite;
+            this.pAniStart = pAniStart;
+            this.pAniStop = pAniStop;
+            this.pAniDuration = pAniDuration;
+            this.particleSpeed = particleSpeed;
+            this.pr = pr;
+            this.pg = pg;
+            this.pb = pb;
+            this.pierce = pierce;
+            this.psNum = psNum;
+            this.ptNum = ptNum;
+            this.projectileSpeed = projectileSpeed;
+            this.projectileAni = projectileAni;
+            this.spellType = SpellType.PROJECTILE;
+            CooldownSprite = new Sprite(0, 45, 0, Window.texs[2]);
+        }
+
         public void Cast(float x, float y, IEnumerable<Entity> possibleTargets, Entity caster)
         {
             switch (spellType)
@@ -66,6 +102,9 @@ namespace LD46
                     break;
                 case SpellType.SINGLE_TARGET:
                     SingleTargetSpell(x, y, possibleTargets, caster);
+                    break;
+                case SpellType.PROJECTILE:
+                    ProjectileSpell(x, y, caster);
                     break;
             }
         }
@@ -196,6 +235,31 @@ namespace LD46
             }
         }
 
+        private void ProjectileSpell(float x, float y, Entity caster)
+        {
+            if (CurrentCooldown > 0 || !caster.LoseMana(Mana))
+            {
+                return;
+            }
+            CurrentCooldown = Cooldown;
+            for (int i = 0; i < particleAmount; i++)
+            {
+                float xs = (float)(2 * Globals.Rng.NextDouble() - 1) * particleSpeed;
+                float ys = (float)(2 * Globals.Rng.NextDouble() - 1) * particleSpeed;
+                float distance = (float)Math.Sqrt(xs * xs + ys * ys);
+                xs /= distance;
+                ys /= distance;
+                Globals.l.Current.particles.Add(new Particle(caster.x + caster.w / 2 - Globals.TileSize / 4, caster.y + caster.h / 2 - Globals.TileSize / 4, xs, ys, Globals.TileSize / 2, Globals.TileSize / 2, particleSprite, 0, 30, pr, pg, pb, true, new Animation(pAniStart, pAniStop, pAniDuration)));
+            }
+            float xd = caster.x + caster.w / 2 - x;
+            float yd = caster.y + caster.h / 2 - y;
+            float dis = (float)Math.Sqrt(xd * xd + yd * yd);
+            xd /= -dis;
+            yd /= -dis;
+
+            Globals.l.Current.projectiles.Add(new Projectile(caster.x + caster.w / 2 - Globals.TileSize / 4, caster.y + caster.h / 2 - Globals.TileSize / 4, xd * projectileSpeed, yd * projectileSpeed, Damage, true, caster, ptNum, psNum, Globals.TileSize / 2, Globals.TileSize / 2, Name, pierce, new Animation(projectileAni.start, projectileAni.last, projectileAni.time), Effects));
+        }
+
         public void DrawOnGround(float x, float y)
         {
             Icon.Draw(x, y, true);
@@ -233,7 +297,11 @@ namespace LD46
             }
 
             Spell s = new Spell(Mana, Damage, Cooldown, Name, Description, effects, AOE, new Sprite(Icon.w, Icon.h, Icon.num, Icon.texture), new Animation(SpellAnimation.start, SpellAnimation.last, SpellAnimation.time), spellType, particleSprite, particleAmount, pAniStart, pAniStop, pAniDuration, particleSpeed, pr, pg, pb);
-
+            s.projectileAni = projectileAni;
+            s.projectileSpeed = projectileSpeed;
+            s.ptNum = ptNum;
+            s.psNum = psNum;
+            s.pierce = pierce;
             return s;
         }
     }

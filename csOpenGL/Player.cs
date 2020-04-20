@@ -35,11 +35,6 @@ namespace LD46
             HBarBackUI = new Sprite(w, h / 8, 0, Window.texs[2]);
             MBarUI = new Sprite(w, h / 8, 0, Window.texs[2]);
             MBarBackUI = new Sprite(w, h / 8, 0, Window.texs[2]);
-            AddSpell(new Fireball());
-            AddSpell(new Slowness());
-            AddSpell(new Disable());
-            AddSpell(new PillarOfLight());
-            AddSpell(new Banishment());
         }
 
         public override void Update(double delta)

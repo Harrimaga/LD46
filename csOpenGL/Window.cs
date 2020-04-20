@@ -150,6 +150,7 @@ namespace LD46
             Window.texs.Add(new Texture("Textures/LaserLeft.png", 256, 16, 16, 16));                //22
             Window.texs.Add(new Texture("Textures/LaserMiddle.png", 256, 16, 16, 16));              //23
             Window.texs.Add(new Texture("Textures/LaserRight.png", 256, 16, 16, 16));               //24
+            Window.texs.Add(new Texture("Textures/ProjectileBlue.png", 96, 32, 32, 32));            //25
 
 
             game = new Game(this);

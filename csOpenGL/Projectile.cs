@@ -17,8 +17,10 @@ namespace LD46
         public Animation ani = null;
         public int w, h, pierce;
         public string pname;
+        public List<Entity> alreadyHit;
+        public List<Effect> Effects { get; set; }
 
-        public Projectile(float x, float y, float xSpeed, float ySpeed, double damage, bool isMagic, Entity shooter, int tNum, int sNum, int w, int h, string pname, int pierce = 1, Animation ani = null)
+        public Projectile(float x, float y, float xSpeed, float ySpeed, double damage, bool isMagic, Entity shooter, int tNum, int sNum, int w, int h, string pname, int pierce = 1, Animation ani = null, List<Effect> Effects = null)
         {
             this.x = x;
             this.y = y;
@@ -33,6 +35,8 @@ namespace LD46
             Shooter = shooter;
             s = new Sprite(w, h, sNum, Window.texs[tNum]);
             this.ani = ani;
+            alreadyHit = new List<Entity>();
+            this.Effects = Effects;
         }
 
         public void Draw()
@@ -59,8 +63,9 @@ namespace LD46
                     }
                 }
             }
-            if (Globals.l.p != Shooter && Globals.checkCol((int)x, (int)y, w, h, (int)Globals.l.p.x, (int)Globals.l.p.y, Globals.l.p.w, Globals.l.p.h))
+            if (Globals.l.p != Shooter && !alreadyHit.Contains(Globals.l.p) && Globals.checkCol((int)x, (int)y, w, h, (int)Globals.l.p.x, (int)Globals.l.p.y, Globals.l.p.w, Globals.l.p.h))
             {
+                alreadyHit.Add(Globals.l.p);
                 if(hit(Globals.l.p))
                 {
                     return true;
@@ -68,8 +73,9 @@ namespace LD46
             }
             foreach(Enemy e in Globals.l.Current.enemies)
             {
-                if (Shooter != e && Globals.checkCol((int)x, (int)y, w, h, (int)e.x, (int)e.y, e.w, e.h))
+                if (Shooter != e && !alreadyHit.Contains(e) && Globals.checkCol((int)x, (int)y, w, h, (int)e.x, (int)e.y, e.w, e.h))
                 {
+                    alreadyHit.Add(e);
                     if (hit(e))
                     {
                         return true;
@@ -89,6 +95,13 @@ namespace LD46
             else
             {
                 e.DealPhysicalDamage(damage * Shooter.PhysicalAmp, Shooter.name, pname);
+            }
+            if (Effects != null)
+            {
+                foreach (Effect effect in Effects)
+                {
+                    e.TakeEffect((Effect)effect.Clone());
+                }
             }
             pierce--;
             return pierce <= 0;
