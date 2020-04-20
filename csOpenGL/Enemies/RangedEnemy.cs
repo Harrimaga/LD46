@@ -13,6 +13,8 @@ namespace LD46
             range = Enemies.RANGED_ENEMY_RANGE;
             minDistance = range;
             projectileSpeed = Enemies.RANGED_PROJECTILE_SPEED;
+            attackAni = new Animation(0, 9, 10);
+            idleAni = new Animation(0, 3, 10);
         }
 
         public override void AIMove(double delta)

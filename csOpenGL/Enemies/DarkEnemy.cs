@@ -11,7 +11,8 @@ namespace LD46
 
         public DarkEnemy(int x, int y) : base(Enemies.DARK_ENEMY_HEALTH, Enemies.DARK_ENEMY_MANA, x, y, 0, 3, 3, Globals.TileSize, Globals.TileSize, Enemies.DARK_ENEMY_SPEED, Enemies.DARK_ENEMY_ATTACKPOINT, Enemies.DARK_ENEMY_ATTACKSPEED, Enemies.DARK_ENEMY_DAMAGE, "Kees", Enemies.DARK_BLOCK)
         {
-
+            attackAni = new Animation(0, 9, 10);
+            idleAni = new Animation(0, 3, 10);
         }
 
         public override void AIMove(double delta)

@@ -21,6 +21,7 @@ namespace LD46
             this.attackPoint = attackPoint;
             this.damage = damage;
             this.name = name;
+            attackAni = new Animation(0, 9, attackSpeed / 10);
         }
 
         public override void Update(double delta)
@@ -76,19 +77,19 @@ namespace LD46
                         hashit = true;
                         attacked = true;
                         s = baseAnimation;
-                        ani = new Animation(0, 3, 10);
+                        ani = idleAni;
                     }
                     else if (attackTimer > attackSpeed || stunned)
                     {
                         attacking = false;
                         s = baseAnimation;
-                        ani = new Animation(0, 3, 10);
+                        ani = idleAni;
                     }
                 }
                 else
                 {
                     s = attack;
-                    ani = new Animation(0, 9, attackSpeed / 10);
+                    ani = attackAni;
                     attackTimer = 0;
                     attacking = true;
                     attacked = false;
@@ -98,7 +99,7 @@ namespace LD46
             {
                 attacking = false;
                 s = baseAnimation;
-                ani = new Animation(0, 3, 10);
+                ani = idleAni;
             }
             return hashit;
         }
@@ -124,19 +125,19 @@ namespace LD46
                     Globals.l.Current.projectiles.Add(new Projectile(x + w / 2 - Globals.TileSize / 4, y + h / 2 - Globals.TileSize / 4, xd * projectileSpeed, yd * projectileSpeed, damage, false, this, 5, 0, Globals.TileSize / 2, Globals.TileSize / 2, "Projectile", 1, new Animation(0, 2, 5)));
                     attacked = true;
                     s = baseAnimation;
-                    ani = new Animation(0, 3, 10);
+                    ani = idleAni;
                 }
                 else if (attackTimer > attackSpeed || stunned)
                 {
                     attacking = false;
                     s = baseAnimation;
-                    ani = new Animation(0, 3, 10);
+                    ani = idleAni;
                 }
             }
             else if (dis < range)
             {
                 s = attack;
-                ani = new Animation(0, 9, attackSpeed / 10);
+                ani = attackAni;
                 attackTimer = 0;
                 attacking = true;
                 attacked = false;

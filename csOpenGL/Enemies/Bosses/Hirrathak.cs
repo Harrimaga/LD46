@@ -16,7 +16,7 @@ namespace LD46
         private float TargetY { get; set; }
         private double SwingBack { get; set; }
 
-        public Hirrathak() : base(Enemies.HIRRATHAK_HEALTH, Enemies.HIRRATHAK_MANA, 12 * Globals.TileSize, 12 * Globals.TileSize, 0, 3, 3, Globals.TileSize, Globals.TileSize, Enemies.HIRRATHAK_SPEED, Enemies.HIRRATHAK_ATTACKPOINT, Enemies.HIRRATHAK_ATTACKSPEED, Enemies.HIRRATHAK_DAMAGE, "Hirrathak, the Purple", Enemies.HIRRATHAK_BLOCK, Enemies.HIRRATHAK_PHYSICAL_AMP, Enemies.HIRRATHAK_MAGICAL_AMP)
+        public Hirrathak() : base(Enemies.HIRRATHAK_HEALTH, Enemies.HIRRATHAK_MANA, 12 * Globals.TileSize, 12 * Globals.TileSize, 0, 3, 3, Globals.TileSize * 3, Globals.TileSize * 3, Enemies.HIRRATHAK_SPEED, Enemies.HIRRATHAK_ATTACKPOINT, Enemies.HIRRATHAK_ATTACKSPEED, Enemies.HIRRATHAK_DAMAGE, "Hirrathak, the Purple", Enemies.HIRRATHAK_BLOCK, Enemies.HIRRATHAK_PHYSICAL_AMP, Enemies.HIRRATHAK_MAGICAL_AMP)
         {
             Spells = new List<Spell>
             {
@@ -25,6 +25,8 @@ namespace LD46
             };
             CastingSpeed = 60;
             SwingBack = 500;
+            attackAni = new Animation(0, 9, CastingSpeed / 10);
+            idleAni = new Animation(0, 3, 10);
         }
 
         public override void Update(double delta)
@@ -60,13 +62,13 @@ namespace LD46
                     CurrentSpell.Cast(TargetX, TargetY, new List<Player>() { Globals.l.p }, this);
                     attacked = true;
                     s = baseAnimation;
-                    ani = new Animation(0, 3, 10);
+                    ani = idleAni;
                 }
                 else if (attackTimer > CastingSpeed + SwingBack)
                 {
                     Casting = false;
                     s = baseAnimation;
-                    ani = new Animation(0, 3, 10);
+                    ani = idleAni;
                 }
             }
             else
@@ -74,7 +76,7 @@ namespace LD46
                 List<Spell> possibleSpells = Spells.FindAll((spell) => { return spell.CurrentCooldown < CastingSpeed; });
                 CurrentSpell = possibleSpells[Globals.Rng.Next(possibleSpells.Count)];
                 s = attack;
-                ani = new Animation(0, 9, CastingSpeed / 10);
+                ani = attackAni;
                 TargetX = Globals.l.p.x;
                 TargetY = Globals.l.p.y;
                 attackTimer = 0;

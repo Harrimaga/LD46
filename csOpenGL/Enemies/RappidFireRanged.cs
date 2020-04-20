@@ -14,6 +14,8 @@ namespace LD46
             minDistance = range;
             projectileSpeed = Enemies.RAPPID_FIRE_ENEMY_PROJECTILE_SPEED;
             accuracy = Enemies.RAPPID_FIRE_ENEMY_ACCURACY;
+            attackAni = new Animation(0, 9, 10);
+            idleAni = new Animation(0, 3, 10);
         }
 
         public override void AIMove(double delta)

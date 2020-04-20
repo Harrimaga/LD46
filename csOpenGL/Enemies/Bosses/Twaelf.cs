@@ -12,13 +12,15 @@ namespace LD46
         public int maxTurrets, currentTurrets;
         public double spawnTimer, spawnTimerBase;
 
-        public Twaelf() : base(Enemies.TWAELF_HEALTH, Enemies.TWAELF_MANA, 12 * Globals.TileSize, 12 * Globals.TileSize, 6, 7, 0, Globals.TileSize, Globals.TileSize, Enemies.TWAELF_SPEED, Enemies.TWAELF_ATTACKPOINT, Enemies.TWAELF_ATTACKSPEED, Enemies.TWAELF_DAMAGE, "Twaelf, the Spawner", Enemies.TWAELF_BLOCK, Enemies.TWAELF_PHYSICAL_AMP, Enemies.TWAELF_MAGICAL_AMP)
+        public Twaelf() : base(Enemies.TWAELF_HEALTH, Enemies.TWAELF_MANA, 12 * Globals.TileSize, 12 * Globals.TileSize, 6, 7, 0, Globals.TileSize * 3, Globals.TileSize * 3, Enemies.TWAELF_SPEED, Enemies.TWAELF_ATTACKPOINT, Enemies.TWAELF_ATTACKSPEED, Enemies.TWAELF_DAMAGE, "Twaelf, the Spawner", Enemies.TWAELF_BLOCK, Enemies.TWAELF_PHYSICAL_AMP, Enemies.TWAELF_MAGICAL_AMP)
         {
             maxTurrets = 12;
             currentTurrets = 0;
             spawnTimer = 0;
             spawnTimerBase = 5 * 60;
             minDistance = 100;
+            attackAni = new Animation(0, 9, 10);
+            idleAni = new Animation(0, 3, 10);
         }
 
         public override void Update(double delta)

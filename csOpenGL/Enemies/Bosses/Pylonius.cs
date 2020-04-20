@@ -11,7 +11,7 @@ namespace LD46
 
         public bool charging, hasHit;
         public double minSpeed, chargeTime, chargeCooldownMax, chargeCooldown;
-        public Pylonius() : base(Enemies.PYLONIUS_HEALTH, Enemies.PYLONIUS_MANA, 12 * Globals.TileSize, 12 * Globals.TileSize, 18, 19, 3, Globals.TileSize, Globals.TileSize, Enemies.PYLONIUS_SPEED, Enemies.RANGED_ENEMY_ATTACKPOINT, Enemies.PYLONIUS_ATTACKSPEED, Enemies.PYLONIUS_DAMAGE, "Pylonius, the Bull", Enemies.PYLONIUS_BLOCK, Enemies.PYLONIUS_PHYSICAL_AMP, Enemies.PYLONIUS_MAGICAL_AMP)
+        public Pylonius() : base(Enemies.PYLONIUS_HEALTH, Enemies.PYLONIUS_MANA, 12 * Globals.TileSize, 12 * Globals.TileSize, 18, 19, 3, Globals.TileSize * 4, Globals.TileSize * 4, Enemies.PYLONIUS_SPEED, Enemies.RANGED_ENEMY_ATTACKPOINT, Enemies.PYLONIUS_ATTACKSPEED, Enemies.PYLONIUS_DAMAGE, "Pylonius, the Bull", Enemies.PYLONIUS_BLOCK, Enemies.PYLONIUS_PHYSICAL_AMP, Enemies.PYLONIUS_MAGICAL_AMP)
         {
             charging = false;
             hasHit = false;
@@ -19,6 +19,8 @@ namespace LD46
             chargeTime = 10 * 60;
             chargeCooldownMax = 8 * 60;
             chargeCooldown = 0;
+            attackAni = new Animation(0, 9, 10);
+            idleAni = new Animation(0, 3, 10);
         }
 
         public override void Update(double delta)

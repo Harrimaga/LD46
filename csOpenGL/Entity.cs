@@ -14,6 +14,8 @@ namespace LD46
         protected float rotation = 0, r = 1, g = 1, b = 1, a = 1;
         public float x, y;
         protected Sprite s, HBarBack, HBar, attack, baseAnimation;
+        protected Animation attackAni = null;
+        protected Animation idleAni = null;
         protected Animation ani = null;
         protected float xDir, yDir;
         protected int attackAnimation = 0;
