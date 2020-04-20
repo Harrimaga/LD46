@@ -74,5 +74,13 @@ namespace LD46
         public const double HEML_OF_PYLONIUS_BLOCK = 5;
         public const double HEML_OF_PYLONIUS_HP_REGEN = 0.1;
         public const double HEML_OF_PYLONIUS_SPEED = 1;
+        //Health potion
+        public const Rarity HEALTH_POTION_RARITY = Rarity.COMMON;
+        public const string HEALTH_POTION_DESCRIPTION = "+20hp on use";
+        public const double HEALTH_POTION_HEALTH = 20;
+        //Mana potion
+        public const Rarity MANA_POTION_RARITY = Rarity.COMMON;
+        public const string MANA_POTION_DESCRIPTION = "+20mp on use";
+        public const double MANA_POTION_MANA = 20;
     }
 }

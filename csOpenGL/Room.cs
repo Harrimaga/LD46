@@ -368,6 +368,7 @@ namespace LD46
             AddItem(new WandOfGreen(), () => { return new WandOfGreen(); });
             AddItem(new WandOfRed(), () => { return new WandOfRed(); });
             AddItem(new HelmOfPylonius(), () => { return new HelmOfPylonius(); });
+            AddItem(new HealthPotion(), () => { return new HealthPotion(); });
 
             int i = 0;
             foreach (Itemchances itc in itemDrops)

@@ -377,5 +377,24 @@ namespace LD46
                 CurrentBlock = CurrentBlock + BlockRegen > StandardBlock ? CurrentBlock : CurrentBlock + BlockRegen;
             }
         }
+
+        public void Heal(double amount)
+        {
+            Health += amount;
+            if(Health > MaxHealth)
+            {
+                Health = MaxHealth;
+            }
+        }
+
+        public void Healmana(double amount)
+        {
+            Mana += amount;
+            if (Mana > MaxMana)
+            {
+                Mana = MaxMana;
+            }
+        }
+
     }
 }
