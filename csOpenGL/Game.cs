@@ -110,7 +110,7 @@ namespace LD46
 
         private void TryItemAttack(int itemSlot)
         {
-            if (itemSlot < Globals.l.p.Spells.Count)
+            if (itemSlot < Globals.l.p.items.Count)
             {
                 Item item = Globals.l.p.items[itemSlot];
                 if(item.UseItem(Window.window.mouseX + Window.camX, Window.window.mouseY + Window.camY, Globals.l.Current.enemies, Globals.l.p))
