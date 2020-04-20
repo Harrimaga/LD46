@@ -200,7 +200,6 @@ namespace LD46
             new Level(Globals.Themes[Globals.Rng.Next(Globals.Themes.Count)], p, Globals.Rng.Next());
             gameState = GameState.PLAYING;
             LevelsPlayed = 0;
-            
         }
     }
 }
