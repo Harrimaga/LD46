@@ -137,7 +137,7 @@ namespace LD46
                     }
                     else if (t.GetTileType() == TileType.STAIRS)
                     {
-                        if (++LevelsPlayed >= 3)
+                        if (++LevelsPlayed >= 4)
                         {
                             gameState = GameState.WON;
                             buttons.Clear();
