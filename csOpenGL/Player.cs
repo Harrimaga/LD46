@@ -203,9 +203,9 @@ namespace LD46
 
         public void DrawUI()
         {
-            UIBack.w = 250;
-            UIBack.h = 915;
-            UIBack.Draw(1670, 0, false, 0, 0.5f, 0.5f, 0.5f, 0.85f);
+            UIBack.w = 280;
+            UIBack.h = 1080;
+            UIBack.Draw(1640, 0, false, 0, 0.5f, 0.5f, 0.5f, 0.85f);
             int y = 5;
 
             HBarUI.w = (int)(250 * Health / MaxHealth);
@@ -247,12 +247,40 @@ namespace LD46
             y = 355;
             UIBack.w = 240;
             UIBack.h = 55;
+            i = 0;
             foreach (Item it in items)
             {
                 UIBack.Draw(1675, y, false, 0, 0, 0, 0, 0.5f);
                 it.Draw(1677, y + 2);
+
+                string s = "z";
+                switch(i)
+                {
+                    case (0):
+                        s = "z";
+                        break;
+                    case (1):
+                        s = "x";
+                        break;
+                    case (2):
+                        s = "c";
+                        break;
+                    case (3):
+                        s = "v";
+                        break;
+                    case (4):
+                        s = "b";
+                        break;
+                    case (5):
+                        s = "n";
+                        break;
+                }
+                Window.window.DrawText(s, 1650, y + 9, Globals.buttonFont);
+
+                i++;
                 y += 60;
             }
+            Window.window.DrawText("You can drop\nitems and spells\nby clicking on them\nwith your mouse.", 1650, 980, Globals.buttonFont);
         }
 
         public void AddSpell(Spell spell)
