@@ -9,12 +9,42 @@ namespace LD46
     public class HordeBoss : Room
     {
         bool Finished { get; set; }
-        public HordeBoss(Theme theme):base(25,25,theme)
+        public HordeBoss(Theme theme) : base(25, 25, theme)
         {
-            for (int i = 0; i < 10;i++)
+            for (int i = 0; i < 10; i++)
             {
                 Random rng = new Random();
-                enemies.Add(theme.GetEnemy(rng.Next(1, 24), rng.Next(1, 24)));
+                enemies.Add(theme.GetEnemy(rng.Next(2, 23), rng.Next(2, 23)));
+            }
+            for (int i = 0; i < 5; i++)
+            {
+                int odds = Globals.Rng.Next(0, 1000);
+                if (odds < 150)
+                {
+                    if (width >= 7 && height >= 5)
+                    {
+                        int structW = 3;
+                        int structH = 1;
+                        Structures.Add(new Wall(Globals.Rng.Next(2, width - 1 - structW), Globals.Rng.Next(2, height - 1 - structH), tileGrid, theme, true));
+                    }
+                }
+                else if (odds < 300)
+                {
+                    if (width >= 5 && height >= 7)
+                    {
+                        int structW = 1;
+                        int structH = 3;
+                        Structures.Add(new Wall(Globals.Rng.Next(2, width - 1 - structW), Globals.Rng.Next(2, height - 1 - structH), tileGrid, theme, false));
+                    }
+                }
+                else if (odds < 580)
+                {
+                    if (width >= 5 && height >= 5)
+                    {
+                        int structH = 1;
+                        Structures.Add(new DefenseLaser(1, Globals.Rng.Next(2, height - 1 - structH), tileGrid, theme, width - 2));
+                    }
+                }
             }
         }
 

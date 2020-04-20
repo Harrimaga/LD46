@@ -17,11 +17,43 @@ namespace LD46
             Globals.Boss = theme.GetBoss();
             enemies.Add(Globals.Boss);
             Random rng = new Random();
+
+            for (int i = 0; i < 5; i++)
+            {
+                int odds = Globals.Rng.Next(0, 1000);
+                if (odds < 150)
+                {
+                    if (width >= 7 && height >= 5)
+                    {
+                        int structW = 3;
+                        int structH = 1;
+                        Structures.Add(new Wall(Globals.Rng.Next(2, width - 1 - structW), Globals.Rng.Next(2, height - 1 - structH), tileGrid, theme, true));
+                    }
+                }
+                else if (odds < 300)
+                {
+                    if (width >= 5 && height >= 7)
+                    {
+                        int structW = 1;
+                        int structH = 3;
+                        Structures.Add(new Wall(Globals.Rng.Next(2, width - 1 - structW), Globals.Rng.Next(2, height - 1 - structH), tileGrid, theme, false));
+                    }
+                }
+                else if (odds < 580)
+                {
+                    if (width >= 5 && height >= 5)
+                    {
+                        int structH = 1;
+                        Structures.Add(new DefenseLaser(1, Globals.Rng.Next(2, height - 1 - structH), tileGrid, theme, width - 2));
+                    }
+                }
+            }
+
             for (int i = 0; i < 6; i++)
             {
                 int randX = rng.Next(1, 24);
                 int randY = rng.Next(1, 24);
-                if (tileGrid[randX, randY].GetWalkable() == Walkable.WALKABLE)
+                if (tileGrid[randX, randY].GetWalkable() == Walkable.WALKABLE && tileGrid[randX, randY].GetTileType() == TileType.TILE)
                 {
                     tileGrid[randX, randY] = new Tile(new Sprite(tileSize, tileSize, 0, theme.GetTextureByType(TileType.BUTTON)), Walkable.WALKABLE, TileType.BUTTON, 0);
                 }
