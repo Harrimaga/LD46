@@ -111,6 +111,8 @@ namespace LD46
                     return new ButtonClickBoss(theme);
                 case 1:
                     return new PrayerCircleBossRoom(theme);
+                case 2:
+                    return new HordeBoss(theme);
                 default:
                     return new ButtonClickBoss(theme);
             }

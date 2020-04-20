@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LD46.Bossrooms
+namespace LD46
 {
     public class HordeBoss : Room
     {
