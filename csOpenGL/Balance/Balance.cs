@@ -52,7 +52,7 @@ namespace LD46
         public const double ORB_OF_HEALTH_HEALTH_REGEN = 0.1;
         //Orb of health
         public const Rarity ORB_OF_MANA_RARITY = Rarity.UNCOMMON;
-        public const string ORB_OF_MANA_DESCRIPTION = "+15HP, +0.1HP Regen";
+        public const string ORB_OF_MANA_DESCRIPTION = "+15MP, +0.1MP Regen";
         public const int    ORB_OF_MANA_MANA = 15;
         public const double ORB_OF_MANA_MANA_REGEN = 0.1;
         //Sword
