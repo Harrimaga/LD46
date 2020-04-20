@@ -38,6 +38,7 @@ namespace LD46
             AddSpell(new Fireball());
             AddSpell(new Slowness());
             AddSpell(new Disable());
+            AddSpell(new PillarOfLight());
         }
 
         public override void Update(double delta)

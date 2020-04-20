@@ -18,7 +18,13 @@ namespace LD46
                 new List<Effect> { },
                 Spells.PILLAR_OF_LIGHT_AOE,
                 new Sprite(40, 40, 0, Window.texs[16]),
-                new Animation(0, 0, 30))
+                new Animation(0, 0, 30),
+                2,
+                100,
+                0,
+                0,
+                1000,
+                3)
         {
         }
     }

@@ -26,8 +26,9 @@ namespace LD46
         public int pAniStart { get; set; }
         public int pAniStop { get; set; }
         public double pAniDuration { get; set; }
+        public float particleSpeed { get; set; }
 
-        protected Spell(double mana, double damage, double cooldown, string name, string description, List<Effect> effects, double aOE, Sprite icon, Animation spellAnimation, int particleSprite = 17, int particleAmount = 1000, int pAniStart = 0, int pAniStop = 11, double pAniDuration = 2.5)
+        protected Spell(double mana, double damage, double cooldown, string name, string description, List<Effect> effects, double aOE, Sprite icon, Animation spellAnimation, int particleSprite = 17, int particleAmount = 1000, int pAniStart = 0, int pAniStop = 11, double pAniDuration = 2.5, float particleSpeed = 0)
         {
             Mana = mana;
             Damage = damage;
@@ -43,6 +44,7 @@ namespace LD46
             this.pAniStart = pAniStart;
             this.pAniStop = pAniStop;
             this.pAniDuration = pAniDuration;
+            this.particleSpeed = particleSpeed;
             CooldownSprite = new Sprite(0, 45, 0, Window.texs[2]);
         }
 
@@ -55,13 +57,17 @@ namespace LD46
             }
             CurrentCooldown = Cooldown;
             int targets = 0;
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < particleAmount; i++)
             {
                 float px = (float)(x + (Globals.Rng.NextDouble() * 2 - 1) * (AOE - Globals.TileSize / 2));
                 float py = (float)(y + (Globals.Rng.NextDouble() * 2 - 1) * (AOE - Globals.TileSize / 2));
-                if (Math.Sqrt((px - x) * (px - x) + (py - y) * (py - y)) <= AOE - Globals.TileSize / 2)
+                float xd = px - x;
+                float yd = py - y;
+                double distance = Math.Sqrt(xd * xd + yd * yd);
+                if (distance <= ((20 - particleSpeed)/20) * (AOE - Globals.TileSize / 2))
                 {
-                    Globals.l.Current.particles.Add(new Particle(px, py, 0, 0, Globals.TileSize / 2, Globals.TileSize / 2, 17, 0, 30, 1, 1, 1, true, new Animation(0, 11, 2.5)));
+
+                    Globals.l.Current.particles.Add(new Particle(px, py, particleSpeed*(float)(((distance) /(AOE - Globals.TileSize/2)) * xd/distance), particleSpeed * (float)(((distance) / (AOE - Globals.TileSize / 2)) * yd / distance), Globals.TileSize / 2, Globals.TileSize / 2, particleSprite, 0, 30, 1, 1, 1, true, new Animation(pAniStart, pAniStop, pAniDuration)));
                 }
             }
             foreach (Entity target in possibleTargets)
