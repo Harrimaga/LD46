@@ -11,6 +11,7 @@ namespace LD46
         bool Finished { get; set; }
         public HordeBoss(Theme theme) : base(25, 25, theme)
         {
+            
             for (int i = 0; i < 10; i++)
             {
                 Random rng = new Random();
@@ -46,6 +47,8 @@ namespace LD46
                     }
                 }
             }
+            Globals.Boss = theme.GetBoss();
+            enemies.Add(Globals.Boss);
         }
 
         public override void Update(double delta)
