@@ -130,6 +130,7 @@
     <Compile Include="Enemies\Bosses\Hirrathak.cs" />
     <Compile Include="Enemies\Bosses\Pylonius.cs" />
     <Compile Include="Enemies\Bosses\Twaelf.cs" />
+    <Compile Include="Enemies\Bosses\Yureon.cs" />
     <Compile Include="Enemies\DarkEnemy.cs" />
     <Compile Include="Enemies\RangedEnemy.cs" />
     <Compile Include="Bossrooms\ButtonClickBoss.cs" />
