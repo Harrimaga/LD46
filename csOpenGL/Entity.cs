@@ -17,6 +17,7 @@ namespace LD46
         protected Animation attackAni = null;
         protected Animation idleAni = null;
         protected Animation ani = null;
+        public double KnockBackMod = 1;
         protected float xDir, yDir;
         protected int attackAnimation = 0;
         public List<Effect> effects;
@@ -247,6 +248,9 @@ namespace LD46
                     case EffectType.HPREGEN:
                         HealthRegen += effect.Modifier;
                         break;
+                    case EffectType.KNOCKBACK:
+                        KnockBackMod += effect.Modifier;
+                        break;
                     case EffectType.STUN:
                         stunned = true;
                         break;
@@ -296,6 +300,9 @@ namespace LD46
                             break;
                         case EffectType.HPREGEN:
                             HealthRegen -= e.Modifier;
+                            break;
+                        case EffectType.KNOCKBACK:
+                            KnockBackMod -= e.Modifier;
                             break;
                         case EffectType.STUN:
                             stunned = false;

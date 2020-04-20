@@ -25,7 +25,8 @@ namespace LD46
         MANA,
         MPREGEN,
         HPREGEN,
-        STUN
+        STUN,
+        KNOCKBACK
     }
 
     public enum Walkable
