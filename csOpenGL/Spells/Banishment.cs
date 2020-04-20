@@ -17,7 +17,7 @@ namespace LD46
             Spells.BANISHMENT_DESCRIPTION,
             new List<Effect> {  },
             Spells.BANISHMENT_AOE,
-            new Sprite(40, 40, 0, Window.texs[15]),
+            new Sprite(40, 40, 0, Window.texs[30]),
             new Animation(0, 0, 30),
             SpellType.SINGLE_TARGET,
                 20,

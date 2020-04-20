@@ -151,9 +151,12 @@ namespace LD46
             Window.texs.Add(new Texture("Textures/LaserMiddle.png", 256, 16, 16, 16));              //23
             Window.texs.Add(new Texture("Textures/LaserRight.png", 256, 16, 16, 16));               //24
             Window.texs.Add(new Texture("Textures/ProjectileBlue.png", 96, 32, 32, 32));            //25
-            Window.texs.Add(new Texture("Textures/ProjectileBlue.png", 96, 32, 32, 32));            //25
-            Window.texs.Add(new Texture("Textures/Items/ManaPotion.png", 16, 16, 16, 16));          //26
-            Window.texs.Add(new Texture("Textures/Items/Heart.png", 16, 16, 16, 16));               //27
+            Window.texs.Add(new Texture("Textures/ProjectileBlue.png", 96, 32, 32, 32));            //26
+            Window.texs.Add(new Texture("Textures/Items/ManaPotion.png", 16, 16, 16, 16));          //27
+            Window.texs.Add(new Texture("Textures/Items/Heart.png", 16, 16, 16, 16));               //28
+            Window.texs.Add(new Texture("Textures/Spells/ShieldSpell.png", 24, 24, 24, 24));        //29
+            Window.texs.Add(new Texture("Textures/Spells/BanishmentSpell.png", 24, 24, 24, 24));    //30
+            Window.texs.Add(new Texture("Textures/Spells/FrostStrahlSpell.png", 24, 24, 24, 24));   //31
 
 
             game = new Game(this);

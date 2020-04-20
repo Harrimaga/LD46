@@ -17,7 +17,7 @@ namespace LD46
             Spells.SHIELD_DESCRIPTION,
             new List<Effect> { new Effect(EffectType.BLOCK, Spells.SHIELD_BLOCK, Spells.SHIELD_DURATION) },
             Spells.SHIELD_AOE,
-            new Sprite(40, 40, 0, Window.texs[15]),
+            new Sprite(40, 40, 0, Window.texs[29]),
             new Animation(0, 0, 30),
             SpellType.SELF_TARGET,
                 21,
