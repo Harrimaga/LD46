@@ -13,7 +13,9 @@ namespace LD46
             Balance.ORB_OF_HEALTH_RARITY,
             Balance.ORB_OF_HEALTH_DESCRIPTION,
             new Sprite(40, 40, 0, Window.texs[0]),
-            new Effect[] { new Effect(EffectType.HP, Balance.ORB_OF_HEALTH_HEALTH, -999) }
+            new Effect[] {
+                new Effect(EffectType.HP, Balance.ORB_OF_HEALTH_HEALTH, -999),
+                new Effect(EffectType.HPREGEN, Balance.ORB_OF_HEALTH_HEALTH_REGEN, -999) }
             )
         {
 

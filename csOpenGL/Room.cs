@@ -364,6 +364,7 @@ namespace LD46
             itemDrops = new List<Itemchances>();
             AddItem(new Sword(), () => { return new Sword(); });
             AddItem(new OrbOfHealth(), () => { return new OrbOfHealth(); });
+            AddItem(new OrbOfMana(), () => { return new OrbOfMana(); });
             AddItem(new WandOfBlue(), () => { return new WandOfBlue(); });
             AddItem(new WandOfGreen(), () => { return new WandOfGreen(); });
             AddItem(new WandOfRed(), () => { return new WandOfRed(); });
