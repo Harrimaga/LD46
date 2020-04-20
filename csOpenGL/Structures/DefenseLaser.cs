@@ -20,7 +20,7 @@ namespace LD46
 
         public DefenseLaser(int x, int y, Tile[,] tileGrid, Theme theme, int width) : base(width, 1, x, y, tileGrid, theme)
         {
-            Interval = 100;
+            Interval = Globals.Rng.Next(50, 150);
             InternalTimer = 0;
             damageTimer = 0;
             damageTimerBase = 1 * 60;
