@@ -61,6 +61,7 @@ namespace LD46
                     return textures[2];
                 case TileType.BUTTON:
                     return textures[3];
+
                 default:
                     return null;
             }

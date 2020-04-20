@@ -10,10 +10,14 @@ namespace LD46
     {
         public double Interval { get; set; }
         private double InternalTimer { get; set; }
+
+        private List<Sprite> sprites;
         public DefenseLaser(int x, int y, Tile[,] tileGrid, Theme theme, int width) : base(width, 1, x, y, tileGrid, theme)
         {
             Interval = 100;
             InternalTimer = 0;
+
+            sprites = new List<Sprite>();
 
             Place(tileGrid);
         }
@@ -22,7 +26,8 @@ namespace LD46
         {
             for(int i = X; i<X+Width;i++)
             {
-                tileGrid[i, Y] = new Tile(new Sprite(Globals.TileSize, Globals.TileSize, 0, Theme.GetTextureByType(TileType.STAIRS)), Walkable.WALKABLE, TileType.TILE, 0); //Should be an animated laser
+                tileGrid[i, Y] = new Tile(new Sprite(Globals.TileSize, Globals.TileSize, 0, Theme.GetTextureByType(TileType.TILE)), Walkable.WALKABLE, TileType.TILE, 0); //Should be an animated laser
+                sprites.Add(new Sprite(Globals.TileSize, Globals.TileSize, 0, Theme.GetTextureByType))
             }
         }
 
@@ -35,6 +40,11 @@ namespace LD46
                 OnTrigger();
                 InternalTimer -= Interval;
             }
+        }
+
+        public override void Draw(double deltaTime)
+        {
+
         }
 
         public override void OnTrigger()
