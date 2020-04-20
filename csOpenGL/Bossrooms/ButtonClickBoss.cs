@@ -76,9 +76,10 @@ namespace LD46
             }
         }
 
-        public override void DrawOnMinimap(int x, int y, float cc)
+        public override void Draw(float x, float y)
         {
-            base.DrawOnMinimap(x, y, 0.5f, 0.5f, 0);
+            base.Draw(x, y);
+            Window.window.DrawTextCentered("Click all 6 buttons to advance to the next floor!", 860, 0, Globals.buttonFont);
         }
     }
 }

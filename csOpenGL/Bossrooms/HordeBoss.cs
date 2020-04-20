@@ -63,5 +63,11 @@ namespace LD46
                 Globals.rootActionLog.Add("You have finished this boss, stairs have appeared");
             }
         }
+
+        public override void Draw(float x, float y)
+        {
+            base.Draw(x, y);
+            Window.window.DrawTextCentered("Defeat all enemies except for the boss to advance to the next floor!", 860, 0, Globals.buttonFont);
+        }
     }
 }

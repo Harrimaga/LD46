@@ -68,5 +68,11 @@ namespace LD46
             }
             Globals.rootActionLog.Add("You have prayed");
         }
+
+        public override void Draw(float x, float y)
+        {
+            base.Draw(x, y);
+            Window.window.DrawTextCentered("Stand on the 2 prayer circles for 4 seconds each to advance to the next floor!", 860, 0, Globals.buttonFont);
+        }
     }
 }

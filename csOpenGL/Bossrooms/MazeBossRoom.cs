@@ -222,5 +222,10 @@ namespace LD46
                 }
             }
         }
+        public override void Draw(float x, float y)
+        {
+            base.Draw(x, y);
+            Window.window.DrawTextCentered("Find the stairs to advance to the next floor!", 860, 0, Globals.buttonFont);
+        }
     }
 }
