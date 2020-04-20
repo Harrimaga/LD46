@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LD46
 {
-    public class Tile
+    public class Tile: ICloneable
     {
         private Sprite sprite;
         private Walkable walkable;
@@ -37,5 +37,10 @@ namespace LD46
             return tileType;
         }
 
+        public object Clone()
+        {
+            Tile t = new Tile(new Sprite(sprite.w, sprite.h, sprite.num, new Texture(sprite.texture.file, sprite.texture.totW, sprite.texture.totH, sprite.texture.sW, sprite.texture.sH)),walkable, tileType, rotation);
+            return t;
+        }
     }
 }
