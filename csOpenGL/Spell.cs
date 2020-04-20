@@ -90,7 +90,7 @@ namespace LD46
             CooldownSprite = new Sprite(0, 45, 0, Window.texs[2]);
         }
 
-        public void Cast(float x, float y, IEnumerable<Entity> possibleTargets, Entity caster)
+        public virtual void Cast(float x, float y, IEnumerable<Entity> possibleTargets, Entity caster)
         {
             switch (spellType)
             {
@@ -274,7 +274,7 @@ namespace LD46
         }
 
 
-        public void Update(double deltaTime)
+        public virtual void Update(double deltaTime)
         {
             if (CurrentCooldown - deltaTime < 0)
             {
