@@ -105,12 +105,14 @@ namespace LD46
 
         private Room CreateABossRoom(Theme theme)
         {
-            switch (Rng.Next(2))
+            switch (Rng.Next(3))
             {
                 case 0:
                     return new ButtonClickBoss(theme);
                 case 1:
                     return new PrayerCircleBossRoom(theme);
+                case 2:
+                    return new MazeBossRoom(theme);
                 default:
                     return new ButtonClickBoss(theme);
             }

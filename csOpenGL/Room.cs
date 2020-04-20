@@ -26,7 +26,7 @@ namespace LD46
         public List<Connection> Connections { get; set; }
         public Theme Theme { get; set; }
 
-        public Room(int x, int y, Theme theme, int tileSize = Globals.TileSize)
+        public Room(int x, int y, Theme theme, int tileSize = Globals.TileSize, bool genWalls = true)
         {
             AddItems();
             Connections = new List<Connection>();
@@ -100,7 +100,7 @@ namespace LD46
                 int odds = Globals.Rng.Next(0, 1000);
                 if (odds < 50)
                 {
-                    if(width >= 7 && height >= 5)
+                    if(width >= 7 && height >= 5 && genWalls)
                     {
                         int structW = 3;
                         int structH = 1;
@@ -109,7 +109,7 @@ namespace LD46
                 }
                 else if (odds < 100)
                 {
-                    if (width >= 5 && height >= 7)
+                    if (width >= 5 && height >= 7 && genWalls)
                     {
                         int structW = 1;
                         int structH = 3;

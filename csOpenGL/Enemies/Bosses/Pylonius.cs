@@ -23,6 +23,11 @@ namespace LD46
             idleAni = new Animation(0, 3, 10);
         }
 
+        public override int[] CheckCollision()
+        {
+            return null;
+        }
+
         public override void Update(double delta)
         {
             base.Update(delta);
