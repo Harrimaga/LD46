@@ -23,7 +23,7 @@ namespace LD46
             Spells.CREATE_WALL_DESCRIPTION,
             new List<Effect> { },
             Spells.CREATE_WALL_AOE,
-            new Sprite(40, 40, 0, Window.texs[29]),
+            new Sprite(40, 40, 0, Window.texs[39]),
             new Animation(0, 0, 30),
             SpellType.SINGLE_TARGET,
                 20,

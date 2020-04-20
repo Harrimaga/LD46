@@ -17,7 +17,7 @@ namespace LD46
             Spells.SURGE_DESCRIPTION,
             new List<Effect> { new Effect(EffectType.SPEED, Spells.SURGE_SPEED, Spells.SURGE_DURATION) },
             Spells.SHIELD_AOE,
-            new Sprite(40, 40, 0, Window.texs[28]),
+            new Sprite(40, 40, 0, Window.texs[38]),
             new Animation(0, 0, 30),
             SpellType.SELF_TARGET,
                 21,

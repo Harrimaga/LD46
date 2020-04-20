@@ -76,7 +76,7 @@ namespace LD46
         public const double PYLONIUS_PHYSICAL_AMP = 1.5;
         public const double PYLONIUS_MAGICAL_AMP = 0.3;
 
-        public const int TWAELF_HEALTH = 100;
+        public const int TWAELF_HEALTH = 200;
         public const int TWAELF_MANA = 50;
         public const double TWAELF_SPEED = 5;
         public const double TWAELF_ATTACKSPEED = 30;
