@@ -47,13 +47,13 @@ namespace LD46
         /// </summary>
         //Orb of health
         public const Rarity ORB_OF_HEALTH_RARITY = Rarity.UNCOMMON;
-        public const string ORB_OF_HEALTH_DESCRIPTION = "+15HP, +0.15HP Regen";
-        public const int ORB_OF_HEALTH_HEALTH = 15;
+        public const string ORB_OF_HEALTH_DESCRIPTION = "+20HP, +0.15HP Regen";
+        public const int ORB_OF_HEALTH_HEALTH = 20;
         public const double ORB_OF_HEALTH_HEALTH_REGEN = 0.15;
         //Orb of health
         public const Rarity ORB_OF_MANA_RARITY = Rarity.UNCOMMON;
-        public const string ORB_OF_MANA_DESCRIPTION = "+15MP, +0.15MP Regen";
-        public const int    ORB_OF_MANA_MANA = 15;
+        public const string ORB_OF_MANA_DESCRIPTION = "+20MP, +0.15MP Regen";
+        public const int    ORB_OF_MANA_MANA = 20;
         public const double ORB_OF_MANA_MANA_REGEN = 0.15;
         //Sword
         public const Rarity SWORD_RARITY = Rarity.COMMON;
@@ -71,28 +71,28 @@ namespace LD46
         public const double WAND_OF_GREEN_MAGICAL_AMP = 0.1;
         //Wand Of red
         public const Rarity WAND_OF_RED_RARITY = Rarity.RARE;
-        public const string WAND_OF_RED_DESCRIPTION = "+20MP, +0.3MP Regen\n-15HP";
+        public const string WAND_OF_RED_DESCRIPTION = "+25MP, +0.4MP Regen\n-15HP";
         public const double WAND_OF_RED_HEALTH = -15;
-        public const double WAND_OF_RED_MANA = 20;
-        public const double WAND_OF_RED_MANAREGEN = 0.3;
+        public const double WAND_OF_RED_MANA = 25;
+        public const double WAND_OF_RED_MANAREGEN = 0.4;
         //Wand Of Blue
         public const Rarity WAND_OF_BLUE_RARITY = Rarity.UNCOMMON;
-        public const string WAND_OF_BLUE_DESCRIPTION = "+25% Magic amp\n-10MP";
-        public const double WAND_OF_BLUE_MAGIC_AMP = 0.25;
+        public const string WAND_OF_BLUE_DESCRIPTION = "+30% Magic amp\n-10MP";
+        public const double WAND_OF_BLUE_MAGIC_AMP = 0.3;
         public const double WAND_OF_BLUE_MANA = -10;
         //Helm of Pylonius
         public const Rarity HEML_OF_PYLONIUS_RARITY = Rarity.SUPER_RARE;
-        public const string HEML_OF_PYLONIUS_DESCRIPTION = "+5 Block, +0.2HP regen, +1 Speed";
+        public const string HEML_OF_PYLONIUS_DESCRIPTION = "+5 Block, +0.3HP regen, +1 Speed";
         public const double HEML_OF_PYLONIUS_BLOCK = 5;
-        public const double HEML_OF_PYLONIUS_HP_REGEN = 0.2;
+        public const double HEML_OF_PYLONIUS_HP_REGEN = 0.3;
         public const double HEML_OF_PYLONIUS_SPEED = 1;
         //Health potion
         public const Rarity HEALTH_POTION_RARITY = Rarity.COMMON;
-        public const string HEALTH_POTION_DESCRIPTION = "+20hp on use";
-        public const double HEALTH_POTION_HEALTH = 20;
+        public const string HEALTH_POTION_DESCRIPTION = "+25hp on use";
+        public const double HEALTH_POTION_HEALTH = 25;
         //Mana potion
         public const Rarity MANA_POTION_RARITY = Rarity.COMMON;
-        public const string MANA_POTION_DESCRIPTION = "+20mp on use";
-        public const double MANA_POTION_MANA = 20;
+        public const string MANA_POTION_DESCRIPTION = "+25mp on use";
+        public const double MANA_POTION_MANA = 25;
     }
 }

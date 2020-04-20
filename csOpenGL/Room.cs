@@ -135,7 +135,7 @@ namespace LD46
                         {
                             enemies.Add(theme.GetEnemy(i * Globals.TileSize, j * Globals.TileSize));
                         }
-                        else if (Globals.l.Rng.Next(1000) < 3)
+                        else if (Globals.l.Rng.Next(1000) < 5)
                         {
                             int rn = Globals.Rng.Next(chanceTotal);
                             Item it = null;
@@ -191,7 +191,7 @@ namespace LD46
             }
             foreach (var enemy in removables)
             {
-                if (Globals.Rng.Next(100) < 10)
+                if (Globals.Rng.Next(100) < 15)
                 {
                     DropSpell(enemy.x, enemy.y);
                 }
